@@ -63,7 +63,7 @@ public class AccountsDao {
 			// 結果を返す
 			return name;
 		}
-		// 引数cardで指定されたレコードを登録し、成功したらtrueを返す
+		// 引数accountsで指定されたレコードを登録し、成功したらtrueを返す
 		public boolean insert(User accounts) {
 			Connection conn = null;
 			boolean result = false;
