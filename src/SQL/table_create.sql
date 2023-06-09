@@ -4,7 +4,7 @@
 org.h2.Driver
 
 【JDBC URL】
-jdbc:h2:file:C:/pleiades/workspace/data/nyaster
+jdbc:h2:file:C:/pleiades/workspace/data/nyastar
 
 ※データベース作成のエラーが表示された場合は、
 https://sukkiri.jp/technologies/ides/eclipse/h2-createdb.html
