@@ -14,6 +14,11 @@ public class User implements Serializable {
 		this.password = password;
 	}
 
+	 public User(String user_id,String password) {
+			this.user_id = user_id;
+			this.password = password;
+		}
+
 	public User() {
 	}
 
@@ -45,6 +50,9 @@ public class User implements Serializable {
    public void setPassword(String password){
         this.password = password;
     }
+
+
+
 
 
 

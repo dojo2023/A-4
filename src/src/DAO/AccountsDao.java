@@ -61,7 +61,7 @@ public class AccountsDao {
 			}
 
 			// 結果を返す
-			return name;
+			return id;
 		}
 		// 引数accountsで指定されたレコードを登録し、成功したらtrueを返す
 		public boolean insert(User accounts) {
@@ -73,7 +73,7 @@ public class AccountsDao {
 				Class.forName("org.h2.Driver");
 
 				// データベースに接続する
-				conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/data/nyaster", "sa", "");
+				conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/data/nyastar", "sa", "");
 
 				// SQL文を準備する
 				String sql = "insert into ACCOUNTS values (?, ?, ?, ?)";
