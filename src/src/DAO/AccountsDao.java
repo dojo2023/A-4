@@ -10,10 +10,9 @@ import model.User;
 
 public class AccountsDao {
 	// ログインできるならtrueを返す
-		public String isLoginOK(String id,String pw) {
+		public String isLoginOK(User user) {
 			Connection conn = null;
-			boolean loginResult = false;
-			String name=null;
+			String id = null;
 			try {
 				// JDBCドライバを読み込む
 				Class.forName("org.h2.Driver");
@@ -27,25 +26,23 @@ public class AccountsDao {
 				PreparedStatement pStmt = conn.prepareStatement(sql);
 
 				//SQL文が未完成だったからちゃんと値を入れる
-				pStmt.setString(1,id);
-
-				pStmt.setString(2,pw);
-
-
+				pStmt.setString(1, user.getUser_id());
+				pStmt.setString(2, user.getPassword());
 
 				// SELECT文を実行し、結果表を取得する
 				ResultSet rs = pStmt.executeQuery();
-				while(rs.next()) {
-					name=rs.getString("USER_NAME");
+
+				// ユーザーIDとパスワードが一致するユーザーがいたかどうかをチェックする
+				rs.next();
+				if (rs.getInt("count(*)") == 1) {
+					id = user.getUser_uuid(); //返す用のID
 				}
 			}
 			catch (SQLException e) {
 				e.printStackTrace();
-				id = null;
 			}
 			catch (ClassNotFoundException e) {
 				e.printStackTrace();
-				id = null;
 			}
 			finally {
 				// データベースを切断
@@ -55,7 +52,7 @@ public class AccountsDao {
 					}
 					catch (SQLException e) {
 						e.printStackTrace();
-						loginResult = false;
+						id = null;
 					}
 				}
 			}
@@ -131,5 +128,4 @@ public class AccountsDao {
 			// 結果を返す
 			return result;
 		}
-
 }
