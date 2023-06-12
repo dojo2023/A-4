@@ -41,11 +41,11 @@ public class AccountsDao {
 			}
 			catch (SQLException e) {
 				e.printStackTrace();
-				loginResult = false;
+				id = null;
 			}
 			catch (ClassNotFoundException e) {
 				e.printStackTrace();
-				loginResult = false;
+				id = null;
 			}
 			finally {
 				// データベースを切断
