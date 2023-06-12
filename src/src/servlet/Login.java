@@ -25,7 +25,7 @@ public class Login extends HttpServlet {
     /**
      * @see HttpServlet#doget(HttpServletRequest request, HttpServletResponse response)
      */
-    protected void doget(HttpServletRequest request, HttpServletResponse response) throws ServletException,IOException {
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException,IOException {
         // ログインページにフォワードする
     	RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/login.jsp");
 		dispatcher.forward(request, response);
