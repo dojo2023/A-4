@@ -10,9 +10,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import dao.AccountsDao;
+import DAO.AccountsDao;
 import model.User;
-import model.PwHashed
+import model.PwHashed;
 
 
 /**
@@ -49,17 +49,15 @@ public class Login extends HttpServlet {
 					session.setAttribute("id", id);
 
 					// トップページサーブレットにリダイレクトする
-					response.sendRedirect("/NYASTAR/Login");
+					response.sendRedirect("/NYASTAR/TopPage");
 				}
-				else {									// ログイン失敗
-					// リクエストスコープに、タイトル、メッセージ、戻り先を格納する
-					request.setAttribute("("ログイン失敗！", "IDまたはPWに間違いがあります。", "/NYASTAR/Login"));
-
-					// 結果ページにフォワードする
-					RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/result.jsp");
+				else {
+					String errorMsg = "ログインに失敗しました。";
+					request.setAttribute("errorMsg", errorMsg);
+					RequestDispatcher dispatcher = request.getRequestDispatcher("login.jsp");
 					dispatcher.forward(request, response);
 				}
-			}
+
 
 	}
 

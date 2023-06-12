@@ -7,6 +7,6 @@
 <title>ログイン｜NYASTAR</title>
 </head>
 <body>
-
+${errorMsg}
 </body>
 </html>
