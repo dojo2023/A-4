@@ -73,7 +73,7 @@ public class AccountsDao {
 				Class.forName("org.h2.Driver");
 
 				// データベースに接続する
-				conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/data/nyaster", "sa", "");
+				conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/data/nyastar", "sa", "");
 
 				// SQL文を準備する
 				String sql = "insert into ACCOUNTS values (?, ?, ?, ?)";
@@ -92,7 +92,7 @@ public class AccountsDao {
 				else {
 					pStmt.setString(2, null);
 				}
-				if (card.getUser_name() != null && !accounts.getUser_name().equals("")) {
+				if (accounts.getUser_name() != null && !accounts.getUser_name().equals("")) {
 					pStmt.setString(3, accounts.getUser_name());
 				}
 				else {
