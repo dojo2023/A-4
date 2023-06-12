@@ -7,81 +7,30 @@ import java.util.Date;
 import java.util.UUID;
 
 public class Posts implements Serializable {
-	private String id;
-	private String name;
-	private String msg;
-	private int ganbariTime;
-	private String userId;
-	private String goalId;
-	private Timestamp postTime;
+	private String id; //投稿のID（UUID）
+	private String userName; //投稿したユーザの名前
+	private String msg; //投稿のメッセージ
+	private int ganbariTime; //がんばり時間（分）
+	private String ganbariTag;
+	private String goal; //設定した目標の名前
+	private Timestamp postTime; //投稿した日時
 
 
-	// 投稿情報の新規登録
-	public Posts(String name, String msg, int gTime, String userId) {
+	// 投稿情報の新規登録. ユーザ名と目標名は取得してから格納する.
+	public Posts(String name, String userName, String msg, int gTime, String gTag, String goal) {
 		UUID uuid = UUID.randomUUID(); // 一意のUUIDを生成
 		String uuidString = uuid.toString();
 
 		this.id = uuidString;
-		this.name = name;
+		this.userName = userName;
 		this.msg = msg;
 		this.ganbariTime = gTime;
-		this.userId = userId;
+		this.ganbariTag = gTag;
+		this.goal = goal;
+
 
 		// 現在時刻を取得する
 		Date now = new Date();
 		Timestamp ts = new Timestamp(now.getTime());
 		this.postTime = ts;
 	}
-
-
-	public String getId() {
-		return id;
-	}
-
-	public String getName() {
-		return name;
-	}
-
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
-
-	public String getMsg() {
-		return msg;
-	}
-
-
-	public void setMsg(String msg) {
-		this.msg = msg;
-	}
-
-
-	public int getGanbariTime() {
-		return ganbariTime;
-	}
-
-
-	public void setGanbariTime(int ganbariTime) {
-		this.ganbariTime = ganbariTime;
-	}
-
-
-	public String getUserId() {
-		return userId;
-	}
-
-	public String getGoalId() {
-		return goalId;
-	}
-
-	public void setGoalId(String goalId) {
-		this.goalId = goalId;
-	}
-
-
-	public Timestamp getPostTime() {
-		return postTime;
-	}
-}
