@@ -92,7 +92,7 @@ public class AccountsDao {
 				else {
 					pStmt.setString(2, null);
 				}
-				if (card.getUser_name() != null && !accounts.getUser_name().equals("")) {
+				if (accounts.getUser_name() != null && !accounts.getUser_name().equals("")) {
 					pStmt.setString(3, accounts.getUser_name());
 				}
 				else {
