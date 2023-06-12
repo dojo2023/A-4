@@ -39,11 +39,11 @@ public class Login extends HttpServlet {
 				request.setCharacterEncoding("UTF-8");
 				String id = request.getParameter("ID");
 				String pw = request.getParameter("PW");
-				String hashedPw = PasswordHashing.hashPassword(pw);
+				String hashedPw =  PwHashed.hashPassword(pw);
 
 				// ログイン処理を行う
 				AccountsDao iDao = new AccountsDao();
-				if (iDao.isLoginOK(new Idpw(id, hashedPw))) {	// ログイン成功
+				if (iDao.isLoginOK(new User(id, hashedPw))) {	// ログイン成功
 					// セッションスコープにIDを格納する
 					HttpSession session = request.getSession();
 					session.setAttribute("id", id);

@@ -61,7 +61,7 @@ public class AccountsDao {
 			}
 
 			// 結果を返す
-			return name;
+			return id;
 		}
 		// 引数accountsで指定されたレコードを登録し、成功したらtrueを返す
 		public boolean insert(User accounts) {
