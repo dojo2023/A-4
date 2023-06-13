@@ -17,7 +17,7 @@
 	<h2>新規登録</h2>
 	<hr>
 
-	<form method="POST" action="/NYASTAR/Login">
+	<form method="POST" action="/NYASTER/Register">
 		IDの設定は半角英数字と記号(_)のみ使用できます<br>
 		ユーザーID<input type="text" placeholder="16文字以内で入力してください" maxlength="16" name="ID"><br>
 		${errorMsg}<br>

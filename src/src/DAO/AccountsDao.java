@@ -77,31 +77,10 @@ public class AccountsDao {
 				PreparedStatement pStmt = conn.prepareStatement(sql);
 
 				// SQL文を完成させる
-				if (accounts.getUser_uuid() != null && !accounts.getUser_uuid().equals("")) {
 					pStmt.setString(1, accounts.getUser_uuid());
-				}
-				else {
-					pStmt.setString(1, null);
-				}
-				if (accounts.getUser_id() != null && !accounts.getUser_id().equals("")) {
 					pStmt.setString(2, accounts.getUser_id());
-				}
-				else {
-					pStmt.setString(2, null);
-				}
-				if (accounts.getUser_name() != null && !accounts.getUser_name().equals("")) {
 					pStmt.setString(3, accounts.getUser_name());
-				}
-				else {
-					pStmt.setString(3, null);
-				}
-				if (accounts.getPassword() != null && !accounts.getPassword().equals("")) {
 					pStmt.setString(4, accounts.getPassword());
-				}
-				else {
-					pStmt.setString(4, null);
-				}
-
 				// SQL文を実行する
 				if (pStmt.executeUpdate() == 1) {
 					result = true;

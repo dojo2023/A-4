@@ -17,7 +17,7 @@
 	<h2>ログイン</h2>
 	<hr>
 
-	<form method="POST" action="/NYASTAR/Login">
+	<form method="POST" action="/NYASTER/Login">
 		ユーザーID<input type="text" placeholder="16文字以内で入力してください" maxlength="16" name="ID"><br>
 		パスワード<input type="password" placeholder="8文字以上で入力してください" minlength="8" required name="PW">
 		<i id="eye" class="fa-solid fa-eye"></i><br>
