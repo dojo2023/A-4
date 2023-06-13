@@ -20,7 +20,7 @@
       </div>
     </div>
   </div>
-  <script src="main.js"></script>
+  <script src="loginUser.js"></script>
 
 
 </body>
