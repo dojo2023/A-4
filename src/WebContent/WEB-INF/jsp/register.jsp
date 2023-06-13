@@ -33,6 +33,7 @@
 	<a href="Login">ログインはこちら</a>
 
 	<script>
+	// 目のアイコン
           let eye = document.getElementById("eye");
           eye.addEventListener('click', function () {
                if (this.previousElementSibling.getAttribute('type') == 'password') {
