@@ -133,7 +133,7 @@ public class PostsDAO {
 				rs.getString("POST_ID"),
 				rs.getString("POST_USER_NAME"),
 				rs.getString("POST_MESSAGE"),
-				rs.getInt("GANPARI_TIME"),
+				rs.getInt("GANBARI_TIME"),
 				rs.getString("GENRE_TAG"),
 				rs.getString("GOAL_NAME"),
 				rs.getTimestamp("POST_TIME")
@@ -174,7 +174,7 @@ public class PostsDAO {
 
 		try {
 			Class.forName("org.h2.Driver");
-			conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/data/simpleBC", "sa", "");
+			conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/data/nyastar", "sa", "");
 			String sql = "UPDATE POSTS SET POST_MESSAGE=?, GANBARI_TIME=?, GOAL_ID=? WHERE POST_ID=?)";
 
 			PreparedStatement pStmt = conn.prepareStatement(sql);
@@ -218,7 +218,7 @@ public class PostsDAO {
 
 		try {
 			Class.forName("org.h2.Driver");
-			conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/data/simpleBC", "sa", "");
+			conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/data/nyastar", "sa", "");
 
 			String sql = "DELETE FROM POSTS WHERE POST_ID=?";
 			PreparedStatement pStmt = conn.prepareStatement(sql);
