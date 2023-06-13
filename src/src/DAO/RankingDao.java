@@ -32,7 +32,7 @@ public class RankingDao {
 			while (rs.next()) {
 				Rankings ranking = new Rankings(
 				rs.getString("USER_NAME"),
-				rs.getInt("GANPARI_TIME"),
+				rs.getInt("GANBARI_TIME"),
 				rs.getString("GENRE_TAG")
 				);
 				rankingList.add(ranking);
