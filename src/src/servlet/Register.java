@@ -1,12 +1,14 @@
 package servlet;
 
 import java.io.IOException;
+
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
 import DAO.AccountsDao;
 import model.User;
 
@@ -32,6 +34,7 @@ public class Register extends HttpServlet {
 		String id = request.getParameter("ID");
 		String pw = request.getParameter("PW");
 		String name = request.getParameter("NAME");
+		System.out.println("logmsg");
 
 		String msg;
 
@@ -46,7 +49,7 @@ public class Register extends HttpServlet {
 				else {
 					String errorMsg = "ログインに失敗しました。";
 					request.setAttribute("errorMsg", errorMsg);
-					RequestDispatcher dispatcher = request.getRequestDispatcher("login.jsp");
+					RequestDispatcher dispatcher = request.getRequestDispatcher("register.jsp");
 					dispatcher.forward(request, response);
 				}
 
