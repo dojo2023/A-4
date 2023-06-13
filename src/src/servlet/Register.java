@@ -1,5 +1,5 @@
 package servlet;
-import java.io.PrintWriter;
+
 import java.io.IOException;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -38,17 +38,18 @@ public class Register extends HttpServlet {
 		// 登録処理を行う
 				AccountsDao rDao = new AccountsDao();
 
-				if (rDao.insert(new User(uuid, id, pw, name))!= null) { // 登録成功
+				if (rDao.insert(new User(uuid, id, pw, name))) { // 登録成功
 					// request.setAttribute("result", new Result("登録成功！", "レコードを登録しました。", "/simpleBC/MenuServlet"));
 					System.out.println("登録が成功しました。");
-					response.sendRedirect("/simpleBC/LoginServlet");
+					response.sendRedirect("/nyastar/Login");
 				}
 				else {
 					String errorMsg = "ログインに失敗しました。";
 					request.setAttribute("errorMsg", errorMsg);
-					RequestDispatcher dispatcher = request.getRequestDispatcher("Register.jsp");
+					RequestDispatcher dispatcher = request.getRequestDispatcher("login.jsp");
 					dispatcher.forward(request, response);
 				}
+
 
 
 	}
