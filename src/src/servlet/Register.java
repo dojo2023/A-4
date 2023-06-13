@@ -41,7 +41,7 @@ public class Register extends HttpServlet {
 				if (rDao.insert(new User(uuid, id, pw, name))) { // 登録成功
 					// request.setAttribute("result", new Result("登録成功！", "レコードを登録しました。", "/simpleBC/MenuServlet"));
 					System.out.println("登録が成功しました。");
-					response.sendRedirect("/nyastar/Register");
+					response.sendRedirect("/nyastar/Login");
 				}
 				else {
 					String errorMsg = "ログインに失敗しました。";
