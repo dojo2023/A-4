@@ -4,14 +4,14 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>LoginUser.jsp</title>
+<title>ログイン（モーダル）</title>
 </head>
 <body>
 <button id="modalOpen" class="button">Click Me</button>
   <div id="easyModal" class="modal">
     <div class="modal-content">
       <div class="modal-header">
-        <h1>Great job 🎉</h1>
+        <h1>目標</h1>
         <span class="modalClose">×</span>
       </div>
       <div class="modal-body">
