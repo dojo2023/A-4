@@ -53,7 +53,7 @@ public class Login extends HttpServlet {
 				}
 				else {
 					String errorMsg = "ログインに失敗しました。";
-					request.setAttribute("errorMsg", errorMsg);
+					request.setAttribute("errorMsg", "IDまたはパスワードが違います");
 					RequestDispatcher dispatcher = request.getRequestDispatcher("login.jsp");
 					dispatcher.forward(request, response);
 				}

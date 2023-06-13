@@ -20,7 +20,7 @@ public class Register extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		// アカウント登録ページにフォワードする
-				RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/register.jsp");
+				RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/register.jsp");
 				dispatcher.forward(request, response);
 	}
 
