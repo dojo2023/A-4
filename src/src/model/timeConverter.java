@@ -10,7 +10,7 @@ long minutes;
 		  //h時間をm分に変換
 	    hours = 2; // 変換する時間（単位：時間
 	    minutes = TimeUnit.HOURS.toMinutes(hours); // 時間を分に変換
-		System.out.println(hours + " 時間は " + minutes + " 分です。");
+		System.out.println( minutes + " 分");
 	}
 
 
@@ -21,7 +21,7 @@ long minutes;
          hours = TimeUnit.MINUTES.toHours(minutes); // 分を時間に変換
          remainingMinutes = minutes % 60; // 分の残りを計算
 
-        System.out.println(minutes + " 分は " + hours + " 時間 " + remainingMinutes + " 分です。");
+        System.out.println(hours + " 時間 " + remainingMinutes + " 分");
     }
 }
 
