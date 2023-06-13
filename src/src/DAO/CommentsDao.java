@@ -49,13 +49,15 @@ public class CommentsDao {
 					catch (SQLException e) {
 						e.printStackTrace();
 						commentList = null;
+
 					}
 				}
+
 
 		// 結果を返す
 			return commentList;
 		}
-
+	}
 
 
 
@@ -115,7 +117,6 @@ public class CommentsDao {
 }
 
 
-
 	//【3 削除はコメントIDで削除 delete】
 
 		public boolean delete(String comment_id) {
@@ -162,7 +163,7 @@ public class CommentsDao {
 			// 結果を返す
 			return result;
 		}
-
 }
+
 
 
