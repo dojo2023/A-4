@@ -19,12 +19,14 @@
 
 	<form method="POST" action="/NYASTER/Register">
 		IDの設定は半角英数字と記号(_)のみ使用できます<br>
-		ユーザーID<input type="text" placeholder="16文字以内で入力してください" maxlength="16" name="ID"><br>
+		ユーザーID<input type="text" id="userid" pattern="^[A-Za-z0-9_]+$" placeholder="16文字以内で入力してください"
+					maxlength="16" name="ID"><br>
 		${errorMsg}<br>
 		ユーザー名<input type="text" placeholder="16文字以内で入力してください" maxlength="16" name="NAME"><br>
 		${errorMsg}<br>
 		パスワードの設定は半角英数字と記号(_)のみ使用できます<br>
-		パスワード<input type="password" placeholder="8文字以上で入力してください" minlength="8" required  name="PW">
+		パスワード<input type="password" id="password" pattern="^[A-Za-z0-9_]+$" placeholder="8文字以上で入力してください"
+					minlength="8" required  name="PW">
 		<i id="eye" class="fa-solid fa-eye"></i><br>
 		${errorMsg}<br>
 		<input type="submit" name="REGISTER" value="登録">
@@ -46,6 +48,9 @@
                     this.classList.toggle('fa-eye-slash');
                }
           })
+
+
+
 	</script>
 
 </body>
