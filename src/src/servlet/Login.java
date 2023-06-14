@@ -49,7 +49,7 @@ public class Login extends HttpServlet {
 					session.setAttribute("id", id);
 
 					// トップページサーブレットにリダイレクトする
-					response.sendRedirect("/NYASTAR/TopPage");
+					response.sendRedirect("/NYASTER/TopPage");
 				}
 				else {
 					String errorMsg = "ログインに失敗しました。";
