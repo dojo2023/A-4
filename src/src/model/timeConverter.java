@@ -3,7 +3,7 @@ import java.util.concurrent.TimeUnit;
 
 
 //【１時間半→９０分に変換するメソッド ＜h時間＊６０＋ｍ分＝分】＞
-public class TimeConverter {
+public class timeConverter {
 	public static void timeConverter(String[] args){
 int hours;
 long minutes;
