@@ -21,16 +21,14 @@ public class Posts implements Serializable {
 
 	// 投稿情報の新規登録. ユーザ名と目標名は取得してから格納する.
 	public Posts(String userUUID, String msg, int gTime, String goalId) {
-		UUID uuid = UUID.randomUUID(); // 一意のUUIDを生成
+		UUID uuid = UUID.randomUUID(); // 投稿のUUIDを生成
 		String uuidString = uuid.toString();
 
 		this.id = uuidString;
 		this.userUUID = userUUID;
-//		this.userName = userName;
 		this.msg = msg;
 		this.ganbariTime = gTime;
 		this.goalId = goalId;
-//		this.goalName = goalName;
 
 		// 現在時刻を取得する
 		Date now = new Date();

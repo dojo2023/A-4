@@ -59,8 +59,37 @@ public class TopPage extends HttpServlet {
 		dispatcher.forward(request, response);
 	}
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
+		HttpSession session = request.getSession();
+		if (session.getAttribute("id") == null) {
+			response.sendRedirect("/simpleBC/LoginServlet");
+			return;
+		}
+
+		// リクエストパラメータを取得する
+		request.setCharacterEncoding("UTF-8");
+//		String tag = request.getParameter("tag"); //タグ取得
+		String msg = request.getParameter("msg"); //メッセージ取得
+		String goalId = request.getParameter("goal"); //目標取得
+		int mins = Integer.parseInt(request.getParameter("mins"));
+		int hours = Integer.parseInt(request.getParameter("hours"));
+		mins = hours*60;
+
+		// ログインされているユーザのIDを取得
+		String userUuid = (String)session.getAttribute("id");
+
+		// 登録処理を行う
+		PostsDAO pDao = new PostsDAO();
+		if (pDao.postAdd(new Posts(userUuid, msg, mins, goalId))) { // 登録成功
+//			request.setAttribute("result",　new Result("登録成功！", "レコードを登録しました。", "/simpleBC/MenuServlet"));
+			System.out.println("登録は成功しました。");
+		}
+		else { // 登録失敗
+//			request.setAttribute("result",　new Result("登録失敗！", "レコードを登録できませんでした。", "/simpleBC/MenuServlet"));
+			System.out.println("登録は失敗しました。");
+		}
+
+		response.sendRedirect("TopPage");
+//		dispatcher.forward(request, response);
 	}
 
 }
