@@ -20,6 +20,13 @@
 
     <main>
     <!--ランキングをここに追加します -->
+    <form method="POST" action="/nyaster/ranking">
+      <input type="submit" name="tag" value="全体">
+      <input type="submit" name="tag" value="運動">
+      <input type="submit" name="tag" value="読書">
+      <input type="submit" name="tag" value="勉強">
+      <input type="submit" name="tag" value="その他"><br>
+      </form>
     <h2>週間ランキング</h2>
 <div id="table">
   <table id="list">
