@@ -68,6 +68,7 @@ public class PostsDAO {
 					+ "JOIN GOALS ON POSTS.USER_UUID = GOALS.USER_UUID"
 					+ "ORDER BY POST_TIME;";
 			PreparedStatement pStmt = conn.prepareStatement(sql);
+
 			ResultSet rs = pStmt.executeQuery();
 
 			while (rs.next()) {
@@ -110,7 +111,7 @@ public class PostsDAO {
 	}
 
 	//特定のユーザの投稿を取得する(ユーザページ)
-	public List<Posts> postShowUser() {
+	public List<Posts> postShowUser(String id) {
 		Connection conn = null;
 		List<Posts> postList = new ArrayList<Posts>(); //Postsのオブジェクトを格納する用のリスト
 
