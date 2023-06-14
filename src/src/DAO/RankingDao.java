@@ -11,7 +11,7 @@ import java.util.List;
 import model.Rankings;
 
 public class RankingDao {
-	public List<Rankings> Ranking() {
+	public List<Rankings> Ranking(Rankings rank) {
 		Connection conn = null;
 		List<Rankings> rankingList = new ArrayList<Rankings>(); //Postsのオブジェクトを格納する用のリスト
 
@@ -24,7 +24,7 @@ public class RankingDao {
 					+ "FROM POSTS"
 					+ "JOIN ACCOUNTS ON POSTS.USER_UUID = ACCOUNTS.USER_UUID"
 					+ "JOIN GOALS ON POSTS.USER_UUID = GOALS.USER_UUID"
-					+ "WHERE GENRE_TAG=?"
+					+ "WHERE GENRE_TAG=?  ROWNUM <= 5;"
 					+ "GROUP BY USER_UUID ORDER BY MAX(GANBARI_TIME) DESC;";
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 			ResultSet rs = pStmt.executeQuery();
@@ -64,6 +64,7 @@ public class RankingDao {
 		return rankingList;
 	}
 }
+	
 	
 
 
