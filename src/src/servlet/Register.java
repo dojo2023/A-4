@@ -1,6 +1,7 @@
 package servlet;
 
 import java.io.IOException;
+import java.util.UUID;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -8,6 +9,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
 
 import DAO.AccountsDao;
 import model.User;
@@ -30,7 +32,8 @@ public class Register extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// リクエストパラメータを取得する
 		request.setCharacterEncoding("UTF-8");
-		String uuid = request.getParameter("UUID");
+		UUID uuid = UUID.randomUUID(); // 一意のUUIDを生成
+		String uuidString = uuid.toString();
 		String id = request.getParameter("ID");
 		String pw = request.getParameter("PW");
 		String name = request.getParameter("NAME");
@@ -41,10 +44,11 @@ public class Register extends HttpServlet {
 		// 登録処理を行う
 				AccountsDao rDao = new AccountsDao();
 
-				if (rDao.insert(new User(uuid, id, pw, name))) { // 登録成功
+				if (rDao.insert(new User(uuidString, id, pw, name))) { // 登録成功
 					// request.setAttribute("result", new Result("登録成功！", "レコードを登録しました。", "/simpleBC/MenuServlet"));
 					System.out.println("登録が成功しました。");
-					response.sendRedirect("/nyastar/Login");
+					response.sendRedirect("/NYASTER/Login");
+
 				}
 				else {
 					String errorMsg = "ログインに失敗しました。";
@@ -56,4 +60,5 @@ public class Register extends HttpServlet {
 
 
 	}
+
 }
