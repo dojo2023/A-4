@@ -13,7 +13,8 @@
 <div class="modal__bg js-modal-close"></div>
 <div class="modal__content">
 
-<a class="js-modal-close" href="TopPage.java">閉じる</a>
+<a class="closeBttom" href="TopPage.java">閉じる</a>
+<span class="closeBttom"></span>
 <p>送信先：<p/>
 <p>（今までのコメント）</p>
  <p>コメントを追加</p><div class="comment_area"><span class="now_cnt">0</span>/20</div>
