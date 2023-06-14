@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+  <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -17,7 +17,20 @@
     </div>
 
     <main>
-    <!-- ユーザー投稿をここに追加します -->
+
+
+
+    	<c:forEach var="e" items="${postList}">
+            <div>投稿UUID： ${e.id}</div>
+            <div>投稿者名： ${e.userName}</div>
+            <div>タグ： ${e.ganbariTag}</div>
+            <div>投稿メッセージ： ${e.msg}</div>
+            <div>がんばり時間： ${e.ganbariTime}分</div>
+            <div>がんばり目標： ${e.goalName}</div>
+            <div>投稿時間： ${e.postTime}</div>
+            <hr>
+    	</c:forEach>
+
     </main>
 
     <footer>
