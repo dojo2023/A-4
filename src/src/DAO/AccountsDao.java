@@ -8,6 +8,7 @@ import java.sql.SQLException;
 
 import model.User;
 
+
 public class AccountsDao {
 	// ログインできるならtrueを返す
 		public User isLoginOK(User user) {
@@ -114,4 +115,108 @@ public class AccountsDao {
 			// 結果を返す
 			return result;
 		}
-}
+
+
+
+//プロフィール編集
+		// 引数で指定されたレコードを更新し、成功したらtrueを返す
+		public boolean update(String userUuid,String userId,String userName,String password) {
+			Connection conn = null;
+			boolean result = false;
+
+			try {
+			// JDBCドライバを読み込む
+			Class.forName("org.h2.Driver");
+
+			// データベースに接続する
+			conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/data/nyaster", "sa", "");
+
+			// SQL文を準備する
+			String sql = "update ACCOUNTS set USER_UUID=?, USER_ID=? , USER_NAME=?, PASSWORD=?";
+			PreparedStatement pStmt = conn.prepareStatement(sql);
+
+			// SQL文を完成させる
+
+				pStmt.setString(1, userUuid);
+				pStmt.setString(2, userId);
+				pStmt.setString(3, userName);
+				pStmt.setString(4, password);
+
+
+	    // SQL文を実行する
+			if (pStmt.executeUpdate() == 1) {
+				result = true;
+			}
+		}
+		catch (SQLException e) {
+			e.printStackTrace();
+		}
+		catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+		finally {
+			// データベースを切断
+			if (conn != null) {
+				try {
+					conn.close();
+				}
+				catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+	}
+
+			// 結果を返す
+			return result;
+		}
+
+
+
+//プロフィール削除
+//引数で指定されたレコードを削除し、成功したらtrueを返す
+	public boolean delete(String userUuid) {
+		Connection conn = null;
+		boolean result = false;
+
+		try {
+			// JDBCドライバを読み込む
+			Class.forName("org.h2.Driver");
+
+			// データベースに接続する
+			conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/data/nyastar", "sa", "");
+
+			// SQL文を準備する
+			String sql = "delete from ACCOUNTS where USER_UUID=?";
+			PreparedStatement pStmt = conn.prepareStatement(sql);
+
+			// SQL文を完成させる
+			pStmt.setString(1, userUuid);
+
+			// SQL文を実行する
+			if (pStmt.executeUpdate() == 1) {
+				result = true;
+			}
+		}
+		catch (SQLException e) {
+			e.printStackTrace();
+		}
+		catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+		finally {
+			// データベースを切断
+			if (conn != null) {
+				try {
+					conn.close();
+				}
+				catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+
+		// 結果を返す
+		return result;
+	}
+	}
+
