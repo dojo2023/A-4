@@ -36,7 +36,7 @@ public class Ranking extends HttpServlet {
 		// もしもログインしていなかったらログインサーブレットにリダイレクトする
 		HttpSession session = request.getSession();
 		if (session.getAttribute("id") == null) {
-			response.sendRedirect("/nyaster/Login");
+			response.sendRedirect("/NYASTER/Login");
 			return;
 		}
 
@@ -52,6 +52,8 @@ public class Ranking extends HttpServlet {
 		int gTime = Integer.parseInt(gtime);
 		int pTime = Integer.parseInt(ptime);
 		String tag = request.getParameter("GENRE_TAG");
+		
+		System.out.println(tag);
 		// 検索処理を行う
 		
 		RankingDao raDao = new RankingDao();
