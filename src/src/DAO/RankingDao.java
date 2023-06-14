@@ -11,7 +11,7 @@ import java.util.List;
 import model.Rankings;
 
 public class RankingDao {
-	public List<Rankings> Ranking() {
+	public List<Rankings> Ranking(Rankings rank) {
 		Connection conn = null;
 		List<Rankings> rankingList = new ArrayList<Rankings>(); //Postsのオブジェクトを格納する用のリスト
 
@@ -20,12 +20,12 @@ public class RankingDao {
 			conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/data/nyastar", "sa", "");
 
 			//
-			String sql = "SELECT  USER_NAME, GANBARI_TIME, GENRE_TAG "
+			String sql = "SELECT  USER_NAME, GANBARI_TIME, GENRE_TAG, POST_TIME"
 					+ "FROM POSTS"
 					+ "JOIN ACCOUNTS ON POSTS.USER_UUID = ACCOUNTS.USER_UUID"
 					+ "JOIN GOALS ON POSTS.USER_UUID = GOALS.USER_UUID"
-					+ "WHERE GENRE_TAG=?"
-					+ "GROUP BY USER_UUID ORDER BY MAX(GANBARI_TIME) DESC;";
+					+ "WHERE GENRE_TAG=?  ;"
+					+ "GROUP BY USER_UUID ORDER BY SUM(GANBARI_TIME) DESC;";
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 			ResultSet rs = pStmt.executeQuery();
 
@@ -33,7 +33,8 @@ public class RankingDao {
 				Rankings ranking = new Rankings(
 				rs.getString("USER_NAME"),
 				rs.getInt("GANBARI_TIME"),
-				rs.getString("GENRE_TAG")
+				rs.getString("GENRE_TAG"),
+				rs.getInt("POST_TIME")
 				);
 				rankingList.add(ranking);
 			}
@@ -64,6 +65,7 @@ public class RankingDao {
 		return rankingList;
 	}
 }
+	
 	
 
 
