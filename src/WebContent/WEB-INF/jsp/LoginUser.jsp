@@ -3,33 +3,65 @@
 <!DOCTYPE html>
 <html>
 <head>
+<link rel="stylesheet" href="loginUser.css">
 <meta charset="UTF-8">
-<title>ログイン（モーダル）</title>
+<title>ログイン</title>
 </head>
 <body>
-<button id="modalOpen" class="button">目標</button>
+
+
+<button id="modalOpen" class="button">ログイン</button>
   <div id="easyModal" class="modal">
     <div class="modal-content">
       <div class="modal-header">
-        <h1>目標編集</h1>
+        <h4>目標編集</h4><br>
+	<h2>「がんばり」目標</h2>
         <span class="modalClose">×</span>
       </div>
 
 
       <div class="modal-body">
-        <p>You've just displayed this awesome Modal Window!</p>
-        <p>Let's enjoy learning JavaScript ☺️</p>
-      </div>
+        <input type="text">
+        <h4>がんばり目標時間</h4>
+
       <input type="text">
-      目標情報
+      <h5>時間</h5>
+
+      <input type="text">
+      <h5>分</h5>
 
 
+      <h4>分類タグの選択</h4>
+      <table border="1">
+    <tr>
+      <th>選択してください</th>
+    </tr>
+    <tr>
+      <td><a href="#">読書</a></td>
+    </tr>
+    <tr>
+      <td><a href="#">運動</a></td>
+    </tr>
+    <tr>
+      <td><a href="#">勉強</a></td>
+    </tr>
+    <tr>
+      <td><a href="#">その他</a></td>
+    </tr>
+ </table>
+
+  <a href="sample.html" class="btn">削除</a>
+  <a href="sample.html" class="btn">編集</a>
+
+
+      </div>
 
     </div>
+
   </div>
+
   <script src="loginUser.js"></script>
 
 
 </body>
 </html>
-

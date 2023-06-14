@@ -77,3 +77,15 @@ body {
   padding: 10px 20px;
   color: black;
 }
+
+.btn {
+  border-radius: 5px;
+  background-color: lightblue;
+  padding: 5px;
+  text-decoration: none;
+  color: white;
+  display:inline-block;/*コレ*/
+}
+div{
+text-align:center;
+}
