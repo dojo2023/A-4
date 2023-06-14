@@ -45,19 +45,14 @@ public class Ranking extends HttpServlet {
 
 		// リクエストパラメータを取得する
 		request.setCharacterEncoding("UTF-8");
-		String name = request.getParameter("USER_NAME");
-		String gtime  = request.getParameter("GANBARI_TIME");
-		String gTag = request.getParameter("GENRE_TAG");
-		String ptime  = request.getParameter("POST_TIME");
-		int gTime = Integer.parseInt(gtime);
-		int pTime = Integer.parseInt(ptime);
-		String tag = request.getParameter("GENRE_TAG");
+		
+		String tag = request.getParameter("tag");
 		
 		System.out.println(tag);
 		// 検索処理を行う
 		
 		RankingDao raDao = new RankingDao();
-		List<Rankings> rankingList = raDao.Ranking(new Rankings(name,gTime,gTag,pTime),tag);
+		List<Rankings> rankingList = raDao.ranking(tag);
 
 		// 検索結果をリクエストスコープに格納する
 		request.setAttribute("rankingList", rankingList);

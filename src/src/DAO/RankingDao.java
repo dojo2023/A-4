@@ -11,7 +11,7 @@ import java.util.List;
 import model.Rankings;
 
 public class RankingDao {
-	public List<Rankings> Ranking(Rankings rank,String tag) {
+	public List<Rankings> ranking(String tag) {
 		Connection conn = null;
 		List<Rankings> rankingList = new ArrayList<Rankings>(); //Postsのオブジェクトを格納する用のリスト
 
