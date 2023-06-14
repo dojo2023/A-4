@@ -59,14 +59,15 @@ public class PostsDAO {
 
 		try {
 			Class.forName("org.h2.Driver");
-			conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/data/simpleBC", "sa", "");
+			conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/data/NYASTAR", "sa", "");
 
 			//
-			String sql = "SELECT POST_ID, USER_NAME, POST_MESSAGE, GANPARI_TIME, GENRE_TAG, GOAL_NAME, POST_TIME"
-					+ "FROM POSTS"
-					+ "JOIN ACCOUNTS ON POSTS.USER_UUID = ACCOUNTS.USER_UUID"
-					+ "JOIN GOALS ON POSTS.USER_UUID = GOALS.USER_UUID"
+			String sql = "SELECT POST_ID, USER_NAME, POST_MESSAGE, GANPARI_TIME, GENRE_TAG, GOAL_NAME, POST_TIME "
+					+ "FROM POSTS "
+					+ "JOIN ACCOUNTS ON POSTS.USER_UUID = ACCOUNTS.USER_UUID "
+					+ "JOIN GOALS ON POSTS.USER_UUID = GOALS.USER_UUID "
 					+ "ORDER BY POST_TIME;";
+
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 
 			ResultSet rs = pStmt.executeQuery();
@@ -74,7 +75,7 @@ public class PostsDAO {
 			while (rs.next()) {
 				Posts post = new Posts(
 				rs.getString("POST_ID"),
-				rs.getString("POST_USER_NAME"),
+				rs.getString("USER_NAME"),
 				rs.getString("POST_MESSAGE"),
 				rs.getInt("GANPARI_TIME"),
 				rs.getString("GENRE_TAG"),
