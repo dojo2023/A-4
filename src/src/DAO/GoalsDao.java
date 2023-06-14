@@ -5,104 +5,30 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
-import model.User;
+import model.Goals;
 
-	public class GoalsDao {
-		// ログインできるならtrueを返す
-			public String isLoginOK(User user) {
-				Connection conn = null;
-				String id = null;
-				try {
-					// JDBCドライバを読み込む
-					Class.forName("org.h2.Driver");
-
-					// データベースに接続する
-					conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/data/nyastar", "sa", "");
-
-					// SELECT文を準備する
-					String sql = "select * from ACCOUNTS where USER_ID = ? and PASSWORD = ?";
-					//全部まとめちまえ
-					PreparedStatement pStmt = conn.prepareStatement(sql);
-
-					//SQL文が未完成だったからちゃんと値を入れる
-					pStmt.setString(1, user.getUser_id());
-					pStmt.setString(2, user.getPassword());
-
-					// SELECT文を実行し、結果表を取得する
-					ResultSet rs = pStmt.executeQuery();
-
-					// ユーザーIDとパスワードが一致するユーザーがいたかどうかをチェックする
-					rs.next();
-					if (rs.getInt("count(*)") == 1) {
-						id = user.getUser_uuid(); //返す用のID
-					}
-				}
-				catch (SQLException e) {
-					e.printStackTrace();
-				}
-				catch (ClassNotFoundException e) {
-					e.printStackTrace();
-				}
-				finally {
-					// データベースを切断
-					if (conn != null) {
-						try {
-							conn.close();
-						}
-						catch (SQLException e) {
-							e.printStackTrace();
-							id = null;
-						}
-					}
-				}
-
-				// 結果を返す
-				return id;
-			}
-			// 引数accountsで指定されたレコードを登録し、成功したらtrueを返す
-			public boolean insert(User accounts) {
+		public class GoalsDao {
+			// 新規の目標を追加する
+			public boolean goalsAdd(Goals goal) {
 				Connection conn = null;
 				boolean result = false;
 
 				try {
-					// JDBCドライバを読み込む
 					Class.forName("org.h2.Driver");
-
-					// データベースに接続する
 					conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/data/nyastar", "sa", "");
+					String sql = "INSERT INTO GOALS VALUES (?, ?, ?, ?, ?, ?)";
 
-					// SQL文を準備する
-					String sql = "insert into ACCOUNTS values (?, ?, ?, ?)";
 					PreparedStatement pStmt = conn.prepareStatement(sql);
+					pStmt.setString(1, goal.getGoalId());
+					pStmt.setString(2, goal.getGoalName());
+					pStmt.setString(3, goal.getGenreTag());
+					pStmt.setString(4, goal.getGoalTime());
+					pStmt.setString(5, goal.getGoalDate());
+					pStmt.setString(6, goal.getUserUuid());
 
-					// SQL文を完成させる
-					if (accounts.getUser_uuid() != null && !accounts.getUser_uuid().equals("")) {
-						pStmt.setString(1, accounts.getUser_uuid());
-					}
-					else {
-						pStmt.setString(1, null);
-					}
-					if (accounts.getUser_id() != null && !accounts.getUser_id().equals("")) {
-						pStmt.setString(2, accounts.getUser_id());
-					}
-					else {
-						pStmt.setString(2, null);
-					}
-					if (accounts.getUser_name() != null && !accounts.getUser_name().equals("")) {
-						pStmt.setString(3, accounts.getUser_name());
-					}
-					else {
-						pStmt.setString(3, null);
-					}
-					if (accounts.getPassword() != null && !accounts.getPassword().equals("")) {
-						pStmt.setString(4, accounts.getPassword());
-					}
-					else {
-						pStmt.setString(4, null);
-					}
-
-					// SQL文を実行する
 					if (pStmt.executeUpdate() == 1) {
 						result = true;
 					}
@@ -114,7 +40,6 @@ import model.User;
 					e.printStackTrace();
 				}
 				finally {
-					// データベースを切断
 					if (conn != null) {
 						try {
 							conn.close();
@@ -125,8 +50,146 @@ import model.User;
 					}
 				}
 
-				// 結果を返す
 				return result;
 			}
+
+			//特定のユーザの目標を取得する(ユーザページ)
+			public List<Goals> postShowUser(String uuid) {
+				Connection conn = null;
+				List<Goals> goalList = new ArrayList<Goals>(); //Goalsのオブジェクトを格納する用のリスト
+
+				try {
+					Class.forName("org.h2.Driver");
+					conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/data/nyastar", "sa", "");
+
+					//
+					String sql = "SELECT GOAL_ID, GOAL_NAME, GENRE_TAG, GOAL_TIME, GOAL_DATE, USER_UUID"
+							+ "FROM GOALS"
+							+ "JOIN ACCOUNTS ON GOALS.USER_UUID = ACCOUNTS.USER_UUID"
+							+ "JOIN GOALS ON POSTS.USER_UUID = GOALS.USER_UUID"
+							+ "WHERE GOAL.USER_UUID=?" //ユーザIDを指定する
+							+ "ORDER BY GOAL_TIME;";
+					PreparedStatement pStmt = conn.prepareStatement(sql);
+					ResultSet rs = pStmt.executeQuery();
+
+					while (rs.next()) {
+						Goals goal = new Goals(
+						rs.getString("GOAL_ID"),
+						rs.getString("GOAL_NAME"),
+						rs.getString("GENRE_TAG"),
+						rs.getString("GOAL_TIME"),
+						rs.getString("GOAL_DATE"),
+						rs.getString("USER_UUID")
+						);
+						goalList.add(goal);
+					}
+				}
+
+				catch (SQLException e) {
+					e.printStackTrace();
+					goalList = null;
+				}
+
+				catch (ClassNotFoundException e) {
+					e.printStackTrace();
+					goalList = null;
+				}
+
+				finally {
+					if (conn != null) {
+						try {
+							conn.close();
+						}
+						catch (SQLException e) {
+							e.printStackTrace();
+							goalList = null;
+						}
+					}
+				}
+
+				return goalList;
+			}
+
+			// 目標情報を更新する
+			public boolean update(Goals goal) {
+				Connection conn = null;
+				boolean result = false;
+
+				try {
+					Class.forName("org.h2.Driver");
+					conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/data/nyastar", "sa", "");
+					String sql = "UPDATE POSTS SET GOAL_ID=?, GOAL_NAME=?, GENRE_TAG=? GOAL_TIME=？ GOAL_DATE=？  WHERE USER_UUID=？)";
+
+					PreparedStatement pStmt = conn.prepareStatement(sql);
+					pStmt.setString(1, goal.getGoalId());
+					pStmt.setString(2, goal.getGoalName());
+					pStmt.setString(3, goal.getGenreTag());
+					pStmt.setString(4, goal.getGoalTime());
+					pStmt.setString(5, goal.getGoalDate());
+					pStmt.setString(6, goal.getUserUuid());
+
+					try {
+						if (pStmt.executeUpdate() == 1) {
+							result = true;
+						}
+					} catch (Exception e) {
+					    e.printStackTrace();
+					}
+				}
+				catch (SQLException e) {
+					e.printStackTrace();
+				}
+				catch (ClassNotFoundException e) {
+					e.printStackTrace();
+				}
+				finally {
+					if (conn != null) {
+						try {
+							conn.close();
+						}
+						catch (SQLException e) {
+							e.printStackTrace();
+						}
+					}
+				}
+				return result;
+			}
+
+			// 目標情報を削除する
+			public boolean delete(String uuid) {
+				Connection conn = null;
+				boolean result = false;
+
+				try {
+					Class.forName("org.h2.Driver");
+					conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/data/nyastar", "sa", "");
+
+					String sql = "DELETE FROM GOALS WHERE USER_UUID=?";
+					PreparedStatement pStmt = conn.prepareStatement(sql);
+					pStmt.setString(1, uuid);
+
+					if (pStmt.executeUpdate() == 1) {
+						result = true;
+					}
+				}
+				catch (SQLException e) {
+					e.printStackTrace();
+				}
+				catch (ClassNotFoundException e) {
+					e.printStackTrace();
+				}
+				finally {
+					if (conn != null) {
+						try {
+							conn.close();
+						}
+						catch (SQLException e) {
+							e.printStackTrace();
+						}
+					}
+				}
+				return result;
+			}
+
 
 }
