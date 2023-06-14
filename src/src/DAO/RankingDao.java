@@ -11,7 +11,7 @@ import java.util.List;
 import model.Rankings;
 
 public class RankingDao {
-	public List<Rankings> Ranking(Rankings rank) {
+	public List<Rankings> Ranking(Rankings rank,String tag) {
 		Connection conn = null;
 		List<Rankings> rankingList = new ArrayList<Rankings>(); //Postsのオブジェクトを格納する用のリスト
 
@@ -28,6 +28,8 @@ public class RankingDao {
 					+ "GROUP BY USER_UUID ORDER BY SUM(GANBARI_TIME) DESC;";
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 			ResultSet rs = pStmt.executeQuery();
+			
+			pStmt.setString(1, tag);
 
 			while (rs.next()) {
 				Rankings ranking = new Rankings(
