@@ -48,11 +48,12 @@ public class Ranking extends HttpServlet {
 		String name = request.getParameter("USER_NAME");
 		String gtime  = request.getParameter("GANBARI_TIME");
 		String gTag = request.getParameter("GENRE_TAG");
+		String ptime  = request.getParameter("POST_TIME");
 		int gTime = Integer.parseInt(gtime);
-		
+		int pTime = Integer.parseInt(ptime);
 		// 検索処理を行う
 		RankingDao raDao = new RankingDao();
-		List<Rankings> rankingList = raDao.Ranking(new Rankings(name,gTime,gTag));
+		List<Rankings> rankingList = raDao.Ranking(new Rankings(name,gTime,gTag,pTime));
 
 		// 検索結果をリクエストスコープに格納する
 		request.setAttribute("rankingList", rankingList);
