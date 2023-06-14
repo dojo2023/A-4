@@ -43,19 +43,33 @@ public class Register extends HttpServlet {
 
 		// 登録処理を行う
 				AccountsDao rDao = new AccountsDao();
+				User u = new User();
+				u.setUser_id(id);
+				String str = rDao.check(u);
+				if (str == null) {
+					if (rDao.insert(new User(uuidString, id, pw, name))) { // 登録成功
+						// request.setAttribute("result", new Result("登録成功！", "レコードを登録しました。", "/simpleBC/MenuServlet"));
+						System.out.println("登録が成功しました。");
+						response.sendRedirect("/NYASTER/Login");
 
-				if (rDao.insert(new User(uuidString, id, pw, name))) { // 登録成功
-					// request.setAttribute("result", new Result("登録成功！", "レコードを登録しました。", "/simpleBC/MenuServlet"));
-					System.out.println("登録が成功しました。");
-					response.sendRedirect("/NYASTER/Login");
+					}
+					else {
+						String errorMsg = "登録に失敗しました。";
+						request.setAttribute("errorMsg", errorMsg);
+						RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/register.jsp");
+						dispatcher.forward(request, response);
+					}
+
+
 
 				}
 				else {
-					String errorMsg = "ログインに失敗しました。";
+					String errorMsg = "登録に失敗しました。";
 					request.setAttribute("errorMsg", errorMsg);
-					RequestDispatcher dispatcher = request.getRequestDispatcher("register.jsp");
+					RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/register.jsp");
 					dispatcher.forward(request, response);
 				}
+
 
 
 

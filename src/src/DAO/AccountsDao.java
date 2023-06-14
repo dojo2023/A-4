@@ -117,6 +117,65 @@ public class AccountsDao {
 		}
 
 
+<<<<<<< HEAD
+		// ユーザーIDに重複がないかの確認
+		public String check(User accounts) {
+			Connection conn = null;
+			boolean result = false;
+			String str = null;
+			try {
+				// JDBCドライバを読み込む
+				Class.forName("org.h2.Driver");
+
+				// データベースに接続する
+				conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/data/nyastar", "sa", "");
+
+
+
+				// SQL文を準備する
+				String sql = "select * from ACCOUNTS where user_id = ?";
+				PreparedStatement pStmt = conn.prepareStatement(sql);
+
+				// SQL文を完成させる
+//					pStmt.setString(1, accounts.getUser_uuid());
+					pStmt.setString(1, accounts.getUser_id());
+//					pStmt.setString(3, accounts.getUser_name());
+//					pStmt.setString(4, accounts.getPassword());
+
+				// SELECT文を実行し、結果表を取得する
+					ResultSet rs = pStmt.executeQuery();
+
+				// SQL文を実行する
+				if (rs.next()) {
+					str = "abc";
+				}
+			}
+			catch (SQLException e) {
+				e.printStackTrace();
+			}
+			catch (ClassNotFoundException e) {
+				e.printStackTrace();
+			}
+			finally {
+				// データベースを切断
+				if (conn != null) {
+					try {
+						conn.close();
+					}
+					catch (SQLException e) {
+						e.printStackTrace();
+					}
+				}
+			}
+
+			// 結果を返す
+			return str;
+
+		}
+
+
+}
+=======
 
 //プロフィール編集
 		// 引数で指定されたレコードを更新し、成功したらtrueを返す
@@ -219,4 +278,5 @@ public class AccountsDao {
 		return result;
 	}
 	}
+>>>>>>> 14ebe044d2c6f71deb75623a20810bd1f3ba6d09
 
