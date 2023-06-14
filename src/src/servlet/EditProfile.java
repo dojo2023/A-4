@@ -18,7 +18,11 @@ import DAO.AccountsDao;
 public class EditProfile extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException,IOException {
+        // ログインページにフォワードする
+    	RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/editProfile.jsp");
+		dispatcher.forward(request, response);
+    }
 	 protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	 //リクエストパラメータを取得する
 	request.setCharacterEncoding("UTF-8");
@@ -45,10 +49,9 @@ public class EditProfile extends HttpServlet {
 				else {						// 削除失敗
 					System.out.println("削除できませんでした");
 
-					RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/editProfile.jsp");
-					dispatcher.forward(request, response);
-				}
+
 	}
+	 }
 }
 
 
