@@ -10,9 +10,10 @@ import model.User;
 
 public class AccountsDao {
 	// ログインできるならtrueを返す
-		public String isLoginOK(User user) {
+		public User isLoginOK(User user) {
 			Connection conn = null;
 			String id = null;
+			User us=new User();
 			try {
 				// JDBCドライバを読み込む
 				Class.forName("org.h2.Driver");
@@ -33,10 +34,15 @@ public class AccountsDao {
 				ResultSet rs = pStmt.executeQuery();
 
 				// ユーザーIDとパスワードが一致するユーザーがいたかどうかをチェックする
-				rs.next();
-				if (rs.getInt("count(*)") == 1) {
-					id = user.getUser_uuid(); //返す用のID
+
+				while(rs.next()) {
+					us.setUser_name(rs.getString("User_name"));
+					us.setUser_id(rs.getString("User_id"));
 				}
+
+
+
+
 			}
 			catch (SQLException e) {
 				e.printStackTrace();
@@ -58,7 +64,8 @@ public class AccountsDao {
 			}
 
 			// 結果を返す
-			return id;
+			return us;
+
 		}
 		// 引数accountsで指定されたレコードを登録し、成功したらtrueを返す
 		public boolean insert(User accounts) {
