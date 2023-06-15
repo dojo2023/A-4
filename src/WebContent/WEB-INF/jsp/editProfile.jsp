@@ -8,27 +8,27 @@
 </head>
 <body>
 <p>プロフィール登録・編集</p>
+<div>
+<a id="return" href="/NYASTER/UserPage.java" target="_blank" >←</a>
 
-<a id="return" href="("/WEB-INF/jsp/loginUser.jsp")" target="_blank" >←
 
-
-<div id="sidebar" class="col-lg-2 sidemenu">
         <ul>
-            <li><a href="#" class="link-title">ホーム</a></li>
-            <li><a href="#" class="link-title">検索</a></li>
-            <li><a href="#" class="link-title">ランキング</a></li>
-            <li><a href="#" class="link-title">作成</a></li><br>
-            <oi><a href="#" class="link-title">ユーザ名</a></oi>
+            <li><a href="/NYASTER/TopPage"  class="link-title">ホーム</a></li>
+            <li><a href="/NYASTER/Search" class="link-title">検索</a></li>
+            <li><a href="/NYASTER/Ranking" class="link-title">ランキング</a></li>
+            <li><a href="#" class="link-title">作成</a></li>
+                <a href="/NYASTER/EditProfile" class="link-title">ユーザ名</a>
         </ul>
 </div>
+</form method="POST" action = NYASTER/EditProfile><form>
 <label>ユーザID<br>
- <input type="text" name="USER_ID"placeholder="１６文字以上で入力してください" required><br>
+ <input type="text" name="USER_ID"placeholder="１６文字以上で入力してください" required></label><br>
  <label>ユーザ名<br>
-<input type="text" name="USER_NAME"placeholder="１６文字以上で入力してください" required><br>
+<input type="text" name="USER_NAME"placeholder="１６文字以上で入力してください" required></label><br>
 <label>変更前パスワード<br>
-<input type="text" name="B_PASSWORD"placeholder="８文字以上で入力してください" required><br>
+<input type="text" name="B_PASSWORD"placeholder="８文字以上で入力してください" required></label><br>
 <label>変更後パスワード<br>
-<input type="text" name="A_PASSWOR"placeholder="８文字以上で入力してください"><br>
+<input type="text" name="A_PASSWOR"placeholder="８文字以上で入力してください" required></label><br>
 
 <!-- 変更ボタン -->
 <input type="button" class="btn" value="変更" ><br><br>
