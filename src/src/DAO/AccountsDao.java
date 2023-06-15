@@ -10,32 +10,28 @@ import model.User;
 
 
 public class AccountsDao {
-		public User isLoginOK(User user) {
+		public User isLoginOK(String id, String pw) {
 			Connection conn = null;
 			User us= new User();
 			try {
 				// JDBCドライバを読み込む
 				Class.forName("org.h2.Driver");
 
-				// データベースに接続する
 				conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/data/nyastar", "sa", "");
-
-				// SELECT文を準備する
 				String sql = "select * from ACCOUNTS where USER_ID = ? and PASSWORD = ?";
-				//全部まとめちまえ
 				PreparedStatement pStmt = conn.prepareStatement(sql);
 
-				//SQL文が未完成だったからちゃんと値を入れる
-				pStmt.setString(1, user.getUser_id());
-				pStmt.setString(2, user.getPassword());
+				pStmt.setString(1, id);
+				pStmt.setString(2, pw);
 
 				// SELECT文を実行し、結果表を取得する
 				ResultSet rs = pStmt.executeQuery();
 
 				// ユーザーIDとパスワードが一致するユーザーがいたかどうかをチェックする
 				while(rs.next()) {
-					us.setUser_name(rs.getString("User_name"));
+					us.setUser_uuid(rs.getString("User_uuid"));
 					us.setUser_id(rs.getString("User_id"));
+					us.setUser_name(rs.getString("User_name"));
 				}
 			}
 			catch (SQLException e) {
