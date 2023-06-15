@@ -12,7 +12,7 @@ import model.User;
 public class AccountsDao {
 		public User isLoginOK(User user) {
 			Connection conn = null;
-			User us=new User();
+			User us= new User();
 			try {
 				// JDBCドライバを読み込む
 				Class.forName("org.h2.Driver");
@@ -40,9 +40,11 @@ public class AccountsDao {
 			}
 			catch (SQLException e) {
 				e.printStackTrace();
+				us = null;
 			}
 			catch (ClassNotFoundException e) {
 				e.printStackTrace();
+				us = null;
 			}
 			finally {
 				// データベースを切断
@@ -52,7 +54,7 @@ public class AccountsDao {
 					}
 					catch (SQLException e) {
 						e.printStackTrace();
-						id = null;
+						us = null;
 					}
 				}
 			}
