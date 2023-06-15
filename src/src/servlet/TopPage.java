@@ -48,8 +48,8 @@ public class TopPage extends HttpServlet {
 	}
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
-		if (session.getAttribute("us") == null) {
-			response.sendRedirect("/simpleBC/LoginServlet");
+		if ((String)session.getAttribute("id") == null) {
+			response.sendRedirect("/NYASTER/Login");
 			return;
 		}
 
