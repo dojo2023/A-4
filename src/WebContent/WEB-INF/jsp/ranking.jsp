@@ -28,7 +28,7 @@
       <input type="submit" name="tag" value="その他"><br>
       </form>
     <h2>週間ランキング</h2>
-<div id="table">
+<div id="ranking">
   <table id="list">
     <tr>
       <th>ユーザー名</th><th>がんばりタイム</th>
