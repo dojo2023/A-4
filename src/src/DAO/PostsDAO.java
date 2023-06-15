@@ -6,7 +6,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.TimeUnit;
 
 import model.Posts;
 
@@ -74,15 +73,13 @@ public class PostsDAO {
 			ResultSet rs = pStmt.executeQuery();
 
 			while (rs.next()) {
-				long longGanbariHours = TimeUnit.MINUTES.toHours(rs.getInt("GANBARI_TIME")); // 分を時間に変換
-				long longGanbariMins = rs.getInt("GANBARI_TIME") - TimeUnit.HOURS.toMinutes(longGanbariHours); // 残りの分数を計算
-				int ganbariHours = (int)longGanbariHours; // long型からint型に変換
-				int ganbariMins = (int)longGanbariMins; // long型からint型に変換
+				double doubleGanbariHours = Math.floor(rs.getInt("GANBARI_TIME") / 60.0);
+				int ganbariHours = (int)doubleGanbariHours; // long型からint型に変換
+				int ganbariMins = rs.getInt("GANBARI_TIME") % 60; // 残りの分数を計算
 
-				long longGoalHours = TimeUnit.MINUTES.toHours(rs.getInt("GOAL_TIME")); // 分を時間に変換
-				long longGoalMins = rs.getInt("GOAL_TIME") - TimeUnit.HOURS.toMinutes(longGoalHours); // 残りの分数を計算
-				int goalHours = (int)longGoalHours; // long型からint型に変換
-				int goalMins = (int)longGoalMins; // long型からint型に変換
+				double doubleGoalHours = Math.floor(rs.getInt("GOAL_TIME") / 60.0);
+				int goalHours = (int)doubleGoalHours; // long型からint型に変換
+				int goalMins = rs.getInt("GOAL_TIME") % 60; // 残りの分数を計算
 
 				Posts post = new Posts(
 				rs.getString("POST_ID"),
@@ -91,9 +88,9 @@ public class PostsDAO {
 				rs.getString("GENRE_TAG"),
 				rs.getString("GOAL_NAME"),
 				rs.getInt("GANBARI_TIME"),
-				rs.getInt("GOAL_TIME"),
 				ganbariHours,
 				ganbariMins,
+				rs.getInt("GOAL_TIME"),
 				goalHours,
 				goalMins,
 				rs.getTimestamp("POST_TIME")
@@ -148,15 +145,14 @@ public class PostsDAO {
 			ResultSet rs = pStmt.executeQuery();
 
 			while (rs.next()) {
-				long longGanbariHours = TimeUnit.MINUTES.toHours(rs.getInt("GANBARI_TIME")); // 分を時間に変換
-				long longGanbariMins = rs.getInt("GANBARI_TIME") - TimeUnit.HOURS.toMinutes(longGanbariHours); // 残りの分数を計算
-				int ganbariHours = (int)longGanbariHours; // long型からint型に変換
-				int ganbariMins = (int)longGanbariMins; // long型からint型に変換
+				double doubleGanbariHours = Math.floor(rs.getInt("GANBARI_TIME") / 60.0);
+				int ganbariHours = (int)doubleGanbariHours; // long型からint型に変換
+				int ganbariMins = rs.getInt("GANBARI_TIME") % 60; // 残りの分数を計算
+				System.out.println(ganbariHours + "時間" + ganbariMins + "分");
 
-				long longGoalHours = TimeUnit.MINUTES.toHours(rs.getInt("GOAL_TIME")); // 分を時間に変換
-				long longGoalMins = rs.getInt("GOAL_TIME") - TimeUnit.HOURS.toMinutes(longGoalHours); // 残りの分数を計算
-				int goalHours = (int)longGoalHours; // long型からint型に変換
-				int goalMins = (int)longGoalMins; // long型からint型に変換
+				double doubleGoalHours = Math.floor(rs.getInt("GOAL_TIME") / 60.0);
+				int goalHours = (int)doubleGoalHours; // long型からint型に変換
+				int goalMins = rs.getInt("GOAL_TIME") % 60; // 残りの分数を計算
 
 				Posts post = new Posts(
 					rs.getString("POST_ID"),
