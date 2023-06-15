@@ -9,7 +9,7 @@
 <body>
 <p>プロフィール登録・編集</p>
 <div>
-<a id="return" href="/NYASTER/UserPage.java" target="_blank" >←</a>
+<a id="return" href="/NYASTER/UserPage" target="_blank" >←</a>
 
 
         <ul>

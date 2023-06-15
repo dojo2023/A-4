@@ -173,7 +173,7 @@ public class AccountsDao {
 			conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/data/nyaster", "sa", "");
 
 			// SQL文を準備する
-			String sql = "update ACCOUNTS set USER_UUID=?, USER_ID=? , USER_NAME=?, PASSWORD=?";
+			String sql = "update ACCOUNTS set  USER_ID=? , USER_NAME=?, PASSWORD=?";
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 
 			// SQL文を完成させる
@@ -227,7 +227,7 @@ public class AccountsDao {
 			conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/data/nyastar", "sa", "");
 
 			// SQL文を準備する
-			String sql = "delete from ACCOUNTS where USER_UUID=?";
+			String sql = "delete from ACCOUNTS where USER_ID=?";
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 
 			// SQL文を完成させる
