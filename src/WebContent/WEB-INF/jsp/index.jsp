@@ -43,13 +43,13 @@
         <h2>タイムライン</h2>
     	<c:forEach var="e" items="${postList}">
             <hr>
-            <div>投稿UUID： ${e.id}</div>
+            <!-- <div>投稿UUID： ${e.id}</div> -->
             <div>投稿者名： ${e.userName}</div>
             <div>タグ： ${e.ganbariTag}</div>
-            <div>投稿メッセージ： ${e.msg}</div>
+            <div>がんばり内容： ${e.msg}</div>
             <div>がんばり時間： ${e.ganbariTimeHours}時間${e.ganbariTimeMins}分</div>
             <div>がんばり目標： ${e.goalName} (${e.goalTimeHours}時間${e.goalTimeMins}分)</div>
-            <div>目標進捗率: ${(e.ganbariTime / e.goalTime) * 100}</div>
+            <div>目標進捗率: ${Math.floor((e.ganbariTime/e.goalTime)*100)}%</div>
             <div>投稿時間： ${e.postTime}</div>
     	</c:forEach>
         <hr>
