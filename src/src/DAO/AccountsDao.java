@@ -10,10 +10,8 @@ import model.User;
 
 
 public class AccountsDao {
-	// ログインできるならtrueを返す
 		public User isLoginOK(User user) {
 			Connection conn = null;
-			String id = null;
 			User us=new User();
 			try {
 				// JDBCドライバを読み込む
@@ -35,15 +33,10 @@ public class AccountsDao {
 				ResultSet rs = pStmt.executeQuery();
 
 				// ユーザーIDとパスワードが一致するユーザーがいたかどうかをチェックする
-
 				while(rs.next()) {
 					us.setUser_name(rs.getString("User_name"));
 					us.setUser_id(rs.getString("User_id"));
 				}
-
-
-
-
 			}
 			catch (SQLException e) {
 				e.printStackTrace();
@@ -63,8 +56,6 @@ public class AccountsDao {
 					}
 				}
 			}
-
-			// 結果を返す
 			return us;
 
 		}
@@ -80,8 +71,6 @@ public class AccountsDao {
 
 				// データベースに接続する
 				conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/data/nyastar", "sa", "");
-
-
 
 				// SQL文を準備する
 				String sql = "select * from ACCOUNTS where user_id = ?";
