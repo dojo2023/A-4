@@ -12,7 +12,6 @@ import javax.servlet.http.HttpSession;
 
 import DAO.AccountsDao;
 import model.PwHashed;
-import model.User;
 
 
 /**
@@ -37,16 +36,16 @@ public class Login extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// リクエストパラメータを取得する
 				request.setCharacterEncoding("UTF-8");
-				String id = request.getParameter("ID");
-				String pw = request.getParameter("PW");
+				String id = request.getParameter("id");
+				String pw = request.getParameter("pw");
 				String hashedPw =  PwHashed.hashPassword(pw);
 
 				// DAOを生成し、User型の戻り値を格納する。
 				AccountsDao iDao = new AccountsDao();
-				User loginCheck = iDao.isLoginOK(id, hashedPw);
+				String uuid = iDao.isLoginOK(id, pw);
 
-				if (loginCheck != null) {	// ログイン成功
-					String uuid = loginCheck.getUser_uuid();
+				if (uuid != null) {	// ログイン成功
+					System.out.println(id + "さんがログインに成功しました。");
 					// セッションスコープにUUIDを格納する
 					HttpSession session = request.getSession();
 					session.setAttribute("id", uuid);
@@ -54,14 +53,14 @@ public class Login extends HttpServlet {
 					// トップページサーブレットにリダイレクトする
 					response.sendRedirect("/NYASTER/TopPage");
 				}
+
 				else {
+					System.out.println(id + "さんがログインに失敗しました。");
 					String errorMsg = "ログインに失敗しました。";
-					request.setAttribute("errorMsg", "IDまたはパスワードが違います");
+					request.setAttribute("errorMsg", errorMsg);
 					RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/login.jsp");
 					dispatcher.forward(request, response);
 				}
-
-
 	}
 
 
