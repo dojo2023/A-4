@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<link rel="stylesheet" href="loginUser.css">
+<link rel="stylesheet" href="loginUserModal.css">
 <meta charset="UTF-8">
 <title>ログイン</title>
 </head>
@@ -50,8 +50,8 @@
     </tr>
  </table>
 
-  <a href="sample.html" class="btn">削除</a>
-  <a href="sample.html" class="btn">編集</a>
+  <a href="" class="btn">削除</a>
+  <a href="" class="btn">編集</a>
 
 
       </div>
@@ -60,7 +60,7 @@
 
   </div>
 
-  <script src="loginUser.js"></script>
+  <script src="loginUserModal.js"></script>
 
 
 </body>
