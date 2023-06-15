@@ -280,8 +280,8 @@ public class AccountsDao {
 
 			while (rs.next()) {
 				user.setUser_uuid(rs.getString("USER_UUID"));
-				user.setUser_uuid(rs.getString("USER_ID"));
-				user.setUser_uuid(rs.getString("USER_NAME"));
+				user.setUser_id(rs.getString("USER_ID"));
+				user.setUser_name(rs.getString("USER_NAME"));
 			}
 		}
 
