@@ -45,14 +45,22 @@ public class Ranking extends HttpServlet {
 
 		// リクエストパラメータを取得する
 		request.setCharacterEncoding("UTF-8");
+		String all = request.getParameter("all");
+		String sport = request.getParameter("sport");
+		String book = request.getParameter("book");
+		String study = request.getParameter("study");
+		String other = request.getParameter("other");
 		
-		String tag = request.getParameter("tag");
+		System.out.println(all);
+		System.out.println(sport);
+		System.out.println(book);
+		System.out.println(study);
+		System.out.println(other);
 		
-		System.out.println(tag);
 		// 検索処理を行う
 		
 		RankingDao raDao = new RankingDao();
-		List<Rankings> rankingList = raDao.ranking(tag);
+		List<Rankings> rankingList = raDao.ranking(all,sport,book,study,other);
 
 		// 検索結果をリクエストスコープに格納する
 		request.setAttribute("rankingList", rankingList);
