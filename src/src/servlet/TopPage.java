@@ -37,7 +37,6 @@ public class TopPage extends HttpServlet {
 		AccountsDao aDao = new AccountsDao();
 		model.User loginUser = aDao.showUser(userUuid); //ログインユーザの情報を取得
 		String username = loginUser.getUser_name();
-		System.out.println("ログイン中のユーザー：" + username);
 
 		//　取得したユーザ情報からユーザ名を取り出し、リクエストスコープに格納する
 		request.setAttribute("username", username);
@@ -79,10 +78,10 @@ public class TopPage extends HttpServlet {
 			mins = hours*60;
 			PostsDAO pDao = new PostsDAO();
 			if (pDao.postAdd(new Posts(userUuid, msg, mins, goalId))) { // 登録成功
-				System.out.println("登録は成功しました。");
+				System.out.println("投稿の登録が成功しました。");
 			}
 			else { // 登録失敗
-				System.out.println("登録は失敗しました。");
+				System.out.println("投稿の登録が失敗しました。");
 			}
 		} else if (request.getParameter("select").equals("追加")) {
 			// 目標の登録処理を行う
@@ -93,15 +92,12 @@ public class TopPage extends HttpServlet {
 			int goalHours = Integer.parseInt(request.getParameter("goal_hours"));
 			int goalMins = Integer.parseInt(request.getParameter("goal_mins"));
 			goalMins = goalMins + (goalHours*60);
-			System.out.println("目標名：" + goalName);
-			System.out.println("目標タグ：" + goalTag);
-			System.out.println("目標時間(分)：" + goalMins);
 			GoalsDao gDao = new GoalsDao();
 			if (gDao.goalAdd(new Goals(goalName, goalTag, goalMins, userUuid))) { // 登録成功
-				System.out.println("登録は成功しました。");
+				System.out.println("目標の登録が成功しました。");
 			}
 			else { // 登録失敗
-				System.out.println("登録は失敗しました。");
+				System.out.println("目標の登録が失敗しました。");
 			}
 		}
 
