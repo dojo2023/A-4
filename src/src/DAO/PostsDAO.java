@@ -65,7 +65,7 @@ public class PostsDAO {
 			String sql = "SELECT POST_ID, USER_NAME, POST_MESSAGE, GANBARI_TIME, GENRE_TAG, GOAL_NAME, POST_TIME "
 					+ "FROM POSTS "
 					+ "JOIN ACCOUNTS ON POSTS.USER_UUID = ACCOUNTS.USER_UUID "
-					+ "JOIN GOALS ON POSTS.USER_UUID = GOALS.USER_UUID "
+					+ "JOIN GOALS ON POSTS.GOAL_ID = GOALS.GOAL_ID "
 					+ "ORDER BY POST_TIME;";
 
 			PreparedStatement pStmt = conn.prepareStatement(sql);
@@ -121,11 +121,11 @@ public class PostsDAO {
 			conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/data/nyastar", "sa", "");
 
 			//
-			String sql = "SELECT POST_ID, USER_NAME, POST_MESSAGE, GANBARI_TIME, GENRE_TAG, GOAL_NAME, POST_TIME"
+			String sql = "SELECT POST_ID, USER_NAME, POST_MESSAGE, GANBARI_TIME, GENRE_TAG, GOAL_NAME, POST_TIME "
 					+ "FROM POSTS"
-					+ "JOIN ACCOUNTS ON POSTS.USER_UUID = ACCOUNTS.USER_UUID"
-					+ "JOIN GOALS ON POSTS.USER_UUID = GOALS.USER_UUID"
-					+ "WHERE POST.USER_UUID=?" //ユーザIDを指定する
+					+ "JOIN ACCOUNTS ON POSTS.USER_UUID = ACCOUNTS.USER_UUID "
+					+ "JOIN GOALS ON POSTS.GOAL_ID = GOALS.GOAL_ID "
+					+ "WHERE POST.USER_UUID=? " //ユーザIDを指定する
 					+ "ORDER BY POST_TIME;";
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 			pStmt.setString(1, id);

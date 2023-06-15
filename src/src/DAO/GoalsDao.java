@@ -12,7 +12,7 @@ import model.Goals;
 
 		public class GoalsDao {
 			// 新規の目標を追加する
-			public boolean goalsAdd(Goals goal) {
+			public boolean goalAdd(Goals goal) {
 				Connection conn = null;
 				boolean result = false;
 
@@ -26,7 +26,7 @@ import model.Goals;
 					pStmt.setString(2, goal.getGoalName());
 					pStmt.setString(3, goal.getGenreTag());
 					pStmt.setString(4, goal.getGoalTime());
-					pStmt.setString(5, goal.getGoalDate());
+					pStmt.setTimestamp(5, goal.getGoalDate());
 					pStmt.setString(6, goal.getUserUuid());
 
 					if (pStmt.executeUpdate() == 1) {
@@ -53,8 +53,8 @@ import model.Goals;
 				return result;
 			}
 
-			//特定のユーザの目標を取得する(ユーザページ)
-			public List<Goals> postShowUser(String uuid) {
+			//ユーザの目標を取得する
+			public List<Goals> goalShowUser(String uuid) {
 				Connection conn = null;
 				List<Goals> goalList = new ArrayList<Goals>(); //Goalsのオブジェクトを格納する用のリスト
 
@@ -78,7 +78,7 @@ import model.Goals;
 						rs.getString("GOAL_NAME"),
 						rs.getString("GENRE_TAG"),
 						rs.getString("GOAL_TIME"),
-						rs.getString("GOAL_DATE"),
+						rs.getTimestamp("GOAL_DATE"),
 						rs.getString("USER_UUID")
 						);
 						goalList.add(goal);
@@ -118,15 +118,13 @@ import model.Goals;
 				try {
 					Class.forName("org.h2.Driver");
 					conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/data/nyastar", "sa", "");
-					String sql = "UPDATE POSTS SET GOAL_ID=?, GOAL_NAME=?, GENRE_TAG=? GOAL_TIME=？ GOAL_DATE=？  WHERE USER_UUID=？)";
+					String sql = "UPDATE POSTS SET GOAL_NAME=?, GENRE_TAG=? GOAL_TIME=? WHERE GOAL_ID=?)";
 
 					PreparedStatement pStmt = conn.prepareStatement(sql);
-					pStmt.setString(1, goal.getGoalId());
-					pStmt.setString(2, goal.getGoalName());
-					pStmt.setString(3, goal.getGenreTag());
-					pStmt.setString(4, goal.getGoalTime());
-					pStmt.setString(5, goal.getGoalDate());
-					pStmt.setString(6, goal.getUserUuid());
+					pStmt.setString(1, goal.getGoalName());
+					pStmt.setString(2, goal.getGenreTag());
+					pStmt.setString(3, goal.getGoalTime());
+					pStmt.setString(4, goal.getUserUuid());
 
 					try {
 						if (pStmt.executeUpdate() == 1) {
@@ -156,7 +154,7 @@ import model.Goals;
 			}
 
 			// 目標情報を削除する
-			public boolean delete(String uuid) {
+			public boolean delete(String goalId) {
 				Connection conn = null;
 				boolean result = false;
 
@@ -164,9 +162,9 @@ import model.Goals;
 					Class.forName("org.h2.Driver");
 					conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/data/nyastar", "sa", "");
 
-					String sql = "DELETE FROM GOALS WHERE USER_UUID=?";
+					String sql = "DELETE FROM GOALS WHERE GOAL_ID=?";
 					PreparedStatement pStmt = conn.prepareStatement(sql);
-					pStmt.setString(1, uuid);
+					pStmt.setString(1, goalId);
 
 					if (pStmt.executeUpdate() == 1) {
 						result = true;

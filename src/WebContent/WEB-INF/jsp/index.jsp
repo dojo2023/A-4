@@ -11,22 +11,24 @@
         <ul>
             <li><a href="#" class="link-title">ホーム</a></li>
             <li><a href="#" class="link-title">検索</a></li>
-            <li><a href="#" class="link-title">ランキング</a></li>
+            <li><a href="ranking" class="link-title">ランキング</a></li>
             <li><a href="#" class="link-title">作成</a></li>
         </ul>
     </div>
 
     <main>
+        <p>ログインユーザー：${username}</p>
         <form method="POST" action="/NYASTER/TopPage">
-            <label for="tag">タグ</label>
+            <!-- <label for="tag">タグ</label>
             <select id="tag-select" name="tag">
               <option value="option1">運動</option>
               <option value="option2">勉強</option>
               <option value="option3">読書</option>
               <option value="option4">その他</option>
-            </select>
+            </select> -->
             <select id="goal-select" name="goal">
-              <option value="option1">目標（テスト）</option>
+              <option value="G0001">目標1</option>
+              <option value="G0002">目標2</option>
             </select>
               <div class="input-cont"> <input type="number" name="hours" min="0" placeholder="時間"> <label>時間</label>
               </div>
@@ -34,7 +36,7 @@
               </div>
               <div class="input-cont">  <label>メッセージ</label> <input type="text" id="msg" name="msg" maxlength="50">
               </div>
-              <div class="login-button-panel"> <input type="submit" name="REGIST" class="login-button" title="登録する" value="登録"> </div>
+              <div class="login-button-panel"> <input type="submit" name="new_post" class="login-button" title="登録する" value="投稿"> </div>
         </form>
 
 		<br>
@@ -49,6 +51,21 @@
             <div>投稿時間： ${e.postTime}</div>
             <hr>
     	</c:forEach>
+
+    	 <form method="POST" action="/NYASTER/TopPage">
+            <div>目標時間</div>
+            <div class="input-cont"> <input type="number" name="hours" min="0" placeholder="時間"> <label>時間</label>
+            </div>
+            <div class="input-cont"> <input type="number" name="mins" min="0" max="60" placeholder="分"> <label>分</label>
+            </div>
+            <div class="input-cont">
+                <label>メッセージ</label>
+                <input type="text" id="msg" name="msg" maxlength="50">
+            </div>
+            <div class="login-button-panel">
+                <input type="submit" name="new_goal" class="login-button" title="目標を設定する" value="目標を設定"> 
+            </div>
+        </form>
 
     </main>
 
