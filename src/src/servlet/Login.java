@@ -41,12 +41,15 @@ public class Login extends HttpServlet {
 				String pw = request.getParameter("PW");
 				String hashedPw =  PwHashed.hashPassword(pw);
 
-				// ログイン処理を行う
+				// DAOを生成し、User型の戻り値を格納する。
 				AccountsDao iDao = new AccountsDao();
-				if (iDao.isLoginOK(new User(id, hashedPw)) != null) {	// ログイン成功
-					// セッションスコープにIDを格納する
+				User loginCheck = iDao.isLoginOK(id, hashedPw);
+
+				if (loginCheck != null) {	// ログイン成功
+					String uuid = loginCheck.getUser_uuid();
+					// セッションスコープにUUIDを格納する
 					HttpSession session = request.getSession();
-					session.setAttribute("id", id);
+					session.setAttribute("id", uuid);
 
 					// トップページサーブレットにリダイレクトする
 					response.sendRedirect("/NYASTER/TopPage");
