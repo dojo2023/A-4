@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 import model.Posts;
 
@@ -73,14 +74,28 @@ public class PostsDAO {
 			ResultSet rs = pStmt.executeQuery();
 
 			while (rs.next()) {
+				long longGanbariHours = TimeUnit.MINUTES.toHours(rs.getInt("GANBARI_TIME")); // 分を時間に変換
+				long longGanbariMins = rs.getInt("GANBARI_TIME") - TimeUnit.HOURS.toMinutes(longGanbariHours); // 残りの分数を計算
+				int ganbariHours = (int)longGanbariHours; // long型からint型に変換
+				int ganbariMins = (int)longGanbariMins; // long型からint型に変換
+
+				long longGoalHours = TimeUnit.MINUTES.toHours(rs.getInt("GOAL_TIME")); // 分を時間に変換
+				long longGoalMins = rs.getInt("GOAL_TIME") - TimeUnit.HOURS.toMinutes(longGoalHours); // 残りの分数を計算
+				int goalHours = (int)longGoalHours; // long型からint型に変換
+				int goalMins = (int)longGoalMins; // long型からint型に変換
+
 				Posts post = new Posts(
 				rs.getString("POST_ID"),
 				rs.getString("USER_NAME"),
 				rs.getString("POST_MESSAGE"),
-				rs.getInt("GANBARI_TIME"),
 				rs.getString("GENRE_TAG"),
 				rs.getString("GOAL_NAME"),
+				rs.getInt("GANBARI_TIME"),
 				rs.getInt("GOAL_TIME"),
+				ganbariHours,
+				ganbariMins,
+				goalHours,
+				goalMins,
 				rs.getTimestamp("POST_TIME")
 				);
 				postList.add(post);
@@ -133,17 +148,31 @@ public class PostsDAO {
 			ResultSet rs = pStmt.executeQuery();
 
 			while (rs.next()) {
+				long longGanbariHours = TimeUnit.MINUTES.toHours(rs.getInt("GANBARI_TIME")); // 分を時間に変換
+				long longGanbariMins = rs.getInt("GANBARI_TIME") - TimeUnit.HOURS.toMinutes(longGanbariHours); // 残りの分数を計算
+				int ganbariHours = (int)longGanbariHours; // long型からint型に変換
+				int ganbariMins = (int)longGanbariMins; // long型からint型に変換
+
+				long longGoalHours = TimeUnit.MINUTES.toHours(rs.getInt("GOAL_TIME")); // 分を時間に変換
+				long longGoalMins = rs.getInt("GOAL_TIME") - TimeUnit.HOURS.toMinutes(longGoalHours); // 残りの分数を計算
+				int goalHours = (int)longGoalHours; // long型からint型に変換
+				int goalMins = (int)longGoalMins; // long型からint型に変換
+
 				Posts post = new Posts(
-				rs.getString("POST_ID"),
-				rs.getString("POST_USER_NAME"),
-				rs.getString("POST_MESSAGE"),
-				rs.getInt("GANBARI_TIME"),
-				rs.getString("GENRE_TAG"),
-				rs.getString("GOAL_NAME"),
-				rs.getInt("GOAL_TIME"),
-				rs.getTimestamp("POST_TIME")
-				);
-				postList.add(post);
+					rs.getString("POST_ID"),
+					rs.getString("USER_NAME"),
+					rs.getString("POST_MESSAGE"),
+					rs.getString("GENRE_TAG"),
+					rs.getString("GOAL_NAME"),
+					rs.getInt("GANBARI_TIME"),
+					rs.getInt("GOAL_TIME"),
+					ganbariHours,
+					ganbariMins,
+					goalHours,
+					goalMins,
+					rs.getTimestamp("POST_TIME")
+					);
+					postList.add(post);
 			}
 		}
 
