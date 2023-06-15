@@ -23,9 +23,9 @@
 
 </form method="POST" action = NYASTER/EditProfile><form>
 <label>ユーザID<br>
- <input type="text" name="USER_ID"placeholder="１６文字以内で入力してください" maxlength ="16"value= required></label><br>
+ <input type="text" name="USER_ID"placeholder="１６文字以内で入力してください" maxlength ="16"value=${userid}$></label><br>
  <label>ユーザ名<br>
-<input type="text" name="USER_NAME"placeholder="１６文字以内で入力してください"maxlength ="16"value= required></label><br>
+<input type="text" name="USER_NAME"placeholder="１６文字以内で入力してください"maxlength ="16"value=${username}$></label><br>
 <label>変更前パスワード<br>
 <input type="text" name="B_PASSWORD"placeholder="８文字以上で入力してください"minlength ="8"></label><br>
 ${errorMsg}<br>
@@ -37,7 +37,15 @@ ${errorMsg}<br>
 
 
 <!--削除ボタン -->
-<input type="button" class="acbtn" value="アカウント削除" >
+<input type="button" id="acbtn" value="アカウント削除" >
+<!--
+<script>
+	var acbtn =document.getElementById('acbtn');
+	acbtn.addEventListener('click',function(){
+	window.confirm('本当に削除しますか');
+	})
+</script>
+ -->
 
 
 </body>
