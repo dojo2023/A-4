@@ -26,7 +26,7 @@ public class EditProfile extends HttpServlet {
 	 protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	 //リクエストパラメータを取得する
 	request.setCharacterEncoding("UTF-8");
-	String userUuid = request.getParameter("USER_UUID");
+
 	String userId = request.getParameter("USER_ID");
 	String userName = request.getParameter("USER_NAME");
 	String password = request.getParameter("PASSWORD");
@@ -35,7 +35,7 @@ public class EditProfile extends HttpServlet {
 	// 更新または削除を行う
 	AccountsDao aDao = new AccountsDao();{
 
- 	if (aDao.update(userUuid,userId,userName,password)) {	// 更新成功
+ 	if (aDao.update(userId,userName,password)) {	// 更新成功
 			System.out.println("更新しました");
 				}
 		else {												// 更新失敗
@@ -43,7 +43,7 @@ public class EditProfile extends HttpServlet {
 				}
 	}
 
-		 if (aDao.delete(userUuid)) {	// 削除成功
+		 if (aDao.delete(userId)) {	// 削除成功
 			System.out.println("削除しました");
 				}
 				else {						// 削除失敗

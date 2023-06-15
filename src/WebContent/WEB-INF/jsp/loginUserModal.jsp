@@ -24,31 +24,44 @@
         <input type="text">
         <h4>がんばり目標時間</h4>
 
-      <input type="text">
-      <h5>時間</h5>
-
-      <input type="text">
-      <h5>分</h5>
+     <table>
+      <tr>
+       <td>
+        <input type="text" size="5">
+       </td>
+       <td>
+       時間
+       </td>
+      </tr>
+      <tr>
+       <td>
+        <input type="text" size="5">
+       </td>
+       <td>
+       分
+       </td>
+      </tr>
+     </table>
 
 
       <h4>分類タグの選択</h4>
       <table border="1">
-    <tr>
-      <th>選択してください</th>
-    </tr>
-    <tr>
-      <td><a href="#">読書</a></td>
-    </tr>
-    <tr>
-      <td><a href="#">運動</a></td>
-    </tr>
-    <tr>
-      <td><a href="#">勉強</a></td>
-    </tr>
-    <tr>
-      <td><a href="#">その他</a></td>
-    </tr>
- </table>
+       <tr>
+        <th>選択してください</th>
+        </tr>
+        <tr>
+       <td><a href="#">読書</a></td>
+        </tr>
+        <tr>
+       <td><a href="#">運動</a></td>
+       </tr>
+       <tr>
+       <td><a href="#">勉強</a></td>
+       </tr>
+       <tr>
+        <td><a href="#">その他</a></td>
+       </tr>
+     </table>
 
   <a href="" class="btn">削除</a>
   <a href="" class="btn">編集</a>
