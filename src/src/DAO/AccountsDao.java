@@ -164,7 +164,7 @@ public class AccountsDao {
 
 //プロフィール編集
 		// 引数で指定されたレコードを更新し、成功したらtrueを返す
-		public boolean update(String userUuid,String userId,String userName,String password) {
+		public boolean update(String userId,String userName,String password) {
 			Connection conn = null;
 			boolean result = false;
 
@@ -181,7 +181,7 @@ public class AccountsDao {
 
 			// SQL文を完成させる
 
-				pStmt.setString(1, userUuid);
+
 				pStmt.setString(2, userId);
 				pStmt.setString(3, userName);
 				pStmt.setString(4, password);
@@ -218,7 +218,7 @@ public class AccountsDao {
 
 //プロフィール削除
 //引数で指定されたレコードを削除し、成功したらtrueを返す
-	public boolean delete(String userUuid) {
+	public boolean delete(String userId) {
 		Connection conn = null;
 		boolean result = false;
 
@@ -234,7 +234,7 @@ public class AccountsDao {
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 
 			// SQL文を完成させる
-			pStmt.setString(1, userUuid);
+			pStmt.setString(1, userId);
 
 			// SQL文を実行する
 			if (pStmt.executeUpdate() == 1) {

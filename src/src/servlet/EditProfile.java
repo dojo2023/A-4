@@ -43,7 +43,7 @@ public class EditProfile extends HttpServlet {
 				}
 	}
 
-		 if (aDao.delete(userId,userName)) {	// 削除成功
+		 if (aDao.delete(userId)) {	// 削除成功
 			System.out.println("削除しました");
 				}
 				else {						// 削除失敗
