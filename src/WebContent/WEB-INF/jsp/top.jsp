@@ -13,7 +13,7 @@
 <div class="modal__bg js-modal-close"></div>
 <div class="modal__content">
 
-<a class="closeBttom" href="TopPage.java">閉じる</a>
+<a class="closeBttom" href="TopPage">閉じる</a>
 <span class="closeBttom"></span>
 <p>送信先：<p/>
 <p>（今までのコメント）</p>
@@ -24,7 +24,7 @@
 <!-- 文字数制限表示 -->
 <p class="error">エラー表示はここだよ</p>
 <!-- 追加ボタン -->
-<input type="button" class="btn" value="送信" disabled>
+<input type="button" class="btn" value="送信" >
 </form><br>
 
 </div>
