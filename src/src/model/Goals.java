@@ -10,12 +10,12 @@ import java.util.UUID;
 	    private String goalId;
 	    private String goalName;
 	    private String genreTag;
-	    private String goalTime;
+	    private int goalTime;
 	    private Timestamp goalDate;
 	    private String userUuid;
 
 	    // コンストラクタ（登録用）
-	    public Goals(String goalName, String genreTag, String goalTime, String userUuid) {
+	    public Goals(String goalName, String genreTag, int goalTime, String userUuid) {
 	    	// 投稿のUUIDを生成
 			UUID uuid = UUID.randomUUID();
 			String uuidString = uuid.toString();

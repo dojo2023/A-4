@@ -12,7 +12,7 @@ import model.Goals;
 
 		public class GoalsDao {
 			// 新規の目標を追加する
-			public boolean goalsAdd(Goals goal) {
+			public boolean goalAdd(Goals goal) {
 				Connection conn = null;
 				boolean result = false;
 
@@ -54,7 +54,7 @@ import model.Goals;
 			}
 
 			//ユーザの目標を取得する
-			public List<Goals> postShowUser(String uuid) {
+			public List<Goals> goalShowUser(String uuid) {
 				Connection conn = null;
 				List<Goals> goalList = new ArrayList<Goals>(); //Goalsのオブジェクトを格納する用のリスト
 
