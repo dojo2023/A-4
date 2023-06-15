@@ -33,7 +33,7 @@ import java.util.UUID;
 	    }
 
 	    // コンストラクタ（取得用）
-	    public Goals(String goalId, String goalName, String genreTag, String goalTime, Timestamp goalDate, String userUuid) {
+	    public Goals(String goalId, String goalName, String genreTag, int goalTime, Timestamp goalDate, String userUuid) {
 	    	this.goalId = goalId;
 	        this.goalName = goalName;
 	        this.genreTag = genreTag;
