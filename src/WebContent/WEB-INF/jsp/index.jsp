@@ -49,6 +49,7 @@
             <div>投稿メッセージ： ${e.msg}</div>
             <div>がんばり時間： ${e.ganbariTime}分</div>
             <div>がんばり目標： ${e.goalName}</div>
+            <div>がんばり目標(時間)： ${e.goalTime}分</div>
             <div>投稿時間： ${e.postTime}</div>
     	</c:forEach>
         <hr>

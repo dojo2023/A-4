@@ -62,7 +62,7 @@ public class PostsDAO {
 			conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/data/NYASTAR", "sa", "");
 
 			//
-			String sql = "SELECT POST_ID, USER_NAME, POST_MESSAGE, GANBARI_TIME, GENRE_TAG, GOAL_NAME, POST_TIME "
+			String sql = "SELECT POST_ID, USER_NAME, POST_MESSAGE, GANBARI_TIME, GENRE_TAG, GOAL_NAME, GOAL_TIME, POST_TIME "
 					+ "FROM POSTS "
 					+ "JOIN ACCOUNTS ON POSTS.USER_UUID = ACCOUNTS.USER_UUID "
 					+ "JOIN GOALS ON POSTS.GOAL_ID = GOALS.GOAL_ID "
@@ -80,6 +80,7 @@ public class PostsDAO {
 				rs.getInt("GANBARI_TIME"),
 				rs.getString("GENRE_TAG"),
 				rs.getString("GOAL_NAME"),
+				rs.getInt("GOAL_TIME"),
 				rs.getTimestamp("POST_TIME")
 				);
 				postList.add(post);
@@ -139,6 +140,7 @@ public class PostsDAO {
 				rs.getInt("GANBARI_TIME"),
 				rs.getString("GENRE_TAG"),
 				rs.getString("GOAL_NAME"),
+				rs.getInt("GOAL_TIME"),
 				rs.getTimestamp("POST_TIME")
 				);
 				postList.add(post);

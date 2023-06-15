@@ -16,6 +16,9 @@ public class Posts implements Serializable {
 	private String ganbariTag; //投稿に表示するタグ
 	private String goalId; //設定した目標の名前 (DB保存用)
 	private String goalName; //設定した目標の名前 (画面表示用)
+	private int goalTime; //設定した目標時間
+	private int goalTimeHours;
+	private int goalTimeMins;
 	private Timestamp postTime; //投稿した日時
 
 
@@ -37,13 +40,14 @@ public class Posts implements Serializable {
 	}
 
 	// 投稿取得用
-	public Posts(String id, String userName, String msg, int gTime, String gTag, String goalName, Timestamp ts) {
+	public Posts(String id, String userName, String msg, int gTime, String gTag, String goalName, int goalTime, Timestamp ts) {
 		this.id = id;
 		this.userName = userName;
 		this.msg = msg;
 		this.ganbariTime = gTime;
 		this.ganbariTag = gTag;
 		this.goalName = goalName;
+		this.goalTime = goalTime;
 		this.postTime = ts;
 	}
 
@@ -58,6 +62,9 @@ public class Posts implements Serializable {
 
 	public String getGoalId() {return goalId;}
 	public String getGoalName() {return goalName;}
+	public int getGoalTime() {return goalTime;}
+	public int getGoalTimeHours() {return goalTimeHours;}
+	public int getGoalTimeMins() {return goalTimeMins;}
 
 	public Timestamp getPostTime() {return postTime;}
 	public String getUserUUID() {return userUUID;}
@@ -67,7 +74,10 @@ public class Posts implements Serializable {
 	public void setMsg(String msg) {this.msg = msg;}
 	public void setGanbariTime(int ganbariTime) {this.ganbariTime = ganbariTime;}
 	public void setGanbariTag(String ganbariTag) {this.ganbariTag = ganbariTag;}
-	public void setGoal(String goal) {this.goalName = goal;}
+	public void setGoal(String goalName) {this.goalName = goalName;}
 	public void setGoalId(String goalId) {this.goalId = goalId;}
+	public void setGoal(int goalTime) {this.goalTime = goalTime;}
+	public void setGoalTimeHours(int goalTimeHours) {this.goalTimeHours = goalTimeHours;}
+	public void setGoalTimeMins(int goalTimeMins) {this.goalTimeMins = goalTimeMins;}
 
 }
