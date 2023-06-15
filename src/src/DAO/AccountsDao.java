@@ -67,7 +67,9 @@ public class AccountsDao {
 
 				// SQL文を準備する
 				String sql = "select * from ACCOUNTS where user_id = ?";
+
 				PreparedStatement pStmt = conn.prepareStatement(sql);
+				pStmt.setString(1, accounts.getUser_id());
 
 				// SQL文を完成させる
 //							pStmt.setString(1, accounts.getUser_uuid());
@@ -267,8 +269,8 @@ public class AccountsDao {
 			Class.forName("org.h2.Driver");
 			conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/data/nyastar", "sa", "");
 
-			String sql = "SELECT *"
-					+ "FROM ACCOUNTS"
+			String sql = "SELECT * "
+					+ "FROM ACCOUNTS "
 					+ "WHERE USER_UUID=?";
 
 			PreparedStatement pStmt = conn.prepareStatement(sql);
