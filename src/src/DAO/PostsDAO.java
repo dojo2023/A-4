@@ -128,6 +128,7 @@ public class PostsDAO {
 					+ "WHERE POST.USER_UUID=?" //ユーザIDを指定する
 					+ "ORDER BY POST_TIME;";
 			PreparedStatement pStmt = conn.prepareStatement(sql);
+			pStmt.setString(1, id);
 			ResultSet rs = pStmt.executeQuery();
 
 			while (rs.next()) {
