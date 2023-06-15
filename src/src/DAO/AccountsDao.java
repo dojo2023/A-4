@@ -264,12 +264,13 @@ public class AccountsDao {
 	public User showUser(String id) {
 		Connection conn = null;
 		User user = new User();
+		user.setUser_uuid(id);
 
 		try {
 			Class.forName("org.h2.Driver");
 			conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/data/nyastar", "sa", "");
 
-			String sql = "SELECT * "
+			String sql = "SELECT USER_UUID, USER_ID, USER_NAME "
 					+ "FROM ACCOUNTS "
 					+ "WHERE USER_UUID=?";
 
@@ -279,7 +280,6 @@ public class AccountsDao {
 			ResultSet rs = pStmt.executeQuery();
 
 			while (rs.next()) {
-				user.setUser_uuid(rs.getString("USER_UUID"));
 				user.setUser_id(rs.getString("USER_ID"));
 				user.setUser_name(rs.getString("USER_NAME"));
 			}

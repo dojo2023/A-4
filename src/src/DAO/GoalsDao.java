@@ -63,13 +63,12 @@ import model.Goals;
 					conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/data/nyastar", "sa", "");
 
 					//
-					String sql = "SELECT GOAL_ID, GOAL_NAME, GENRE_TAG, GOAL_TIME, GOAL_DATE, USER_UUID"
-							+ "FROM GOALS"
-							+ "JOIN ACCOUNTS ON GOALS.USER_UUID = ACCOUNTS.USER_UUID"
-							+ "JOIN GOALS ON POSTS.USER_UUID = GOALS.USER_UUID"
-							+ "WHERE GOAL.USER_UUID=?" //ユーザIDを指定する
-							+ "ORDER BY GOAL_TIME;";
+					String sql = "SELECT GOAL_ID, GOAL_NAME, GENRE_TAG, GOAL_TIME, GOAL_DATE, USER_UUID "
+							+ "FROM GOALS "
+							+ "WHERE USER_UUID=? " //ユーザIDを指定する
+							+ "ORDER BY GOAL_DATE;";
 					PreparedStatement pStmt = conn.prepareStatement(sql);
+					pStmt.setString(1, uuid);
 					ResultSet rs = pStmt.executeQuery();
 
 					while (rs.next()) {
