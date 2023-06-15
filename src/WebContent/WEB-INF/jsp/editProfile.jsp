@@ -20,16 +20,18 @@
                 <a href="/NYASTER/EditProfile" class="link-title">ユーザ名</a>
         </ul>
 </div>
+
 </form method="POST" action = NYASTER/EditProfile><form>
 <label>ユーザID<br>
- <input type="text" name="USER_ID"placeholder="１６文字以上で入力してください" required></label><br>
+ <input type="text" name="USER_ID"placeholder="１６文字以内で入力してください" maxlength ="16"value= required></label><br>
  <label>ユーザ名<br>
-<input type="text" name="USER_NAME"placeholder="１６文字以上で入力してください" required></label><br>
+<input type="text" name="USER_NAME"placeholder="１６文字以内で入力してください"maxlength ="16"value= required></label><br>
 <label>変更前パスワード<br>
-<input type="text" name="B_PASSWORD"placeholder="８文字以上で入力してください" required></label><br>
+<input type="text" name="B_PASSWORD"placeholder="８文字以上で入力してください"minlength ="8"></label><br>
+${errorMsg}<br>
 <label>変更後パスワード<br>
-<input type="text" name="A_PASSWOR"placeholder="８文字以上で入力してください" required></label><br>
-
+<input type="text" name="A_PASSWORD"placeholder="８文字以上で入力してください"minlength ="8" ></label><br>
+${errorMsg}<br>
 <!-- 変更ボタン -->
 <input type="button" class="btn" value="変更" ><br><br>
 
