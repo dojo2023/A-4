@@ -33,5 +33,13 @@ public class UserPage extends HttpServlet {
 			response.sendRedirect("/NYASTER/Login");
 			return;
 		}
+		
 	}
+	
+	String id = (String)session.getAttribute("id");
+	
+	AccountsDao aDao = new AccountsDao();
+	model.User loginUser = aDao.showUser(id);
+	
+	
 }
