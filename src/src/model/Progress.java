@@ -1,17 +1,17 @@
 package model;
 
 public class Progress {
-		    public static double calculateProgress(double currentProgress, double targetProgress) {
+		    public static double calculateProgress(double targetProgress) {
 		        if (targetProgress <= 0) {
-		            throw new IllegalArgumentException("目標進捗度は正の数で指定してください。");
+		            throw new IllegalArgumentException("数字を入れてください");
 		        }
-		        double progressPercentage = (currentProgress / targetProgress) * 100;
+		        double progressPercentage = targetProgress * 100;
 		        return progressPercentage;
 		    }
 		    public static void main(String[] args) {
-		        double currentProgress = 75.0;
+
 		        double targetProgress = 100.0;
-		        double progressPercentage = calculateProgress(currentProgress, targetProgress);
+		        double progressPercentage = calculateProgress(targetProgress);
 		        System.out.println("進捗度: " + progressPercentage + "%");
 		    }
 		}
