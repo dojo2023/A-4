@@ -25,7 +25,7 @@ import model.Goals;
 					pStmt.setString(1, goal.getGoalId());
 					pStmt.setString(2, goal.getGoalName());
 					pStmt.setString(3, goal.getGenreTag());
-					pStmt.setString(4, goal.getGoalTime());
+					pStmt.setInt(4, goal.getGoalTime());
 					pStmt.setTimestamp(5, goal.getGoalDate());
 					pStmt.setString(6, goal.getUserUuid());
 
@@ -77,7 +77,7 @@ import model.Goals;
 						rs.getString("GOAL_ID"),
 						rs.getString("GOAL_NAME"),
 						rs.getString("GENRE_TAG"),
-						rs.getString("GOAL_TIME"),
+						rs.getInt("GOAL_TIME"),
 						rs.getTimestamp("GOAL_DATE"),
 						rs.getString("USER_UUID")
 						);
@@ -123,7 +123,7 @@ import model.Goals;
 					PreparedStatement pStmt = conn.prepareStatement(sql);
 					pStmt.setString(1, goal.getGoalName());
 					pStmt.setString(2, goal.getGenreTag());
-					pStmt.setString(3, goal.getGoalTime());
+					pStmt.setInt(3, goal.getGoalTime());
 					pStmt.setString(4, goal.getUserUuid());
 
 					try {

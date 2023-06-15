@@ -53,7 +53,7 @@ import java.util.UUID;
 	    public String getGenreTag() {
 	        return genreTag;
 	    }
-	    public String getGoalTime() {
+	    public int getGoalTime() {
 	        return goalTime;
 	    }
 	    public Timestamp getGoalDate() {
@@ -70,7 +70,7 @@ import java.util.UUID;
 	    public void setGenreTag(String genreTag) {
 	        this.genreTag = genreTag;
 	    }
-	    public void setGoalTime(String goalTime) {
+	    public void setGoalTime(int goalTime) {
 	        this.goalTime = goalTime;
 	    }
 	}
