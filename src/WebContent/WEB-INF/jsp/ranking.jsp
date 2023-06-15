@@ -21,25 +21,10 @@
     <main>
     <!--ランキングをここに追加します -->
     <form method="POST" action="/nyaster/Ranking">
-    <input type="hidden" name="all" value="全体" readonly>
-      <input type="submit" name="submit" value="全体">
-      </form>
-      <form method="POST" action="/nyaster/Ranking">
-      <input type="hidden" name="sport" value="運動" readonly>
-      <input type="submit" name="submit" value="運動">
-      </form>
-      <form method="POST" action="/nyaster/Ranking">
-      <input type="hidden" name="book" value="読書" readonly>
-      <input type="submit" name="submit" value="読書">
-      </form>
-      <form method="POST" action="/nyaster/Ranking">
-      <input type="hidden" name="study" value="勉強" readonly>
-      <input type="submit" name="submit" value="勉強">
-      </form>
-      <form method="POST" action="/nyaster/Ranking">
-      <input type="hidden" name="other" value="その他" readonly>
-      <input type="submit" name="submit" value="その他"><br>
-      </form>
+     <input type="submit" name="submitButton" value="Button 1">
+  <input type="submit" name="submitButton" value="Button 2">
+  <input type="submit" name="submitButton" value="Button 3">
+</form>
     <h2>週間ランキング</h2>
 <div id="ranking">
   <table id="list">
