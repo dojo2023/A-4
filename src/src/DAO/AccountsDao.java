@@ -10,9 +10,9 @@ import model.User;
 
 
 public class AccountsDao {
-		public User isLoginOK(String id, String pw) {
+		public String isLoginOK(String id, String pw) {
 			Connection conn = null;
-			User us= new User();
+			String uuid = null;
 			try {
 				// JDBCドライバを読み込む
 				Class.forName("org.h2.Driver");
@@ -29,18 +29,14 @@ public class AccountsDao {
 
 				// ユーザーIDとパスワードが一致するユーザーがいたかどうかをチェックする
 				while(rs.next()) {
-					us.setUser_uuid(rs.getString("User_uuid"));
-					us.setUser_id(rs.getString("User_id"));
-					us.setUser_name(rs.getString("User_name"));
+					uuid = rs.getString("USER_UUID");
 				}
 			}
 			catch (SQLException e) {
 				e.printStackTrace();
-				us = null;
 			}
 			catch (ClassNotFoundException e) {
 				e.printStackTrace();
-				us = null;
 			}
 			finally {
 				// データベースを切断
@@ -50,11 +46,10 @@ public class AccountsDao {
 					}
 					catch (SQLException e) {
 						e.printStackTrace();
-						us = null;
 					}
 				}
 			}
-			return us;
+			return uuid;
 
 		}
 
@@ -113,7 +108,7 @@ public class AccountsDao {
 
 
 		// 引数accountsで指定されたレコードを登録し、成功したらtrueを返す
-		public boolean insert(User accounts) {
+		public boolean insert(String uuid, String id, String name, String pw) {
 			Connection conn = null;
 			boolean result = false;
 
@@ -129,10 +124,10 @@ public class AccountsDao {
 				PreparedStatement pStmt = conn.prepareStatement(sql);
 
 				// SQL文を完成させる
-					pStmt.setString(1, accounts.getUser_uuid());
-					pStmt.setString(2, accounts.getUser_id());
-					pStmt.setString(3, accounts.getUser_name());
-					pStmt.setString(4, accounts.getPassword());
+					pStmt.setString(1, uuid);
+					pStmt.setString(2, id);
+					pStmt.setString(3, name);
+					pStmt.setString(4, pw);
 				// SQL文を実行する
 				if (pStmt.executeUpdate() == 1) {
 					result = true;

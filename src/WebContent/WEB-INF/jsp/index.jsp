@@ -32,11 +32,12 @@
               </div>
               <div class="input-cont"> <input type="number" name="mins" min="0" max="60" placeholder="分"> <label>分</label>
               </div>
-              <div class="input-cont"> <input type="text" id="msg" name="msg" maxlength="50"> <label>メッセージ</label>
+              <div class="input-cont">  <label>メッセージ</label> <input type="text" id="msg" name="msg" maxlength="50">
               </div>
               <div class="login-button-panel"> <input type="submit" name="REGIST" class="login-button" title="登録する" value="登録"> </div>
         </form>
 
+		<br>
 
     	<c:forEach var="e" items="${postList}">
             <div>投稿UUID： ${e.id}</div>

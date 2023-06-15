@@ -10,7 +10,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-
 import DAO.AccountsDao;
 import model.User;
 
@@ -34,12 +33,11 @@ public class Register extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		UUID uuid = UUID.randomUUID(); // 一意のUUIDを生成
 		String uuidString = uuid.toString();
-		String id = request.getParameter("ID");
-		String pw = request.getParameter("PW");
-		String name = request.getParameter("NAME");
-		System.out.println("logmsg");
+		String id = request.getParameter("id");
+		String name = request.getParameter("name");
+		String pw = request.getParameter("pw");
 
-		String msg;
+		System.out.println("UUID" + uuidString + "  ID" +  id + "  NAME" + name + "  PW" + pw);
 
 		// 登録処理を行う
 				AccountsDao rDao = new AccountsDao();
@@ -47,7 +45,7 @@ public class Register extends HttpServlet {
 				u.setUser_id(id);
 				String str = rDao.check(u);
 				if (str == null) {
-					if (rDao.insert(new User(uuidString, id, pw, name))) { // 登録成功
+					if (rDao.insert(uuidString, id, name, pw)) { // 登録成功
 						// request.setAttribute("result", new Result("登録成功！", "レコードを登録しました。", "/simpleBC/MenuServlet"));
 						System.out.println("登録が成功しました。");
 						response.sendRedirect("/NYASTER/Login");
@@ -55,24 +53,19 @@ public class Register extends HttpServlet {
 					}
 					else {
 						String errorMsg = "登録に失敗しました。";
+						System.out.println("登録に失敗しました。");
 						request.setAttribute("errorMsg", errorMsg);
 						RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/register.jsp");
 						dispatcher.forward(request, response);
 					}
-
-
-
 				}
 				else {
 					String errorMsg = "登録に失敗しました。";
+					System.out.println("登録に失敗しました。");
 					request.setAttribute("errorMsg", errorMsg);
 					RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/register.jsp");
 					dispatcher.forward(request, response);
 				}
-
-
-
-
 	}
 
 }

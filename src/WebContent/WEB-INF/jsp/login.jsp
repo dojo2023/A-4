@@ -18,8 +18,8 @@
 	<hr>
 
 	<form method="POST" action="/NYASTER/Login">
-		ユーザーID<input type="text" placeholder="16文字以内で入力してください" maxlength="16" name="ID"><br>
-		パスワード<input type="password" placeholder="8文字以上で入力してください" minlength="8" required name="PW">
+		ユーザーID<input type="text" placeholder="16文字以内で入力してください" maxlength="16" name="id"><br>
+		パスワード<input type="password" placeholder="8文字以上で入力してください" minlength="8" required name="pw">
 		<i id="eye" class="fa-solid fa-eye"></i><br>
 		${errorMsg}<br>
 		<input type="reset" name="RESET" value="リセット">
