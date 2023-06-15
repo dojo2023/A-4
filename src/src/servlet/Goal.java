@@ -51,7 +51,7 @@ public class Goal extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		// フォームから送信された目標をリストに追加する
-        String goal = request.getParameter("goal");
+        String goal = request.getParameter("goals");
 
 
         // 目標リストを表示する
