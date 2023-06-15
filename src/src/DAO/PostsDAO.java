@@ -66,7 +66,7 @@ public class PostsDAO {
 					+ "FROM POSTS "
 					+ "JOIN ACCOUNTS ON POSTS.USER_UUID = ACCOUNTS.USER_UUID "
 					+ "JOIN GOALS ON POSTS.GOAL_ID = GOALS.GOAL_ID "
-					+ "ORDER BY POST_TIME;";
+					+ "ORDER BY POST_TIME DESC;";
 
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 
@@ -126,7 +126,7 @@ public class PostsDAO {
 					+ "JOIN ACCOUNTS ON POSTS.USER_UUID = ACCOUNTS.USER_UUID "
 					+ "JOIN GOALS ON POSTS.GOAL_ID = GOALS.GOAL_ID "
 					+ "WHERE POST.USER_UUID=? " //ユーザIDを指定する
-					+ "ORDER BY POST_TIME;";
+					+ "ORDER BY POST_TIME DESC;";
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 			pStmt.setString(1, id);
 			ResultSet rs = pStmt.executeQuery();
