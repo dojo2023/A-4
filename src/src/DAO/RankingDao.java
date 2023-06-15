@@ -11,9 +11,9 @@ import java.util.List;
 import model.Rankings;
 
 public class RankingDao {
-	public List<Rankings> ranking(String all,String sport,String book,String study,String other) {
+	public List<Rankings> ranking(String[] tag) {
 		Connection conn = null;
-		List<Rankings> rankingList = new ArrayList<Rankings>(); //Postsのオブジェクトを格納する用のリスト
+		List<Rankings> rankingList = new ArrayList<Rankings>(); //Rankingsのオブジェクトを格納する用のリスト
 
 		try {
 			Class.forName("org.h2.Driver");
@@ -24,17 +24,13 @@ public class RankingDao {
 					+ "FROM POSTS"
 					+ "JOIN ACCOUNTS ON POSTS.USER_UUID = ACCOUNTS.USER_UUID"
 					+ "JOIN GOALS ON POSTS.USER_UUID = GOALS.USER_UUID"
-					+ "WHERE GENRE_TAG= ?,?,?,?,?  ;"
+					+ "WHERE GENRE_TAG= ? ;"
 					+ "GROUP BY USER_UUID ORDER BY SUM(GANBARI_TIME) DESC;";
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 			ResultSet rs = pStmt.executeQuery();
 			
-			pStmt.setString(1, all);
-			pStmt.setString(2, sport);
-			pStmt.setString(3, book);
-			pStmt.setString(4, study);
-			pStmt.setString(5, other);
-
+			pStmt.setString(1,tag);
+			
 			while (rs.next()) {
 				Rankings ranking = new Rankings(
 				rs.getString("USER_NAME"),

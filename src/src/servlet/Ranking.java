@@ -39,10 +39,17 @@ public class Ranking extends HttpServlet {
 			response.sendRedirect("/NYASTER/Login");
 			return;
 		}
+		// 結果をページにフォワードする
+				RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/ranking.jsp");
+				dispatcher.forward(request, response);
+    }
 
 
-
-
+		protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+			String[] tag = request.getParameterValues("tag");
+			
+			if (tag != null) {
+		        for (String button : tag) {
 		// リクエストパラメータを取得する
 		request.setCharacterEncoding("UTF-8");
 		String all = request.getParameter("all");
@@ -57,16 +64,19 @@ public class Ranking extends HttpServlet {
 		System.out.println(study);
 		System.out.println(other);
 		
-		// 検索処理を行う
 		
-		RankingDao raDao = new RankingDao();
-		List<Rankings> rankingList = raDao.ranking(all,sport,book,study,other);
-
-		// 検索結果をリクエストスコープに格納する
-		request.setAttribute("rankingList", rankingList);
-
-		// 結果をページにフォワードする
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/ranking.jsp");
-		dispatcher.forward(request, response);
 	}
+}
+
+			RankingDao raDao = new RankingDao();
+			List<Rankings> rankingList = raDao.ranking(tag);
+
+			// 検索結果をリクエストスコープに格納する
+			request.setAttribute("rankingList", rankingList);
+
+			// 結果をページにフォワードする
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/ranking.jsp");
+			dispatcher.forward(request, response);
+			
+		}
 }

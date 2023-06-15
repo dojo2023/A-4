@@ -13,16 +13,16 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Servlet implementation class Goals
  */
-@WebServlet("/Goal")
-public class Goal extends HttpServlet {
+@WebServlet("/Goals")
+public class Goals extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-    private List<String> goal; // 目標を格納するリスト
+    private List<String> goals; // 目標を格納するリスト
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public Goal() {
+    public Goals() {
         super();
-        goal = new ArrayList<String>(); // 目標を格納するリストを初期化
+        goals = new ArrayList<String>(); // 目標を格納するリストを初期化
     }
 
 	/**
@@ -31,18 +31,8 @@ public class Goal extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		response.getWriter().append("Served at: ").append(request.getContextPath());
-/* 目標リストを表示する
-        response.setContentType("text/html");
-        response.getWriter().println("<html><body>");
-        response.getWriter().println("<h2>目標リスト</h2>");
-        response.getWriter().println("<ul>");
-        for (String goal : goals) {
-        response.getWriter().println("<li>" + goal + "</li>");
-        response.getWriter().println("</ul>");
-        response.getWriter().println("</body></html>");
-        }
-*/
-	}
+
+       }
 
 
 	/**
@@ -51,7 +41,7 @@ public class Goal extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		// フォームから送信された目標をリストに追加する
-        String goal = request.getParameter("goals");
+        String goals = request.getParameter("goals");
 
 
         // 目標リストを表示する

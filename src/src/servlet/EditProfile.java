@@ -19,7 +19,8 @@ public class EditProfile extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException,IOException {
-        // ログインページにフォワードする
+
+		// ログインページにフォワードする
     	RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/editProfile.jsp");
 		dispatcher.forward(request, response);
     }
@@ -51,9 +52,30 @@ public class EditProfile extends HttpServlet {
 
 
 	}
+
+		String userUuid = (String)session.getAttribute("id");
+
+		//IDからユーザ情報を問い合わせる ユーザIDを取得
+			AccountsDao iDao = new AccountsDao();
+			model.User idChang = iDao.showUser(userUuid); //ログインユーザの情報を取得
+			String userid = idChang.getUser_name();
+
+			//　取得したユーザ情報からユーザ名を取り出し、リクエストスコープに格納する
+			request.setAttribute("userid", userid);
+
+
+
+			// IDからユーザ情報を問い合わせる ユーザネームを取り出す
+			AccountsDao nDao = new AccountsDao();
+			model.User nameChang = nDao.showUser(userUuid); //ログインユーザの情報を取得
+			String username = nameChang.getUser_name();
+
+			//　取得したユーザ情報からユーザ名を取り出し、リクエストスコープに格納する
+			request.setAttribute("username", username);
+
+
 	 }
 }
-
 
 
 
