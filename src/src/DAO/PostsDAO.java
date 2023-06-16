@@ -278,7 +278,7 @@ public class PostsDAO {
 		return result;
 	}
 
-	public List<Totals> totaltimes(String uuid) {
+	public List<Totals> totaltime(String uuid) {
 		Connection conn = null;
 		List<Totals> totalList = new ArrayList<Totals>(); //Totalsのオブジェクトを格納する用のリスト
 
@@ -300,11 +300,11 @@ public class PostsDAO {
 
 
 			while (rs.next()) {
-				Rankings ranking = new Rankings(
+				Totals totaltime = new Totals(
 				rs.getString("USER_NAME"),
-				rs.getInt("GANBARI_TIME"),
+				rs.getInt("GANBARI_TIME")
 				);
-				totalList.add(ranking);
+				totalList.add(totaltimes);
 			}
 		}
 

@@ -14,8 +14,10 @@ import javax.servlet.http.HttpSession;
 import DAO.AccountsDao;
 import DAO.GoalsDao;
 import DAO.PostsDAO;
+import DAO.RankingDao;
 import model.Goals;
 import model.Posts;
+import model.Rankings;
 
 @WebServlet("/UserPage")
 public class UserPage extends HttpServlet {
@@ -33,29 +35,48 @@ public class UserPage extends HttpServlet {
 //		// マイページにフォワードする
 //		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/loginUser.jsp");
 //		dispatcher.forward(request, response);
-	
 
-	String userUuid = (String)session.getAttribute("id");
 
-	
-	AccountsDao aDao = new AccountsDao();
-	model.User loginUser = aDao.showUser(userUuid);  //ログインユーザの情報を取得
+		String userUuid = (String)session.getAttribute("id");
 
-	//　取得したユーザ情報からユーザ名を取り出し、リクエストスコープに格納する
-	request.setAttribute("username", username);
 
-	// 投稿データを全件取得し、リストをリクエストスコープに格納する。
-	PostsDAO pDao = new PostsDAO();
-	List<Posts> postList = pDao.postShow();
-	request.setAttribute("postList", postList);
-	
-	// ユーザの目標データを取得し、リストをリクエストスコープに格納する。
-	GoalsDao gDao = new GoalsDao();
-	List<Goals> goalList = gDao.goalShowUser(userUuid);
-	request.setAttribute("goalList", goalList);
+		AccountsDao aDao = new AccountsDao();
+		model.User loginUser = aDao.showUser(userUuid);  //ログインユーザの情報を取得
 
-	RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/UserPage.jsp");
-	dispatcher.forward(request, response);
+		//　取得したユーザ情報からユーザ名を取り出し、リクエストスコープに格納する
+		request.setAttribute("username", username);
+
+		// 投稿データを全件取得し、リストをリクエストスコープに格納する。
+		PostsDAO pDao = new PostsDAO();
+		List<Posts> postList = pDao.postShow();
+		request.setAttribute("postList", postList);
+
+		// ユーザの目標データを取得し、リストをリクエストスコープに格納する。
+		GoalsDao gDao = new GoalsDao();
+		List<Goals> goalList = gDao.goalShowUser(userUuid);
+		request.setAttribute("goalList", goalList);
+
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/UserPage.jsp");
+		dispatcher.forward(request, response);
+
+
+		// 合計活動時間
+		request.setCharacterEncoding("UTF-8");
+		String uuid = request.getParameter("uuid");
+//		System.out.println(request.getParameterValues(tag).length);
+		System.out.println(uuid);
+
+
+
+		PostsDAO raDao = new PostsDAO();
+		List<Totals> totalList = raDao.totaltime(uuid);
+
+		// 検索結果をリクエストスコープに格納する
+		request.setAttribute("totalList", totalList);
+
+		// 結果をページにフォワードする
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/loginUser.jsp");
+		dispatcher.forward(request, response);
 
 	}
 }
