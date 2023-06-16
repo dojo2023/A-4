@@ -5,6 +5,8 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import model.User;
 
@@ -179,9 +181,9 @@ public class AccountsDao {
 			// SQL文を完成させる
 
 
-				pStmt.setString(2, userId);
-				pStmt.setString(3, userName);
-				pStmt.setString(4, password);
+				pStmt.setString(1, userId);
+				pStmt.setString(2, userName);
+				pStmt.setString(3, password);
 
 
 	    // SQL文を実行する
@@ -309,5 +311,64 @@ public class AccountsDao {
 
 		return user;
 	}
+
+	// 引数paramで検索項目を指定し、検索結果のリストを返す
+		public List <User> select(String userId, String userName) {
+			Connection conn = null;
+			List<User> seList = new ArrayList<User>();
+
+			try {
+				// JDBCドライバを読み込む
+				Class.forName("org.h2.Driver");
+
+				// データベースに接続する
+				conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/data/nyaster", "sa", "");
+
+				// SQL文を準備する
+            	String sql = "select * from ACCOUNTS WHERE USER_ID LIKE ? OR USER_NAME LIKE ? ";
+				PreparedStatement pStmt = conn.prepareStatement(sql);
+
+				// SQL文を完成させる
+
+					pStmt.setString(1, "%" + userId + "%");
+					pStmt.setString(2, "%"+ userName + "%");
+
+
+				// SQL文を実行し、結果表を取得する
+				ResultSet rs = pStmt.executeQuery();
+
+				// 結果表をコレクションにコピーする ArryList（JavaBeans）に入れなおしている
+				while (rs.next()) {
+					User search = new User();
+					search.setUser_id(rs.getString("USER_ID"));
+					search.setUser_name(rs.getString("USER_NAME"));
+					seList.add(search);
+				}
+			}
+			catch (SQLException e) {
+				e.printStackTrace();
+				seList = null;
+			}
+			catch (ClassNotFoundException e) {
+				e.printStackTrace();
+				seList = null;
+			}
+			finally {
+				// データベースを切断
+				if (conn != null) {
+					try {
+						conn.close();
+					}
+					catch (SQLException e) {
+						e.printStackTrace();
+						seList = null;
+					}
+				}
+			}
+
+			// 結果を返す
+			return seList;
+		}
+
 }
 
