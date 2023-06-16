@@ -20,7 +20,7 @@ public class RankingDao {
 			conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/data/nyastar", "sa", "");
 
 			//
-			String sql = "SELECT  USER_NAME, GANBARI_TIME "
+			String sql = "SELECT  USER_NAME, SUM(GANBARI_TIME) "
 					+ "FROM POSTS "
 					+ "JOIN ACCOUNTS ON POSTS.USER_UUID = ACCOUNTS.USER_UUID "
 					+ "JOIN GOALS ON POSTS.GOAL_ID = GOALS.GOAL_ID "
