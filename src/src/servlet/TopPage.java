@@ -126,7 +126,9 @@ public class TopPage extends HttpServlet {
 			else { // 登録失敗
 				System.out.println("目標の登録が失敗しました。");
 			}
-		response.sendRedirect("TopPage");
+		response.sendRedirect("/NYASTER/TopPage");
 	}
 
+}
+	
 }
