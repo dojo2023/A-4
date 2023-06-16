@@ -46,28 +46,13 @@ public class Ranking extends HttpServlet {
 
 
 		protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-			String[] tag = request.getParameterValues("tag");
+			request.setCharacterEncoding("UTF-8");
+			String tag = request.getParameter("tag");
+//			System.out.println(request.getParameterValues(tag).length);
+			System.out.println(tag);
 			
-			if (tag != null) {
-		        for (String button : tag) {
-		// リクエストパラメータを取得する
-		request.setCharacterEncoding("UTF-8");
-		String all = request.getParameter("all");
-		String sport = request.getParameter("sport");
-		String book = request.getParameter("book");
-		String study = request.getParameter("study");
-		String other = request.getParameter("other");
 		
-		System.out.println(all);
-		System.out.println(sport);
-		System.out.println(book);
-		System.out.println(study);
-		System.out.println(other);
-		
-		
-	}
-}
-
+	
 			RankingDao raDao = new RankingDao();
 			List<Rankings> rankingList = raDao.ranking(tag);
 
@@ -78,5 +63,5 @@ public class Ranking extends HttpServlet {
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/ranking.jsp");
 			dispatcher.forward(request, response);
 			
-		}
+	}
 }

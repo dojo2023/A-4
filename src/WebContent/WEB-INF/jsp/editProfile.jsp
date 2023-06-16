@@ -21,19 +21,22 @@
         </ul>
 </div>
 
+
 </form method="POST" action = NYASTER/EditProfile><form>
 <label>ユーザID<br>
- <input type="text" name="USER_ID"placeholder="１６文字以内で入力してください" maxlength ="16"value=${userid}$></label><br>
+ <input type="text" name="USER_ID"placeholder="１６文字以内で入力してください" maxlength ="16"value= ${e.userid} ></label><br>
+${errorMsg}
  <label>ユーザ名<br>
-<input type="text" name="USER_NAME"placeholder="１６文字以内で入力してください"maxlength ="16"value=${username}$></label><br>
+<input type="text" name="USER_NAME"placeholder="１６文字以内で入力してください"maxlength ="16"value= ${e.username} ></label><br>
+${errorMsg}
 <label>変更前パスワード<br>
 <input type="text" name="B_PASSWORD"placeholder="８文字以上で入力してください"minlength ="8"></label><br>
-${errorMsg}<br>
+<br>
 <label>変更後パスワード<br>
 <input type="text" name="A_PASSWORD"placeholder="８文字以上で入力してください"minlength ="8" ></label><br>
-${errorMsg}<br>
+<br>
 <!-- 変更ボタン -->
-<input type="button" class="btn" value="変更" ><br><br>
+<input type="button" class="btn"  value="変更" ><br><br>
 
 
 <!--削除ボタン -->
