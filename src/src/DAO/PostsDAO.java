@@ -278,6 +278,8 @@ public class PostsDAO {
 		return result;
 	}
 
+
+// 合計活動時間
 	public User totaltime(String uuid) {
 		Connection conn = null;
 		User userTotalTime = new User();
