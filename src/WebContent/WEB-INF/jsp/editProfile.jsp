@@ -30,10 +30,10 @@ ${errorMsg}
 <input type="text" name="USER_NAME"placeholder="１６文字以内で入力してください"maxlength ="16"value= ${e.username} ></label><br>
 ${errorMsg}
 <label>変更前パスワード<br>
-<input type="text" name="B_PASSWORD"placeholder="８文字以上で入力してください"minlength ="8"></label><br>
+<input type="text" name="PASSWORD"placeholder="８文字以上で入力してください"minlength ="8"></label><br>
 <br>
 <label>変更後パスワード<br>
-<input type="text" name="A_PASSWORD"placeholder="８文字以上で入力してください"minlength ="8" ></label><br>
+<input type="text" name="PASSWORD"placeholder="８文字以上で入力してください"minlength ="8" ></label><br>
 <br>
 <!-- 変更ボタン -->
 <input type="button" class="btn"  value="変更" ><br><br>
