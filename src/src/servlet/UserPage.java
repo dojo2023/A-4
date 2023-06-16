@@ -18,6 +18,7 @@ import DAO.RankingDao;
 import model.Goals;
 import model.Posts;
 import model.Rankings;
+import model.User;
 
 @WebServlet("/UserPage")
 public class UserPage extends HttpServlet {
@@ -70,15 +71,16 @@ public class UserPage extends HttpServlet {
 
 
 
-		PostsDAO raDao = new PostsDAO();
-		List<Totals> totalList = raDao.totaltime(uuid);
+		PostsDAO ttDao = new PostsDAO();
+		User userTotalTime = new User();
+
 
 		// 検索結果をリクエストスコープに格納する
-		request.setAttribute("totalList", totalList);
+		request.setAttribute("userTotalTime", userTotalTime);
 
 		// 結果をページにフォワードする
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/loginUser.jsp");
-		dispatcher.forward(request, response);
+		RequestDispatcher dispatcher1 = request.getRequestDispatcher("/WEB-INF/jsp/loginUser.jsp");
+		dispatcher1.forward(request, response);
 
 	}
 }
