@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import model.Posts;
+import model.Rankings;
 
 public class PostsDAO {
 	// 新規の投稿を追加する
@@ -275,5 +276,60 @@ public class PostsDAO {
 			}
 		}
 		return result;
+	}
+
+	public List<Totals> totaltimes(String uuid) {
+		Connection conn = null;
+		List<Totals> totalList = new ArrayList<Totals>(); //Totalsのオブジェクトを格納する用のリスト
+
+		try {
+			Class.forName("org.h2.Driver");
+			conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/data/nyastar", "sa", "");
+
+			//
+			String sql = "SELECT  USER_NAME, SUM(GANBARI_TIME),"
+					+ "FROM POSTS"
+					+ "JOIN ACCOUNTS ON POSTS.USER_UUID = ACCOUNTS.USER_UUID"
+					+ "JOIN GOALS ON POSTS.USER_UUID = GOALS.USER_UUID"
+					+ "WHERE POSTS.USER_UUID= ? ;"
+					+ "GROUP BY USER_UUID ;";
+			PreparedStatement pStmt = conn.prepareStatement(sql);
+			pStmt.setString(1,uuid);
+			ResultSet rs = pStmt.executeQuery();
+
+
+
+			while (rs.next()) {
+				Rankings ranking = new Rankings(
+				rs.getString("USER_NAME"),
+				rs.getInt("GANBARI_TIME"),
+				);
+				totalList.add(ranking);
+			}
+		}
+
+		catch (SQLException e) {
+			e.printStackTrace();
+			totalList = null;
+		}
+
+		catch (ClassNotFoundException e) {
+			e.printStackTrace();
+			totalList = null;
+		}
+
+		finally {
+			if (conn != null) {
+				try {
+					conn.close();
+				}
+				catch (SQLException e) {
+					e.printStackTrace();
+					totalList = null;
+				}
+			}
+		}
+
+		return totalList;
 	}
 }
