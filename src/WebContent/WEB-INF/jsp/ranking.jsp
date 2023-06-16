@@ -21,7 +21,7 @@
     <main>
     <!--ランキングをここに追加します -->
     <form method="POST" action="/NYASTER/Ranking">
-     <input type="submit" name="tag" value="全体">
+     <input type="submit" name="tag" value="ALL">
 	  <input type="submit" name="tag" value=" 運動">
 	  <input type="submit" name="tag" value=" 読書">
 	  <input type="submit" name="tag" value=" 勉強">
