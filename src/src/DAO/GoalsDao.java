@@ -19,7 +19,7 @@ import model.Goals;
 				try {
 					Class.forName("org.h2.Driver");
 					conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/data/nyastar", "sa", "");
-					String sql = "INSERT INTO GOALS VALUES (?, ?, ?, ?, ?, ?)";
+					String sql = "INSERT INTO(GOAL_ID, GOAL_NAME, GENRE_TAG, GOAL_DATE, USER_UUID) GOALS VALUES (?, ?, ?, ?, ?, ?)";
 
 					PreparedStatement pStmt = conn.prepareStatement(sql);
 					pStmt.setString(1, goal.getGoalId());
