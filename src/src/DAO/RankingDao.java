@@ -20,23 +20,22 @@ public class RankingDao {
 			conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/data/nyastar", "sa", "");
 
 			//
-			String sql = "SELECT  USER_NAME, GANBARI_TIME, GENRE_TAG, POST_TIME"
-					+ "FROM POSTS"
-					+ "JOIN ACCOUNTS ON POSTS.USER_UUID = ACCOUNTS.USER_UUID"
-					+ "JOIN GOALS ON POSTS.USER_UUID = GOALS.USER_UUID"
-					+ "WHERE GENRE_TAG= ? ;"
-					+ "GROUP BY USER_UUID ORDER BY SUM(GANBARI_TIME) DESC;";
+			String sql = "SELECT  USER_NAME, GANBARI_TIME "
+					+ "FROM POSTS "
+					+ "JOIN ACCOUNTS ON POSTS.USER_UUID = ACCOUNTS.USER_UUID "
+					+ "JOIN GOALS ON POSTS.GOAL_ID = GOALS.GOAL_ID "
+					+ "WHERE GENRE_TAG= ? "
+					+ "GROUP BY POSTS.USER_UUID ORDER BY SUM(GANBARI_TIME) DESC;";
 			PreparedStatement pStmt = conn.prepareStatement(sql);
+			pStmt.setString(1,tag);
 			ResultSet rs = pStmt.executeQuery();
 			
-			pStmt.setString(1,tag);
+			
 			
 			while (rs.next()) {
 				Rankings ranking = new Rankings(
 				rs.getString("USER_NAME"),
-				rs.getInt("GANBARI_TIME"),
-				rs.getString("GENRE_TAG"),
-				rs.getInt("POST_TIME")
+				rs.getInt("GANBARI_TIME")
 				);
 				rankingList.add(ranking);
 			}
