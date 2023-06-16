@@ -6,6 +6,7 @@ public class User implements Serializable {
 	private String user_id;   //ユーザID
 	private String user_name; //ユーザ名
 	private String password;  //パスワード
+	private int totalGanbariTime;
 
 	public User(String user_uuid,String user_id,String user_name,String password) { //アカウント追加用
 		this.user_uuid = user_uuid;
@@ -19,15 +20,17 @@ public class User implements Serializable {
 			this.password = password;
 	}
 
-	 public User() {}
+	public User() {}
 
     public String getUser_uuid() {return user_uuid;}
     public String getUser_id() {return user_id;}
     public String getUser_name() {return user_name;}
     public String getPassword() {return password;}
+    public int getTotalGanbariTime() {return totalGanbariTime;}
 
     public void setUser_uuid(String user_uuid){this.user_uuid = user_uuid;}
     public void setUser_id(String user_id){this.user_id = user_id;}
     public void setUser_name(String user_name){this.user_name = user_name;}
     public void setPassword(String password){this.password = password;}
+	public void setTotalGanbariTime(int totalGanbariTime) {this.totalGanbariTime = totalGanbariTime;}
 }

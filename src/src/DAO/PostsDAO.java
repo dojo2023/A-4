@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import model.Posts;
-import model.Rankings;
+import model.User;
 
 public class PostsDAO {
 	// 新規の投稿を追加する
@@ -278,9 +278,9 @@ public class PostsDAO {
 		return result;
 	}
 
-	public List<Totals> totaltime(String uuid) {
+	public User totaltime(String uuid) {
 		Connection conn = null;
-		List<Totals> totalList = new ArrayList<Totals>(); //Totalsのオブジェクトを格納する用のリスト
+		User userTotalTime = new User();
 
 		try {
 			Class.forName("org.h2.Driver");
@@ -295,25 +295,21 @@ public class PostsDAO {
 			pStmt.setString(1,uuid);
 			ResultSet rs = pStmt.executeQuery();
 
-
-
 			while (rs.next()) {
-				Totals totaltime = new Totals(
-				rs.getString("USER_NAME"),
-				rs.getInt("GANBARI_TIME")
-				);
-				totalList.add(totaltimes);
+				userTotalTime.setUser_uuid(uuid);
+				userTotalTime.setUser_name(rs.getString("USER_NAME"));
+				userTotalTime.setTotalGanbariTime(rs.getInt("GANBARI_TIME"));
 			}
 		}
 
 		catch (SQLException e) {
 			e.printStackTrace();
-			totalList = null;
+			userTotalTime = null;
 		}
 
 		catch (ClassNotFoundException e) {
 			e.printStackTrace();
-			totalList = null;
+			userTotalTime = null;
 		}
 
 		finally {
@@ -323,11 +319,11 @@ public class PostsDAO {
 				}
 				catch (SQLException e) {
 					e.printStackTrace();
-					totalList = null;
+					userTotalTime = null;
 				}
 			}
 		}
 
-		return totalList;
+		return userTotalTime;
 	}
 }
