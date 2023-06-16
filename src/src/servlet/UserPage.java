@@ -43,6 +43,8 @@ public class UserPage extends HttpServlet {
 		AccountsDao aDao = new AccountsDao();
 		model.User loginUser = aDao.showUser(userUuid);  //ログインユーザの情報を取得
 
+		// IDからユーザ情報を問い合わせる
+				String username = loginUser.getUser_name();
 		//　取得したユーザ情報からユーザ名を取り出し、リクエストスコープに格納する
 		request.setAttribute("username", username);
 

@@ -287,12 +287,10 @@ public class PostsDAO {
 			conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/data/nyastar", "sa", "");
 
 			//
-			String sql = "SELECT  USER_NAME, SUM(GANBARI_TIME),"
-					+ "FROM POSTS"
-					+ "JOIN ACCOUNTS ON POSTS.USER_UUID = ACCOUNTS.USER_UUID"
-					+ "JOIN GOALS ON POSTS.USER_UUID = GOALS.USER_UUID"
-					+ "WHERE POSTS.USER_UUID= ? ;"
-					+ "GROUP BY USER_UUID ;";
+			String sql = "SELECT  USER_NAME, SUM(GANBARI_TIME) as TOTAL_GANBARI_TIME, "
+					+ "FROM POSTS "
+					+ "JOIN ACCOUNTS ON POSTS.USER_UUID = ACCOUNTS.USER_UUID "
+					+ "WHERE POSTS.USER_UUID= ?;";
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 			pStmt.setString(1,uuid);
 			ResultSet rs = pStmt.executeQuery();
