@@ -25,6 +25,8 @@ public class TopPage extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		long startTime = System.currentTimeMillis(); //ロード時間計測（開始）
+
 		HttpSession session = request.getSession();
 		if ((String)session.getAttribute("id") == null) {
 			response.sendRedirect("/NYASTER/Login");
@@ -37,7 +39,6 @@ public class TopPage extends HttpServlet {
 		AccountsDao aDao = new AccountsDao();
 		model.User loginUser = aDao.showUser(userUuid); //ログインユーザの情報を取得
 		String username = loginUser.getUser_name();
-		System.out.println("ログイン中のユーザー：" + username);
 
 		//　取得したユーザ情報からユーザ名を取り出し、リクエストスコープに格納する
 		request.setAttribute("username", username);
@@ -51,6 +52,10 @@ public class TopPage extends HttpServlet {
 		GoalsDao gDao = new GoalsDao();
 		List<Goals> goalList = gDao.goalShowUser(userUuid);
 		request.setAttribute("goalList", goalList);
+
+		long endTime = System.currentTimeMillis(); //ロード時間計測（終了）
+		long loadTime = (endTime - startTime);
+		System.out.println("ページのロード時間：" + loadTime + "ミリ秒");
 
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/index.jsp");
 		dispatcher.forward(request, response);
@@ -77,12 +82,13 @@ public class TopPage extends HttpServlet {
 			int mins = Integer.parseInt(request.getParameter("mins"));
 			int hours = Integer.parseInt(request.getParameter("hours"));
 			mins = hours*60;
+			System.out.println("投稿（時間）：" + mins);
 			PostsDAO pDao = new PostsDAO();
 			if (pDao.postAdd(new Posts(userUuid, msg, mins, goalId))) { // 登録成功
-				System.out.println("登録は成功しました。");
+				System.out.println("投稿の登録が成功しました。");
 			}
 			else { // 登録失敗
-				System.out.println("登録は失敗しました。");
+				System.out.println("投稿の登録が失敗しました。");
 			}
 		} else if (request.getParameter("select").equals("追加")) {
 			// 目標の登録処理を行う
@@ -93,20 +99,15 @@ public class TopPage extends HttpServlet {
 			int goalHours = Integer.parseInt(request.getParameter("goal_hours"));
 			int goalMins = Integer.parseInt(request.getParameter("goal_mins"));
 			goalMins = goalMins + (goalHours*60);
-			System.out.println("目標名：" + goalName);
-			System.out.println("目標タグ：" + goalTag);
-			System.out.println("目標時間(分)：" + goalMins);
 			GoalsDao gDao = new GoalsDao();
 			if (gDao.goalAdd(new Goals(goalName, goalTag, goalMins, userUuid))) { // 登録成功
-				System.out.println("登録は成功しました。");
+				System.out.println("目標の登録が成功しました。");
 			}
 			else { // 登録失敗
-				System.out.println("登録は失敗しました。");
+				System.out.println("目標の登録が失敗しました。");
 			}
 		}
-
 		response.sendRedirect("TopPage");
-//		dispatcher.forward(request, response);
 	}
 
 }

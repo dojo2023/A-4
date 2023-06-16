@@ -62,7 +62,7 @@ public class PostsDAO {
 			conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/data/NYASTAR", "sa", "");
 
 			//
-			String sql = "SELECT POST_ID, USER_NAME, POST_MESSAGE, GANBARI_TIME, GENRE_TAG, GOAL_NAME, POST_TIME "
+			String sql = "SELECT POST_ID, USER_NAME, POST_MESSAGE, GANBARI_TIME, GENRE_TAG, GOAL_NAME, GOAL_TIME, POST_TIME "
 					+ "FROM POSTS "
 					+ "JOIN ACCOUNTS ON POSTS.USER_UUID = ACCOUNTS.USER_UUID "
 					+ "JOIN GOALS ON POSTS.GOAL_ID = GOALS.GOAL_ID "
@@ -73,13 +73,26 @@ public class PostsDAO {
 			ResultSet rs = pStmt.executeQuery();
 
 			while (rs.next()) {
+				double doubleGanbariHours = Math.floor(rs.getInt("GANBARI_TIME") / 60.0);
+				int ganbariHours = (int)doubleGanbariHours; // long型からint型に変換
+				int ganbariMins = rs.getInt("GANBARI_TIME") % 60; // 残りの分数を計算
+
+				double doubleGoalHours = Math.floor(rs.getInt("GOAL_TIME") / 60.0);
+				int goalHours = (int)doubleGoalHours; // long型からint型に変換
+				int goalMins = rs.getInt("GOAL_TIME") % 60; // 残りの分数を計算
+
 				Posts post = new Posts(
 				rs.getString("POST_ID"),
 				rs.getString("USER_NAME"),
 				rs.getString("POST_MESSAGE"),
-				rs.getInt("GANBARI_TIME"),
 				rs.getString("GENRE_TAG"),
 				rs.getString("GOAL_NAME"),
+				rs.getInt("GANBARI_TIME"),
+				ganbariHours,
+				ganbariMins,
+				rs.getInt("GOAL_TIME"),
+				goalHours,
+				goalMins,
 				rs.getTimestamp("POST_TIME")
 				);
 				postList.add(post);
@@ -132,16 +145,30 @@ public class PostsDAO {
 			ResultSet rs = pStmt.executeQuery();
 
 			while (rs.next()) {
+				double doubleGanbariHours = Math.floor(rs.getInt("GANBARI_TIME") / 60.0);
+				int ganbariHours = (int)doubleGanbariHours; // long型からint型に変換
+				int ganbariMins = rs.getInt("GANBARI_TIME") % 60; // 残りの分数を計算
+				System.out.println(ganbariHours + "時間" + ganbariMins + "分");
+
+				double doubleGoalHours = Math.floor(rs.getInt("GOAL_TIME") / 60.0);
+				int goalHours = (int)doubleGoalHours; // long型からint型に変換
+				int goalMins = rs.getInt("GOAL_TIME") % 60; // 残りの分数を計算
+
 				Posts post = new Posts(
-				rs.getString("POST_ID"),
-				rs.getString("POST_USER_NAME"),
-				rs.getString("POST_MESSAGE"),
-				rs.getInt("GANBARI_TIME"),
-				rs.getString("GENRE_TAG"),
-				rs.getString("GOAL_NAME"),
-				rs.getTimestamp("POST_TIME")
-				);
-				postList.add(post);
+					rs.getString("POST_ID"),
+					rs.getString("USER_NAME"),
+					rs.getString("POST_MESSAGE"),
+					rs.getString("GENRE_TAG"),
+					rs.getString("GOAL_NAME"),
+					rs.getInt("GANBARI_TIME"),
+					rs.getInt("GOAL_TIME"),
+					ganbariHours,
+					ganbariMins,
+					goalHours,
+					goalMins,
+					rs.getTimestamp("POST_TIME")
+					);
+					postList.add(post);
 			}
 		}
 

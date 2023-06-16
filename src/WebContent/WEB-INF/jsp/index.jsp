@@ -43,12 +43,13 @@
         <h2>タイムライン</h2>
     	<c:forEach var="e" items="${postList}">
             <hr>
-            <div>投稿UUID： ${e.id}</div>
+            <!-- <div>投稿UUID： ${e.id}</div> -->
             <div>投稿者名： ${e.userName}</div>
             <div>タグ： ${e.ganbariTag}</div>
-            <div>投稿メッセージ： ${e.msg}</div>
-            <div>がんばり時間： ${e.ganbariTime}分</div>
-            <div>がんばり目標： ${e.goalName}</div>
+            <div>がんばり内容： ${e.msg}</div>
+            <div>がんばり時間： ${e.ganbariTimeHours}時間${e.ganbariTimeMins}分</div>
+            <div>がんばり目標： ${e.goalName} (${e.goalTimeHours}時間${e.goalTimeMins}分)</div>
+            <div>目標進捗率: ${Math.floor((e.ganbariTime/e.goalTime)*100)}%</div>
             <div>投稿時間： ${e.postTime}</div>
     	</c:forEach>
         <hr>
@@ -67,9 +68,9 @@
               <option value="その他">その他</option>
             </select>
             <div>目標時間</div>
-            <div class="input-cont"> <input type="number" name="goal_hours" min="0" placeholder="時間"> <label>時間</label>
+            <div class="input-cont"> <input type="number" name="goal_hours" min="0" value="0" required> <label>時間</label>
             </div>
-            <div class="input-cont"> <input type="number" name="goal_mins" min="0" max="60" placeholder="分"> <label>分</label>
+            <div class="input-cont"> <input type="number" name="goal_mins" min="0" max="60" value="0" required> <label>分</label>
             </div>
             <div class="login-button-panel">
                 <input type="submit" name="select" class="login-button" title="目標を設定する" value="追加">
@@ -82,8 +83,6 @@
                 <li>${e.goalName}</li>
 		    </c:forEach>
         </ul>
-
-
     </main>
 
     <footer>
