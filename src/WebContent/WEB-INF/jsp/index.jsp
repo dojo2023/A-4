@@ -11,7 +11,7 @@
         <ul>
             <li><a href="#" class="link-title">ホーム</a></li>
             <li><a href="#" class="link-title">検索</a></li>
-            <li><a href="ranking" class="link-title">ランキング</a></li>
+            <li><a href="Ranking" class="link-title">ランキング</a></li>
             <li><a href="#" class="link-title">作成</a></li>
         </ul>
     </div>
@@ -51,6 +51,7 @@
             <div>がんばり目標： ${e.goalName} (${e.goalTimeHours}時間${e.goalTimeMins}分)</div>
             <div>目標進捗率: ${Math.floor((e.ganbariTime/e.goalTime)*100)}%</div>
             <div>投稿時間： ${e.postTime}</div>
+            <div>ナイス <p>× </p></div>
     	</c:forEach>
         <hr>
 

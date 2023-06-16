@@ -9,7 +9,7 @@
 </head>
 <body>
 
-
+	<form method="POST" action="/NYASTER/Goals">
 <button id="modalOpen" class="button">ログイン</button>
   <div id="easyModal" class="modal">
     <div class="modal-content">
