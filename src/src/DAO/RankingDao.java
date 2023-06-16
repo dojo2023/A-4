@@ -14,7 +14,7 @@ public class RankingDao {
 	public List<Rankings> ranking(String tag) {
 		Connection conn = null;
 		List<Rankings> rankingList = new ArrayList<Rankings>(); //Rankingsのオブジェクトを格納する用のリスト
-
+		
 		try {
 			Class.forName("org.h2.Driver");
 			conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/data/nyastar", "sa", "");
@@ -62,7 +62,6 @@ public class RankingDao {
 				}
 			}
 		}
-
 		return rankingList;
 	}
 }
