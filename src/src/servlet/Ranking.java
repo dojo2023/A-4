@@ -56,6 +56,7 @@ public class Ranking extends HttpServlet {
 			RankingDao raDao = new RankingDao();
 			List<Rankings> rankingList = raDao.ranking(tag);
 
+			System.out.println(rankingList.size());
 			// 検索結果をリクエストスコープに格納する
 			request.setAttribute("rankingList", rankingList);
 

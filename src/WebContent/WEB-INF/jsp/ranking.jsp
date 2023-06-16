@@ -22,10 +22,10 @@
     <!--ランキングをここに追加します -->
     <form method="POST" action="/NYASTER/Ranking">
      <input type="submit" name="tag" value="ALL">
-	  <input type="submit" name="tag" value=" 運動">
-	  <input type="submit" name="tag" value=" 読書">
-	  <input type="submit" name="tag" value=" 勉強">
-	  <input type="submit" name="tag" value=" その他">
+	  <input type="submit" name="tag" value="運動">
+	  <input type="submit" name="tag" value="読書">
+	  <input type="submit" name="tag" value="勉強">
+	  <input type="submit" name="tag" value="その他">
 	</form>
     <h2>週間ランキング</h2>
 <div id="ranking">
@@ -34,7 +34,7 @@
       <th>ユーザー名</th><th>がんばりタイム</th>
     </tr>
     <c:forEach var="e" items="${rankingList}" >
-      <tr><td>${e.user_name}</td><td>${e.ganbari_time}</td>
+      <tr><td>${e.userName}</td><td>${e.ganbariTime}</td>
     </c:forEach>
   </table>
 </div>
