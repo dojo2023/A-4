@@ -53,7 +53,7 @@ public class EditProfile extends HttpServlet {
 
 	}
 
-		String userUuid = (String)session.getAttribute("id");
+		String userUuid = (String)request.getAttribute("id");
 
 		//IDからユーザ情報を問い合わせる ユーザIDを取得
 			AccountsDao iDao = new AccountsDao();
