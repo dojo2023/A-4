@@ -16,7 +16,7 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet("/Goals")
 public class Goals extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-    private List<String> goals; // 目標を格納するリスト
+
     /**
      * @see HttpServlet#HttpServlet()
      */
@@ -34,11 +34,16 @@ public class Goals extends HttpServlet {
 
        }
 
+	// 結果をページにフォワードする
+	RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/loginUserModal.jsp");
+	dispatcher.forward(request, response);
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	    private List<String> goals; // 目標を格納するリスト
+
 
 		// フォームから送信された目標をリストに追加する
         String goals = request.getParameter("goals");
@@ -48,6 +53,7 @@ public class Goals extends HttpServlet {
 		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
+
 
 }
 
