@@ -25,18 +25,19 @@ public class RankingDao {
 					+ "JOIN ACCOUNTS ON POSTS.USER_UUID = ACCOUNTS.USER_UUID "
 					+ "JOIN GOALS ON POSTS.GOAL_ID = GOALS.GOAL_ID ";
 
+			ResultSet rs;
+
 			if (tag.equals("累計")) {
 				sql += "GROUP BY POSTS.USER_UUID ORDER BY SUM(GANBARI_TIME) DESC;";
+				PreparedStatement pStmt = conn.prepareStatement(sql);
+				rs = pStmt.executeQuery();
 			} else {
 				sql += "WHERE GENRE_TAG=? "
 						+ "GROUP BY POSTS.USER_UUID ORDER BY SUM(GANBARI_TIME) DESC;";
+				PreparedStatement pStmt = conn.prepareStatement(sql);
+				pStmt.setString(1,tag);
+				rs = pStmt.executeQuery();
 			}
-
-
-			PreparedStatement pStmt = conn.prepareStatement(sql);
-
-			pStmt.setString(1,tag);
-			ResultSet rs = pStmt.executeQuery();
 
 			while (rs.next()) {
 				Rankings ranking = new Rankings(
