@@ -49,7 +49,7 @@
             <div>がんばり内容： ${e.msg}</div>
             <div>がんばり時間： ${e.ganbariTimeHours}時間${e.ganbariTimeMins}分</div>
             <div>がんばり目標： ${e.goalName} (${e.goalTimeHours}時間${e.goalTimeMins}分)</div>
-            <div>目標進捗率: ${Math.floor((e.ganbariTime/e.goalTime)*100)}%</div>
+            <div>目標進捗率: ${Math.floor((e.progress/e.goalTime)*100)}%</div>
             <div>投稿時間： ${e.postTime}</div>
             <div><span>ナイス数</span> <span>×？</span></div>
             <!-- <form method="POST" action="/NYASTER/TopPage">
