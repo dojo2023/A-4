@@ -16,7 +16,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.servlet.http.Part;
 
-import DAO.AccountsDao;
+import model.IconFileName;
 
 /**
  * Servlet implementation class ImgUpload
@@ -47,14 +47,15 @@ public class ImgUpload extends HttpServlet {
 		HttpSession session = request.getSession();
 		String userUuid = (String)session.getAttribute("id");
 
+		IconFileName ifn = new IconFileName();
         Part filePart = request.getPart("file");
-        String fileName = getFileName(filePart);
+        String fileName = ifn.getFileName(filePart);
 
         if (fileName != null && !fileName.isEmpty()) {
             String extension = "png"; // 保存する拡張子を指定
 
-            // ユニークなファイル名を生成
-            String saveFileName = generateFileName(userUuid, extension);
+            // ファイル名を生成
+            String saveFileName = ifn.generateFileName(userUuid, extension);
 
             // ファイルを保存するディレクトリのパスを指定
             String uploadDirectory = "C:/pleiades/workspace/data/icon_img/";
@@ -69,29 +70,8 @@ public class ImgUpload extends HttpServlet {
             } catch (Exception e) {
                 e.printStackTrace();
                 System.out.println("ファイルの保存に失敗しました。");
-                response.getWriter().println("ファイルの保存に失敗しました。");
             }
         }
         response.sendRedirect("/NYASTER/TopPage"); //元のページにリダイレクト
 	}
-
-    private String generateFileName(String userUuid, String extension) {
-    	AccountsDao aDao = new AccountsDao();
-		model.User loginUser = aDao.showUser(userUuid);
-		String userId = loginUser.getUser_id();
-        return userId + extension;
-    }
-
-    private String getFileName(Part part) {
-        String contentDisposition = part.getHeader("content-disposition");
-        String[] elements = contentDisposition.split(";");
-
-        for (String element : elements) {
-            if (element.trim().startsWith("filename")) {
-                return element.substring(element.indexOf('=') + 1).trim().replace("\"", "");
-            }
-        }
-
-        return null;
-    }
 }
