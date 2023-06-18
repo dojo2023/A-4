@@ -21,7 +21,7 @@ public class Posts implements Serializable {
 	private int goalTime; //設定した目標時間（分）
 	private int goalTimeHours; //設定した目標時間（時間）
 	private int goalTimeMins; //設定した目標時間（残りの分）
-//	private int progress;
+	private int progress;
 	private Timestamp postTime; //投稿した日時
 
 
@@ -44,20 +44,20 @@ public class Posts implements Serializable {
 	}
 
 	// 投稿取得用
-	public Posts(String id, String userName, String msg, String gTag, String goalName, int ganbariTime, int ganbariTimeHours, int ganbariTimeMins, int goalTime, int goalTimeHours, int goalTimeMins, Timestamp ts) {
+	public Posts(String id, String userName, String msg, String gTag, String goalName, int ganbariTime, int ganbariTimeHours, int ganbariTimeMins, int goalTime, int goalTimeHours, int goalTimeMins, int progress, Timestamp ts) {
 		this.id = id;
 		this.userName = userName;
 		this.msg = msg;
+		this.ganbariTag = gTag;
+		this.goalName = goalName;
 		this.ganbariTime = ganbariTime;
 		this.ganbariTimeHours = ganbariTimeHours;
 		this.ganbariTimeMins = ganbariTimeMins;
-		this.ganbariTag = gTag;
-		this.goalName = goalName;
 		this.goalTime = goalTime;
 		this.goalTimeHours = goalTimeHours;
 		this.goalTimeMins = goalTimeMins;
+		this.progress = progress;
 		this.postTime = ts;
-//		this.progress = (ganbariTime/goalTime)*100;
 	}
 
 //	getter
@@ -74,6 +74,7 @@ public class Posts implements Serializable {
 	public int getGoalTime() {return goalTime;}
 	public int getGoalTimeHours() {return goalTimeHours;}
 	public int getGoalTimeMins() {return goalTimeMins;}
+	public int getProgress() {return progress;}
 	public Timestamp getPostTime() {return postTime;}
 
 // 	setter
@@ -86,5 +87,6 @@ public class Posts implements Serializable {
 	public void setGoalTimeMins(int goalTimeMins) {this.goalTimeMins = goalTimeMins;}
 	public void setGoal(int goalTime) {this.goalTime = goalTime;}
 	public void setGanbariTimeHours(int ganbariTimeHours) {this.ganbariTimeHours = ganbariTimeHours;}
+	public void setProgress(int progress) {this.progress = progress;}
 	public void setGanbariTimeMins(int ganbariTimeMins) {this.ganbariTimeMins = ganbariTimeMins;}
 }
