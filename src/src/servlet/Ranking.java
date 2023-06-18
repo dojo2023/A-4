@@ -39,6 +39,13 @@ public class Ranking extends HttpServlet {
 			response.sendRedirect("/NYASTER/Login");
 			return;
 		}
+
+		RankingDao raDao = new RankingDao();
+		List<Rankings> rankingList = raDao.ranking("累計");
+
+		// 検索結果をリクエストスコープに格納する
+		request.setAttribute("rankingList", rankingList);
+
 		// 結果をページにフォワードする
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/ranking.jsp");
 		dispatcher.forward(request, response);
