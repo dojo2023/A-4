@@ -64,7 +64,7 @@ public class GoalsDao {
 			conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/data/nyastar", "sa", "");
 
 			//
-			String sql = "SELECT GOAL_ID, GOAL_NAME, GENRE_TAG, GOAL_TIME, GOAL_DATE, USER_UUID "
+			String sql = "SELECT GOAL_ID, GOAL_NAME, GENRE_TAG, GOAL_TIME, ACHIEVEMENT_TIME, GOAL_DATE, USER_UUID "
 					+ "FROM GOALS "
 					+ "WHERE USER_UUID=? " //ユーザIDを指定する
 					+ "ORDER BY GOAL_DATE;";
@@ -78,6 +78,7 @@ public class GoalsDao {
 				rs.getString("GOAL_NAME"),
 				rs.getString("GENRE_TAG"),
 				rs.getInt("GOAL_TIME"),
+				rs.getInt("ACHIEVEMENT_TIME"),
 				rs.getTimestamp("GOAL_DATE"),
 				rs.getString("USER_UUID")
 				);
