@@ -25,9 +25,9 @@ public class TopPage extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		long startTime = System.currentTimeMillis(); //ロード時間計測（開始）
-
 		HttpSession session = request.getSession();
+
+		//セッションスコープにユーザIDが存在しない場合はログインページにリダイレクトする
 		if ((String)session.getAttribute("id") == null) {
 			response.sendRedirect("/NYASTER/Login");
 			return;
@@ -56,10 +56,6 @@ public class TopPage extends HttpServlet {
 		GoalsDao gDao = new GoalsDao();
 		List<Goals> goalList = gDao.goalShowUser(userUuid);
 		request.setAttribute("goalList", goalList);
-
-		long endTime = System.currentTimeMillis(); //ロード時間計測（終了）
-		long loadTime = (endTime - startTime);
-		System.out.println("ページのロード時間：" + loadTime + "ミリ秒");
 
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/index.jsp");
 		dispatcher.forward(request, response);
