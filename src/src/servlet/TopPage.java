@@ -48,10 +48,6 @@ public class TopPage extends HttpServlet {
 		List<Posts> postList = pDao.postShow();
 		request.setAttribute("postList", postList);
 
-//		for (model.Posts posts : postList) {
-//		    String name = posts.getId();
-//		 }
-
 		// ユーザの目標データを取得し、リストをリクエストスコープに格納する。
 		GoalsDao gDao = new GoalsDao();
 		List<Goals> goalList = gDao.goalShowUser(userUuid);
@@ -84,14 +80,19 @@ public class TopPage extends HttpServlet {
 			mins = hours*60;
 			System.out.println("投稿（時間）：" + mins);
 			PostsDAO pDao = new PostsDAO();
+			GoalsDao gDao = new GoalsDao();
 			if (pDao.postAdd(new Posts(userUuid, msg, mins, goalId))) { // 登録成功
 				System.out.println("投稿の登録が成功しました。");
-				response.sendRedirect("/NYASTER/TopPage");
+				if (gDao.addTime(goalId, mins)) {
+					System.out.println("がんばり時間の追加が成功しました。");
+				} else {
+					System.out.println("がんばり時間の追加が失敗しました。");
+				}
 			}
 			else { // 登録失敗
 				System.out.println("投稿の登録が失敗しました。");
-				response.sendRedirect("/NYASTER/TopPage");
 			}
+			response.sendRedirect("/NYASTER/TopPage");
 		} else if (request.getParameter("select").equals("追加")) {
 			// 目標の登録処理を行う
 			// リクエストパラメータを取得する

@@ -111,6 +111,51 @@ public class GoalsDao {
 		return goalList;
 	}
 
+
+	// がんばり時間を追加
+	public boolean addTime(String id, int ganbariTime) {
+		Connection conn = null;
+		boolean result = false;
+
+		try {
+			Class.forName("org.h2.Driver");
+			conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/data/nyastar", "sa", "");
+			String sql = "UPDATE POSTS "
+					+ "SET ACHIEVEMENT_TIME = ACHIEVEMENT_TIME + ? "
+					+ "WHERE GOAL_ID=?)";
+
+			PreparedStatement pStmt = conn.prepareStatement(sql);
+			pStmt.setString(1, id);
+			pStmt.setInt(2, ganbariTime);
+
+			try {
+				if (pStmt.executeUpdate() == 1) {
+					result = true;
+				}
+			} catch (Exception e) {
+			    e.printStackTrace();
+			}
+		}
+		catch (SQLException e) {
+			e.printStackTrace();
+		}
+		catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+		finally {
+			if (conn != null) {
+				try {
+					conn.close();
+				}
+				catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+		return result;
+	}
+
+
 	// 目標情報を更新する
 	public boolean update(Goals goal) {
 		Connection conn = null;
