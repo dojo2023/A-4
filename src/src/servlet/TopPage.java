@@ -77,7 +77,7 @@ public class TopPage extends HttpServlet {
 			String goalId = request.getParameter("goal"); //目標取得
 			int mins = Integer.parseInt(request.getParameter("mins"));
 			int hours = Integer.parseInt(request.getParameter("hours"));
-			mins = hours*60;
+			mins += (hours*60);
 			System.out.println("投稿（時間）：" + mins);
 			PostsDAO pDao = new PostsDAO();
 			GoalsDao gDao = new GoalsDao();
