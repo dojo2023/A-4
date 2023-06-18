@@ -113,33 +113,37 @@ public class GoalsDao {
 
 
 	// がんばり時間を追加
-	public boolean addTime(String id, int ganbariTime) {
+	public boolean addTime(String id, int time) {
 		Connection conn = null;
 		boolean result = false;
 
 		try {
 			Class.forName("org.h2.Driver");
 			conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/data/nyastar", "sa", "");
-			String sql = "UPDATE POSTS "
+			String sql = "UPDATE GOALS "
 					+ "SET ACHIEVEMENT_TIME = ACHIEVEMENT_TIME + ? "
-					+ "WHERE GOAL_ID=?)";
+					+ "WHERE GOAL_ID=?";
 
 			PreparedStatement pStmt = conn.prepareStatement(sql);
-			pStmt.setString(1, id);
-			pStmt.setInt(2, ganbariTime);
+			pStmt.setInt(1, time);
+			pStmt.setString(2, id);
+			System.out.println("クエリを実行します");
 
 			try {
 				if (pStmt.executeUpdate() == 1) {
 					result = true;
 				}
 			} catch (Exception e) {
+				System.out.println("エラー4が発生しました");
 			    e.printStackTrace();
 			}
 		}
 		catch (SQLException e) {
+			System.out.println("エラー1が発生しました");
 			e.printStackTrace();
 		}
 		catch (ClassNotFoundException e) {
+			System.out.println("エラー2が発生しました");
 			e.printStackTrace();
 		}
 		finally {
@@ -148,6 +152,7 @@ public class GoalsDao {
 					conn.close();
 				}
 				catch (SQLException e) {
+					System.out.println("エラー3が発生しました");
 					e.printStackTrace();
 				}
 			}
@@ -164,7 +169,9 @@ public class GoalsDao {
 		try {
 			Class.forName("org.h2.Driver");
 			conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/data/nyastar", "sa", "");
-			String sql = "UPDATE POSTS SET GOAL_NAME=?, GENRE_TAG=? GOAL_TIME=? WHERE GOAL_ID=?)";
+			String sql = "UPDATE GOALS "
+					+ "SET GOAL_NAME=?, GENRE_TAG=? GOAL_TIME=? "
+					+ "WHERE GOAL_ID=?";
 
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 			pStmt.setString(1, goal.getGoalName());
@@ -208,7 +215,8 @@ public class GoalsDao {
 			Class.forName("org.h2.Driver");
 			conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/data/nyastar", "sa", "");
 
-			String sql = "DELETE FROM GOALS WHERE GOAL_ID=?";
+			String sql = "DELETE FROM GOALS"
+					+ " WHERE GOAL_ID=?";
 				PreparedStatement pStmt = conn.prepareStatement(sql);
 				pStmt.setString(1, goalId);
 
