@@ -49,10 +49,6 @@ public class TopPage extends HttpServlet {
 		PostsDAO pDao = new PostsDAO();
 		List<Posts> postList = pDao.postShow();
 		request.setAttribute("postList", postList);
-		// リアクションデータを全件取得し、リストをリクエストスコープに格納する。
-		ReactionsDao reDao = new ReactionsDao();
-		List<Reactions> reactionList = reDao.ReactionShow();
-		request.setAttribute("reactionList", reactionList);
 
 		// ユーザの目標データを取得し、リストをリクエストスコープに格納する。
 		GoalsDao gDao = new GoalsDao();
@@ -122,7 +118,6 @@ public class TopPage extends HttpServlet {
 			// リクエストパラメータを取得する
 			request.setCharacterEncoding("UTF-8");
 			String postId = request.getParameter("post_id");
-			int good =Integer.parseInt(request.getParameter("good"));
 			
 			// 登録処理を行う
 			ReactionsDao reDao = new ReactionsDao();
@@ -132,7 +127,7 @@ public class TopPage extends HttpServlet {
 			u.setUser_uuid(userUuid);
 			String str = reDao.check(u,p);
 			if (str == null) {
-				if (reDao.Reactioninsert(new Reactions(postId,good,userUuid))) { // 登録成功
+				if (reDao.Reactioninsert(new Reactions(postId,userUuid))) { // 登録成功
 					// request.setAttribute("result", new Result("登録成功！", "レコードを登録しました。", "/simpleBC/MenuServlet"));
 					System.out.println("リアクション成功しました。");
 					response.sendRedirect("/NYASTER/TopPage");
@@ -140,7 +135,7 @@ public class TopPage extends HttpServlet {
 					System.out.println("リアクションできませんでした");
 				}
 			}else {
-				if(reDao.delete(new Reactions(postId,good,userUuid))) { // 登録成功
+				if(reDao.delete(new Reactions(postId,userUuid))) { // 登録成功
 					// request.setAttribute("result", new Result("登録成功！", "レコードを登録しました。", "/simpleBC/MenuServlet"));
 					System.out.println("リアクション成功しました。");
 					response.sendRedirect("/NYASTER/TopPage");
