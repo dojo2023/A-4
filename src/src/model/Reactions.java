@@ -11,14 +11,14 @@ public class Reactions implements Serializable{
 	private String post_id;  //投稿ID
 	private Timestamp reaction_time;  //リアクション送信時間
 
-	public Reactions(String reaction_id, int good,String post_id) {
+	public Reactions(String user_uuid, int good,String post_id) {
 
 		UUID uuid = UUID.randomUUID(); // 一意のUUIDを生成
 		String uuidString = uuid.toString();
 
-		this.reaction_id = reaction_id;
+		this.reaction_id = uuidString;
 		this.good = good;
-		this.user_uuid = uuidString;
+		this.user_uuid = user_uuid;
 		this.post_id = post_id;
 
 		// 現在時刻を取得する

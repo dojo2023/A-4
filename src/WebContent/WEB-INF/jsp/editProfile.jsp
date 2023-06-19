@@ -22,18 +22,18 @@
 </div>
 
 
-</form method="POST" action = NYASTER/EditProfile><form>
+</form method="POST" action = NYASTER/EditProfile>
 <label>ユーザID<br>
- <input type="text" name="USER_ID"placeholder="１６文字以内で入力してください" maxlength ="16"value= ${e.userid} ></label><br>
-${errorMsg}
+ <input type="text" name="USER_ID"placeholder="１６文字以内で入力してください" maxlength ="16"value= "${e.user_id}" ></label><br>
+
  <label>ユーザ名<br>
-<input type="text" name="USER_NAME"placeholder="１６文字以内で入力してください"maxlength ="16"value= ${e.username} ></label><br>
-${errorMsg}
+<input type="text" name="USER_NAME"placeholder="１６文字以内で入力してください" maxlength ="16"value= "${e.user_name}" ></label><br>
+
 <label>変更前パスワード<br>
-<input type="text" name="PASSWORD"placeholder="８文字以上で入力してください"minlength ="8"></label><br>
+<input type="text" name="PASSWORD"placeholder="８文字以上で入力してください" minlength ="8"></label><br>
 <br>
 <label>変更後パスワード<br>
-<input type="text" name="PASSWORD"placeholder="８文字以上で入力してください"minlength ="8" ></label><br>
+<input type="text" name="PASSWORD"placeholder="８文字以上で入力してください" minlength ="8" ></label><br>
 <br>
 <!-- 変更ボタン -->
 <input type="button" class="btn"  value="変更" ><br><br>
@@ -41,6 +41,7 @@ ${errorMsg}
 
 <!--削除ボタン -->
 <input type="button" id="acbtn" value="アカウント削除" >
+
 <!--
 <script>
 	var acbtn =document.getElementById('acbtn');
@@ -50,6 +51,6 @@ ${errorMsg}
 </script>
  -->
 
-
+</form>
 </body>
 </html>

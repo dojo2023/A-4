@@ -9,9 +9,12 @@
 <body>
 
 <p>プロフィール登録・編集</p>
-</form method="POST" action = NYASTER/Search><form>
+<form method="POST" action = NYASTER/Search></form>
 <label>検索：
- <input type="text" name="seList"placeholder="ユーザ名,ユーザIDで検索" ></label><br>
+
+ <!--ユーザ名,ユーザIDのどちらかで検索　searchword -->
+ <input type="text" name="searchword" placeholder="ユーザ名,ユーザIDで検索" ></label>
+<input type="submit" name="REGIST" value="検索">
 ${errorMsg}
 <div>
 
@@ -23,5 +26,21 @@ ${errorMsg}
                 <a href="/NYASTER/EditProfile" class="link-title">ユーザ名</a>
         </ul>
 </div>
+
+
+<h1>検索結果</h1>
+
+<c:forEach var= "e" items="${seList}" >
+<form method="POST" action="/NYASTER/Search">
+
+ユーザID<input type="text" name="USER_ID" value="${e.user_id}">
+ユーザ名<input type="text" name="USER_NAME" value="${e.user_name}">
+
+</form>
+</c:forEach>
+
+
+
+
 </body>
 </html>

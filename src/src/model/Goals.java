@@ -81,6 +81,8 @@ public class Goals {
     public void setProgress(int progress) {
         this.progress = progress;
     }
+
+
 }
 
 

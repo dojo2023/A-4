@@ -313,8 +313,9 @@ public class AccountsDao {
 	}
 
 	// 引数paramで検索項目を指定し、検索結果のリストを返す
-		public List <User> select(String userId, String userName) {
+		public List <User> select(String searchword) {
 			Connection conn = null;
+	//インスタンス化されたUserしかリストに入らない
 			List<User> seList = new ArrayList<User>();
 
 			try {
@@ -324,14 +325,14 @@ public class AccountsDao {
 				// データベースに接続する
 				conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/data/nyaster", "sa", "");
 
-				// SQL文を準備する
+				// SQL文を準備する　connとsqlがごっちゃになったものがpSmt
             	String sql = "select * from ACCOUNTS WHERE USER_ID LIKE ? OR USER_NAME LIKE ? ";
 				PreparedStatement pStmt = conn.prepareStatement(sql);
 
 				// SQL文を完成させる
 
-					pStmt.setString(1, "%" + userId + "%");
-					pStmt.setString(2, "%"+ userName + "%");
+					pStmt.setString(1, "%" + searchword + "%");
+					pStmt.setString(2, "%"+ searchword + "%");
 
 
 				// SQL文を実行し、結果表を取得する
