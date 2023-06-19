@@ -51,7 +51,7 @@
             <div>がんばり目標： ${e.goalName} (${e.goalTimeHours}時間${e.goalTimeMins}分)</div>
             <div>目標進捗率: ${Math.floor((e.progress/e.goalTime)*100)}%</div>
             <div>投稿時間： ${e.postTime}</div>
-            <div><span>ナイス数</span> <span>×？</span></div>
+            <div><span>ナイス数</span> <span>${e.reactionCount}</span></div>
             <form method="POST" action="/NYASTER/TopPage">
                 <input type="hidden" name="post_id" value="${e.id}">
                 <input type="hidden" name="user_id" value="${e.userUUID}">
