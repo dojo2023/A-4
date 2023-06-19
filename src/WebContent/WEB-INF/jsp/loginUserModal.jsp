@@ -38,12 +38,13 @@
             <div class="login-button-panel">
                 <input type="submit" name="select" class="login-button" title="目標を設定する" value="追加">
             </div>
+            </div>
         </form>
 
 
-  <a href="" class="btn">削除</a>
+  <!--<a href="" class="btn">削除</a>
   <a href="" class="btn">編集</a>
-
+ -->
 
       </div>
     </div>
