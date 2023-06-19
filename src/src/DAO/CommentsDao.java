@@ -14,7 +14,7 @@ public class CommentsDao {
 	//【1 表示は投稿IDで表示 select】
 
 		// 引数paramで検索項目を指定し、検索結果のリストを返す
-		public List<Comments> select(Comments param) {
+		public List<Comments> select(String comment_id) {
 			Connection conn = null;
 			List<Comments> commentList = new ArrayList<Comments>();
 
@@ -30,16 +30,30 @@ public class CommentsDao {
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 
 		// SQL文を完成させる
-			if (param.getComment_id() != null) {
-				pStmt.setString(1, "%" + param.getComment_id() + "%");
-			}
-			else {
-				pStmt.setString(1, "%");
-			}
+				pStmt.setString(1,"%" +comment_id +"%" );
+
 
     	// SQL文を実行し、結果表を取得する
 			ResultSet rs = pStmt.executeQuery();
+
+			// 結果表をコレクションにコピーする ArryList（JavaBeans）に入れなおしている
+			while (rs.next()) {
+				Comments com = new Comments();
+				com.setComment_id(rs.getString("COMMENT_ID"));
+				com.setComment_content(rs.getString("COMMENT_CONTENT"));
+				com.setPost_id(rs.getString("POST_ID"));
+				com.setComment_time(rs.getTimestamp("COMMENT_TIME"));
+				commentList.add(com);
 			}
+		}
+		catch (SQLException e) {
+			e.printStackTrace();
+			commentList = null;
+		}
+		catch (ClassNotFoundException e) {
+			e.printStackTrace();
+			commentList = null;
+		}
 			finally {
 				// データベースを切断
 				if (conn != null) {
@@ -49,24 +63,23 @@ public class CommentsDao {
 					catch (SQLException e) {
 						e.printStackTrace();
 						commentList = null;
-
 					}
 				}
+			}
 
-
-		// 結果を返す
+			// 結果を返す
 			return commentList;
 		}
-	}
 
 
 
-	//【2 追加はコメントID、コメント内容、ユーザUUID、投稿IDで追加 insert into】
+
+	//【2 追加はコメントID、コメント内容、投稿IDで追加 insert into】
 
 
 	// 引数paramで検索項目を指定し、検索結果のリストを返す
 	// 引数commentで指定されたレコードを登録し、成功したらtrueを返す
-		public boolean insert(Comments comment) {
+		public boolean insert(String comment_id,String comment_content,String user_uuid, String post_id) {
 		Connection conn = null;
 		boolean result = false;
 
@@ -79,12 +92,12 @@ public class CommentsDao {
 		conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/data/nyastar", "sa", "");
 
 		// SQL文を準備する
-		String sql = "insert into Comment (comment_id, comment_content, user_uuid, post_id) values (?, ?, ?, ?)";
+		String sql = "insert into Comment (comment_id, comment_content,user_uuid,post_id) values (?, ?, ?)";
 		PreparedStatement pStmt = conn.prepareStatement(sql);
-		pStmt.setString(1, comment.getComment_id());
-		pStmt.setString(2, comment.getComment_content());
-		pStmt.setString(3, comment.getUser_uuid());
-		pStmt.setString(4, comment.getPost_id());
+		pStmt.setString(1,comment_id);
+		pStmt.setString(2,comment_content);
+		pStmt.setString(3,user_uuid);
+		pStmt.setString(4,post_id);
 
 		// SQL文を実行する
 		if (pStmt.executeUpdate() == 1) {

@@ -7,6 +7,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import DAO.AccountsDao;
 
@@ -52,8 +53,8 @@ public class EditProfile extends HttpServlet {
 
 
 	}
-
-		String userUuid = (String)request.getAttribute("id");
+	    HttpSession session = request.getSession();
+		String userUuid = (String)session.getAttribute("id");
 
 		//IDからユーザ情報を問い合わせる ユーザIDを取得
 			AccountsDao iDao = new AccountsDao();

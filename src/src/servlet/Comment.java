@@ -10,7 +10,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import DAO.CommentsDao;
-import model.Comments;
 
 /**
  * Servlet implementation class Comment
@@ -28,7 +27,8 @@ public class Comment extends HttpServlet {
 	    }
 
       protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-       //リクエストパラメータを取得する
+
+    	  //リクエストパラメータを取得する
 		request.setCharacterEncoding("UTF-8");
 		String comment_id = request.getParameter("COMMENT_ID");
 		String comment_content = request.getParameter("COMMENT_CONTENT");
@@ -37,14 +37,17 @@ public class Comment extends HttpServlet {
 
 		// 登録処理を行う
 		CommentsDao cDao = new CommentsDao();
-		if (cDao.insert(new Comments(comment_id, comment_content, user_uuid, post_id))) {	// 登録成功
+		if (cDao.insert(comment_id, comment_content,user_uuid,post_id)) {	// 登録成功
 			System.out.println("コメントしました");
-
 		}
 		else {												// 登録失敗
 			System.out.println("コメントできませんでした");
-
 		}
+
+
+		// 結果ページにフォワードする
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/top.jsp");
+		dispatcher.forward(request, response);
 }
 }
 
