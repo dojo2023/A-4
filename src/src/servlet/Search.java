@@ -46,13 +46,13 @@ public class Search extends HttpServlet {
 
        //リクエストパラメータを取得する
 		request.setCharacterEncoding("UTF-8");
-		String userId = request.getParameter("USER_ID");
-		String userName = request.getParameter("USER_NAME");
+		String searchword = request.getParameter("searchword");
+
 
 		// 検索処理を行う
 		AccountsDao acDao = new AccountsDao();
 		//Beanを使わずに直接検索条件を作成
-		List<User> seList =  acDao.select(userId,userName);
+		List<User> seList =  acDao.select(searchword);
 
 
 		// 検索結果をリクエストスコープに格納する
