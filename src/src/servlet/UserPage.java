@@ -51,7 +51,7 @@ public class UserPage extends HttpServlet {
 
 		// 投稿データを全件取得し、リストをリクエストスコープに格納する。
 		PostsDAO pDao = new PostsDAO();
-		List<Posts> postList = pDao.postShow();
+		List<Posts> postList = pDao.postShowUser(userUuid);
 		request.setAttribute("postList", postList);
 
 		// ユーザの目標データを取得し、リストをリクエストスコープに格納する。
