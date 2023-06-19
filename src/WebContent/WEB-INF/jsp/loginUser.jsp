@@ -29,6 +29,8 @@
             <li><a href="search" class="link-title">検索</a></li>
             <li><a href="Ranking" class="link-title">ランキング</a></li>
             <li><a href="#" class="link-title">作成</a></li>
+            <li><a href="#" class="linktitle">${username}</a></li>
+
         </ul>
     </div>
 
@@ -56,5 +58,11 @@
 
 	<h2>投稿一覧</h2>
 </main>
+
+    <footer>
+    <!-- フッターのコンテンツをここに追加します -->
+    <p>&copy; 2023 NYASTAR. All rights reserved.</p>
+    </footer>
+
 </body>
 </html>
