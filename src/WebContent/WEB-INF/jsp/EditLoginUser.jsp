@@ -9,7 +9,7 @@
 </head>
 <body>
 
-	<form method="POST" action="/NYASTER/GoalServlet.java">
+	<form method="POST" action="/NYASTER/GoalServlet">
 <button id="modalOpen" class="button">ログイン</button>
 
 
@@ -37,7 +37,7 @@
             </div>
             <div class="login-button-panel">
                 <input type="submit" name="select" class="login-button" title="目標を編集する" value="編集">
-                <input type="submit" name="select" class="login-button" title="目標を削除する" value="削除"><br>
+                <input type="submit" name="delete" class="login-button" title="目標を削除する" value="削除"><br>
             </div>
         </form>
 

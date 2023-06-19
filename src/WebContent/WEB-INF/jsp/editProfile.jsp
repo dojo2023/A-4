@@ -22,25 +22,32 @@
 </div>
 
 
-</form method="POST" action = NYASTER/EditProfile><form>
+
 <label>ユーザID<br>
- <input type="text" name="USER_ID"placeholder="１６文字以内で入力してください" maxlength ="16"value= ${e.userid} ></label><br>
-${errorMsg}
+ <input type="text" name="user_id"placeholder="１６文字以内で入力してください" maxlength ="16"value= "${e.user_id}" ></label><br>
+
  <label>ユーザ名<br>
-<input type="text" name="USER_NAME"placeholder="１６文字以内で入力してください"maxlength ="16"value= ${e.username} ></label><br>
-${errorMsg}
+<input type="text" name="user_name"placeholder="１６文字以内で入力してください" maxlength ="16"value= "${e.user_name}" ></label><br>
+
 <label>変更前パスワード<br>
-<input type="text" name="PASSWORD"placeholder="８文字以上で入力してください"minlength ="8"></label><br>
+<input type="text" name="password"placeholder="８文字以上で入力してください" minlength ="8"value= "${e.Passwprd}"></label><br>
 <br>
 <label>変更後パスワード<br>
-<input type="text" name="PASSWORD"placeholder="８文字以上で入力してください"minlength ="8" ></label><br>
+<input type="text" name="password"placeholder="８文字以上で入力してください" minlength ="8" ></label><br>
 <br>
+
+
+<form method="POST" action = NYASTER/EditProfile>
 <!-- 変更ボタン -->
 <input type="button" class="btn"  value="変更" ><br><br>
 
+</form>
 
+
+<form method="POST" action = NYASTER/AccountsDao>
 <!--削除ボタン -->
 <input type="button" id="acbtn" value="アカウント削除" >
+</form>
 <!--
 <script>
 	var acbtn =document.getElementById('acbtn');
@@ -49,7 +56,6 @@ ${errorMsg}
 	})
 </script>
  -->
-
 
 </body>
 </html>

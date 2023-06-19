@@ -19,7 +19,7 @@ import java.util.UUID;
 
 			this.comment_id = comment_id;
 			this.comment_content = comment_content;
-			this.user_uuid = uuidString;
+			this.user_uuid = user_uuid;
 			this.post_id = post_id;
 
 			// 現在時刻を取得する
