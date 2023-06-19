@@ -21,7 +21,7 @@ public class EditProfile extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException,IOException {
 
-		// ログインページにフォワードする
+		// 編集ページにフォワードする
     	RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/editProfile.jsp");
 		dispatcher.forward(request, response);
     }
@@ -36,7 +36,6 @@ public class EditProfile extends HttpServlet {
 
 	// 更新または削除を行う
 	AccountsDao aDao = new AccountsDao();{
-
  	if (aDao.update(userId,userName,password)) {	// 更新成功
 			System.out.println("更新しました");
 				}
@@ -44,14 +43,11 @@ public class EditProfile extends HttpServlet {
 			System.out.println("更新できませんでした");
 				}
 	}
-
 		 if (aDao.delete(userId)) {	// 削除成功
 			System.out.println("削除しました");
 				}
 				else {						// 削除失敗
 					System.out.println("削除できませんでした");
-
-
 	}
 	    HttpSession session = request.getSession();
 		String userUuid = (String)session.getAttribute("id");
@@ -59,12 +55,10 @@ public class EditProfile extends HttpServlet {
 		//IDからユーザ情報を問い合わせる ユーザIDを取得
 			AccountsDao iDao = new AccountsDao();
 			model.User idChang = iDao.showUser(userUuid); //ログインユーザの情報を取得
-			String userid = idChang.getUser_name();
+			String userid = idChang.getUser_id();
 
 			//　取得したユーザ情報からユーザ名を取り出し、リクエストスコープに格納する
 			request.setAttribute("userid", userid);
-
-
 
 			// IDからユーザ情報を問い合わせる ユーザネームを取り出す
 			AccountsDao nDao = new AccountsDao();
@@ -74,6 +68,13 @@ public class EditProfile extends HttpServlet {
 			//　取得したユーザ情報からユーザ名を取り出し、リクエストスコープに格納する
 			request.setAttribute("username", username);
 
+			// IDからユーザ情報を問い合わせる パスワードを取り出す
+			AccountsDao pDao = new AccountsDao();
+			model.User passChang = pDao.showUser(userUuid); //ログインユーザの情報を取得
+			String Password = passChang.getPassword();
+
+			//　取得したユーザ情報からユーザ名を取り出し、リクエストスコープに格納する
+			request.setAttribute("password", Password);
 
 	 }
 }
