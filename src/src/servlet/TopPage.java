@@ -122,12 +122,12 @@ public class TopPage extends HttpServlet {
 			// 登録処理を行う
 			ReactionsDao reDao = new ReactionsDao();
 			Reactions p = new Reactions();
-			p.setUser_uuid(postId);
+			p.setPost_id(postId);
 			Reactions u = new Reactions();
 			u.setUser_uuid(userUuid);
 			String str = reDao.check(u,p);
 			if (str == null) {
-				if (reDao.Reactioninsert(new Reactions(postId,userUuid))) { // 登録成功
+				if (reDao.Reactioninsert(new Reactions(userUuid,postId))) { // 登録成功
 					// request.setAttribute("result", new Result("登録成功！", "レコードを登録しました。", "/simpleBC/MenuServlet"));
 					System.out.println("リアクション成功しました。");
 					response.sendRedirect("/NYASTER/TopPage");
@@ -135,7 +135,7 @@ public class TopPage extends HttpServlet {
 					System.out.println("リアクションできませんでした");
 				}
 			}else {
-				if(reDao.delete(new Reactions(postId,userUuid))) { // 登録成功
+				if(reDao.delete(new Reactions(userUuid,postId))) { // 登録成功
 					// request.setAttribute("result", new Result("登録成功！", "レコードを登録しました。", "/simpleBC/MenuServlet"));
 					System.out.println("リアクション成功しました。");
 					response.sendRedirect("/NYASTER/TopPage");

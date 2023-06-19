@@ -19,6 +19,11 @@ public class ReactionsDao {
 			
 			
 			PreparedStatement pStmt = conn.prepareStatement(sql);
+			
+			System.out.println(reaction.getReaction_id());
+			System.out.println(reaction.getPost_id());
+			System.out.println(reaction.getReaction_time());
+			System.out.println(reaction.getUser_uuid());
 		
 			pStmt.setString(1, reaction.getReaction_id());	
 			pStmt.setString(2, reaction.getPost_id());
