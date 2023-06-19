@@ -6,18 +6,16 @@ import java.util.UUID;
 //リアクション情報(riaction_id,good,user_uuid,post_id,reaction_time)を保持するBeans
 public class Reactions implements Serializable{
 	private String reaction_id; //リアクションID
-	private int good;   //グッド
 	private String user_uuid; //ユーザUUID
 	private String post_id;  //投稿ID
 	private Timestamp reaction_time;  //リアクション送信時間
 
-	public Reactions(String user_uuid, int good,String post_id) {
+	public Reactions(String user_uuid,String post_id) {
 
 		UUID uuid = UUID.randomUUID(); // 一意のUUIDを生成
 		String uuidString = uuid.toString();
 
 		this.reaction_id = uuidString;
-		this.good = good;
 		this.user_uuid = user_uuid;
 		this.post_id = post_id;
 
@@ -39,13 +37,6 @@ public class Reactions implements Serializable{
 	        this.reaction_id = reaction_id;
 	    }
 
-	  //グッド
-	    public int getGood() {
-	    	return good;
-	    }
-	    public void setGood(int good){
-	        this.good = good;
-	    }
 
 	  //ユーザUUID
 	    public String getUser_uuid() {
