@@ -112,7 +112,7 @@ public class TopPage extends HttpServlet {
 				response.sendRedirect("/NYASTER/TopPage");
 			}
 		} else if (request.getParameter("select").equals("ナイス")) {
-			// 目標の登録処理を行う
+			// リアクションの登録処理を行う
 			// リクエストパラメータを取得する
 			request.setCharacterEncoding("UTF-8");
 			String postId = request.getParameter("post_id");
