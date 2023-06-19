@@ -9,72 +9,48 @@
 </head>
 <body>
 
-	<form method="POST" action="/NYASTER/Goals">
+	<form method="POST" action="/NYASTER/GoalServlet.java">
 <button id="modalOpen" class="button">ログイン</button>
+
+
   <div id="easyModal" class="modal">
     <div class="modal-content">
       <div class="modal-header">
-        <h4>目標編集</h4><br>
-	<h2>「がんばり」目標</h2>
-        <span class="modalClose">×</span>
-      </div>
 
+        <h2>目標の追加</h2>
+    	 <form method="POST" action="/NYASTER/TopPage">
+            <div>目標名</div>
+            <div class="input-cont">
+                <input type="text" id="msg" name="goal_name" maxlength="50">
+            </div>
+            <div>タグ</div>
+            <select id="tag-select" name="goal_tag">
+              <option value="運動">運動</option>
+              <option value="勉強">勉強</option>
+              <option value="読書">読書</option>
+              <option value="その他">その他</option>
+            </select>
+            <div>目標時間</div>
+            <div class="input-cont"> <input type="number" name="goal_hours" min="0" value="0" required> <label>時間</label>
+            </div>
+            <div class="input-cont"> <input type="number" name="goal_mins" min="0" max="60" value="0" required> <label>分</label>
+            </div>
+            <div class="login-button-panel">
+                <input type="submit" name="select" class="login-button" title="目標を設定する" value="追加">
+            </div>
+        </form>
 
-      <div class="modal-body">
-        <input type="text">
-        <h4>がんばり目標時間</h4>
-
-     <table>
-      <tr>
-       <td>
-        <input type="text" size="5">
-       </td>
-       <td>
-       時間
-       </td>
-      </tr>
-      <tr>
-       <td>
-        <input type="text" size="5">
-       </td>
-       <td>
-       分
-       </td>
-      </tr>
-     </table>
-
-
-      <h4>分類タグの選択</h4>
-      <table border="1">
-       <tr>
-        <th>選択してください</th>
-        </tr>
-        <tr>
-       <td><a href="#">読書</a></td>
-        </tr>
-        <tr>
-       <td><a href="#">運動</a></td>
-       </tr>
-       <tr>
-       <td><a href="#">勉強</a></td>
-       </tr>
-       <tr>
-        <td><a href="#">その他</a></td>
-       </tr>
-     </table>
 
   <a href="" class="btn">削除</a>
   <a href="" class="btn">編集</a>
 
 
       </div>
-
     </div>
-
   </div>
 
   <script src="loginUserModal.js"></script>
 
-
+</form>
 </body>
 </html>
