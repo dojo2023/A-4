@@ -13,7 +13,7 @@ public class CommentsDao {
 
 	//【1 表示は投稿IDで表示 select】
 
-		// 引数paramで検索項目を指定し、検索結果のリストを返す
+		// 検索項目を指定し、検索結果のリストを返す
 		public List<Comments> select(String comment_id) {
 			Connection conn = null;
 			List<Comments> commentList = new ArrayList<Comments>();
