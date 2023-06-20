@@ -21,11 +21,20 @@ public class EditProfile extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException,IOException {
+		//セッションスコープからログイン中のユーザのUUIDを取得する
+
+		//アカウントのDAOをインスタンス化する
+
+		//インスタンス化したアカウントのDAOの中のshowUserメソッドにさっき取得したUUIDを引数として渡す
+
+		//帰ってきたBeans（User型のインスタンス）からIDと名前を取り出してリクエストスコープに入れる。
+
 
 		// 編集ページにフォワードする
     	RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/editProfile.jsp");
 		dispatcher.forward(request, response);
     }
+
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		 //リクエストパラメータを取得する
 		request.setCharacterEncoding("UTF-8");
