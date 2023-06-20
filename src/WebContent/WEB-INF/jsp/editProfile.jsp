@@ -9,52 +9,47 @@
           integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
           crossorigin="anonymous" referrerpolicy="no-referrer" />
 
-<title>編集・削除｜NYASTAR</title>
+<title>プロフィールの編集・削除｜NYASTAR</title>
 </head>
 <body>
-<p>プロフィール登録・編集</p>
+<h1>プロフィール登録・編集</h1>
 <div>
-<a id="return" href="/NYASTER/UserPage" target="_blank" >←</a>
+<button onclick="history.back()">戻る</button>
 
-
-        <ul>
-            <li><a href="/NYASTER/TopPage"  class="link-title">ホーム</a></li>
-            <li><a href="/NYASTER/Search" class="link-title">検索</a></li>
-            <li><a href="/NYASTER/Ranking" class="link-title">ランキング</a></li>
-            <li><a href="#" class="link-title">作成</a></li>
-                <a href="/NYASTER/EditProfile" class="link-title">ユーザ名</a>
-        </ul>
+<ul>
+    <li><a href="/NYASTER/TopPage"  class="link-title">ホーム</a></li>
+    <li><a href="/NYASTER/Search" class="link-title">検索</a></li>
+    <li><a href="/NYASTER/Ranking" class="link-title">ランキング</a></li>
+    <li><a href="#" class="link-title">作成</a></li>
+</ul>
 </div>
 
 
 <form method="POST" action = NYASTER/EditProfile>
-<label>ユーザID<br>
- <input type="text" name="USER_ID"placeholder="１６文字以内で入力してください" maxlength ="16"value= "${USER_ID}" ></label><br>
-	${errorMsg}<br>
-
- <label>ユーザ名<br>
-<input type="text" name="USER_NAME"placeholder="１６文字以内で入力してください" maxlength ="16"value= "${USER_NAME}" ></label><br>
-	${errorMsg}<br>
-
-<label>変更前パスワード<br>
-<input type="password" name="password"placeholder="８文字以上で入力してください" minlength ="8"value= "${PASSWORD}"></label>
-		<i id="eye" class="fa-solid fa-eye"></i><br>
+	<label>ユーザID<br>
+	 <input type="text" name="USER_ID"placeholder="１６文字以内で入力してください" maxlength ="16"value= "${USER_ID}" ></label><br>
 		${errorMsg}<br>
 
-<label>変更後パスワード<br>
-<input type="password" name="password"placeholder="８文字以上で入力してください" minlength ="8" ></label>
-		<i id="eye" class="fa-solid fa-eye"></i><br>
+	 <label>ユーザ名<br>
+	<input type="text" name="USER_NAME"placeholder="１６文字以内で入力してください" maxlength ="16"value= "${USER_NAME}" ></label><br>
 		${errorMsg}<br>
-<!--</form>-->
 
+	<label>変更前パスワード<br>
+	<input type="password" name="password"placeholder="８文字以上で入力してください" minlength ="8"value= "${PASSWORD}"></label>
+			<i id="eye" class="fa-solid fa-eye"></i><br>
+			${errorMsg}<br>
 
-<!-- 変更ボタン -->
-<input type="submit" class="btn"  value="変更" ><br><br>
+	<label>変更後パスワード<br>
+	<input type="password" name="password"placeholder="８文字以上で入力してください" minlength ="8" ></label>
+			<i id="eye" class="fa-solid fa-eye"></i><br>
+			${errorMsg}<br>
 
+	<!-- 変更ボタン -->
+	<input type="submit" class="btn" name="SELECT" value="変更" ><br><br>
 
-<!--削除ボタン -->
-<input type="hidden" name="UUID" value="${e.id}" readonly>
-<input type="submit"  name="SELECT" value="アカウント削除" >
+	<!--削除ボタン -->
+	<input type="hidden" name="UUID" value="${e.id}" readonly>
+	<input type="submit"  name="SELECT" value="アカウント削除" >
 </form>
 <!--
 <script>
@@ -65,18 +60,18 @@
 </script>
  -->
 <script>
-          let eye = document.getElementById("eye");
-          eye.addEventListener('click', function () {
-               if (this.previousElementSibling.getAttribute('type') == 'password') {
-                    this.previousElementSibling.setAttribute('type', 'text');
-                    this.classList.toggle('fa-eye');
-                    this.classList.toggle('fa-eye-slash');
-               } else {
-                    this.previousElementSibling.setAttribute('type', 'password');
-                    this.classList.toggle('fa-eye');
-                    this.classList.toggle('fa-eye-slash');
-               }
-          })
+	let eye = document.getElementById("eye");
+	eye.addEventListener('click', function () {
+	     if (this.previousElementSibling.getAttribute('type') == 'password') {
+	          this.previousElementSibling.setAttribute('type', 'text');
+	          this.classList.toggle('fa-eye');
+	          this.classList.toggle('fa-eye-slash');
+	     } else {
+	          this.previousElementSibling.setAttribute('type', 'password');
+	          this.classList.toggle('fa-eye');
+	          this.classList.toggle('fa-eye-slash');
+	     }
+	})
 </script>
 
 </body>
