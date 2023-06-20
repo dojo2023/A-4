@@ -50,7 +50,6 @@ public class GoalsDao {
 				}
 			}
 		}
-
 		return result;
 	}
 
@@ -106,7 +105,6 @@ public class GoalsDao {
 				}
 			}
 		}
-
 		return goalList;
 	}
 
@@ -159,52 +157,6 @@ public class GoalsDao {
 		return result;
 	}
 
-
-	// 目標情報を更新する
-	public boolean update(Goals goal) {
-		Connection conn = null;
-		boolean result = false;
-
-		try {
-			Class.forName("org.h2.Driver");
-			conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/data/nyastar", "sa", "");
-			String sql = "UPDATE GOALS "
-					+ "SET GOAL_NAME=?, GENRE_TAG=? GOAL_TIME=? "
-					+ "WHERE GOAL_ID=?";
-
-			PreparedStatement pStmt = conn.prepareStatement(sql);
-			pStmt.setString(1, goal.getGoalName());
-			pStmt.setString(2, goal.getGenreTag());
-			pStmt.setInt(3, goal.getGoalTime());
-			pStmt.setString(4, goal.getUserUuid());
-
-			try {
-				if (pStmt.executeUpdate() == 1) {
-					result = true;
-				}
-			} catch (Exception e) {
-			    e.printStackTrace();
-			}
-		}
-		catch (SQLException e) {
-			e.printStackTrace();
-		}
-		catch (ClassNotFoundException e) {
-			e.printStackTrace();
-		}
-		finally {
-			if (conn != null) {
-				try {
-					conn.close();
-				}
-				catch (SQLException e) {
-					e.printStackTrace();
-				}
-			}
-		}
-		return result;
-	}
-
 	// 目標情報を削除する
 	public boolean delete(String goalId) {
 		Connection conn = null;
@@ -214,8 +166,8 @@ public class GoalsDao {
 			Class.forName("org.h2.Driver");
 			conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/data/nyastar", "sa", "");
 
-			String sql = "DELETE FROM GOALS"
-					+ " WHERE GOAL_ID=?";
+			String sql = "DELETE FROM GOALS "
+					+ "WHERE GOAL_ID=?";
 				PreparedStatement pStmt = conn.prepareStatement(sql);
 				pStmt.setString(1, goalId);
 
@@ -239,8 +191,6 @@ public class GoalsDao {
 					}
 				}
 			}
-			return result;
-		}
-
-
+		return result;
+	}
 }
