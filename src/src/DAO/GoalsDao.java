@@ -63,7 +63,6 @@ public class GoalsDao {
 			Class.forName("org.h2.Driver");
 			conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/data/nyastar", "sa", "");
 
-			//
 			String sql = "SELECT GOAL_ID, GOAL_NAME, GENRE_TAG, GOAL_TIME, ACHIEVEMENT_TIME, GOAL_DATE, USER_UUID "
 					+ "FROM GOALS "
 					+ "WHERE USER_UUID=? " //ユーザIDを指定する
