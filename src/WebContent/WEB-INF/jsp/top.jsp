@@ -18,9 +18,10 @@
 <p>送信先：<p/>
 <p>（今までのコメント）</p>
  <p>コメントを追加</p><div class="comment_area" ></div>
+
 <form method="POST" action = NYASTER/Comment>
 <!-- 入力フォーム -->
-<textarea class="sample" name="COMMENT_CONTENT" placeholder="20文字以内で入力してください"rows="5" cols="40"></textarea>
+<textarea class="sample" name="comment_content" placeholder="20文字以内で入力してください"rows="5" cols="40"></textarea>
 <!-- 文字数制限表示 -->
 <p class="error">エラー表示はここだよ</p>
 <!-- 追加ボタン -->

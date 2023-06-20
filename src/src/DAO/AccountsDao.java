@@ -323,16 +323,16 @@ public class AccountsDao {
 				Class.forName("org.h2.Driver");
 
 				// データベースに接続する
-				conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/data/nyaster", "sa", "");
+				conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/data/nyastar", "sa", "");
 
 				// SQL文を準備する　connとsqlがごっちゃになったものがpSmt
             	String sql = "select * from ACCOUNTS WHERE USER_ID LIKE ? OR USER_NAME LIKE ? ";
 				PreparedStatement pStmt = conn.prepareStatement(sql);
 
 				// SQL文を完成させる
-
-					pStmt.setString(1, "%" + searchword + "%");
-					pStmt.setString(2, "%"+ searchword + "%");
+				System.out.println(searchword);
+					pStmt.setString(1,searchword );
+					pStmt.setString(2,searchword );
 
 
 				// SQL文を実行し、結果表を取得する
@@ -341,9 +341,9 @@ public class AccountsDao {
 				// 結果表をコレクションにコピーする ArryList（JavaBeans）に入れなおしている
 				while (rs.next()) {
 					User search = new User();
-					search.setUser_id(rs.getString("USER_ID"));
-					search.setUser_name(rs.getString("USER_NAME"));
-					seList.add(search);
+				    search.setUser_id(rs.getString("USER_ID"));
+				    search.setUser_name(rs.getString("USER_NAME"))  ;
+				    seList.add(search);
 				}
 			}
 			catch (SQLException e) {
