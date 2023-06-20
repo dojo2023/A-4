@@ -45,9 +45,9 @@
 <input type="password" name="password"placeholder="８文字以上で入力してください" minlength ="8" ></label>
 		<i id="eye" class="fa-solid fa-eye"></i><br>
 		${errorMsg}<br>
-</form>
+<!--</form>-->
 
-<form method="POST" action = NYASTER/EditProfile>
+<!--<form method="POST" action = NYASTER/EditProfile>-->
 <!-- 変更ボタン -->
 <input type="button" class="btn"  value="変更" ><br><br>
 
