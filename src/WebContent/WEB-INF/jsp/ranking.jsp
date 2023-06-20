@@ -9,36 +9,46 @@
     <!-- 要素内のメタデータ、CSS、JavaScriptのリンクなどを追加します -->
 </head>
 <body>
-    <div id="sidebar" class="col-lg-2 sidemenu">
-        <ul>
-            <li><a href="#" class="link-title">ホーム</a></li>
-            <li><a href="#" class="link-title">検索</a></li>
-            <li><a href="#" class="link-title">ランキング</a></li>
-            <li><a href="#" class="link-title">作成</a></li>
-        </ul>
-    </div>
-
-    <main>
-    <!--ランキングをここに追加します -->
-    <form method="POST" action="/NYASTER/Ranking">
-     <input type="submit" name="tag" value="累計">
-	  <input type="submit" name="tag" value="運動">
-	  <input type="submit" name="tag" value="読書">
-	  <input type="submit" name="tag" value="勉強">
-	  <input type="submit" name="tag" value="その他">
-	</form>
-    <h2>週間ランキング</h2>
-<div id="ranking">
-  <table id="list">
-    <tr>
-      <th>ユーザー名</th><th>がんばりタイム</th>
-    </tr>
-    <c:forEach var="e" items="${rankingList}" >
-      <tr><td>${e.userName}</td><td>${e.ganbariTime}</td>
-    </c:forEach>
-  </table>
+<div id="sidebar" class="col-lg-2 sidemenu">
+	<ul>
+	    <li><a href="TopPage" class="link-title">ホーム</a></li>
+	    <li><a href="Search" class="link-title">検索</a></li>
+	    <li><a href="Ranking" class="link-title">ランキング</a></li>
+	    <li><a href="#" class="link-title">作成</a></li>
+	</ul>
 </div>
-    </main>
+
+<main>
+    <!--ランキングのタグを選択追加します -->
+  <form method="POST" action="/NYASTER/Ranking">
+    <input type="submit" name="tag" value="累計">
+    <input type="submit" name="tag" value="運動">
+    <input type="submit" name="tag" value="読書">
+    <input type="submit" name="tag" value="勉強">
+    <input type="submit" name="tag" value="その他">
+	</form>
+  <h2>週間ランキング</h2>
+  <div id="ranking">
+    <table id="list">
+      <thead>
+        <tr>
+          <th>順位</th>
+          <th>ユーザー名</th>
+          <th>がんばりタイム</th>
+        </tr>
+      </thead>
+		<tbody>
+		  <c:forEach var="e" items="${rankingList}" varStatus="status">
+		    <tr>
+		      <td>${status.index + 1}位：</td>
+		      <td>${e.userName}</td>
+		      <td>${e.ganbariTime}時間</td>
+		    </tr>
+		  </c:forEach>
+		</tbody>
+    </table>
+  </div>
+</main>
 
     <footer>
     <!-- フッターのコンテンツをここに追加します -->
