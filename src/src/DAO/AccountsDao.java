@@ -12,6 +12,7 @@ import model.User;
 
 
 public class AccountsDao {
+	//ログイン判定
 	public String isLoginOK(String id, String pw) {
 		Connection conn = null;
 		String uuid = null;
@@ -55,63 +56,8 @@ public class AccountsDao {
 
 	}
 
-// ユーザーIDに重複がないかの確認
-	public String check(User accounts) {
-		Connection conn = null;
-		boolean result = false;
-		String str = null;
-		try {
-			// JDBCドライバを読み込む
-			Class.forName("org.h2.Driver");
 
-			// データベースに接続する
-			conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/data/nyastar", "sa", "");
-
-			// SQL文を準備する
-			String sql = "select * from ACCOUNTS where user_id = ?";
-
-			PreparedStatement pStmt = conn.prepareStatement(sql);
-			pStmt.setString(1, accounts.getUser_id());
-
-			// SQL文を完成させる
-//							pStmt.setString(1, accounts.getUser_uuid());
-				pStmt.setString(1, accounts.getUser_id());
-//							pStmt.setString(3, accounts.getUser_name());
-//							pStmt.setString(4, accounts.getPassword());
-
-			// SELECT文を実行し、結果表を取得する
-				ResultSet rs = pStmt.executeQuery();
-
-			// SQL文を実行する
-			if (rs.next()) {
-				str = "abc";
-			}
-		}
-		catch (SQLException e) {
-			e.printStackTrace();
-		}
-		catch (ClassNotFoundException e) {
-			e.printStackTrace();
-		}
-		finally {
-			// データベースを切断
-			if (conn != null) {
-				try {
-					conn.close();
-				}
-				catch (SQLException e) {
-					e.printStackTrace();
-				}
-			}
-		}
-
-		// 結果を返す
-		return str;
-
-	}
-
-
-	// 引数accountsで指定されたレコードを登録し、成功したらtrueを返す
+	// アカウント追加
 	public boolean insert(String uuid, String id, String name, String pw) {
 		Connection conn = null;
 		boolean result = false;
@@ -160,8 +106,7 @@ public class AccountsDao {
 	}
 
 
-
-//プロフィール編集
+	//プロフィール編集
 	// 引数で指定されたレコードを更新し、成功したらtrueを返す
 	public boolean update(String userUuid, String userId,String userName,String password) {
 		Connection conn = null;
@@ -213,9 +158,8 @@ public class AccountsDao {
 	}
 
 
-
-//プロフィール削除
-//引数で指定されたレコードを削除し、成功したらtrueを返す
+	//プロフィール削除
+	// 引数で指定されたIDのアカウントを削除し、成功したらtrueを返す
 	public boolean delete(String userUuid) {
 		Connection conn = null;
 		boolean result = false;
@@ -309,64 +253,121 @@ public class AccountsDao {
 		return user;
 	}
 
-	// 引数paramで検索項目を指定し、検索結果のリストを返す
-		public List <User> select(String searchword) {
-			Connection conn = null;
-	//インスタンス化されたUserしかリストに入らない
-			List<User> seList = new ArrayList<User>();
 
-			try {
-				// JDBCドライバを読み込む
-				Class.forName("org.h2.Driver");
+	// ユーザーIDに重複がないかの確認
+	public String check(User accounts) {
+		Connection conn = null;
+		boolean result = false;
+		String str = null;
+		try {
+			// JDBCドライバを読み込む
+			Class.forName("org.h2.Driver");
 
-				// データベースに接続する
-				conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/data/nyastar", "sa", "");
+			// データベースに接続する
+			conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/data/nyastar", "sa", "");
 
-				// SQL文を準備する　connとsqlがごっちゃになったものがpSmt
-            	String sql = "select * from ACCOUNTS WHERE USER_ID LIKE ? OR USER_NAME LIKE ? ";
-				PreparedStatement pStmt = conn.prepareStatement(sql);
+			// SQL文を準備する
+			String sql = "select * from ACCOUNTS where user_id = ?";
 
-				// SQL文を完成させる
-				System.out.println(searchword);
-					pStmt.setString(1,searchword );
-					pStmt.setString(2,searchword );
+			PreparedStatement pStmt = conn.prepareStatement(sql);
+			pStmt.setString(1, accounts.getUser_id());
 
+			// SQL文を完成させる
+//							pStmt.setString(1, accounts.getUser_uuid());
+				pStmt.setString(1, accounts.getUser_id());
+//							pStmt.setString(3, accounts.getUser_name());
+//							pStmt.setString(4, accounts.getPassword());
 
-				// SQL文を実行し、結果表を取得する
+			// SELECT文を実行し、結果表を取得する
 				ResultSet rs = pStmt.executeQuery();
 
-				// 結果表をコレクションにコピーする ArryList（JavaBeans）に入れなおしている
-				while (rs.next()) {
-					User search = new User();
-				    search.setUser_id(rs.getString("USER_ID"));
-				    search.setUser_name(rs.getString("USER_NAME"))  ;
-				    seList.add(search);
-				}
+			// SQL文を実行する
+			if (rs.next()) {
+				str = "abc";
 			}
-			catch (SQLException e) {
-				e.printStackTrace();
-				seList = null;
-			}
-			catch (ClassNotFoundException e) {
-				e.printStackTrace();
-				seList = null;
-			}
-			finally {
-				// データベースを切断
-				if (conn != null) {
-					try {
-						conn.close();
-					}
-					catch (SQLException e) {
-						e.printStackTrace();
-						seList = null;
-					}
-				}
-			}
-
-			// 結果を返す
-			return seList;
 		}
+		catch (SQLException e) {
+			e.printStackTrace();
+		}
+		catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+		finally {
+			// データベースを切断
+			if (conn != null) {
+				try {
+					conn.close();
+				}
+				catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+
+		// 結果を返す
+		return str;
+
+	}
+
+
+	// 引数paramで検索項目を指定し、検索結果のリストを返す
+	public List <User> select(String searchword) {
+		Connection conn = null;
+		//インスタンス化されたUserしかリストに入らない
+		List<User> seList = new ArrayList<User>();
+
+		try {
+			// JDBCドライバを読み込む
+			Class.forName("org.h2.Driver");
+
+			// データベースに接続する
+			conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/data/nyastar", "sa", "");
+
+			// SQL文を準備する　connとsqlがごっちゃになったものがpSmt
+        	String sql = "select * from ACCOUNTS WHERE USER_ID LIKE ? OR USER_NAME LIKE ? ";
+			PreparedStatement pStmt = conn.prepareStatement(sql);
+
+			// SQL文を完成させる
+			System.out.println(searchword);
+				pStmt.setString(1,searchword );
+				pStmt.setString(2,searchword );
+
+
+			// SQL文を実行し、結果表を取得する
+			ResultSet rs = pStmt.executeQuery();
+
+			// 結果表をコレクションにコピーする ArryList（JavaBeans）に入れなおしている
+			while (rs.next()) {
+				User search = new User();
+			    search.setUser_id(rs.getString("USER_ID"));
+			    search.setUser_name(rs.getString("USER_NAME"))  ;
+			    seList.add(search);
+			}
+		}
+		catch (SQLException e) {
+			e.printStackTrace();
+			seList = null;
+		}
+		catch (ClassNotFoundException e) {
+			e.printStackTrace();
+			seList = null;
+		}
+		finally {
+			// データベースを切断
+			if (conn != null) {
+				try {
+					conn.close();
+				}
+				catch (SQLException e) {
+					e.printStackTrace();
+					seList = null;
+				}
+			}
+		}
+
+		// 結果を返す
+		return seList;
+	}
 
 }
 
