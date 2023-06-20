@@ -95,6 +95,7 @@ public class TopPage extends HttpServlet {
 				System.out.println("投稿の登録が失敗しました。");
 			}
 			response.sendRedirect("/NYASTER/TopPage");
+
 		} else if (request.getParameter("select").equals("追加")) {
 			// 目標の登録処理を行う
 			// リクエストパラメータを取得する
@@ -107,18 +108,18 @@ public class TopPage extends HttpServlet {
 			GoalsDao gDao = new GoalsDao();
 			if (gDao.goalAdd(new Goals(goalName, goalTag, goalMins, userUuid))) { // 登録成功
 				System.out.println("目標の登録が成功しました。");
-				response.sendRedirect("/NYASTER/TopPage");
 			}
 			else { // 登録失敗
 				System.out.println("目標の登録が失敗しました。");
-				response.sendRedirect("/NYASTER/TopPage");
-			}
+				}
+			response.sendRedirect("/NYASTER/TopPage");
+
 		} else if (request.getParameter("select").equals("ナイス")) {
 			// リアクションの登録処理を行う
 			// リクエストパラメータを取得する
 			request.setCharacterEncoding("UTF-8");
 			String postId = request.getParameter("post_id");
-			
+
 			// 登録処理を行う
 			ReactionsDao reDao = new ReactionsDao();
 			Reactions p = new Reactions();
@@ -128,25 +129,22 @@ public class TopPage extends HttpServlet {
 			String str = reDao.check(u,p);
 			if (str == null) {
 				if (reDao.Reactioninsert(new Reactions(userUuid,postId))) {
-					
+
 					System.out.println("リアクション成功しました。");
 					response.sendRedirect("/NYASTER/TopPage");
 				}else {
 					System.out.println("リアクションできませんでした");
 				}
 			}else {
-				if(reDao.delete(new Reactions(userUuid,postId))) { 
-					
+				if(reDao.delete(new Reactions(userUuid,postId))) {
+
 					System.out.println("リアクション成功しました。");
 					response.sendRedirect("/NYASTER/TopPage");
 				}	else {
 					System.out.println("リアクションできませんでした");
 				}
 			}
-			
 		}
-		
-
 	}
 
 }
