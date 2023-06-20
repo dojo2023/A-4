@@ -4,6 +4,11 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
+          integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
+          crossorigin="anonymous" referrerpolicy="no-referrer" />
+
 <title>編集・削除｜NYASTAR</title>
 </head>
 <body>
@@ -22,20 +27,25 @@
 </div>
 
 
-
+<form method="POST" action = NYASTER/EditProfile>
 <label>ユーザID<br>
- <input type="text" name="user_id"placeholder="１６文字以内で入力してください" maxlength ="16"value= "${e.user_id}" ></label><br>
+ <input type="text" name="USER_ID"placeholder="１６文字以内で入力してください" maxlength ="16"value= "${USER_ID}" ></label><br>
+	${errorMsg}<br>
 
  <label>ユーザ名<br>
-<input type="text" name="user_name"placeholder="１６文字以内で入力してください" maxlength ="16"value= "${e.user_name}" ></label><br>
+<input type="text" name="USER_NAME"placeholder="１６文字以内で入力してください" maxlength ="16"value= "${USER_NAME}" ></label><br>
+	${errorMsg}<br>
 
 <label>変更前パスワード<br>
-<input type="text" name="password"placeholder="８文字以上で入力してください" minlength ="8"value= "${e.Passwprd}"></label><br>
-<br>
-<label>変更後パスワード<br>
-<input type="text" name="password"placeholder="８文字以上で入力してください" minlength ="8" ></label><br>
-<br>
+<input type="password" name="password"placeholder="８文字以上で入力してください" minlength ="8"value= "${PASSWORD}"></label>
+		<i id="eye" class="fa-solid fa-eye"></i><br>
+		${errorMsg}<br>
 
+<label>変更後パスワード<br>
+<input type="password" name="password"placeholder="８文字以上で入力してください" minlength ="8" ></label>
+		<i id="eye" class="fa-solid fa-eye"></i><br>
+		${errorMsg}<br>
+</form>
 
 <form method="POST" action = NYASTER/EditProfile>
 <!-- 変更ボタン -->
@@ -44,10 +54,18 @@
 </form>
 
 
-<form method="POST" action = NYASTER/AccountsDao>
+<form method="POST" action = EditProfile>
 <!--削除ボタン -->
-<input type="button" id="acbtn" value="アカウント削除" >
+<input type="hidden" name="UUID" value="${e.id}" readonly>
+<input type="submit"  name="SELECT" value="アカウント削除" >
 </form>
+ <script>
+                // アラートを表示
+                function showAlert() {
+                  alert("名刺を削除してもよろしいですか？");
+                  return true;
+                }
+              </script>
 <!--
 <script>
 	var acbtn =document.getElementById('acbtn');
@@ -56,6 +74,20 @@
 	})
 </script>
  -->
+<script>
+          let eye = document.getElementById("eye");
+          eye.addEventListener('click', function () {
+               if (this.previousElementSibling.getAttribute('type') == 'password') {
+                    this.previousElementSibling.setAttribute('type', 'text');
+                    this.classList.toggle('fa-eye');
+                    this.classList.toggle('fa-eye-slash');
+               } else {
+                    this.previousElementSibling.setAttribute('type', 'password');
+                    this.classList.toggle('fa-eye');
+                    this.classList.toggle('fa-eye-slash');
+               }
+          })
+</script>
 
 </body>
 </html>

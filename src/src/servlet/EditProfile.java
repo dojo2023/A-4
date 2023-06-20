@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import DAO.AccountsDao;
+import model.User;
 
 
 /**
@@ -34,21 +35,31 @@ public class EditProfile extends HttpServlet {
 	String password = request.getParameter("PASSWORD");
 
 
-	// 更新または削除を行う
-	AccountsDao aDao = new AccountsDao();{
- 	if (aDao.update(userId,userName,password)) {	// 更新成功
+	// 更新を行う
+	AccountsDao rDao = new AccountsDao();
+	User u = new User();
+	u.setUser_id(userId);
+	String str = rDao.check(u);
+	if (str == null) {
+		if (rDao.update(userId,userName,password)) {	// 更新成功
 			System.out.println("更新しました");
 				}
 		else {												// 更新失敗
 			System.out.println("更新できませんでした");
 				}
 	}
+
+	// 削除を行う
+	AccountsDao aDao = new AccountsDao();{
 		 if (aDao.delete(userId)) {	// 削除成功
 			System.out.println("削除しました");
+			response.sendRedirect("/NYASTER/Login");
 				}
 				else {						// 削除失敗
 					System.out.println("削除できませんでした");
 	}
+
+
 	    HttpSession session = request.getSession();
 		String userUuid = (String)session.getAttribute("id");
 
@@ -76,6 +87,7 @@ public class EditProfile extends HttpServlet {
 			//　取得したユーザ情報からユーザ名を取り出し、リクエストスコープに格納する
 			request.setAttribute("password", Password);
 
+	}
 	 }
 }
 
