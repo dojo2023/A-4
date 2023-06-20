@@ -10,7 +10,7 @@
     <div id="sidebar" class="col-lg-2 sidemenu">
         <ul>
             <li><a href="#" class="link-title">ホーム</a></li>
-            <li><a href="#" class="link-title">検索</a></li>
+            <li><a href="Search" class="link-title">検索</a></li>
             <li><a href="Ranking" class="link-title">ランキング</a></li>
             <li><a href="#" class="link-title">作成</a></li>
         </ul>
