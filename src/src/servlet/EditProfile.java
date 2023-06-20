@@ -10,7 +10,6 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import DAO.AccountsDao;
-import model.User;
 
 
 /**
@@ -26,69 +25,44 @@ public class EditProfile extends HttpServlet {
     	RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/editProfile.jsp");
 		dispatcher.forward(request, response);
     }
-	 protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	 //リクエストパラメータを取得する
-	request.setCharacterEncoding("UTF-8");
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		 //リクエストパラメータを取得する
+		request.setCharacterEncoding("UTF-8");
 
-	String userId = request.getParameter("USER_ID");
-	String userName = request.getParameter("USER_NAME");
-	String password = request.getParameter("PASSWORD");
-
-
-	// 更新を行う
-	AccountsDao rDao = new AccountsDao();
-	User u = new User();
-	u.setUser_id(userId);
-	String str = rDao.check(u);
-	if (str == null) {
-		if (rDao.update(userId,userName,password)) {	// 更新成功
-			System.out.println("更新しました");
-				}
-		else {												// 更新失敗
-			System.out.println("更新できませんでした");
-				}
-	}
-
-	// 削除を行う
-	AccountsDao aDao = new AccountsDao();{
-		 if (aDao.delete(userId)) {	// 削除成功
-			System.out.println("削除しました");
-			response.sendRedirect("/NYASTER/Login");
-				}
-				else {						// 削除失敗
-					System.out.println("削除できませんでした");
-	}
-
-
-	    HttpSession session = request.getSession();
+		HttpSession session = request.getSession();
 		String userUuid = (String)session.getAttribute("id");
 
-		//IDからユーザ情報を問い合わせる ユーザIDを取得
-			AccountsDao iDao = new AccountsDao();
-			model.User idChang = iDao.showUser(userUuid); //ログインユーザの情報を取得
-			String userid = idChang.getUser_id();
+		String userId = request.getParameter("USER_ID");
+		String userName = request.getParameter("USER_NAME");
+		String password = request.getParameter("PASSWORD");
 
-			//　取得したユーザ情報からユーザ名を取り出し、リクエストスコープに格納する
-			request.setAttribute("userid", userid);
 
-			// IDからユーザ情報を問い合わせる ユーザネームを取り出す
-			AccountsDao nDao = new AccountsDao();
-			model.User nameChang = nDao.showUser(userUuid); //ログインユーザの情報を取得
-			String username = nameChang.getUser_name();
+//		// 更新を行う
+//		AccountsDao rDao = new AccountsDao();
+//		User u = new User();
+//		u.setUser_id(userId);
+//		String str = rDao.check(u);
+//		if (str == null) {
+//		if (rDao.update(userUuid,userId,userName,password)) {	// 更新成功
+//			System.out.println("更新しました");
+//			response.sendRedirect("/NYASTER/TopPage");
+//		}
+//		else { // 更新失敗
+//			System.out.println("更新できませんでした");
+//		}
+//		}
 
-			//　取得したユーザ情報からユーザ名を取り出し、リクエストスコープに格納する
-			request.setAttribute("username", username);
-
-			// IDからユーザ情報を問い合わせる パスワードを取り出す
-			AccountsDao pDao = new AccountsDao();
-			model.User passChang = pDao.showUser(userUuid); //ログインユーザの情報を取得
-			String Password = passChang.getPassword();
-
-			//　取得したユーザ情報からユーザ名を取り出し、リクエストスコープに格納する
-			request.setAttribute("password", Password);
-
+		// 削除を行う
+		AccountsDao aDao = new AccountsDao();{
+		if (aDao.delete(userUuid)) {	// 削除成功
+			System.out.println("削除しました");
+			response.sendRedirect("/NYASTER/Login");
+		}
+		else {						// 削除失敗
+			System.out.println("削除できませんでした");
+		}
+		}
 	}
-	 }
 }
 
 
