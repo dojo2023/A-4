@@ -10,15 +10,19 @@
 <body>
 
 	<form method="POST" action="/NYASTER/GoalServlet.java">
-<button id="modalOpen" class="button">ログイン</button>
+    <button id="modalOpen" class="button">ログイン</button>
 
 
-  <div id="easyModal" class="modal">
+  <div id="easyModal" class="modal"></div>
     <div class="modal-content">
       <div class="modal-header">
+      <h2>目標追加</h2>
+      <span class="modalClose">×</span>
+      </div>
 
-        <h2>目標の追加</h2>
-    	 <form method="POST" action="/NYASTER/TopPage">
+      <div class="modal-body">
+
+
             <div>目標名</div>
             <div class="input-cont">
                 <input type="text" id="msg" name="goal_name" maxlength="50">
@@ -37,18 +41,17 @@
             </div>
             <div class="login-button-panel">
                 <input type="submit" name="select" class="login-button" title="目標を設定する" value="追加">
-            </div>
-            </div>
-        </form>
+
+
 
 
   <!--<a href="" class="btn">削除</a>
   <a href="" class="btn">編集</a>
  -->
-
-      </div>
-    </div>
-  </div>
+ </div>
+ </div>
+ </div>
+ </form>
 
   <script src="loginUserModal.js"></script>
 

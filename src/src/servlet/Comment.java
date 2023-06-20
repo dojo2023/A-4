@@ -30,14 +30,13 @@ public class Comment extends HttpServlet {
 
     	  //リクエストパラメータを取得する
 		request.setCharacterEncoding("UTF-8");
-		String comment_id = request.getParameter("COMMENT_ID");
 		String comment_content = request.getParameter("COMMENT_CONTENT");
 		String user_uuid = request.getParameter("USER_UUID");
 		String post_id = request.getParameter("POST_ID");
 
 		// 登録処理を行う
 		CommentsDao cDao = new CommentsDao();
-		if (cDao.insert(comment_id, comment_content,user_uuid,post_id)) {	// 登録成功
+		if (cDao.insert(comment_content,user_uuid,post_id)) {	// 登録成功
 			System.out.println("コメントしました");
 		}
 		else {												// 登録失敗

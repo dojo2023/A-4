@@ -10,12 +10,17 @@
 <body>
 
 	<form method="POST" action="/NYASTER/GoalServlet">
-<button id="modalOpen" class="button">ログイン</button>
+    <button id="modalOpen" class="button">ログイン</button>
 
 
   <div id="easyModal" class="modal">
     <div class="modal-content">
       <div class="modal-header">
+      <h2>目標編集</h2>
+      <span class="modalClose">×</span>
+      </div>
+
+      <div class="modal-body">
 
         <h2>目標の編集</h2>
     	 <form method="POST" action="/NYASTER/TopPage">

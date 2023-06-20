@@ -53,22 +53,34 @@ public class EditGoalServlet extends HttpServlet {
 			String genreTag = request.getParameter("GENRE_TAG");
 			String goalTime = request.getParameter("GOAL_TIME");
 
-			//インスタンス化する
+			//インスタンス化する(編集)
 			GoalsDao gDao = new GoalsDao();
 			Goals goal = new Goals(goalName, genreTag, Integer.parseInt(goalTime), userUuid);
-			gDao.goalAdd(goal);
-			if(gDao.goalAdd(goal)) {
+			gDao.update(goal);
+			if(gDao.update(goal)) {
+				System.out.println("目標の編集に成功しました");
+
+			}else {
+				System.out.println("目標の編集に失敗しました");
+			}
+
+			//インスタンス化する(削除)
+			GoalsDao eDao = new GoalsDao();
+			Goal e = new Goal(goalName, genreTag, Integer.parseInt(goalTime), userUuid);
+			eDao.delete(e);
+			if(eDao.(e)) {
 				System.out.println("目標の追加に成功しました");
 
 			}else {
 				System.out.println("目標の追加に失敗しました");
 			}
 
+
 			// 検索結果をリクエストスコープに格納する
 			request.setAttribute("goalList", goal);
 
 			// 目標ページにフォワードする
-			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/loginUserModal.jsp");
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/EditLoginUser.jsp");
 			dispatcher.forward(request, response);
 
 	}
