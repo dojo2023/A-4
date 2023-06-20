@@ -1,6 +1,7 @@
 package servlet;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -19,99 +20,90 @@ import model.Goals;
 @WebServlet("/GoalServlet")
 public class GoalServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public GoalServlet() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
-
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+		//doGetメソッドはサーブレットを実行してからページを読み込む前にする処理を書く！
+		// →　読み込んだ段階で表示したいデータを取得しよう
 
+		// セッションスコープからログイン中のユーザのUUIDを取得する
+		HttpSession session = request.getSession();
+		String userUuid = (String)session.getAttribute("id");
 
-		//目標の一覧を表示する
-		request.setCharacterEncoding("UTF-8");
-		//String goalId = request.getParameter("GOAL_ID");
-		String goalName = request.getParameter("GOAL_NAME");
-		String genreTag = request.getParameter("GENRE_TAG");
-		String goalTime = request.getParameter("GOAL_TIME");
-		//String achievementTime = request.getParameter("ACHIEVEMENT_GOAL");
-		//String goalDate = request.getParameter("GOAL_DATE");
-		String userUuid = request.getParameter("USER_UUID");
-		//String exercise = request.getParameter("exercise");
-		//String study = request.getParameter("study");
-		//String  reading= request.getParameter("reading");
-		//String others = request.getParameter("others");
+		// 目標の一覧を表示する
+		// ユーザの目標データを取得し、リストをリクエストスコープに格納する。
+		GoalsDao gDao = new GoalsDao();
+		List<Goals> goalList = gDao.goalShowUser(userUuid);
 
+		// 結果をリクエストスコープに格納する
+		request.setAttribute("goalList", goalList);
 
-		// 編集または削除を行う
-		GoalsDao eDao = new GoalsDao();
-		if (request.getParameter("SUBMIT").equals("編集")) {
-			if (eDao.update(new Goals(goalName, genreTag, goalTime, userUuid))) {	// 編集成功
-				request.setAttribute("result",
-				new Result("更新成功！", "レコードを更新しました。", "/NYASTER/GoalServlet"));
-			}
-			else {												// 編集失敗
-				request.setAttribute("result",
-				new Result("更新失敗！", "レコードを更新できませんでした。", "/NYASTER/GoalServlet"));
-			}
-		}
-		else {
-			if (eDao.delete(userUuid)) {	// 削除成功
-				request.setAttribute("result",
-				new Result("削除成功！", "レコードを削除しました。", "/NYASTER/GoalServlet"));
-			}
-			else {						// 削除失敗
-				request.setAttribute("result",
-				new Result("削除失敗！", "レコードを削除できませんでした。", "/NYASTER/GoalServlet"));
-			}
-		}
-
-
-		//JSPに持ってくる
-		// 目標ページにフォワードする
+		// 目標ページにフォワードする. フォワードするときはリクエストスコープに入れたデータも一緒に持っていく！
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/loginUserModal.jsp");
 		dispatcher.forward(request, response);
 
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-			HttpSession session = request.getSession();
-			String userUuid = (String)session.getAttribute("id");
-			// リクエストパラメータを取得する
-			request.setCharacterEncoding("UTF-8");
-			String goalName = request.getParameter("GOAL_NAME");
-			String genreTag = request.getParameter("GENRE_TAG");
-			String goalTime = request.getParameter("GOAL_TIME");
+		// セッションスコープからログイン中のユーザのUUIDを取得する
+		HttpSession session = request.getSession();
+		String userUuid = (String)session.getAttribute("id");
 
-			//インスタンス化する(追加)
-			GoalsDao gDao = new GoalsDao();
-			Goals goal = new Goals(goalName, genreTag, Integer.parseInt(goalTime), userUuid);
-			gDao.goalAdd(goal);
-			if(gDao.goalAdd(goal)) {
-				System.out.println("目標の追加に成功しました");
+		// 【追加処理】
+		// リクエストパラメータを取得する
+		request.setCharacterEncoding("UTF-8");
+		// JSPのフォーム内で「name="goal_name"」で指定されている箇所の文字列を取得して, String型のgoalName変数に代入する
+		String goalName = request.getParameter("goal_name");
 
-			}else {
-				System.out.println("目標の追加に失敗しました");
-			}
+		// JSPのフォーム内で「name="goal_tag"」で指定されている箇所の文字列を取得して, String型のgoalTag変数に代入する
+		String goalTag = request.getParameter("goal_tag");
 
-			// 結果をリクエストスコープに格納する
-			request.setAttribute("goalList", goal);
+		// 以下同様に、時間・分のデータも取得して変数に代入する。（時間・分は整数なのでint型の変数に代入する）
+		int goalHours = Integer.parseInt(request.getParameter("goal_hours"));
+		int goalMins = Integer.parseInt(request.getParameter("goal_mins"));
 
-			// 目標ページにフォワードする
-			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/loginUserModal.jsp");
-			dispatcher.forward(request, response);
+		// データベースへの保存は分で統一したいので、「時間」として取得した変数をふんに変換して足し合わせる
+		goalMins = goalMins + (goalHours*60);
+
+		// GoalsDaoクラスをgAddDaoという名前でインスタンス化する(名前は自由に決めてOKだけど後でわかりやすいように！)
+		GoalsDao gAddDao = new GoalsDao();
+		// Goalsクラス（Beans）をgoalという名前でインスタンス化する. インスタンス化するときは引数としてデータを渡す
+		Goals goal = new Goals(/* 引数を書く */);
+		// gDao(GoalｓDaoクラス)のgoalAddメソッドに上の行で作った「goal」インスタンス(Beans)を引数として渡して実行する
+		// 実行したメソッドの戻り値（成功か失敗か）をboolean型（trueかfalse）の変数goalAddTrueOrFalseに格納する。
+		boolean goalAddTrueOrFalse = gAddDao.goalAdd(goal);
+		// if文で成功か失敗かを判定して処理を分ける。
+		if(goalAddTrueOrFalse == true) { //成功した場合の処理
+			System.out.println("目標の追加に成功しました");
+		} else { //失敗した場合の処理
+			System.out.println("目標の追加に失敗しました");
+		}
+		// 成功しても失敗してもページをリロードするために同じページリダイレクトする
+		response.sendRedirect("/NYASTER/GoalServlet");
+
+		// === 【追加処理】終わり ===
+
+		// 【削除処理】
+		// 削除する目標のUUID（POST_ID）を取得する(どの投稿を削除したら良いかDAOに教えなきゃいけないから！)
+		// ヒント1：doGetメソッドで表示した目標データが投稿のUUID（POST_ID）を持ってる
+		// ヒント2:ページ上でどの目標を削除するか選択して送るにはどうしたらいいか考える
+
+		// GoalsDaoクラスをgDelDaoという名前でインスタンス化する(名前は自由に決めてOKだけど後でわかりやすいように！)
+
+		// インスタンス化GoalsDaoクラスのインスタンス→ここでは「gDelDao」の中にあるdeleteメソッドを呼び出す。
+		// 呼び出すときには引数でUUIDを渡す必要がある→ さっき用意した引数を()内に書いて送ろう！
+
+
+		// 実行したメソッドの戻り値（成功か失敗か）をboolean型（trueかfalse）の変数goalDelTrueOrFalseに格納する。
+
+		// if文で成功か失敗かを判定して処理を分ける。
+		if(/* ここに条件式を書く */) {
+			//成功処理した時の処理
+		} else {
+			//成功処理した時の処理
+		}
+		// 成功しても失敗してもページをリロードするために同じページリダイレクトする
+
+		// === 【削除処理】終わり ===
 
 
 	}
-
 }
