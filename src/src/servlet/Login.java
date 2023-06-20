@@ -38,11 +38,11 @@ public class Login extends HttpServlet {
 				request.setCharacterEncoding("UTF-8");
 				String id = request.getParameter("id");
 				String pw = request.getParameter("pw");
-				String hashedPw =  PwHashed.hashPassword(pw);
+				String hashpw = PwHashed.hashPassword(pw);
 
 				// DAOを生成し、User型の戻り値を格納する。
 				AccountsDao iDao = new AccountsDao();
-				String uuid = iDao.isLoginOK(id, pw);
+				String uuid = iDao.isLoginOK(id, hashpw);
 
 				if (uuid != null) {	// ログイン成功
 					System.out.println(id + "さんがログインに成功しました。");

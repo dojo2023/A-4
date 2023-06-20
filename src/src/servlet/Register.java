@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import DAO.AccountsDao;
+import model.PwHashed;
 import model.User;
 
 
@@ -36,6 +37,7 @@ public class Register extends HttpServlet {
 		String id = request.getParameter("id");
 		String name = request.getParameter("name");
 		String pw = request.getParameter("pw");
+		String hashpw = PwHashed.hashPassword(pw);
 
 		System.out.println("UUID" + uuidString + "  ID" +  id + "  NAME" + name + "  PW" + pw);
 
@@ -45,7 +47,7 @@ public class Register extends HttpServlet {
 				u.setUser_id(id);
 				String str = rDao.check(u);
 				if (str == null) {
-					if (rDao.insert(uuidString, id, name, pw)) { // 登録成功
+					if (rDao.insert(uuidString, id, name, hashpw)) { // 登録成功
 						// request.setAttribute("result", new Result("登録成功！", "レコードを登録しました。", "/simpleBC/MenuServlet"));
 						System.out.println("登録が成功しました。");
 						response.sendRedirect("/NYASTER/Login");
