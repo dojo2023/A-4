@@ -46,8 +46,9 @@ public class Search extends HttpServlet {
 
        //リクエストパラメータを取得する
 		request.setCharacterEncoding("UTF-8");
+		System.out.println (request.getParameter("REGIST"));
 		String searchword = request.getParameter("searchword");
-
+		System.out.println(searchword);
 
 		// 検索処理を行う
 		AccountsDao acDao = new AccountsDao();
