@@ -9,7 +9,7 @@
 </head>
 <body>
 
-<p>プロフィール登録・編集</p>
+<h1>ユーザー検索</h1>
 <div>
 	<ul>
 	    <li><a href="TopPage" class="link-title">ホーム</a></li>
@@ -26,7 +26,7 @@
  <input type="submit" name="REGIST" value="検索"></label>
 </form>
 
-<h1>検索結果</h1>
+<h2>検索結果</h2>
 
 <ul>
 	<c:forEach var= "e" items= "${seList}" varStatus="status">
