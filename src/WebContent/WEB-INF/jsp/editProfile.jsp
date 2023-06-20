@@ -47,25 +47,15 @@
 		${errorMsg}<br>
 <!--</form>-->
 
-<!--<form method="POST" action = NYASTER/EditProfile>-->
+
 <!-- 変更ボタン -->
 <input type="submit" class="btn"  value="変更" ><br><br>
 
-</form>
 
-
-<form method="POST" action = EditProfile>
 <!--削除ボタン -->
 <input type="hidden" name="UUID" value="${e.id}" readonly>
 <input type="submit"  name="SELECT" value="アカウント削除" >
 </form>
- <script>
-                // アラートを表示
-                function showAlert() {
-                  alert("名刺を削除してもよろしいですか？");
-                  return true;
-                }
-              </script>
 <!--
 <script>
 	var acbtn =document.getElementById('acbtn');
