@@ -127,16 +127,16 @@ public class TopPage extends HttpServlet {
 			u.setUser_uuid(userUuid);
 			String str = reDao.check(u,p);
 			if (str == null) {
-				if (reDao.Reactioninsert(new Reactions(userUuid,postId))) { // 登録成功
-					// request.setAttribute("result", new Result("登録成功！", "レコードを登録しました。", "/simpleBC/MenuServlet"));
+				if (reDao.Reactioninsert(new Reactions(userUuid,postId))) {
+					
 					System.out.println("リアクション成功しました。");
 					response.sendRedirect("/NYASTER/TopPage");
 				}else {
 					System.out.println("リアクションできませんでした");
 				}
 			}else {
-				if(reDao.delete(new Reactions(userUuid,postId))) { // 登録成功
-					// request.setAttribute("result", new Result("登録成功！", "レコードを登録しました。", "/simpleBC/MenuServlet"));
+				if(reDao.delete(new Reactions(userUuid,postId))) { 
+					
 					System.out.println("リアクション成功しました。");
 					response.sendRedirect("/NYASTER/TopPage");
 				}	else {
