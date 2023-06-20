@@ -49,7 +49,7 @@
 
 <!--<form method="POST" action = NYASTER/EditProfile>-->
 <!-- 変更ボタン -->
-<input type="button" class="btn"  value="変更" ><br><br>
+<input type="submit" class="btn"  value="変更" ><br><br>
 
 </form>
 

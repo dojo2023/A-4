@@ -50,9 +50,6 @@ public class EditProfile extends HttpServlet {
 		}
 		else { // 更新失敗
 			System.out.println("更新できませんでした");
-		}
-		}
-
 		// 削除を行う
 		AccountsDao aDao = new AccountsDao();{
 		if (aDao.delete(userUuid)) {	// 削除成功
@@ -63,8 +60,11 @@ public class EditProfile extends HttpServlet {
 			System.out.println("削除できませんでした");
 		}
 		}
+	    }
+		}
 	}
 }
+
 
 
 
