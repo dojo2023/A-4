@@ -163,7 +163,7 @@ public class AccountsDao {
 
 //プロフィール編集
 		// 引数で指定されたレコードを更新し、成功したらtrueを返す
-		public boolean update(String userId,String userName,String password) {
+		public boolean update(String userUuid, String userId,String userName,String password) {
 			Connection conn = null;
 			boolean result = false;
 
@@ -175,16 +175,15 @@ public class AccountsDao {
 			conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/data/nyaster", "sa", "");
 
 			// SQL文を準備する
-			String sql = "update ACCOUNTS set  USER_ID=? , USER_NAME=?, PASSWORD=?";
+			String sql = "update ACCOUNTS "
+					+ "set USER_ID=?, USER_NAME=?, PASSWORD=? "
+					+ "WHERE USER_UUID = ?"; //WHERE句でどのユーザを削除するかを指定
 			PreparedStatement pStmt = conn.prepareStatement(sql);
-
 			// SQL文を完成させる
-
-
-				pStmt.setString(1, userId);
-				pStmt.setString(2, userName);
-				pStmt.setString(3, password);
-
+			pStmt.setString(1, userId);
+			pStmt.setString(2, userName);
+			pStmt.setString(3, password);
+			pStmt.setString(4, userUuid);
 
 	    // SQL文を実行する
 			if (pStmt.executeUpdate() == 1) {
@@ -217,7 +216,7 @@ public class AccountsDao {
 
 //プロフィール削除
 //引数で指定されたレコードを削除し、成功したらtrueを返す
-	public boolean delete(String userId) {
+	public boolean delete(String userUuid) {
 		Connection conn = null;
 		boolean result = false;
 
@@ -229,11 +228,12 @@ public class AccountsDao {
 			conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/data/nyastar", "sa", "");
 
 			// SQL文を準備する
-			String sql = "delete from ACCOUNTS where USER_ID=?";
+			String sql = "DELETE FROM ACCOUNTS "
+					+ "WHERE USER_UUID = ?";
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 
 			// SQL文を完成させる
-			pStmt.setString(1, userId);
+			pStmt.setString(1, userUuid);
 
 			// SQL文を実行する
 			if (pStmt.executeUpdate() == 1) {
