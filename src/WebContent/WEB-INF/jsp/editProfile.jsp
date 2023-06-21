@@ -21,6 +21,7 @@
     <li><a href="/NYASTER/Search" class="link-title">検索</a></li>
     <li><a href="/NYASTER/Ranking" class="link-title">ランキング</a></li>
     <li><a href="#" class="link-title">作成</a></li>
+     <li><a href="UserPage" class="linktitle">${username}</a></li>
 </ul>
 </div>
 

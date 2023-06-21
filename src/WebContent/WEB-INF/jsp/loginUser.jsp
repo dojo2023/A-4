@@ -25,11 +25,11 @@
 
 <div id="sidebar" class="col-lg-2 sidemenu">
     <ul>
-        <li><a href="top" class="link-title">ホーム</a></li>
-        <li><a href="search" class="link-title">検索</a></li>
+        <li><a href="TopPage" class="link-title">ホーム</a></li>
+        <li><a href="Search" class="link-title">検索</a></li>
         <li><a href="Ranking" class="link-title">ランキング</a></li>
         <li><a href="#" class="link-title">作成</a></li>
-        <li><a href="#" class="linktitle">${username}</a></li>
+        <li><a href="UserPage" class="linktitle">${username}</a></li>
 
     </ul>
 </div>
@@ -38,7 +38,7 @@
 
 	<h1>マイページ</h1>
 
-	<a href="#" class="link-title">${username}</a>
+	<a href="UserPage" class="link-title">${username}</a>
 
 	<a href="EditProfile" class="link-title">プロフィール登録・編集</a>
 
