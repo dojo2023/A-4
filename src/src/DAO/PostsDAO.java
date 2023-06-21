@@ -54,7 +54,7 @@ public class PostsDAO {
 	}
 
 	//全ての投稿を取得する(タイムライン)
-	public List<Posts> postShow() {
+	public List<Posts> postShow(String userUuid) {
 		Connection conn = null;
 		List<Posts> postList = new ArrayList<Posts>(); //Postsのオブジェクトを格納する用のリスト
 
@@ -63,15 +63,16 @@ public class PostsDAO {
 			conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/data/NYASTAR", "sa", "");
 
 			//
-			String sql = "SELECT POST_ID, USER_NAME, POST_MESSAGE, GANBARI_TIME, GENRE_TAG, GOAL_NAME, GOAL_TIME, POST_TIME, ACHIEVEMENT_TIME, "
+			String sql = "SELECT POST_ID,USER_NAME, POST_MESSAGE, GANBARI_TIME, GENRE_TAG, GOAL_NAME, GOAL_TIME, POST_TIME, ACHIEVEMENT_TIME, "
 					+ "(SELECT COUNT(*) FROM REACTIONS WHERE POSTS.POST_ID=REACTIONS.POST_ID) AS REACTION_COUNTS "
+					+ "(SELECT COUNT(*) FROM REACTIONS WHERE POSTS.POST_ID=REACTIONS.POST_ID AND REACTIONS.USER_UUID=?) AS REACTION_CHECK "
 					+ "FROM POSTS "
 					+ "JOIN ACCOUNTS ON POSTS.USER_UUID = ACCOUNTS.USER_UUID "
 					+ "JOIN GOALS ON POSTS.GOAL_ID = GOALS.GOAL_ID "
 					+ "ORDER BY POST_TIME DESC;";
 
 			PreparedStatement pStmt = conn.prepareStatement(sql);
-
+			pStmt.setString(1, userUuid);
 			ResultSet rs = pStmt.executeQuery();
 
 			while (rs.next()) {
@@ -99,7 +100,8 @@ public class PostsDAO {
 					goalMins,
 					rs.getInt("ACHIEVEMENT_TIME"),
 					rs.getTimestamp("POST_TIME"),
-					rs.getInt("REACTION_COUNTS")
+					rs.getInt("REACTION_COUNTS"),
+					rs.getInt("REACTION_CHECK")
 					);
 					postList.add(post);
 			}
@@ -131,7 +133,7 @@ public class PostsDAO {
 	}
 
 	//特定のユーザの投稿を取得する(ユーザページ)
-	public List<Posts> postShowUser(String id) {
+	public List<Posts> postShowUser(String id,String userUuid) {
 		Connection conn = null;
 		List<Posts> postList = new ArrayList<Posts>(); //Postsのオブジェクトを格納する用のリスト
 
@@ -142,13 +144,15 @@ public class PostsDAO {
 			//
 			String sql = "SELECT POST_ID, USER_NAME, POST_MESSAGE, GANBARI_TIME, GENRE_TAG, GOAL_NAME, POST_TIME, ACHIEVEMENT_TIME, "
 					+ "(SELECT COUNT(*) FROM REACTIONS WHERE POSTS.POST_ID=REACTIONS.POST_ID) AS REACTION_COUNTS "
+					+ "(SELECT COUNT(*) FROM REACTIONS WHERE POSTS.POST_ID=REACTIONS.POST_ID AND REACTIONS.USER_UUID=?) AS REACTION_CHECK "
 					+ "FROM POSTS"
 					+ "JOIN ACCOUNTS ON POSTS.USER_UUID = ACCOUNTS.USER_UUID "
 					+ "JOIN GOALS ON POSTS.GOAL_ID = GOALS.GOAL_ID "
 					+ "WHERE POST.USER_UUID=? " //ユーザIDを指定する
 					+ "ORDER BY POST_TIME DESC;";
 			PreparedStatement pStmt = conn.prepareStatement(sql);
-			pStmt.setString(1, id);
+			pStmt.setString(1, userUuid);
+			pStmt.setString(2, id);
 			ResultSet rs = pStmt.executeQuery();
 
 			while (rs.next()) {
@@ -176,7 +180,8 @@ public class PostsDAO {
 					goalMins,
 					rs.getInt("ACHIEVEMENT_TIME"),
 					rs.getTimestamp("POST_TIME"),
-					rs.getInt("REACTION_COUNTS")
+					rs.getInt("REACTION_COUNTS"),
+					rs.getInt("REACTION_CHECK")
 					);
 					postList.add(post);
 			}
@@ -337,4 +342,6 @@ public class PostsDAO {
 
 		return userTotalTime;
 	}
+	
 }
+

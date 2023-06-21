@@ -4,6 +4,8 @@
 <html>
 <head>
     <title>トップページ｜NYASTAR</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    
     <!-- 要素内のメタデータ、CSS、JavaScriptのリンクなどを追加します -->
 </head>
 <body>
@@ -51,11 +53,12 @@
             <div>がんばり目標： ${e.goalName} (${e.goalTimeHours}時間${e.goalTimeMins}分)</div>
             <div>目標進捗率: ${Math.floor((e.progress/e.goalTime)*100)}%</div>
             <div>投稿時間： ${e.postTime}</div>
-            <div><span>ナイス数</span> <span>${e.reactionCount}</span></div>
+            <div><span>ナイス数</span> <span id="rc">${e.reactionCount}</span></div>
             <form method="POST" action="/NYASTER/TopPage">
-                <input type="hidden" name="post_id" value="${e.id}">
-                <input type="hidden" name="user_id" value="${e.userUUID}">
-                <input type="submit" name="select" value="ナイス">
+                <input type="hidden" name="post_id" id="post_id" value="${e.id}">
+                <input type="hidden" name="user_id" id="user_id" value="${useruuid}">
+                <input type="text" value="${check}">
+                <input type="checkbox" name="select" id="nice" value="ナイス"onchange="foo();" <c:if test="${check == true}" >checked</c:if>></input>
             </form>
     	</c:forEach>
         <hr>
@@ -95,5 +98,46 @@
     <!-- フッターのコンテンツをここに追加します -->
     <p>&copy; 2023 NYASTAR. All rights reserved.</p>
     </footer>
+    <script>
+  function foo() {
+    if (document.getElementById("nice").checked) {
+    	let rc = document.getElementById("rc").textContent;
+    	document.getElementById("rc").textContent=parseInt(rc)+1;
+    } else {
+    	let rc = document.getElementById("rc").textContent;
+    	document.getElementById("rc").textContent=parseInt(rc)-1;  	
+ 	 }
+  //入力値を取得してくる
+	let Post_id = document.getElementById("post_id").value;
+	let User_id = document.getElementById("user_id").value;
+	let Nice = document.getElementById("nice").value;
+
+	//{変数名：中に入れるもの}みたいに書いて、複数の値をpostData変数に格納
+	let reactionData = {postId:Post_id,userId:User_id,nice:Nice,select:"ああ"};
+ 	$.ajaxSetup({scriptCharset:'utf-8'});
+	$.ajax({
+		//どのサーブレットに送るか
+		//ajaxSampleのところは自分のプロジェクト名に変更する必要あり。
+		url: '/NYASTER/TopPage',
+		//どのメソッドを使用するか
+		type:"POST",
+		//受け取るデータのタイプ
+		dataType:"json",
+		//何をサーブレットに飛ばすか（変数を記述）
+		data: reactionData,
+		//この下の２行はとりあえず書いてる（書かなくても大丈夫？）
+		processDate:false,
+		timeStamp: new Date().getTime()
+	   //非同期通信が成功したときの処理
+	}).done(function() {
+		alert("成功1");
+	  })
+	   //非同期通信が失敗したときの処理
+	  .fail(function() {
+		//失敗とアラートを出す
+		alert("失敗！");
+	  });
+}
+</script>
 </body>
 </html>

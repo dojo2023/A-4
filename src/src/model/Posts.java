@@ -24,6 +24,7 @@ public class Posts implements Serializable {
 	private int progress;
 	private Timestamp postTime; //投稿した日時
 	private int reactionCount;
+	private int reactionCheck;
 
 
 	// 投稿情報の新規登録. ユーザ名と目標名は取得してから格納する.
@@ -44,7 +45,7 @@ public class Posts implements Serializable {
 	}
 
 	// 投稿取得用
-	public Posts(String id, String userName, String msg, String gTag, String goalName, int ganbariTime, int ganbariTimeHours, int ganbariTimeMins, int goalTime, int goalTimeHours, int goalTimeMins, int progress, Timestamp ts, int reactionCount) {
+	public Posts(String id, String userName, String msg, String gTag, String goalName, int ganbariTime, int ganbariTimeHours, int ganbariTimeMins, int goalTime, int goalTimeHours, int goalTimeMins, int progress, Timestamp ts, int reactionCount, int reactionCheck) {
 		this.id = id;
 		this.userName = userName;
 		this.msg = msg;
@@ -59,6 +60,7 @@ public class Posts implements Serializable {
 		this.progress = progress;
 		this.postTime = ts;
 		this.reactionCount = reactionCount;
+		this.reactionCheck = reactionCheck;
 		
 	}
 
@@ -79,6 +81,7 @@ public class Posts implements Serializable {
 	public int getProgress() {return progress;}
 	public Timestamp getPostTime() {return postTime;}
 	public int getReactionCount() {return reactionCount;}
+	public int getReactionCheck() {return reactionCheck;}
 
 // 	setter
 	public void setMsg(String msg) {this.msg = msg;}
@@ -93,4 +96,5 @@ public class Posts implements Serializable {
 	public void setProgress(int progress) {this.progress = progress;}
 	public void setGanbariTimeMins(int ganbariTimeMins) {this.ganbariTimeMins = ganbariTimeMins;}
 	public void setReactionCount(int reactionCount) {this.reactionCount = reactionCount;}
+	public void setReactionCheck(int reactionCheck) {this.reactionCount = reactionCheck;}
 }

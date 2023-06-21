@@ -36,6 +36,7 @@ public class TopPage extends HttpServlet {
 		}
 
 		String userUuid = (String)session.getAttribute("id");
+		request.setAttribute("useruuid", userUuid);
 
 		// IDからユーザ情報を問い合わせる
 		AccountsDao aDao = new AccountsDao();
@@ -44,10 +45,10 @@ public class TopPage extends HttpServlet {
 
 		//　取得したユーザ情報からユーザ名を取り出し、リクエストスコープに格納する
 		request.setAttribute("username", username);
-
+		
 		// 投稿データを全件取得し、リストをリクエストスコープに格納する。
 		PostsDAO pDao = new PostsDAO();
-		List<Posts> postList = pDao.postShow();
+		List<Posts> postList = pDao.postShow(userUuid);
 		request.setAttribute("postList", postList);
 
 		// ユーザの目標データを取得し、リストをリクエストスコープに格納する。
@@ -55,6 +56,15 @@ public class TopPage extends HttpServlet {
 		List<Goals> goalList = gDao.goalShowUser(userUuid);
 		request.setAttribute("goalList", goalList);
 
+		ReactionsDao reDao = new ReactionsDao();
+		Reactions p = new Reactions();
+		p.setPost_id(postId);
+		Reactions u = new Reactions();
+		u.setUser_uuid(userId);
+		boolean result = reDao.check(u,p);
+		System.out.println(result);
+		request.setAttribute("check", result);
+		
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/index.jsp");
 		dispatcher.forward(request, response);
 	}
@@ -65,6 +75,9 @@ public class TopPage extends HttpServlet {
 			return;
 		}
 		request.setCharacterEncoding("UTF-8");
+        response.setContentType("application/json");
+		response.setHeader("Cache-Control", "nocache");
+		response.setCharacterEncoding("utf-8");
 
 		// ログインされているユーザのIDを取得
 		String userUuid = (String)session.getAttribute("id");
@@ -113,35 +126,41 @@ public class TopPage extends HttpServlet {
 				System.out.println("目標の登録が失敗しました。");
 				}
 			response.sendRedirect("/NYASTER/TopPage");
-
-		} else if (request.getParameter("select").equals("ナイス")) {
+			
+			
 			// リアクションの登録処理を行う
+		} else if (request.getParameter("nice").equals("ナイス")) {
+			
 			// リクエストパラメータを取得する
 			request.setCharacterEncoding("UTF-8");
-			String postId = request.getParameter("post_id");
-
+			String postId = request.getParameter("postId");
+			String userId = request.getParameter("userId");
+			System.out.println(postId);
+			System.out.println(userId);
 			// 登録処理を行う
 			ReactionsDao reDao = new ReactionsDao();
 			Reactions p = new Reactions();
 			p.setPost_id(postId);
 			Reactions u = new Reactions();
-			u.setUser_uuid(userUuid);
-			String str = reDao.check(u,p);
-			if (str == null) {
-				if (reDao.Reactioninsert(new Reactions(userUuid,postId))) {
+			u.setUser_uuid(userId);
+			boolean result = reDao.check(u,p);
+			System.out.println(result);
+			request.setAttribute("check", result);
+			if (result == false) {
+				if (reDao.Reactioninsert(new Reactions(userId,postId))) {
 
-					System.out.println("リアクション成功しました。");
+					System.out.println("ナイス＋1");
 					response.sendRedirect("/NYASTER/TopPage");
 				}else {
-					System.out.println("リアクションできませんでした");
+					System.out.println("できませんでした");
 				}
 			}else {
 				if(reDao.delete(new Reactions(userUuid,postId))) {
 
-					System.out.println("リアクション成功しました。");
+					System.out.println("ナイス－1");
 					response.sendRedirect("/NYASTER/TopPage");
 				}	else {
-					System.out.println("リアクションできませんでした");
+					System.out.println("リアクションできん");
 				}
 			}
 		}

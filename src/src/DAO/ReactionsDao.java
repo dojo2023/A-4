@@ -55,10 +55,9 @@ public class ReactionsDao {
 	}
 	
 	
-	public String check(Reactions u, Reactions p) {
+	public boolean check(Reactions u, Reactions p) {
 		Connection conn = null;
 		boolean result = false;
-		String str = null;
 		try {
 			// JDBCドライバを読み込む
 			Class.forName("org.h2.Driver");
@@ -78,7 +77,7 @@ public class ReactionsDao {
 
 			// SQL文を実行する
 			if (rs.next()) {
-				str = "abc";
+				result = true;
 			}
 		}
 		catch (SQLException e) {
@@ -100,7 +99,7 @@ public class ReactionsDao {
 		}
 
 		// 結果を返す
-		return str;
+		return result;
 	}
 		//リアクション削除
 	public boolean delete(Reactions reaction) {
