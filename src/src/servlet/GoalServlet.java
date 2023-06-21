@@ -77,7 +77,7 @@ public class GoalServlet extends HttpServlet {
 		}
 		// === 【追加処理】終わり ===
 
-		else if (request.getParameter("delete").equals("削除")) {
+		else if (request.getParameter("select").equals("削除")) {
 		// 削除を行う
 			GoalsDao aDao = new GoalsDao();
 			if (aDao.delete(userUuid)) {	// 削除成功
