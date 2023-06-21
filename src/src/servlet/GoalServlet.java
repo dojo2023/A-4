@@ -11,7 +11,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import DAO.AccountsDao;
 import DAO.GoalsDao;
 import model.Goals;
 
@@ -80,7 +79,7 @@ public class GoalServlet extends HttpServlet {
 
 		else if (request.getParameter("delete").equals("削除")) {
 		// 削除を行う
-			AccountsDao aDao = new AccountsDao();
+			GoalsDao aDao = new GoalsDao();
 			if (aDao.delete(userUuid)) {	// 削除成功
 				System.out.println("削除しました");
 				response.sendRedirect("/NYASTER/GoalServlet");
