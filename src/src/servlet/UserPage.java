@@ -45,25 +45,20 @@ public class UserPage extends HttpServlet {
 		model.User loginUser = aDao.showUser(userUuid);  //ログインユーザの情報を取得
 
 		// IDからユーザ情報を問い合わせる
-				String username = loginUser.getUser_name();
+		String username = loginUser.getUser_name();
+
 		//　取得したユーザ情報からユーザ名を取り出し、リクエストスコープに格納する
 		request.setAttribute("username", username);
-
 
 		// 特定ユーザーの投稿データを全件取得し、リストをリクエストスコープに格納する。
 		PostsDAO pDao = new PostsDAO();
 		List<Posts> postList = pDao.postShowUser(userUuid);
 		request.setAttribute("postList", postList);
 
-
-
-
 		// ユーザの目標データを取得し、リストをリクエストスコープに格納する。
 		GoalsDao gDao = new GoalsDao();
 		List<Goals> goalList = gDao.goalShowUser(userUuid);
 		request.setAttribute("goalList", goalList);
-
-
 
 
 		// 合計活動時間
@@ -72,11 +67,8 @@ public class UserPage extends HttpServlet {
 //		System.out.println(request.getParameterValues(tag).length);
 		System.out.println(uuid);
 
-
-
 		PostsDAO ttDao = new PostsDAO();
 		User userTotalTime = new User();
-
 
 		// 検索結果をリクエストスコープに格納する
 		request.setAttribute("userTotalTime", userTotalTime);
