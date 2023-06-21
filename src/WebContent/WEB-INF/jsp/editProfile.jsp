@@ -14,7 +14,7 @@
 <body>
 <h1>プロフィール登録・編集</h1>
 <div>
-<button onclick="history.back()">戻る</button>
+<a href="UserPage">戻る</a>
 
 <ul>
     <li><a href="/NYASTER/TopPage"  class="link-title">ホーム</a></li>
