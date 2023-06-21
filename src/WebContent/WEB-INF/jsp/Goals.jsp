@@ -22,7 +22,7 @@
 
       <div class="modal-body">
 
-        <h2>目標の編集</h2>
+        <h2>目標の追加</h2>
 
     	 <form method="GET" action="/NYASTER/GoalServlet.java">
             <div>目標名</div>
@@ -31,10 +31,10 @@
             </div>
             <div>タグ</div>
             <select id="tag-select" name="goal_tag">
-              <option value="運動" name="exercise" value="${e.}">運動</option>
-              <option value="勉強" name="study" value="${e.}">勉強</option>
-              <option value="読書" name="reading" value="${e.}">読書</option>
-              <option value="その他" name="others" value="${e.}">その他</option>
+              <option value="運動" name="exercise">運動</option>
+              <option value="勉強" name="study">勉強</option>
+              <option value="読書" name="reading">読書</option>
+              <option value="その他" name="others">その他</option>
             </select>
             <div>目標時間</div>
             <div class="input-cont"> <input type="number" name="goal_hours" min="0" value="0" required> <label>時間</label>
@@ -54,10 +54,10 @@
             </div>
             <div>タグ</div>
             <select id="tag-select" name="goal_tag">
-              <option value="運動" name="exercise" value="${e.}" >運動</option>
-              <option value="勉強" name="study" value="${e.}">勉強</option>
-              <option value="読書" name="reading" value="${e.}">読書</option>
-              <option value="その他" name="others" value="${e.}">その他</option>
+              <option value="運動" name="exercise">運動</option>
+              <option value="勉強" name="study">勉強</option>
+              <option value="読書" name="reading">読書</option>
+              <option value="その他" name="others">その他</option>
             </select>
             <div>目標時間</div>
             <div class="input-cont"> <input type="number" name="goal_hours" min="0" value="0" required> <label>時間</label>
@@ -70,6 +70,14 @@
             </div>
         </form>
 
+        <h2>目標リスト</h2>
+        <ul>
+            <c:forEach var="e" items="${goalList}">
+                <li>${e.goalName}</li>
+                <li>${e.goalTag}</li>
+                <li>${e.goalTime}</li>
+		    </c:forEach>
+        </ul>
 
 
 <!-- <c:forEach var="e" items="${cardList}" >

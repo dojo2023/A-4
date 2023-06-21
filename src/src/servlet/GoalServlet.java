@@ -90,8 +90,10 @@ public class GoalServlet extends HttpServlet {
 
 		// GoalsDaoクラスをgDelDaoという名前でインスタンス化する(名前は自由に決めてOKだけど後でわかりやすいように！)
 		GoalsDao gDelDao = new GoalsDao();
+		List<Goals> goalList = gDelDao.goalShowUser(userUuid);
+
 		// インスタンス化GoalsDaoクラスのインスタンス→ここでは「gDelDao」の中にあるdeleteメソッドを呼び出す。
-		gDelDao.delete();
+		gDelDao.delete(uuid);
 		// 呼び出すときには引数でUUIDを渡す必要がある→ さっき用意した引数を()内に書いて送ろう！
 		Goals goal = new Goals(goalName, goalTag, goalMins, userUuid/* 引数 */);
 
