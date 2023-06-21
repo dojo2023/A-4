@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import DAO.AccountsDao;
 import DAO.GoalsDao;
 import model.Goals;
 
@@ -37,7 +38,7 @@ public class GoalServlet extends HttpServlet {
 		request.setAttribute("goalList", goalList);
 
 		// 目標ページにフォワードする. フォワードするときはリクエストスコープに入れたデータも一緒に持っていく！
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/loginUserModal.jsp");
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/Goals.jsp");
 		dispatcher.forward(request, response);
 
 	}
@@ -64,7 +65,29 @@ public class GoalServlet extends HttpServlet {
 		goalMins = goalMins + (goalHours*60);
 
 		// GoalsDaoクラスをgAddDaoという名前でインスタンス化する(名前は自由に決めてOKだけど後でわかりやすいように！)
+		if (request.getParameter("update").equals("編集")) {
 		GoalsDao gAddDao = new GoalsDao();
+		Goals g = new Goals(goalName, goalTag, goalMins, userUuid);
+			if (gAddDao.goalAdd(g)) {	// 追加成功
+				System.out.println("追加しました");
+				response.sendRedirect("/NYASTER/GoalServlet");
+			}
+			else { // 追加失敗
+				System.out.println("追加できませんでした");
+			}
+		}
+
+		else if (request.getParameter("select").equals("削除")) {
+		// 削除を行う
+			AccountsDao aDao = new AccountsDao();
+			if (aDao.delete(userUuid)) {	// 削除成功
+				System.out.println("削除しました");
+				response.sendRedirect("/NYASTER/GoalServlet");
+		}
+		else {						// 削除失敗
+			System.out.println("削除できませんでした");
+		}
+
 		// Goalsクラス（Beans）をgoalという名前でインスタンス化する. インスタンス化するときは引数としてデータを渡す
 		Goals goal = new Goals(goalName, goalTag, goalMins, userUuid/* 引数を書く */);
 		// gDao(GoalｓDaoクラス)のgoalAddメソッドに上の行で作った「goal」インスタンス(Beans)を引数として渡して実行する
@@ -93,22 +116,25 @@ public class GoalServlet extends HttpServlet {
 		List<Goals> goalList = gDelDao.goalShowUser(userUuid);
 
 		// インスタンス化GoalsDaoクラスのインスタンス→ここでは「gDelDao」の中にあるdeleteメソッドを呼び出す。
-		gDelDao.delete(uuid);
+//		Goals deleteUser = delete(gDelDao);
+
 		// 呼び出すときには引数でUUIDを渡す必要がある→ さっき用意した引数を()内に書いて送ろう！
-		Goals goal = new Goals(goalName, goalTag, goalMins, userUuid/* 引数 */);
+		Goals goal_Id = new Goals(goalName, goalTag, goalMins, userUuid/* 引数 */);
 
 		// 実行したメソッドの戻り値（成功か失敗か）をboolean型（trueかfalse）の変数goalDelTrueOrFalseに格納する。
-		boolean goalDelTrueorFalse = gDelDao.goalDel(goal);
+//		boolean goalDelTrueorFalse = gDelDao.delete();
 		// if文で成功か失敗かを判定して処理を分ける。
-		if(goalDelTrueorFalse == true/* ここに条件式を書く */) {
-			System.out.println("目標の削除に成功しました");//成功処理した時の処理
-		} else {
-			System.out.println("目標の削除に失敗しました");//成功処理した時の処理
-		}
+//		if(goalDelTrueorFalse == true/* ここに条件式を書く */) {
+//			System.out.println("目標の削除に成功しました");//成功処理した時の処理
+//		} else {
+//			System.out.println("目標の削除に失敗しました");//成功処理した時の処理
+//		}
 		// 成功しても失敗してもページをリロードするために同じページリダイレクトする
-		response.sendRedirect("/NYASTER/GoalServlet");
+//		response.sendRedirect("/NYASTER/GoalServlet");
 		// === 【削除処理】終わり ===
 
 
+
 	}
+}
 }
