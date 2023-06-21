@@ -37,7 +37,7 @@ public class GoalServlet extends HttpServlet {
 		request.setAttribute("goalList", goalList);
 
 		// 目標ページにフォワードする. フォワードするときはリクエストスコープに入れたデータも一緒に持っていく！
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/loginUserModal.jsp");
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/Goals.jsp");
 		dispatcher.forward(request, response);
 
 	}
@@ -64,46 +64,63 @@ public class GoalServlet extends HttpServlet {
 		goalMins = goalMins + (goalHours*60);
 
 		// GoalsDaoクラスをgAddDaoという名前でインスタンス化する(名前は自由に決めてOKだけど後でわかりやすいように！)
-		GoalsDao gAddDao = new GoalsDao();
-		// Goalsクラス（Beans）をgoalという名前でインスタンス化する. インスタンス化するときは引数としてデータを渡す
-		Goals goal = new Goals(/* 引数を書く */);
-		// gDao(GoalｓDaoクラス)のgoalAddメソッドに上の行で作った「goal」インスタンス(Beans)を引数として渡して実行する
-		// 実行したメソッドの戻り値（成功か失敗か）をboolean型（trueかfalse）の変数goalAddTrueOrFalseに格納する。
-		boolean goalAddTrueOrFalse = gAddDao.goalAdd(goal);
-		// if文で成功か失敗かを判定して処理を分ける。
-		if(goalAddTrueOrFalse == true) { //成功した場合の処理
-			System.out.println("目標の追加に成功しました");
-		} else { //失敗した場合の処理
-			System.out.println("目標の追加に失敗しました");
+		if (request.getParameter("select").equals("追加")) {
+			GoalsDao gAddDao = new GoalsDao();
+			Goals g = new Goals(goalName, goalTag, goalMins, userUuid);
+			if (gAddDao.goalAdd(g)) {	// 追加成功
+				System.out.println("追加しました");
+				response.sendRedirect("/NYASTER/GoalServlet");
+			}
+			else { // 追加失敗
+				System.out.println("追加できませんでした");
+			}
 		}
-		// 成功しても失敗してもページをリロードするために同じページリダイレクトする
-		response.sendRedirect("/NYASTER/GoalServlet");
-
 		// === 【追加処理】終わり ===
+
+		else if (request.getParameter("select").equals("削除")) {
+		// 削除を行う
+			GoalsDao aDao = new GoalsDao();
+			if (aDao.delete(userUuid)) {	// 削除成功
+				System.out.println("削除しました");
+				response.sendRedirect("/NYASTER/GoalServlet");
+		}
+		else {						// 削除失敗
+			System.out.println("削除できませんでした");
+		}
+
+
+
 
 		// 【削除処理】
 		// 削除する目標のUUID（POST_ID）を取得する(どの投稿を削除したら良いかDAOに教えなきゃいけないから！)
 		// ヒント1：doGetメソッドで表示した目標データが投稿のUUID（POST_ID）を持ってる
+
 		// ヒント2:ページ上でどの目標を削除するか選択して送るにはどうしたらいいか考える
 
 		// GoalsDaoクラスをgDelDaoという名前でインスタンス化する(名前は自由に決めてOKだけど後でわかりやすいように！)
+		GoalsDao gDelDao = new GoalsDao();
+		List<Goals> goalList = gDelDao.goalShowUser(userUuid);
 
 		// インスタンス化GoalsDaoクラスのインスタンス→ここでは「gDelDao」の中にあるdeleteメソッドを呼び出す。
-		// 呼び出すときには引数でUUIDを渡す必要がある→ さっき用意した引数を()内に書いて送ろう！
+//		Goals deleteUser = delete(gDelDao);
 
+		// 呼び出すときには引数でUUIDを渡す必要がある→ さっき用意した引数を()内に書いて送ろう！
+		Goals goal_Id = new Goals(goalName, goalTag, goalMins, userUuid/* 引数 */);
 
 		// 実行したメソッドの戻り値（成功か失敗か）をboolean型（trueかfalse）の変数goalDelTrueOrFalseに格納する。
-
+//		boolean goalDelTrueorFalse = gDelDao.delete();
 		// if文で成功か失敗かを判定して処理を分ける。
-		if(/* ここに条件式を書く */) {
-			//成功処理した時の処理
-		} else {
-			//成功処理した時の処理
-		}
+//		if(goalDelTrueorFalse == true/* ここに条件式を書く */) {
+//			System.out.println("目標の削除に成功しました");//成功処理した時の処理
+//		} else {
+//			System.out.println("目標の削除に失敗しました");//成功処理した時の処理
+//		}
 		// 成功しても失敗してもページをリロードするために同じページリダイレクトする
-
+//		response.sendRedirect("/NYASTER/GoalServlet");
 		// === 【削除処理】終わり ===
 
 
+
 	}
+}
 }
