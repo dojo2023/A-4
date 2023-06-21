@@ -65,9 +65,9 @@ public class GoalServlet extends HttpServlet {
 		goalMins = goalMins + (goalHours*60);
 
 		// GoalsDaoクラスをgAddDaoという名前でインスタンス化する(名前は自由に決めてOKだけど後でわかりやすいように！)
-		if (request.getParameter("update").equals("編集")) {
-		GoalsDao gAddDao = new GoalsDao();
-		Goals g = new Goals(goalName, goalTag, goalMins, userUuid);
+		if (request.getParameter("select").equals("追加")) {
+			GoalsDao gAddDao = new GoalsDao();
+			Goals g = new Goals(goalName, goalTag, goalMins, userUuid);
 			if (gAddDao.goalAdd(g)) {	// 追加成功
 				System.out.println("追加しました");
 				response.sendRedirect("/NYASTER/GoalServlet");
@@ -76,6 +76,7 @@ public class GoalServlet extends HttpServlet {
 				System.out.println("追加できませんでした");
 			}
 		}
+		// === 【追加処理】終わり ===
 
 		else if (request.getParameter("select").equals("削除")) {
 		// 削除を行う
@@ -88,22 +89,8 @@ public class GoalServlet extends HttpServlet {
 			System.out.println("削除できませんでした");
 		}
 
-		// Goalsクラス（Beans）をgoalという名前でインスタンス化する. インスタンス化するときは引数としてデータを渡す
-		Goals goal = new Goals(goalName, goalTag, goalMins, userUuid/* 引数を書く */);
-		// gDao(GoalｓDaoクラス)のgoalAddメソッドに上の行で作った「goal」インスタンス(Beans)を引数として渡して実行する
 
-		// 実行したメソッドの戻り値（成功か失敗か）をboolean型（trueかfalse）の変数goalAddTrueOrFalseに格納する。
-		boolean goalAddTrueOrFalse = gAddDao.goalAdd(goal);
-		// if文で成功か失敗かを判定して処理を分ける。
-		if(goalAddTrueOrFalse == true) { //成功した場合の処理
-			System.out.println("目標の追加に成功しました");
-		} else { //失敗した場合の処理
-			System.out.println("目標の追加に失敗しました");
-		}
-		// 成功しても失敗してもページをリロードするために同じページリダイレクトする
-		response.sendRedirect("/NYASTER/GoalServlet");
 
-		// === 【追加処理】終わり ===
 
 		// 【削除処理】
 		// 削除する目標のUUID（POST_ID）を取得する(どの投稿を削除したら良いかDAOに教えなきゃいけないから！)

@@ -76,6 +76,8 @@
                 <li>${e.goalName}</li>
                 <li>${e.genreTag}</li>
                 <li>${e.goalTime}</li>
+            	<div class="login-button-panel">
+                <input type="submit" name="delete" class="login-button" title="目標を削除する" value="削除"><br>
 		    </c:forEach>
         </ul>
 
