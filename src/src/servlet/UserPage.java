@@ -49,17 +49,13 @@ public class UserPage extends HttpServlet {
 		//　取得したユーザ情報からユーザ名を取り出し、リクエストスコープに格納する
 		request.setAttribute("username", username);
 
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/loginUser.jsp");
-		dispatcher.forward(request, response);
-
 
 		// 特定ユーザーの投稿データを全件取得し、リストをリクエストスコープに格納する。
 		PostsDAO pDao = new PostsDAO();
 		List<Posts> postList = pDao.postShowUser(userUuid);
 		request.setAttribute("postList", postList);
 
-		RequestDispatcher dispatcher1 = request.getRequestDispatcher("/WEB-INF/jsp/loginUser.jsp");
-		dispatcher1.forward(request, response);
+
 
 
 		// ユーザの目標データを取得し、リストをリクエストスコープに格納する。
@@ -67,8 +63,7 @@ public class UserPage extends HttpServlet {
 		List<Goals> goalList = gDao.goalShowUser(userUuid);
 		request.setAttribute("goalList", goalList);
 
-		RequestDispatcher dispatcher2 = request.getRequestDispatcher("/WEB-INF/jsp/loginUser.jsp");
-		dispatcher2.forward(request, response);
+
 
 
 		// 合計活動時間
@@ -87,8 +82,8 @@ public class UserPage extends HttpServlet {
 		request.setAttribute("userTotalTime", userTotalTime);
 
 		// 結果をページにフォワードする
-		RequestDispatcher dispatcher3= request.getRequestDispatcher("/WEB-INF/jsp/loginUser.jsp");
-		dispatcher3.forward(request, response);
+		RequestDispatcher dispatcher= request.getRequestDispatcher("/WEB-INF/jsp/loginUser.jsp");
+		dispatcher.forward(request, response);
 
 	}
 }

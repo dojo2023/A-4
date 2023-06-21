@@ -24,6 +24,8 @@ public class EditProfile extends HttpServlet {
 		//セッションスコープからログイン中のユーザのUUIDを取得する
 		HttpSession session = request.getSession();
 		String userUuid = (String)session.getAttribute("id");
+
+
 		//アカウントのDAOをインスタンス化する
 		AccountsDao uDao = new AccountsDao();
 
