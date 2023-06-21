@@ -66,8 +66,9 @@ public class GoalServlet extends HttpServlet {
 		// GoalsDaoクラスをgAddDaoという名前でインスタンス化する(名前は自由に決めてOKだけど後でわかりやすいように！)
 		GoalsDao gAddDao = new GoalsDao();
 		// Goalsクラス（Beans）をgoalという名前でインスタンス化する. インスタンス化するときは引数としてデータを渡す
-		Goals goal = new Goals(/* 引数を書く */);
+		Goals goal = new Goals(goalName, goalTag, goalMins, userUuid/* 引数を書く */);
 		// gDao(GoalｓDaoクラス)のgoalAddメソッドに上の行で作った「goal」インスタンス(Beans)を引数として渡して実行する
+
 		// 実行したメソッドの戻り値（成功か失敗か）をboolean型（trueかfalse）の変数goalAddTrueOrFalseに格納する。
 		boolean goalAddTrueOrFalse = gAddDao.goalAdd(goal);
 		// if文で成功か失敗かを判定して処理を分ける。
@@ -84,24 +85,26 @@ public class GoalServlet extends HttpServlet {
 		// 【削除処理】
 		// 削除する目標のUUID（POST_ID）を取得する(どの投稿を削除したら良いかDAOに教えなきゃいけないから！)
 		// ヒント1：doGetメソッドで表示した目標データが投稿のUUID（POST_ID）を持ってる
+
 		// ヒント2:ページ上でどの目標を削除するか選択して送るにはどうしたらいいか考える
 
 		// GoalsDaoクラスをgDelDaoという名前でインスタンス化する(名前は自由に決めてOKだけど後でわかりやすいように！)
-
+		GoalsDao gDelDao = new GoalsDao();
 		// インスタンス化GoalsDaoクラスのインスタンス→ここでは「gDelDao」の中にあるdeleteメソッドを呼び出す。
+		gDelDao.delete();
 		// 呼び出すときには引数でUUIDを渡す必要がある→ さっき用意した引数を()内に書いて送ろう！
-
+		Goals goal = new Goals(goalName, goalTag, goalMins, userUuid/* 引数 */);
 
 		// 実行したメソッドの戻り値（成功か失敗か）をboolean型（trueかfalse）の変数goalDelTrueOrFalseに格納する。
-
+		boolean goalDelTrueorFalse = gDelDao.goalDel(goal);
 		// if文で成功か失敗かを判定して処理を分ける。
-		if(/* ここに条件式を書く */) {
-			//成功処理した時の処理
+		if(goalDelTrueorFalse == true/* ここに条件式を書く */) {
+			System.out.println("目標の削除に成功しました");//成功処理した時の処理
 		} else {
-			//成功処理した時の処理
+			System.out.println("目標の削除に失敗しました");//成功処理した時の処理
 		}
 		// 成功しても失敗してもページをリロードするために同じページリダイレクトする
-
+		response.sendRedirect("/NYASTER/GoalServlet");
 		// === 【削除処理】終わり ===
 
 
