@@ -57,14 +57,14 @@ public class PostsDAO {
 	public List<Posts> postShow(String userUuid) {
 		Connection conn = null;
 		List<Posts> postList = new ArrayList<Posts>(); //Postsのオブジェクトを格納する用のリスト
-
+		System.out.println(userUuid);
 		try {
 			Class.forName("org.h2.Driver");
 			conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/data/NYASTAR", "sa", "");
 
 			//
 			String sql = "SELECT POST_ID,USER_NAME, POST_MESSAGE, GANBARI_TIME, GENRE_TAG, GOAL_NAME, GOAL_TIME, POST_TIME, ACHIEVEMENT_TIME, "
-					+ "(SELECT COUNT(*) FROM REACTIONS WHERE POSTS.POST_ID=REACTIONS.POST_ID) AS REACTION_COUNTS "
+					+ "(SELECT COUNT(*) FROM REACTIONS WHERE POSTS.POST_ID=REACTIONS.POST_ID) AS REACTION_COUNTS, "
 					+ "(SELECT COUNT(*) FROM REACTIONS WHERE POSTS.POST_ID=REACTIONS.POST_ID AND REACTIONS.USER_UUID=?) AS REACTION_CHECK "
 					+ "FROM POSTS "
 					+ "JOIN ACCOUNTS ON POSTS.USER_UUID = ACCOUNTS.USER_UUID "

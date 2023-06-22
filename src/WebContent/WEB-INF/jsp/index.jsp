@@ -57,8 +57,7 @@
             <form method="POST" action="/NYASTER/TopPage">
                 <input type="hidden" name="post_id" id="post_id" value="${e.id}">
                 <input type="hidden" name="user_id" id="user_id" value="${useruuid}">
-                <input type="text" value="${check}">
-                <input type="checkbox" name="select" id="nice" value="ナイス"onchange="foo();" <c:if test="${check == true}" >checked</c:if>></input>
+                <input type="checkbox" name="select" id="nice" value="ナイス"onchange="foo();" <c:if test="${e.reactionCheck == 1}" >checked</c:if>></input>
             </form>
     	</c:forEach>
         <hr>

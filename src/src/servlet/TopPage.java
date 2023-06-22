@@ -56,14 +56,7 @@ public class TopPage extends HttpServlet {
 		List<Goals> goalList = gDao.goalShowUser(userUuid);
 		request.setAttribute("goalList", goalList);
 
-		ReactionsDao reDao = new ReactionsDao();
-		Reactions p = new Reactions();
-		p.setPost_id(postId);
-		Reactions u = new Reactions();
-		u.setUser_uuid(userId);
-		boolean result = reDao.check(u,p);
-		System.out.println(result);
-		request.setAttribute("check", result);
+		
 		
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/index.jsp");
 		dispatcher.forward(request, response);
