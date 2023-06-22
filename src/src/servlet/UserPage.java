@@ -14,10 +14,8 @@ import javax.servlet.http.HttpSession;
 import DAO.AccountsDao;
 import DAO.GoalsDao;
 import DAO.PostsDAO;
-import DAO.RankingDao;
 import model.Goals;
 import model.Posts;
-import model.Rankings;
 import model.User;
 
 @WebServlet("/UserPage")
@@ -29,17 +27,14 @@ public class UserPage extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// もしもログインしていなかったらログインサーブレットにリダイレクトする
 		HttpSession session = request.getSession();
+		String userUuid = (String)session.getAttribute("id");
+
 		if ((String)session.getAttribute("id") == null) {
 			response.sendRedirect("/NYASTER/Login");
 			return;
 		}
-//		// マイページにフォワードする
-//		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/loginUser.jsp");
-//		dispatcher.forward(request, response);
 
-
-		String userUuid = (String)session.getAttribute("id");
-
+		request.setCharacterEncoding("UTF-8");
 
 		AccountsDao aDao = new AccountsDao();
 		model.User loginUser = aDao.showUser(userUuid);  //ログインユーザの情報を取得
@@ -62,7 +57,6 @@ public class UserPage extends HttpServlet {
 
 
 		// 合計活動時間
-		request.setCharacterEncoding("UTF-8");
 		String uuid = request.getParameter("uuid");
 //		System.out.println(request.getParameterValues(tag).length);
 		System.out.println(uuid);
