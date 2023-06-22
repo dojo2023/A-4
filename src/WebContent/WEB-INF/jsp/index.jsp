@@ -105,10 +105,10 @@
 
 	        if (document.getElementById(niceid).checked) {
 	            let rc = document.getElementById(rcid).textContent;
-	            document.getElementById(rcid).textContent=parseInt(rcid)+1;
+	            document.getElementById(rcid).textContent=parseInt(rc)+1;
 	        } else {
 	            let rc = document.getElementById(rcid).textContent;
-	            document.getElementById(rcid).textContent=parseInt(rcid)-1;
+	            document.getElementById(rcid).textContent=parseInt(rc)-1;
 	            }
 
 
