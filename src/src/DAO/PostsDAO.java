@@ -8,7 +8,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import model.Posts;
-import model.User;
 
 public class PostsDAO {
 	// 新規の投稿を追加する
@@ -53,7 +52,7 @@ public class PostsDAO {
 		return result;
 	}
 
-	//全ての投稿を取得する(タイムライン)
+	//全ての投稿を取得する(トップページ)
 	public List<Posts> postShow(String userUuid) {
 		Connection conn = null;
 		List<Posts> postList = new ArrayList<Posts>(); //Postsのオブジェクトを格納する用のリスト
@@ -292,28 +291,35 @@ public class PostsDAO {
 	}
 
 
-// 合計活動時間
-	public User totaltime(String uuid) {
+	// 特定のユーザの合計活動時間を取得する(ユーザページ)
+	public Posts userTotalTime(String uuid) {
 		Connection conn = null;
-		User userTotalTime = new User();
+		Posts userTotalTime = new Posts();
+
 
 		try {
 			Class.forName("org.h2.Driver");
 			conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/data/nyastar", "sa", "");
 
-			//
-			String sql = "SELECT  USER_NAME, SUM(GANBARI_TIME) as TOTAL_GANBARI_TIME, "
+
+			String sql = "SELECT USER_NAME, SUM(GANBARI_TIME) AS TOTAL_GANBARI_TIME "
 					+ "FROM POSTS "
 					+ "JOIN ACCOUNTS ON POSTS.USER_UUID = ACCOUNTS.USER_UUID "
-					+ "WHERE POSTS.USER_UUID= ?;";
+					+ "JOIN GOALS ON POSTS.GOAL_ID = GOALS.GOAL_ID "
+					+ "WHERE POSTS.USER_UUID=?"; //ユーザIDを指定する
+
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 			pStmt.setString(1,uuid);
 			ResultSet rs = pStmt.executeQuery();
 
 			while (rs.next()) {
-				userTotalTime.setUser_uuid(uuid);
-				userTotalTime.setUser_name(rs.getString("USER_NAME"));
-				userTotalTime.setTotalGanbariTime(rs.getInt("GANBARI_TIME"));
+				double doubleGanbariHours = Math.floor(rs.getInt("TOTAL_GANBARI_TIME") / 60.0);
+				int ganbariHours = (int)doubleGanbariHours; // long型からint型に変換
+				int ganbariMins = rs.getInt("TOTAL_GANBARI_TIME") % 60; // 残りの分数を計算
+
+				userTotalTime.setUserName(rs.getString("USER_NAME"));
+				userTotalTime.setGanbariTimeHours(ganbariHours);
+				userTotalTime.setGanbariTimeMins(ganbariMins);
 			}
 		}
 
