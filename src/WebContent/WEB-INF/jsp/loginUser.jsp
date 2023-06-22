@@ -35,7 +35,7 @@
 
 		<a href="EditProfile" class="link-title">プロフィール登録・編集</a>
 
-		<h2>「がんばり目標」</h2><br>
+		<h2>「がんばり目標」</h2>
 		<c:forEach var="e" items="${goalList}">
 			<li>${e.goalName} (${e.goalTimeHours}時間${e.goalTimeMins}分)</li>
 		</c:forEach>
@@ -43,8 +43,8 @@
 		<button name="button">目標追加</button>
 
 
-		<h2>活動合計時間</h2><br>
-		<p>${userTotalTime}</p>
+		<h2>活動合計時間</h2>
+		<p>${uttHours}時間${uttMins}分</p>
 
 		<h2>投稿一覧</h2>
 		<c:forEach var="e" items="${postList}">
