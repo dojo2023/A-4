@@ -55,10 +55,38 @@
             <div>投稿時間： ${e.postTime}</div>
             <div><span>ナイス数</span> <span id="rc">${e.reactionCount}</span></div>
             <form method="POST" action="/NYASTER/TopPage">
-                <input type="hidden" name="post_id" id="post_id" value="${e.id}">
-                <input type="hidden" name="user_id" id="user_id" value="${useruuid}">
-                <input type="checkbox" name="select" id="nice" value="ナイス"onchange="foo();" <c:if test="${e.reactionCheck == 1}" >checked</c:if>></input>
+                <input type="text" name="post_id" id="post_id" value="${e.id}">
+                <input type="text" name="user_id" id="user_id" value="${useruuid}">
+                <input type="checkbox" name="select" id="nice" value="ナイス"onchange= "foo(); reactionpost('${e.id}','${useruuid}');"> <c:if test="${e.reactionCheck == 1}" >checked</c:if>></input>
             </form>
+            <script>
+			  function reactionpost(Post_id, User_id) {
+			    
+			
+				//{変数名：中に入れるもの}みたいに書いて、複数の値をpostData変数に格納
+				let reactionData = {postId:Post_id,userId:User_id,select:"ナイス"};
+			 	$.ajaxSetup({scriptCharset:'utf-8'});
+				$.ajax({
+					//どのサーブレットに送るか
+					//ajaxSampleのところは自分のプロジェクト名に変更する必要あり。
+					url: '/NYASTER/TopPage',
+					//どのメソッドを使用するか
+					type:"POST",
+					//受け取るデータのタイプ
+					dataType:"json",
+					//何をサーブレットに飛ばすか（変数を記述）
+					data: reactionData,
+					//この下の２行はとりあえず書いてる（書かなくても大丈夫？）
+					processDate:false,
+					timeStamp: new Date().getTime()
+				   //非同期通信が成功したときの処理
+				}).done(function() {
+				  })
+				   //非同期通信が失敗したときの処理
+				  .fail(function() {
+				  });
+			}
+			</script>
     	</c:forEach>
         <hr>
 
@@ -98,42 +126,15 @@
     <p>&copy; 2023 NYASTAR. All rights reserved.</p>
     </footer>
     <script>
-  function foo() {
-    if (document.getElementById("nice").checked) {
-    	let rc = document.getElementById("rc").textContent;
-    	document.getElementById("rc").textContent=parseInt(rc)+1;
-    } else {
-    	let rc = document.getElementById("rc").textContent;
-    	document.getElementById("rc").textContent=parseInt(rc)-1;  	
- 	 }
-  //入力値を取得してくる
-	let Post_id = document.getElementById("post_id").value;
-	let User_id = document.getElementById("user_id").value;
-	let Nice = document.getElementById("nice").value;
-
-	//{変数名：中に入れるもの}みたいに書いて、複数の値をpostData変数に格納
-	let reactionData = {postId:Post_id,userId:User_id,nice:Nice,select:"ああ"};
- 	$.ajaxSetup({scriptCharset:'utf-8'});
-	$.ajax({
-		//どのサーブレットに送るか
-		//ajaxSampleのところは自分のプロジェクト名に変更する必要あり。
-		url: '/NYASTER/TopPage',
-		//どのメソッドを使用するか
-		type:"POST",
-		//受け取るデータのタイプ
-		dataType:"json",
-		//何をサーブレットに飛ばすか（変数を記述）
-		data: reactionData,
-		//この下の２行はとりあえず書いてる（書かなくても大丈夫？）
-		processDate:false,
-		timeStamp: new Date().getTime()
-	   //非同期通信が成功したときの処理
-	}).done(function() {
-	  })
-	   //非同期通信が失敗したときの処理
-	  .fail(function() {
-	  });
-}
-</script>
+			  function foo() {
+			    if (document.getElementById("nice").checked) {
+			    	let rc = document.getElementById("rc").textContent;
+			    	document.getElementById("rc").textContent=parseInt(rc)+1;
+			    } else {
+			    	let rc = document.getElementById("rc").textContent;
+			    	document.getElementById("rc").textContent=parseInt(rc)-1;  	
+			 	 }
+			  }
+	</script>
 </body>
 </html>
