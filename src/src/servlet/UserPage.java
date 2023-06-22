@@ -16,7 +16,6 @@ import DAO.GoalsDao;
 import DAO.PostsDAO;
 import model.Goals;
 import model.Posts;
-import model.User;
 
 @WebServlet("/UserPage")
 public class UserPage extends HttpServlet {
@@ -27,16 +26,25 @@ public class UserPage extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// もしもログインしていなかったらログインサーブレットにリダイレクトする
 		HttpSession session = request.getSession();
-		String userUuid = (String)session.getAttribute("id");
 
 		if ((String)session.getAttribute("id") == null) {
 			response.sendRedirect("/NYASTER/Login");
 			return;
 		}
 
-		request.setCharacterEncoding("UTF-8");
+		String userUuid = (String)session.getAttribute("id"); //ログイン中のユーザUUIDを取得
 
+		request.setCharacterEncoding("UTF-8");
 		AccountsDao aDao = new AccountsDao();
+		String searchUser = aDao.showUserUuid(request.getParameter("u"));
+
+		// URLのパラメータにユーザのIDがある場合
+		if(searchUser != null && searchUser != userUuid) {
+			userUuid = searchUser;
+		} else {
+			System.out.println("ログイン中のアカウントの情報を表示します。");
+		}
+
 		model.User loginUser = aDao.showUser(userUuid);  //ログインユーザの情報を取得
 
 		// IDからユーザ情報を問い合わせる
@@ -55,17 +63,10 @@ public class UserPage extends HttpServlet {
 		List<Goals> goalList = gDao.goalShowUser(userUuid);
 		request.setAttribute("goalList", goalList);
 
-
-		// 合計活動時間
-		String uuid = request.getParameter("uuid");
-//		System.out.println(request.getParameterValues(tag).length);
-		System.out.println(uuid);
-
-		PostsDAO ttDao = new PostsDAO();
-		User userTotalTime = new User();
-
-		// 検索結果をリクエストスコープに格納する
-		request.setAttribute("userTotalTime", userTotalTime);
+		// ユーザの合計活動時間をリクエストスコープに格納する
+		Posts tt = pDao.userTotalTime(userUuid);
+		request.setAttribute("uttHours", tt.getGanbariTimeHours());
+		request.setAttribute("uttMins", tt.getGanbariTimeMins());
 
 		// 結果をページにフォワードする
 		RequestDispatcher dispatcher= request.getRequestDispatcher("/WEB-INF/jsp/loginUser.jsp");
