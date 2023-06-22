@@ -20,19 +20,20 @@ import model.PwHashed;
 @WebServlet("/Login")
 public class Login extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-
-    /**
-     * @see HttpServlet#doget(HttpServletRequest request, HttpServletResponse response)
-     */
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException,IOException {
-        // ログインページにフォワードする
+		HttpSession session = request.getSession();
+
+		//すでにログインしている場合はログインページからトップページにリダイレクトする。
+		if ((String)session.getAttribute("id") != null) {
+			response.sendRedirect("/NYASTER/TopPage");
+			return;
+		}
+
+    	// ログインページにフォワードする
     	RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/login.jsp");
 		dispatcher.forward(request, response);
     }
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// リクエストパラメータを取得する
 				request.setCharacterEncoding("UTF-8");
