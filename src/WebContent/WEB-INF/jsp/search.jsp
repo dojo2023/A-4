@@ -9,24 +9,28 @@
 </head>
 <body>
 
-<h1>ユーザー検索</h1>
-	<!-- メインメニュー -->
-	<jsp:include page="includedMenu.jsp" />
+	<h1>ユーザー検索</h1>
+		<!-- メインメニュー -->
+		<jsp:include page="includedMenu.jsp" />
 
-<form method="POST" action = "/NYASTER/Search">
-<label>検索：
- <!--ユーザ名,ユーザIDのどちらかで検索　searchword -->
- <input type="text" name="searchword" placeholder="ユーザ名,ユーザIDで検索" >
- <input type="submit" name="REGIST" value="検索"></label>
-</form>
+	<form method="POST" action = "/NYASTER/Search">
+	<label>検索：
+	 <!--ユーザ名,ユーザIDのどちらかで検索　searchword -->
+	 <input type="text" name="searchword" placeholder="ユーザ名,ユーザIDで検索" >
+	 <input type="submit" name="search_query" value="検索"></label>
+	</form>
 
-<h2>検索結果</h2>
+	<h2>検索結果</h2>
 
-<ul>
-	<c:forEach var= "e" items= "${seList}" varStatus="status">
-		<li><div>${status.index + 1}. ${e.user_name} (@${e.user_id})</div></li>
-	</c:forEach>
-</ul>
+	<ul>
+		<c:forEach var= "e" items= "${seList}" varStatus="status">
+			<li><div>${status.index + 1}. ${e.user_name} (@${e.user_id})</div></li>
+			<form method="GET" action="/NYASTER/UserPage">
+				<input type="hidden" name="u" value="${e.user_id}">
+				<input type="submit" value="ユーザページへ">
+			</form>
+		</c:forEach>
+	</ul>
 
 </body>
 </html>
