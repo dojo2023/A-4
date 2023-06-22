@@ -57,7 +57,6 @@ public class PostsDAO {
 	public List<Posts> postShow(String userUuid) {
 		Connection conn = null;
 		List<Posts> postList = new ArrayList<Posts>(); //Postsのオブジェクトを格納する用のリスト
-		System.out.println(userUuid);
 		try {
 			Class.forName("org.h2.Driver");
 			conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/data/NYASTAR", "sa", "");
