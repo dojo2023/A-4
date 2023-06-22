@@ -10,14 +10,8 @@
 <body>
 
 <h1>ユーザー検索</h1>
-<div>
-	<ul>
-	    <li><a href="TopPage" class="link-title">ホーム</a></li>
-	    <li><a href="Search" class="link-title">検索</a></li>
-	    <li><a href="Ranking" class="link-title">ランキング</a></li>
-	    <li><a href="#" class="link-title">作成</a></li>
-	</ul>
-</div>
+	<!-- メインメニュー -->
+	<jsp:include page="includedMenu.jsp" />
 
 <form method="POST" action = "/NYASTER/Search">
 <label>検索：
