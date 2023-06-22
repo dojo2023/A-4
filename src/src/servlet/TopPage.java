@@ -120,12 +120,14 @@ public class TopPage extends HttpServlet {
 			
 			
 			// リアクションの登録処理を行う
-		} else if (request.getParameter("nice").equals("ナイス")) {
+		} else if (request.getParameter("select").equals("ナイス")) {
 			
 			// リクエストパラメータを取得する
 			request.setCharacterEncoding("UTF-8");
 			String postId = request.getParameter("postId");
 			String userId = request.getParameter("userId");
+			System.out.println(postId);
+			
 			// 登録処理を行う
 			ReactionsDao reDao = new ReactionsDao();
 			Reactions p = new Reactions();
