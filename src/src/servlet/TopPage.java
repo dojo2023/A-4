@@ -55,8 +55,6 @@ public class TopPage extends HttpServlet {
 		GoalsDao gDao = new GoalsDao();
 		List<Goals> goalList = gDao.goalShowUser(userUuid);
 		request.setAttribute("goalList", goalList);
-
-		
 		
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/index.jsp");
 		dispatcher.forward(request, response);
@@ -128,8 +126,6 @@ public class TopPage extends HttpServlet {
 			request.setCharacterEncoding("UTF-8");
 			String postId = request.getParameter("postId");
 			String userId = request.getParameter("userId");
-			System.out.println(postId);
-			System.out.println(userId);
 			// 登録処理を行う
 			ReactionsDao reDao = new ReactionsDao();
 			Reactions p = new Reactions();
@@ -137,7 +133,6 @@ public class TopPage extends HttpServlet {
 			Reactions u = new Reactions();
 			u.setUser_uuid(userId);
 			boolean result = reDao.check(u,p);
-			System.out.println(result);
 			request.setAttribute("check", result);
 			if (result == false) {
 				if (reDao.Reactioninsert(new Reactions(userId,postId))) {

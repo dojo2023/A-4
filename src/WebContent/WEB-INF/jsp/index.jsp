@@ -129,12 +129,9 @@
 		timeStamp: new Date().getTime()
 	   //非同期通信が成功したときの処理
 	}).done(function() {
-		alert("成功1");
 	  })
 	   //非同期通信が失敗したときの処理
 	  .fail(function() {
-		//失敗とアラートを出す
-		alert("失敗！");
 	  });
 }
 </script>
