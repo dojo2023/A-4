@@ -44,7 +44,8 @@
             </div>
             <div class="login-button-panel">
                 <input type="submit" name="select" class="login-button" title="目標を追加する" value="追加">
-
+			</div>
+			</form>
 <!-- ここから削除・編集-->
 
         <h2>目標リスト</h2>
@@ -53,11 +54,12 @@
                 <li>${e.goalName}</li>
                 <li>${e.genreTag}</li>
                 <li>${e.goalTime}</li>
-            	<div class="login-button-panel">
-                <input type="submit" name="select" class="login-button" title="目標を削除する" value="削除"><br>
+                <form method="POST" action="/NYASTER/GoalServlet">
+	        		<input type ="hidden" name="goal_id" value="${e.goalId}" readonly>
+	                <input type="submit" name="select" value="削除"><br>
+		    	</form>
 		    </c:forEach>
         </ul>
-
 
 <!-- <c:forEach var="e" items="${cardList}" >
 	<form method="POST" action="/simpleBC/UpdateDeleteServlet">
