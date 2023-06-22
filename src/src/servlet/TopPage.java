@@ -152,11 +152,11 @@ public class TopPage extends HttpServlet {
 					System.out.println("リアクションできん");
 				}
 			}
+
 		}else if (request.getParameter("select").equals("ログアウト")) {
 			session.removeAttribute("id");
 			System.out.println("ログアウトしました");
 			response.sendRedirect("/NYASTER/Login");
-
 		}
 	}
 }

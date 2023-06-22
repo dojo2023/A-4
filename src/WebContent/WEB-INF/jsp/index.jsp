@@ -84,6 +84,8 @@
                 <li>${e.goalName}</li>
 		    </c:forEach>
         </ul>
+
+        <!-- ログアウト -->
         <form method="POST" action="/NYASTER/TopPage">
 		<input type="submit"  name="select" value="ログアウト" >
 		</form>
@@ -93,7 +95,7 @@
     <!-- フッターのコンテンツをここに追加します -->
     <p>&copy; 2023 NYASTAR. All rights reserved.</p>
     </footer>
-    
+
     <script src="js/asyncReaction.js"></script>
 </body>
 </html>
