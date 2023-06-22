@@ -61,10 +61,12 @@ public class Posts implements Serializable {
 		this.postTime = ts;
 		this.reactionCount = reactionCount;
 		this.reactionCheck = reactionCheck;
-		
+
 	}
 
-//	getter
+	public Posts() {}
+
+	//	getter
 	public String getId() {return id;}
 	public String getUserName() {return userName;}
 	public String getMsg() {return msg;}
@@ -84,6 +86,7 @@ public class Posts implements Serializable {
 	public int getReactionCheck() {return reactionCheck;}
 
 // 	setter
+	public void setUserName(String userName) {this.userName = userName;}
 	public void setMsg(String msg) {this.msg = msg;}
 	public void setGanbariTag(String ganbariTag) {this.ganbariTag = ganbariTag;}
 	public void setGoal(String goalName) {this.goalName = goalName;}
