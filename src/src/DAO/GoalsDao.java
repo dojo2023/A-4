@@ -71,16 +71,23 @@ public class GoalsDao {
 			ResultSet rs = pStmt.executeQuery();
 
 			while (rs.next()) {
+				// 目標時間
+				double doubleGoalHours = Math.floor(rs.getInt("GOAL_TIME") / 60.0);
+				int goalHours = (int)doubleGoalHours; // long型からint型に変換
+				int goalMins = rs.getInt("GOAL_TIME") % 60; // 残りの分数を計算
+
 				Goals goal = new Goals(
-				rs.getString("GOAL_ID"),
-				rs.getString("GOAL_NAME"),
-				rs.getString("GENRE_TAG"),
-				rs.getInt("GOAL_TIME"),
-				rs.getInt("ACHIEVEMENT_TIME"),
-				rs.getTimestamp("GOAL_DATE"),
-				rs.getString("USER_UUID")
-				);
-				goalList.add(goal);
+					rs.getString("GOAL_ID"),
+					rs.getString("GOAL_NAME"),
+					rs.getString("GENRE_TAG"),
+					rs.getInt("GOAL_TIME"),
+					goalHours,
+					goalMins,
+					rs.getInt("ACHIEVEMENT_TIME"),
+					rs.getTimestamp("GOAL_DATE"),
+					rs.getString("USER_UUID")
+					);
+					goalList.add(goal);
 			}
 		}
 
