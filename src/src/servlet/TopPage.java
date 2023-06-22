@@ -45,7 +45,7 @@ public class TopPage extends HttpServlet {
 
 		//　取得したユーザ情報からユーザ名を取り出し、リクエストスコープに格納する
 		request.setAttribute("username", username);
-		
+
 		// 投稿データを全件取得し、リストをリクエストスコープに格納する。
 		PostsDAO pDao = new PostsDAO();
 		List<Posts> postList = pDao.postShow(userUuid);
@@ -55,7 +55,7 @@ public class TopPage extends HttpServlet {
 		GoalsDao gDao = new GoalsDao();
 		List<Goals> goalList = gDao.goalShowUser(userUuid);
 		request.setAttribute("goalList", goalList);
-		
+
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/index.jsp");
 		dispatcher.forward(request, response);
 	}
@@ -117,27 +117,26 @@ public class TopPage extends HttpServlet {
 				System.out.println("目標の登録が失敗しました。");
 				}
 			response.sendRedirect("/NYASTER/TopPage");
-			
-			
+
+
 			// リアクションの登録処理を行う
 		} else if (request.getParameter("select").equals("ナイス")) {
-			
+
 			// リクエストパラメータを取得する
 			request.setCharacterEncoding("UTF-8");
 			String postId = request.getParameter("postId");
-			String userId = request.getParameter("userId");
 			System.out.println(postId);
-			
+
 			// 登録処理を行う
 			ReactionsDao reDao = new ReactionsDao();
 			Reactions p = new Reactions();
 			p.setPost_id(postId);
 			Reactions u = new Reactions();
-			u.setUser_uuid(userId);
+			u.setUser_uuid(userUuid);
 			boolean result = reDao.check(u,p);
 			request.setAttribute("check", result);
 			if (result == false) {
-				if (reDao.Reactioninsert(new Reactions(userId,postId))) {
+				if (reDao.Reactioninsert(new Reactions(userUuid,postId))) {
 
 					System.out.println("ナイス＋1");
 					response.sendRedirect("/NYASTER/TopPage");
@@ -157,7 +156,7 @@ public class TopPage extends HttpServlet {
 			session.removeAttribute("id");
 			System.out.println("ログアウトしました");
 			response.sendRedirect("/NYASTER/Login");
-			
+
 		}
 	}
 }
