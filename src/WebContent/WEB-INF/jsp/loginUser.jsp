@@ -21,18 +21,10 @@
 
 <body>
 
-<input type="button" onclick="window.location='%_myname_%'" value="ログアウト">
+	<input type="button" onclick="window.location='%_myname_%'" value="ログアウト">
 
-<div id="sidebar" class="col-lg-2 sidemenu">
-    <ul>
-        <li><a href="TopPage" class="link-title">ホーム</a></li>
-        <li><a href="Search" class="link-title">検索</a></li>
-        <li><a href="Ranking" class="link-title">ランキング</a></li>
-        <li><a href="#" class="link-title">作成</a></li>
-        <li><a href="UserPage" class="linktitle">${username}</a></li>
-
-    </ul>
-</div>
+	<!-- メインメニュー -->
+	<jsp:include page="includedMenu.jsp" />
 
 <main>
 
