@@ -90,6 +90,9 @@
                 <li>${e.goalName}</li>
 		    </c:forEach>
         </ul>
+        <form method="POST" action="/NYASTER/TopPage">
+		<input type="submit"  name="select" value="ログアウト" >
+		</form>
     </main>
 
     <footer>
