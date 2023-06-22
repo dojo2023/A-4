@@ -253,11 +253,55 @@ public class AccountsDao {
 		return user;
 	}
 
+	//ユーザのIDからUUIDをを取得
+	public String showUserUuid(String id) {
+		Connection conn = null;
+		String uuid = null;
+
+		try {
+			Class.forName("org.h2.Driver");
+			conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/data/nyastar", "sa", "");
+
+			String sql = "SELECT USER_UUID　"
+					+ "FROM ACCOUNTS "
+					+ "WHERE USER_ID=?";
+
+			PreparedStatement pStmt = conn.prepareStatement(sql);
+			pStmt.setString(1, id);
+
+			ResultSet rs = pStmt.executeQuery();
+
+			while (rs.next()) {
+				uuid = rs.getString("USER_UUID");
+			}
+		}
+
+		catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+		catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+
+		finally {
+			if (conn != null) {
+				try {
+					conn.close();
+				}
+				catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+
+		return uuid;
+	}
+
 
 	// ユーザーIDに重複がないかの確認
 	public String check(User accounts) {
 		Connection conn = null;
-		boolean result = false;
 		String str = null;
 		try {
 			// JDBCドライバを読み込む
@@ -311,7 +355,7 @@ public class AccountsDao {
 
 
 	// 引数paramで検索項目を指定し、検索結果のリストを返す
-	public List <User> select(String searchword) {
+	public List <User> search(String sq) {
 		Connection conn = null;
 		//インスタンス化されたUserしかリストに入らない
 		List<User> seList = new ArrayList<User>();
@@ -324,13 +368,21 @@ public class AccountsDao {
 			conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/data/nyastar", "sa", "");
 
 			// SQL文を準備する　connとsqlがごっちゃになったものがpSmt
-        	String sql = "select * from ACCOUNTS WHERE USER_ID LIKE ? OR USER_NAME LIKE ? ";
+        	String sql = "select *"
+        			+ " from ACCOUNTS";
+
+        	if(sq == "") {
+        		sql += " WHERE USER_ID LIKE ? OR USER_NAME LIKE ?";
+        	}
+
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 
 			// SQL文を完成させる
-			System.out.println(searchword);
-				pStmt.setString(1,searchword );
-				pStmt.setString(2,searchword );
+			pStmt.setString(1,sq);
+        	if(sq == "") {
+        		pStmt.setString(2,sq);
+        	}
+
 
 
 			// SQL文を実行し、結果表を取得する

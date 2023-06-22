@@ -16,8 +16,8 @@
 	<form method="POST" action = "/NYASTER/Search">
 	<label>検索：
 	 <!--ユーザ名,ユーザIDのどちらかで検索　searchword -->
-	 <input type="text" name="searchword" placeholder="ユーザ名,ユーザIDで検索" >
-	 <input type="submit" name="search_query" value="検索"></label>
+	 <input type="text" name="search_query" placeholder="ユーザ名,ユーザIDで検索" >
+	 <input type="submit" value="検索"></label>
 	</form>
 
 	<h2>検索結果</h2>

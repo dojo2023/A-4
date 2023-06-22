@@ -37,13 +37,12 @@ public class Search extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//リクエストパラメータを取得する
 		request.setCharacterEncoding("UTF-8");
-		System.out.println (request.getParameter("search_query"));
-		String searchword = request.getParameter("searchword");
+		String sq = request.getParameter("search_query");
 
 		// 検索処理を行う
 		AccountsDao acDao = new AccountsDao();
 		//Beanを使わずに直接検索条件を作成
-		List<User> seList =  acDao.select(searchword);
+		List<User> seList =  acDao.search(sq);
 
 		// 検索結果をリクエストスコープに格納する
 		request.setAttribute("seList", seList);
