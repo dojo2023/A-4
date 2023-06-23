@@ -1,1 +1,182 @@
 @charset "UTF-8";
+
+/* Fonts */
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:400);
+
+/* fontawesome */
+/* @import url(http://weloveiconfonts.com/api/?family=fontawesome); */
+
+[class*="fontawesome-"]:before {
+    font-family: 'FontAwesome', sans-serif;
+}
+
+
+* {
+    box-sizing: border-box;
+  }
+  body {
+    background-color: #eee;
+    color: #5e5e5e;
+    font: 400 87.5%/1.5em 'Open Sans', sans-serif;
+  }
+
+  .error {
+    color: #ed2553;
+    font-size: 12px;
+    margin: 0 50px 30px;
+  }
+
+  .log {
+    width: 400px;
+    margin: 5% auto;
+    background-color: #fff;
+    padding: 30px 0;
+    box-shadow: 0px 5px 25px 0px rgba(0, 0, 0, 0.15);
+  }
+  .log h2 {
+    text-align: center;
+    color: #ed2553;
+    /* font-weight: bold; */
+    font-size: 21px;
+    margin-bottom: 40px;
+  }
+  /* テキスト入力エリア */
+
+  .input-cont {
+    position: relative;
+    margin: 0 50px 30px;
+  }
+  .input-cont:last-of-type {
+    margin-bottom: 15px;
+  }
+  .input-cont input {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    height: 40px;
+    outline: none;
+    color: #212121;
+    font-size: 18px;
+    font-weight: 400;
+    background: none;
+    border: none;
+    -webkit-font-smoothing: antialiased;
+  }
+  .input-cont input:focus {
+    outline: none;
+  }
+  .input-cont label {
+    position: absolute;
+    color: #948c8c;
+    top: 0;
+    left: 0;
+    line-height: 40px;
+    -webkit-transition: 0.3s;
+    -moz-transition: 0.3s;
+    -o-transition: 0.3s;
+    transition: 0.3s;
+  }
+  .input-cont input:focus + label,
+  .input-cont input.filled + label,
+  .input-cont input:valid + label {
+    margin-top: -30px;
+    -webkit-transform: scale(0.8);
+    -moz-transform: scale(0.8);
+    -o-transform: scale(0.8);
+    transform: scale(0.8);
+    color: #bdbdbd;
+  }
+
+
+  /* フォーカス時の下線 */
+
+  .log .border1,
+  .log .border2 {
+    position: absolute;
+    height: 1px;
+    background-color: #9e9e9e;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+  }
+  .log .border1::after,
+  .log .border1::before,
+  .log .border2::after,
+  .log .border2::before {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    width: 0;
+    height: 2px;
+    -webkit-transition: 0.5s;
+    -moz-transition: 0.5s;
+    -o-transition: 0.5s;
+    transition: 0.5s;
+  }
+  .log .border1::after,
+  .log .border2::after {
+    right: 50%;
+    background-color: #ed2553;
+  }
+  .log .border1::before,
+  .log .border2::before {
+    left: 50%;
+    background-color: #ed2553;
+  }
+  .log .input-cont input:focus ~ .border1::after,
+  .log .input-cont input:focus ~ .border1::before,
+  .log .input-cont input:focus ~ .border2::after,
+  .log .input-cont input:focus ~ .border2::before {
+    width: 50%;
+  }
+  .log .check,
+
+
+/* ログインボタン */
+
+.log .login-button-panel {
+    margin: 20px auto 30px;
+    width: 250px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.log .login-button-panel .login-button {
+    color: #fff;
+    background: #ed2553;
+    border: 1.5px solid #ed2553;
+    border-radius: 100vh;
+    cursor: pointer;
+    height: 50px;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 1.2em;
+    letter-spacing: 0.05em;
+    text-align: center;
+    text-transform: uppercase;
+    transition: background 0.5s ease-in-out;
+    width: 80%;
+
+}
+
+.log .login-button-panel .login-button:hover {
+    color: #ed2553;
+    background: #fff;
+}
+
+/* フォームフッター */
+
+.loginform-footer {
+    font-size: 1em;
+    text-align: center;
+}
+
+.loginform-footer p a {
+    color: #8c8c8c;
+    text-decoration: none;
+    transition: border-color 0.3s;
+}
+
+.loginform-footer a:hover {
+    border-bottom: 1px dotted #8c8c8c;
+}
