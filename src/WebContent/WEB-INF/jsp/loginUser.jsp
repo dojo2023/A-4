@@ -4,26 +4,29 @@
 <html>
 <head>
 <meta charset="UTF-8">
-	<title>ユーザーページ</title>
+<title>ユーザーページ</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<style>
+    #wrapper {
+      height: 200px;
+      width: 300px;
+      overflow-y: scroll;
+    }
 
-	<style>
-	    #wrapper {
-	      height: 200px;
-	      width: 300px;
-	      overflow-y: scroll;
-	    }
-
-	    #contents {
-	      background-color: cadetblue;
-	    }
-	</style>
+    #contents {
+      background-color: cadetblue;
+    }
+</style>
 	<!-- 共通のCSS読み込み -->
 	<jsp:include page="includedCSS.jsp" />
 </head>
 
 <body>
 
-	<input type="button" onclick="window.location='%_myname_%'" value="ログアウト">
+	 <!-- ログアウト -->
+        <form method="POST" action="/NYASTER/UserPage">
+		<input type="submit"  name="select" value="ログアウト" >
+		</form>
 
 	<!-- メインメニュー -->
 	<jsp:include page="includedMenu.jsp" />
@@ -71,6 +74,6 @@
     <p>&copy; 2023 NYASTAR. All rights reserved.</p>
     </footer>
 
-	<script src="js/asyncReaction.js"></script>
+	<script src="js/asyncUserPageReaction.js"></script>
 </body>
 </html>
