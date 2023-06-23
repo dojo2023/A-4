@@ -22,7 +22,7 @@
     <input type="submit" name="tag" value="勉強">
     <input type="submit" name="tag" value="その他">
 	</form>
-  <h2>週間ランキング</h2>
+  <h2>過去7日間のランキング</h2>
   <div id="ranking">
     <table id="list">
       <thead>
