@@ -4,20 +4,21 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>ユーザーページ</title>
+	<title>ユーザーページ</title>
 
-<style>
-    #wrapper {
-      height: 200px;
-      width: 300px;
-      overflow-y: scroll;
-    }
+	<style>
+	    #wrapper {
+	      height: 200px;
+	      width: 300px;
+	      overflow-y: scroll;
+	    }
 
-    #contents {
-      background-color: cadetblue;
-    }
-</style>
-
+	    #contents {
+	      background-color: cadetblue;
+	    }
+	</style>
+	<!-- 共通のCSS読み込み -->
+	<jsp:include page="includedCSS.jsp" />
 </head>
 
 <body>

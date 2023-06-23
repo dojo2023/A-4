@@ -4,9 +4,10 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>ランキングページ｜NYASTAR</title>
-    <!-- 要素内のメタデータ、CSS、JavaScriptのリンクなどを追加します -->
+	<meta charset="UTF-8">
+	<title>ランキングページ｜NYASTAR</title>
+    <!-- 共通のCSS読み込み -->
+	<jsp:include page="includedCSS.jsp" />
 </head>
 <body>
 	<!-- メインメニュー -->
