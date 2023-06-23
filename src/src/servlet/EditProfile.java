@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import DAO.AccountsDao;
+import model.PwHashed;
 import model.User;
 
 
@@ -46,12 +47,14 @@ public class EditProfile extends HttpServlet {
 		 //リクエストパラメータを取得する
 		request.setCharacterEncoding("UTF-8");
 
+
 		HttpSession session = request.getSession();
 		String userUuid = (String)session.getAttribute("id");
 
 		String userId = request.getParameter("USER_ID");
 		String userName = request.getParameter("USER_NAME");
 		String password = request.getParameter("pw-af");
+		String hashpw = PwHashed.hashPassword(password);
 
 		if (request.getParameter("select").equals("変更")) {
 			// 更新を行う
@@ -60,19 +63,39 @@ public class EditProfile extends HttpServlet {
 			u.setUser_id(userId);
 			String str = rDao.check(u);
 			if (str == null) {
-				if (rDao.update(userUuid,userId,userName,password)) {	// 更新成功
-					System.out.println("更新しました");
-					response.sendRedirect("/NYASTER/UserPage");
-				}
-				else { // 更新失敗
-					System.out.println("更新できませんでした");
-				}
+
+
+					if (rDao.update(userUuid,userId,userName,password)) {	// 更新成功
+						System.out.println("更新しました");
+						response.sendRedirect("/NYASTER/UserPage");
+					}
+					else { // 更新失敗
+						System.out.println("更新できませんでした");
+					}
+
 			}
+		}
+
+		else if(request.getParameter("select").equals("PW変更")) {
+
+			AccountsDao aDao = new AccountsDao();
+			model.User loginUser = aDao.showUser(userUuid); //ログインユーザの情報を取得
+			String userid = loginUser.getUser_id();
+
+			String uuid = aDao.isLoginOK(userid, hashpw);
+			if (uuid != null) {
+				System.out.println("更新しました");
+				response.sendRedirect("/NYASTER/UserPage");
+			}
+			else{ // 更新失敗
+				System.out.println("更新できませんでした");
+			}
+
 		}
 		else if (request.getParameter("select").equals("アカウント削除")) {
 			// 削除を行う
-			AccountsDao aDao = new AccountsDao();
-			if (aDao.delete(userUuid)) {	// 削除成功
+			AccountsDao cDao = new AccountsDao();
+			if (cDao.delete(userUuid)) {	// 削除成功
 				System.out.println("削除しました");
 				response.sendRedirect("/NYASTER/Login");
 			}
