@@ -306,7 +306,8 @@ public class PostsDAO {
 					+ "FROM POSTS "
 					+ "JOIN ACCOUNTS ON POSTS.USER_UUID = ACCOUNTS.USER_UUID "
 					+ "JOIN GOALS ON POSTS.GOAL_ID = GOALS.GOAL_ID "
-					+ "WHERE POSTS.USER_UUID=?"; //ユーザIDを指定する
+					+ "WHERE POSTS.USER_UUID=? "
+					+ "GROUP BY POSTS.USER_UUID"; //ユーザIDを指定する
 
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 			pStmt.setString(1,uuid);
