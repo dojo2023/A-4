@@ -10,6 +10,9 @@
 </head>
 <body>
 
+
+
+
 	<form method="POST" action="/NYASTER/GoalServlet">
     <!-- <button id="modalOpen" class="button">ログイン</button>
 

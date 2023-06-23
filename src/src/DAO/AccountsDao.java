@@ -369,21 +369,14 @@ public class AccountsDao {
 
 			// SQL文を準備する　connとsqlがごっちゃになったものがpSmt
         	String sql = "select *"
-        			+ " from ACCOUNTS";
+        			+ " from ACCOUNTS"
+        			+ " WHERE USER_ID LIKE ? OR USER_NAME LIKE ?";
 
-        	if(sq == "") {
-        		sql += " WHERE USER_ID LIKE ? OR USER_NAME LIKE ?";
-        	}
+        	System.out.println(sql);
 
 			PreparedStatement pStmt = conn.prepareStatement(sql);
-
-			// SQL文を完成させる
 			pStmt.setString(1,sq);
-        	if(sq == "") {
-        		pStmt.setString(2,sq);
-        	}
-
-
+			pStmt.setString(2,sq);
 
 			// SQL文を実行し、結果表を取得する
 			ResultSet rs = pStmt.executeQuery();
