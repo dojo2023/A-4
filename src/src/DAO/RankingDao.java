@@ -40,9 +40,17 @@ public class RankingDao {
 			}
 
 			while (rs.next()) {
+				
+				double doubleGanbariHours = Math.floor(rs.getInt("TOTAL_GANBARI_TIME") / 60.0);
+				int ganbariHours = (int)doubleGanbariHours; // long型からint型に変換
+				int ganbariMins = rs.getInt("TOTAL_GANBARI_TIME") % 60; // 残りの分数を計算
+
+
 				Rankings ranking = new Rankings(
 				rs.getString("USER_NAME"),
-				rs.getInt("TOTAL_GANBARI_TIME")
+				rs.getInt("TOTAL_GANBARI_TIME"),
+				ganbariHours,
+				ganbariMins
 				);
 				rankingList.add(ranking);
 			}

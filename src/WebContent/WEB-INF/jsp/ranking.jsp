@@ -36,7 +36,7 @@
 		    <tr>
 		      <td>${status.index + 1}位：</td>
 		      <td>${e.userName}</td>
-		      <td>${e.ganbariTime}時間</td>
+		      <td> ${e.ganbariTimeHours}時間${e.ganbariTimeMins}分</td>
 		    </tr>
 		  </c:forEach>
 		</tbody>
