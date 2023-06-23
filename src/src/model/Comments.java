@@ -12,13 +12,12 @@ import java.util.UUID;
 		private String post_id;  //投稿ID
 		private Timestamp comment_time;  //コメント送信時間
 
-		public Comments(String comment_id,String comment_content,String user_uuid,String post_id) {
+		public Comments(String commentMsg, String user_uuid, String post_id) {
 
 			UUID uuid = UUID.randomUUID(); // 一意のUUIDを生成
-			String uuidString = uuid.toString();
 
-			this.comment_id = comment_id;
-			this.comment_content = comment_content;
+			this.comment_id = uuid.toString();
+			this.comment_content = commentMsg;
 			this.user_uuid = user_uuid;
 			this.post_id = post_id;
 

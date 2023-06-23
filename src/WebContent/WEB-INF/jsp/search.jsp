@@ -7,7 +7,7 @@
 	<meta charset="UTF-8">
 	<title>検索｜NYASTAR </title>
 	<!-- 共通のCSS読み込み -->
-	<jsp:include page="includedMenu.jsp" />
+	<jsp:include page="includedCSS.jsp" />
 </head>
 <body>
 

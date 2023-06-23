@@ -23,8 +23,8 @@ public class RankingDao {
 			String sql = "SELECT  USER_NAME, SUM(GANBARI_TIME) AS TOTAL_GANBARI_TIME "
 					+ "FROM POSTS "
 					+ "JOIN ACCOUNTS ON POSTS.USER_UUID = ACCOUNTS.USER_UUID "
-					+ "JOIN GOALS ON POSTS.GOAL_ID = GOALS.GOAL_ID ";
-
+					+ "JOIN GOALS ON POSTS.GOAL_ID = GOALS.GOAL_ID "
+					+ "WHERE POST_TIME >= (NOW() - INTERVAL 7 DAY) ";
 			ResultSet rs;
 
 			if (tag.equals("累計")) {
@@ -32,7 +32,7 @@ public class RankingDao {
 				PreparedStatement pStmt = conn.prepareStatement(sql);
 				rs = pStmt.executeQuery();
 			} else {
-				sql += "WHERE GENRE_TAG=? "
+				sql += "AND GENRE_TAG=? "
 						+ "GROUP BY POSTS.USER_UUID ORDER BY SUM(GANBARI_TIME) DESC;";
 				PreparedStatement pStmt = conn.prepareStatement(sql);
 				pStmt.setString(1,tag);
