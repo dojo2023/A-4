@@ -31,20 +31,23 @@
 	    </div>
 	    <div class="input-cont">
 		パスワード<input type="password" placeholder="8文字以上で入力してください" minlength="8" required name="pw">
+		<i id="eye" class="fa-solid fa-eye"></i><br>
 		<div class="border2"></div>
 		</div>
-		<i id="eye" class="fa-solid fa-eye"></i><br>
+
 		${errorMsg}<br>
 		 <div class="login-button-panel">
 		<input type="reset" name="RESET" value="リセット">
 		<input type="submit" name="LOGIN" value="ログイン">
 		</div>
-	</form>
-	</div>
 
 		<div class="loginform-footer">
 		<a href="Register">新規登録はこちら</a>
 		</div>
+	</form>
+	</div>
+
+
 
 <script>
           let eye = document.getElementById("eye");
