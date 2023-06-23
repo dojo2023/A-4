@@ -4,8 +4,10 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>検索｜NYASTAR </title>
+	<meta charset="UTF-8">
+	<title>検索｜NYASTAR </title>
+	<!-- 共通のCSS読み込み -->
+	<jsp:include page="includedMenu.jsp" />
 </head>
 <body>
 

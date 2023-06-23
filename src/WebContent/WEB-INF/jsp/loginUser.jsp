@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>ユーザーページ</title>
-
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <style>
     #wrapper {
       height: 200px;
@@ -17,7 +17,8 @@
       background-color: cadetblue;
     }
 </style>
-
+	<!-- 共通のCSS読み込み -->
+	<jsp:include page="includedCSS.jsp" />
 </head>
 
 <body>
@@ -73,6 +74,6 @@
     <p>&copy; 2023 NYASTAR. All rights reserved.</p>
     </footer>
 
-	<script src="js/asyncReaction.js"></script>
+	<script src="js/asyncUserPageReaction.js"></script>
 </body>
 </html>

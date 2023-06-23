@@ -3,10 +3,11 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>トップページ｜NYASTAR</title>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+	<!-- 共通のCSS読み込み -->
+	<jsp:include page="includedCSS.jsp" />
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+	<title>トップページ｜NYASTAR</title>
 
-    <!-- 要素内のメタデータ、CSS、JavaScriptのリンクなどを追加します -->
 </head>
 <body>
 	<!-- メインメニュー -->
@@ -14,27 +15,6 @@
 
     <main>
         <p>ログインユーザー： ${username}</p>
-
-        <h2>がんばり投稿</h2>
-        <form method="POST" action="/NYASTER/TopPage">
-            <div>目標選択</div>
-            <select id="goal-select" name="goal">
-                <c:forEach var="e" items="${goalList}">
-                    <option value="${e.goalId}">${e.goalName}</option>
-                </c:forEach>
-            </select>
-
-            <div>がんばり時間</div>
-            <div class="input-cont"> <input type="number" name="hours" min="0" value="0" required> <label>時間</label>
-            </div>
-            <div class="input-cont"> <input type="number" name="mins" min="0" max="60" value="0" required> <label>分</label>
-            </div>
-            <div class="input-cont">  <label>メッセージ</label> <input type="text" id="msg" name="msg" maxlength="50">
-            </div>
-            <div class="login-button-panel"> <input type="submit" name="select" class="login-button" title="登録する" value="投稿"> </div>
-        </form>
-
-		<br>
 
         <h2>タイムライン</h2>
     	<c:forEach var="e" items="${postList}">
@@ -96,6 +76,15 @@
     <p>&copy; 2023 NYASTAR. All rights reserved.</p>
     </footer>
 
-    <script src="js/asyncReaction.js"></script>
+	<!-- JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/izimodal/1.5.1/js/iziModal.min.js"></script>
+    <script type="text/javascript" src="./js/jquery-migrate-3.4.1.js"></script>
+    <script src="js/iziToast.min.js" type="text/javascript"></script>
+    <script src="js/iziToast.js" type="text/javascript"></script>
+
+    <script src="js/Toast.js" type="text/javascript"></script>
+    <script src="js/script.js"></script>
+	<script src="js/asyncReaction.js"></script>
 </body>
 </html>

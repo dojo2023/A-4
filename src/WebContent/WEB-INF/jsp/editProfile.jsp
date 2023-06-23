@@ -41,7 +41,7 @@
 
 		<!-- 変更ボタン -->
 		<input type="submit" class="btn" name="select" value="変更" ><br><br>
-
+		<input type="submit" class="btn" name="select" value="PW変更" ><br><br>
 		<!--削除ボタン -->
 		<input type="hidden" name="UUID" value="${e.id}" readonly>
 		<input type="submit"  name="select" value="アカウント削除" >
