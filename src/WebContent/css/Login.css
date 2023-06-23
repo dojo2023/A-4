@@ -52,7 +52,7 @@
   .input-cont {
     position: relative;
     margin: 0 50px 30px;
-  	float:left;
+    letter-spacing: 0.05em;
   }
   .input-cont:last-of-type {
     margin-bottom: 15px;
@@ -101,6 +101,12 @@
 	transform:translateY(-50%);
 	cursor:pointer;
 	user-select:none;
+  }
+  .eye{
+      display:flex;
+      }
+  .icon{
+        margin-top:10px;
   }
 
   /* フォーカス時の下線 */
@@ -170,7 +176,7 @@
     text-align: center;
     text-transform: uppercase;
     transition: background 0.5s ease-in-out;
-    width: 80%;
+    width: 40%;
 
 }
 

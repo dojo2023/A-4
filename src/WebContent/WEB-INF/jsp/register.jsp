@@ -27,28 +27,34 @@
 	<hr>
 
 	<form method="POST" action="/NYASTER/Register">
-		IDの設定は半角英数字と記号(_)のみ使用できます<br>
 		<div class="input-cont">
+		IDの設定は半角英数字と記号(_)のみ使用できます<br>
 		ユーザーID<input type="text" id="userid" pattern="^[A-Za-z0-9_]+$" placeholder="16文字以内で入力してください" maxlength="16" name="id"><br>
-		<div class="border2"></div></div>
-		${errorMsg}<br>
+		<div class="border2"></div>
+		${errorMsg}<br></div>
 
 	    <div class="input-cont">
-		ユーザー名<input type="text" placeholder="16文字以内で入力してください" maxlength="16" name="name"><br>
-		<div class="border2"></div>
+		ユーザー名
+		<input type="text" placeholder="16文字以内で入力してください" maxlength="16" name="name"><br>
+		<div class="border2">
 		</div>
-		${errorMsg}<br>
+		${errorMsg}<br></div>
 
 		<div class="input-cont">
 		パスワードの設定は半角英数字と記号(_)のみ使用できます<br>
-		パスワード<input type="password" id="password" pattern="^[A-Za-z0-9_]+$" placeholder="8文字以上で入力してください" minlength="8" required  name="pw">
-		<i id="eye" class="fa-solid fa-eye"></i><br>
-		<div class="border2"></div>
-		</div>
-		${errorMsg}<br>
 
-		<div class="loginform-footer">
-		<input type="submit" name="REGISTER" value="登録">
+		パスワード
+		<div class="eye">
+		<input type="password" id="password" pattern="^[A-Za-z0-9_]+$" placeholder="8文字以上で入力してください" minlength="8" required  name="pw">
+		<div class="icon">
+		<i id="eye" class="fa-solid fa-eye"></i><br>
+		</div>
+		</div>
+		<div class="border2"></div>
+		${errorMsg}<br></div>
+
+		<div class="login-button-panel">
+		<input type="submit" class="login-button" name="REGISTER" value="登録">
 		</div>
 	</form>
 

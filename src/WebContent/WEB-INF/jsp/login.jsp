@@ -30,15 +30,19 @@
 	    <div class="border2"></div>
 	    </div>
 	    <div class="input-cont">
-		パスワード<input type="password" placeholder="8文字以上で入力してください" minlength="8" required name="pw">
-		<i id="eye" class="fa-solid fa-eye"></i><br>
+		パスワード
+		<div class="eye">
+		<input type="password" placeholder="8文字以上で入力してください" minlength="8" required name="pw">
+		<div class="icon">
+		<i id="eye" class="fa-solid fa-eye"></i><br></div>
+		</div>
 		<div class="border2"></div>
 		</div>
 
 		${errorMsg}<br>
 		 <div class="login-button-panel">
-		<input type="reset" name="RESET" value="リセット">
-		<input type="submit" name="LOGIN" value="ログイン">
+		<input type="reset" class="login-button" name="RESET" value="リセット">
+		<input type="submit" class="login-button" name="LOGIN" value="ログイン">
 		</div>
 
 		<div class="loginform-footer">
