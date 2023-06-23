@@ -22,7 +22,10 @@
 
 <body>
 
-	<input type="button" onclick="window.location='%_myname_%'" value="ログアウト">
+	 <!-- ログアウト -->
+        <form method="POST" action="/NYASTER/UserPage">
+		<input type="submit"  name="select" value="ログアウト" >
+		</form>
 
 	<!-- メインメニュー -->
 	<jsp:include page="includedMenu.jsp" />

@@ -14,8 +14,10 @@ import javax.servlet.http.HttpSession;
 import DAO.AccountsDao;
 import DAO.GoalsDao;
 import DAO.PostsDAO;
+import DAO.ReactionsDao;
 import model.Goals;
 import model.Posts;
+import model.Reactions;
 
 @WebServlet("/UserPage")
 public class UserPage extends HttpServlet {
@@ -72,5 +74,59 @@ public class UserPage extends HttpServlet {
 		RequestDispatcher dispatcher= request.getRequestDispatcher("/WEB-INF/jsp/loginUser.jsp");
 		dispatcher.forward(request, response);
 
+	}
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		HttpSession session = request.getSession();
+		if ((String)session.getAttribute("id") == null) {
+			response.sendRedirect("/NYASTER/Login");
+			return;
+		}
+		request.setCharacterEncoding("UTF-8");
+        response.setContentType("application/json");
+		response.setHeader("Cache-Control", "nocache");
+		response.setCharacterEncoding("utf-8");
+		
+		// ログインされているユーザのIDを取得
+		String userUuid = (String)session.getAttribute("id");
+		System.out.println("操作："+(request.getParameter("select")));
+		
+		if (request.getParameter("select").equals("ナイス")) {
+
+			// リクエストパラメータを取得する
+			request.setCharacterEncoding("UTF-8");
+			String postId = request.getParameter("postId");
+			System.out.println(postId);
+
+			// 登録処理を行う
+			ReactionsDao reDao = new ReactionsDao();
+			Reactions p = new Reactions();
+			p.setPost_id(postId);
+			Reactions u = new Reactions();
+			u.setUser_uuid(userUuid);
+			boolean result = reDao.check(u,p);
+			request.setAttribute("check", result);
+			if (result == false) {
+				if (reDao.Reactioninsert(new Reactions(userUuid,postId))) {
+
+					System.out.println("ナイス＋1");
+					response.sendRedirect("/NYASTER/TopPage");
+				}else {
+					System.out.println("できませんでした");
+				}
+			}else {
+				if(reDao.delete(new Reactions(userUuid,postId))) {
+
+					System.out.println("ナイス－1");
+					response.sendRedirect("/NYASTER/TopPage");
+				}	else {
+					System.out.println("リアクションできん");
+				}
+			}
+
+		}else if (request.getParameter("select").equals("ログアウト")) {
+			session.removeAttribute("id");
+			System.out.println("ログアウトしました");
+			response.sendRedirect("/NYASTER/Login");
+		}
 	}
 }
