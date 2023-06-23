@@ -31,6 +31,68 @@
             <form>
                 <input type="checkbox" name="select" id="nice_${e.id}" value="ナイス" onchange= "reactionpost('${e.id}');"<c:if test="${e.reactionCheck == 1}" >checked</c:if>></input>
             </form>
+            <button class="trigger-comments-${e.id}">コメント</button>
+
+            <!-- コメントモーダル -->
+			<div class="iziModal_comments_${e.id}" data-izimodal-title="コメント" data-izimodal-subtitle="説明文">
+				<div class="comments-area">
+					<p>コメント</p>>
+					<button onclick="asyncComments()">表示する</button>
+					<p>${e.id}</p>>
+				</div>
+				<div>コメントする</div>
+			    <form method="POST" action="/NYASTER/Comment">
+                    <input type="hidden" name="post_id" value="${e.id}" readonly>
+                    <input type="text" name="cmt_msg" min="0" max="50" required>
+			       <div> <input type="submit" name="select" title="コメントする" value="add"> </div>
+                </form>
+			</div>
+
+			<script>
+				$(function () {
+				$(".iziModal_comments_${e.id}").iziModal({
+				  width: "600px",
+				  transitionIn: "fadeInUp",
+				  padding: "20px",
+				  headerColor: "#768793",
+				  top: "30px"});});
+
+				$(document).on('click', '.trigger-comments-${e.id}', function (event) {
+				    event.preventDefault();
+				    $('.iziModal_comments_${e.id}').iziModal('open');
+				});
+
+
+                function asyncComments(){
+                    //{変数名：中に入れるもの}みたいに書いて、複数の値をpostData変数に格納
+                    let postData = {
+                        post_id: '${e.id}',
+                        select: 'view'
+                    };
+
+                    $.ajaxSetup({scriptCharset:'utf-8'});
+                    $.ajax({
+                        url: '/NYASTER/Comment',
+                        type:"POST",
+                        dataType:"json",
+                        data: postData,
+                        processDate:false,
+                        timeStamp: new Date().getTime()
+
+                    }).done(function(data) { 
+                        // 今回は上の<div id="test"></div>の中に返ってきた文字列を入れる
+                        for(let i=0; i<data.length; i++){
+                            console.log(data[i].comment_content);
+                            // document.getElementById("test").innerText=data[i].name;
+                        }
+                    })
+                    //非同期通信が失敗したときの処理
+                    .fail(function() {
+                        //失敗とアラートを出す
+                        alert("失敗！");
+                    });
+                }
+			</script>
 
     	</c:forEach>
         <hr>
@@ -56,6 +118,7 @@
             <div class="login-button-panel">
                 <input type="submit" name="select" class="login-button" title="目標を設定する" value="追加">
             </div>
+            <div class="trigger-comments">コメント</div>
         </form>
 
         <h2>目標リスト</h2>
@@ -75,6 +138,8 @@
     <!-- フッターのコンテンツをここに追加します -->
     <p>&copy; 2023 NYASTAR. All rights reserved.</p>
     </footer>
+
+	<jsp:include page="includedModal.jsp" />
 
 	<!-- JS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
