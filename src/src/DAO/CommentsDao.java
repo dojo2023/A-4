@@ -1,4 +1,5 @@
 package DAO;
+
 import java.sql.Connection;//DBMSへの切断や接続
 import java.sql.DriverManager;//DBMSへの接続準備
 import java.sql.PreparedStatement;//SQLの送信
@@ -17,13 +18,9 @@ public class CommentsDao {
 		List<Comments> commentList = new ArrayList<Comments>();
 
 		try {
-	// JDBCドライバを読み込む
 		Class.forName("org.h2.Driver");
-
-	// データベースに接続する
 		conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/data/nyastar", "sa", "");
 
-	// SQL文を準備する
 		String sql = "SELECT COMMENT_ID, COMMENT_CONTENT, COMMENT_TIME, POST_ID, USER_NAME "
 				+ "FROM COMMENTS "
 				+ "JOIN ACCOUNTS ON COMMENTS.USER_UUID = ACCOUNTS.USER_UUID "
@@ -31,15 +28,9 @@ public class CommentsDao {
 				+ "ORDER BY COMMENT_TIME DESC";
 
 		PreparedStatement pStmt = conn.prepareStatement(sql);
-
-	// SQL文を完成させる
-			pStmt.setString(1,post_id);
-
-
-	// SQL文を実行し、結果表を取得する
+		pStmt.setString(1,post_id);
 		ResultSet rs = pStmt.executeQuery();
 
-		// 結果表をコレクションにコピーする ArryList（JavaBeans）に入れなおしている
 		while (rs.next()) {
 			Comments com = new Comments();
 			com.setComment_id(rs.getString("COMMENT_ID"));
