@@ -9,6 +9,7 @@ import java.util.UUID;
 		private String comment_id; //コメントID
 		private String comment_content;   //コメント内容
 		private String user_uuid; //ユーザUUID
+		private String user_name;
 		private String post_id;  //投稿ID
 		private Timestamp comment_time;  //コメント送信時間
 
@@ -25,6 +26,10 @@ import java.util.UUID;
 			Date now = new Date();
 			Timestamp ts = new Timestamp(now.getTime());
 			this.comment_time = ts;
+//			this.comment_time = ts;
+//			SimpleDateFormat time = new SimpleDateFormat("yyyy/MM/dd");
+//			this.comment_time = time.format(ts);
+//			System.out.println("設定した時間：" + this.comment_time);
 
 		}
 
@@ -70,6 +75,14 @@ import java.util.UUID;
 		    public void setComment_time(Timestamp comment_time){
 		        this.comment_time = comment_time;
 		    }
+
+		  //ユーザー名
+			public String getUser_name() {
+				return user_name;
+			}
+			public void setUser_name(String user_name) {
+				this.user_name = user_name;
+			}
 	}
 
 
