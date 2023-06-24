@@ -22,14 +22,14 @@ public class CommentsDao {
 
 	// データベースに接続する
 		conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/data/nyastar", "sa", "");
-		System.out.println("postID"+post_id);
+
 	// SQL文を準備する
 		String sql = "SELECT COMMENT_ID, COMMENT_CONTENT, COMMENT_TIME, POST_ID, USER_NAME "
 				+ "FROM COMMENTS "
 				+ "JOIN ACCOUNTS ON COMMENTS.USER_UUID = ACCOUNTS.USER_UUID "
 				+ "WHERE POST_ID = ? "
 				+ "ORDER BY COMMENT_TIME DESC";
-		System.out.println(sql);
+
 		PreparedStatement pStmt = conn.prepareStatement(sql);
 
 	// SQL文を完成させる
