@@ -3,9 +3,13 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <!-- キャッシュの保存を無効化 -->
+    <meta http-equiv="Cache-Control" content="no-cache">
 	<!-- 共通のCSS読み込み -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 	<jsp:include page="includedCSS.jsp" />
-	
+
+
 	<title>トップページ｜NYASTAR</title>
 
 </head>
@@ -33,36 +37,43 @@
             </form>
             <button class="trigger-comments-${e.id}" onclick="asyncComments('${e.id}')">コメント</button>
 
-            <!-- コメントモーダル -->
-			<div class="iziModal_comments_${e.id}" data-izimodal-title="コメント" data-izimodal-subtitle="説明文">
-				<h3>コメント一覧</h3>
+		<!-- コメントモーダル -->
+            <div class="iziModal_comments_${e.id}" data-izimodal-title="コメント" data-izimodal-subtitle="説明文">
+                <h3>コメント一覧</h3>
                 <div id="comments-area-${e.id}">
-                    <!-- コメントが表示される -->
-				</div>
+                <!-- ここにコメントを読み込ませる -->
+                </div>
                 <br>
-				<div>コメントする</div>
-			    <form method="POST" action="/NYASTER/Comment">
-                    <input type="hidden" name="post_id" value="${e.id}" readonly>
-                    <input type="text" name="cmt_msg" min="0" max="50" required>
-			       <div> <input type="submit" name="select" title="コメントする" value="add"> </div>
+                <div>コメントする</div>
+                <form method="POST" action="/NYASTER/Comment">
+                <input type="hidden" name="post_id" value="${e.id}" readonly>
+                <input type="text" name="cmt_msg" min="0" max="50" required>
+                <div> <input type="submit" name="select" title="コメントする" value="add"> </div>
                 </form>
-			</div>
+            </div>
 
-			<script>
-                $(function () {
+            <script>
+                $(function() {
                 $(".iziModal_comments_${e.id}").iziModal({
                     width: "600px",
                     transitionIn: "fadeInUp",
                     padding: "20px",
                     headerColor: "#768793",
-                    top: "30px"});});
+                    top: "30px",
+                    // モーダルが閉じられたら取得したコメント要素も破棄する.
+                    onClosed: function() { 
+                    let CommentElements = document.getElementsByClassName("comment-contents");
+                    let length = CommentElements.length;
+                    for (let i=0; i<length; i++) {
+                        CommentElements[0].remove();
+                    }}});
 
-                $(document).on('click', '.trigger-comments-${e.id}', function (event) {
+                $(document).on('click', '.trigger-comments-${e.id}', function(event) {
                     event.preventDefault();
                     $('.iziModal_comments_${e.id}').iziModal('open');
                 });
-			</script>
-
+                });
+            </script>
     	</c:forEach>
         <hr>
 
@@ -111,7 +122,7 @@
 	<jsp:include page="includedModal.jsp"/>
 
 	<!-- JS -->
-    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script> -->
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/izimodal/1.5.1/js/iziModal.min.js"></script>
     <script type="text/javascript" src="./js/jquery-migrate-3.4.1.js"></script>

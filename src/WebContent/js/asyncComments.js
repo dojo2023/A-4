@@ -28,13 +28,18 @@ function asyncComments(id){
         // elementText = data[i].user_name;
         var newElement = document.createElement("div");
         newElement.textContent = data[i].user_name;
-        newElement.setAttribute("class", "comment-box");
+        // newElement.setAttribute("class", "comment-box");
+        //再表示時に一括削除する為の共通クラスを設定
+        newElement.classList.add("comment-contents"); 
+        newElement.classList.add("comment-userName");
         element.insertAdjacentElement("beforeend", newElement);
 
         // elementText = data[i].comment_content;
         var newElement = document.createElement("div");
         newElement.textContent = data[i].comment_content;
-        newElement.setAttribute("class", "comment-box");
+        // newElement.setAttribute("class", "comment-box");
+        newElement.classList.add("comment-contents");
+        newElement.classList.add("comment-msg");
         element.insertAdjacentElement("beforeend", newElement);
 
         // 投稿時間を変換して表示
@@ -52,7 +57,9 @@ function asyncComments(id){
         // elementText = formattedDateTime;
         var newElement = document.createElement("div");
         newElement.textContent = formattedDateTime;
-        newElement.setAttribute("class", "comment-box");
+        // newElement.setAttribute("class", "comment-box");
+        newElement.classList.add("comment-contents");
+        newElement.classList.add("comment-timestamp");
         element.insertAdjacentElement("beforeend", newElement);
     }
     })
