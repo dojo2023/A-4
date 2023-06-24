@@ -42,7 +42,6 @@ public class Comment extends HttpServlet {
 		response.setHeader("Cache-Control", "nocache");
 		response.setCharacterEncoding("utf-8");
 
-
 		//コメントテーブルとのやり取り用DAO
 		CommentsDao cDao = new CommentsDao();
 
