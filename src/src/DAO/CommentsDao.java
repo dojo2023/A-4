@@ -37,6 +37,7 @@ public class CommentsDao {
 			com.setComment_content(rs.getString("COMMENT_CONTENT"));
 			com.setPost_id(rs.getString("POST_ID"));
 			com.setComment_time(rs.getTimestamp("COMMENT_TIME"));
+			com.setUser_name(rs.getString("USER_NAME"));
 			commentList.add(com);
 		}
 	}
@@ -85,7 +86,7 @@ public class CommentsDao {
 			conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/data/nyastar", "sa", "");
 
 			// SQL文を準備する
-			String sql = "insert into Comments values (?, ?, ?, ?, ?)";
+			String sql = "insert into Comments(COMMENT_ID, COMMENT_CONTENT, POST_ID, COMMENT_TIME, USER_UUID) values (?, ?, ?, ?, ?)";
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 			pStmt.setString(1,cmts.getComment_id());
 			pStmt.setString(2,cmts.getComment_content());
