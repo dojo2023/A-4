@@ -5,7 +5,7 @@
 <head>
 	<!-- 共通のCSS読み込み -->
 	<jsp:include page="includedCSS.jsp" />
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+	
 	<title>トップページ｜NYASTAR</title>
 
 </head>
@@ -31,15 +31,15 @@
             <form>
                 <input type="checkbox" name="select" id="nice_${e.id}" value="ナイス" onchange= "reactionpost('${e.id}');"<c:if test="${e.reactionCheck == 1}" >checked</c:if>></input>
             </form>
-            <button class="trigger-comments-${e.id}">コメント</button>
+            <button class="trigger-comments-${e.id}" onclick="asyncComments('${e.id}')">コメント</button>
 
             <!-- コメントモーダル -->
 			<div class="iziModal_comments_${e.id}" data-izimodal-title="コメント" data-izimodal-subtitle="説明文">
-				<div class="comments-area">
-					<p>コメント</p>>
-					<button onclick="asyncComments()">表示する</button>
-					<p>${e.id}</p>>
+				<h3>コメント一覧</h3>
+                <div id="comments-area-${e.id}">
+                    <!-- コメントが表示される -->
 				</div>
+                <br>
 				<div>コメントする</div>
 			    <form method="POST" action="/NYASTER/Comment">
                     <input type="hidden" name="post_id" value="${e.id}" readonly>
@@ -49,49 +49,18 @@
 			</div>
 
 			<script>
-            $(function () {
-            $(".iziModal_comments_${e.id}").iziModal({
-                width: "600px",
-                transitionIn: "fadeInUp",
-                padding: "20px",
-                headerColor: "#768793",
-                top: "30px"});});
+                $(function () {
+                $(".iziModal_comments_${e.id}").iziModal({
+                    width: "600px",
+                    transitionIn: "fadeInUp",
+                    padding: "20px",
+                    headerColor: "#768793",
+                    top: "30px"});});
 
-            $(document).on('click', '.trigger-comments-${e.id}', function (event) {
-                event.preventDefault();
-                $('.iziModal_comments_${e.id}').iziModal('open');
-            });
-
-
-            function asyncComments(){
-                //{変数名：中に入れるもの}みたいに書いて、複数の値をpostData変数に格納
-                let postData = {
-                    post_id: '${e.id}',
-                    select: 'view'
-                };
-
-                $.ajaxSetup({scriptCharset:'utf-8'});
-                $.ajax({
-                    url: '/NYASTER/Comment',
-                    type:"POST",
-                    dataType:"json",
-                    data: postData,
-                    processDate:false,
-                    timeStamp: new Date().getTime()
-
-                }).done(function(data) { 
-                    // 今回は上の<div id="test"></div>の中に返ってきた文字列を入れる
-                    for(let i=0; i<data.length; i++){
-                        console.log(data[i].comment_content);
-                        // document.getElementById("test").innerText=data[i].name;
-                    }
-                })
-                //非同期通信が失敗したときの処理
-                .fail(function() {
-                    //失敗とアラートを出す
-                    alert("失敗！");
+                $(document).on('click', '.trigger-comments-${e.id}', function (event) {
+                    event.preventDefault();
+                    $('.iziModal_comments_${e.id}').iziModal('open');
                 });
-            }
 			</script>
 
     	</c:forEach>
@@ -139,17 +108,18 @@
     <p>&copy; 2023 NYASTAR. All rights reserved.</p>
     </footer>
 
-	<jsp:include page="includedModal.jsp" />
+	<jsp:include page="includedModal.jsp"/>
 
 	<!-- JS -->
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script> -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/izimodal/1.5.1/js/iziModal.min.js"></script>
     <script type="text/javascript" src="./js/jquery-migrate-3.4.1.js"></script>
     <script src="js/iziToast.min.js" type="text/javascript"></script>
     <script src="js/iziToast.js" type="text/javascript"></script>
-
     <script src="js/Toast.js" type="text/javascript"></script>
     <script src="js/script.js"></script>
 	<script src="js/asyncReaction.js"></script>
+    <script src="js/asyncComments.js"></script>
 </body>
 </html>
