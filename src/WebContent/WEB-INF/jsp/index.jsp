@@ -55,17 +55,18 @@
             <script>
                 $(function() {
                 $(".iziModal_comments_${e.id}").iziModal({
-                    width: "600px",
+                    width: "500px",
                     transitionIn: "fadeInUp",
+                    ariahidden: "true",
                     padding: "20px",
                     headerColor: "#768793",
-                    top: "30px",
+                    top: "230px",
                     // モーダルが閉じられたら取得したコメント要素も破棄する.
-                    onClosed: function() { 
-                    let CommentElements = document.getElementsByClassName("comment-contents");
-                    let length = CommentElements.length;
-                    for (let i=0; i<length; i++) {
-                        CommentElements[0].remove();
+                    onClosed: function() {
+                        let CommentElements = document.getElementsByClassName("comment-contents");
+                        let length = CommentElements.length;
+                        for (let i=0; i<length; i++) {
+                            CommentElements[0].remove();
                     }}});
 
                 $(document).on('click', '.trigger-comments-${e.id}', function(event) {
