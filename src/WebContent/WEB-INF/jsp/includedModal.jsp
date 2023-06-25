@@ -3,6 +3,13 @@
 <!DOCTYPE html>
 
 <!-- 投稿モーダル -->
+
+ <style>
+     .iziModal_post {
+         display: none;
+     }
+ </style>
+
 <div class="iziModal_post" data-izimodal-title="投稿" data-izimodal-subtitle="説明文">
    <h2>がんばり投稿</h2>
    <form method="POST" action="/NYASTER/TopPage">
@@ -24,8 +31,15 @@
    </form>
 </div>
 
-
 <script>
+	// モーダルに要素が配置される前に表示されないため, ロード後2秒経過した後表示する
+	window.addEventListener('DOMContentLoaded', function() {
+	    var postModalElement = document.querySelectorAll('.iziModal_post');
+	    setTimeout(function() {
+	        postModalElement.style.display = 'block';
+	    }, 2000); // 2秒後に要素を表示
+    });
+
 	$(function () {
 	  $(".iziModal_post").iziModal({
 	    width: "600px",
@@ -40,3 +54,5 @@
 	});
 
 </script>
+
+
