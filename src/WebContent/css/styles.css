@@ -1,0 +1,421 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
+@import url(http://fonts.googleapis.com/earlyaccess/notosansjp.css);
+
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+  font-family: 'Noto Sans JP', sans-serif;
+  background-color: #fafafa;
+  color: #333; /* 文字の色 */
+  padding: unset;
+  margin: unset;
+}
+
+.material-symbols-outlined {
+    margin-right: 5px;
+    font-variation-settings:
+    'FILL' 0,
+    'wght' 500,
+    'GRAD' 200,
+    'opsz' 48
+}
+
+  .menu {
+    top: 0; /* 上端に配置 */
+    left: 0; /* 左端に配置 */
+    bottom: 0; /* 下端まで広がる */
+    width: 160px; /* メニューの幅 */
+    background-color: #f2f2f2; 
+    padding: 25px; /* メニューの内側の余白 */
+    position: fixed; /* 固定位置 */
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.2);
+  }
+
+  .menu .logo {
+    font-size: 25px;
+    font-weight: bold;
+  }
+
+  /* .menu .logo {
+    width: 150px;
+    height: 150px;
+  } */
+
+  /* 縦並びメニュー要素（全体） */
+  .menu ul {
+    list-style: none;
+    padding-inline-start: 0px;
+    padding-top: 5px;
+  }
+  
+  /* 縦並びメニュー要素（個別） */
+  .menu li {
+    margin: 40px 0px;
+  }
+  
+  .menu a {
+    display: block;
+    color: #333; /* 文字の色 */
+    font-size: 20px;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+  }
+
+  .menu a:hover {
+    background-color: #e1e1e1;
+    font-weight: 700;
+  }
+
+  .menu .logout {
+    position: absolute;
+    bottom: 25px;
+    color: #333; 
+  }
+
+
+  .menu .material-symbols-outlined {
+    font-variation-settings:
+    'FILL' 0,
+    'wght' 600,
+    'GRAD' 200,
+    'opsz' 48
+  }
+
+  .menu a:hover .material-symbols-outlined {
+    margin-right: 5px;
+    font-variation-settings:
+    'FILL' 1,
+    'wght' 600,
+    'GRAD' 200,
+    'opsz' 48
+  }
+
+  .menu .logout .material-symbols-outlined {
+    font-size: 25px;
+    font-variation-settings:
+    'FILL' 0,
+    'wght' 600,
+    'GRAD' 200,
+    'opsz' 48
+  }
+
+  /* メインコンテンツ */
+  .title {
+    display: none;
+  }
+
+  .page_title {
+    font-size: 25px;
+    font-weight: bold;
+  }
+
+  .content {
+    display: flex;
+    flex: 1; /* メインコンテンツが残りのスペースを占めるようにする */
+    padding: 40px 10px 40px 60px; /* メインコンテンツの内側の余白 */
+    margin-left: 200px; /* メニューの幅分だけメインコンテンツを右にずらす */
+    flex-direction:column;
+    min-height: 100vh;
+  }
+  
+    /* 投稿カードを並べるのFlexコンテナ */
+  .flexContainer {
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 30px;
+    width: 100%;
+  }
+    /* 投稿カード */
+    .post_card {
+      width: 250px;
+      padding: 15px;
+      height: 300px;
+      margin-right: 30px;
+      margin-bottom: 40px;
+      background-color: #fff;
+      box-shadow: 0 0 8px rgba(0, 0, 0, .16);
+      transition:all 0.3s;
+    }
+
+    .post_card:hover {
+      box-shadow:0 0 15px rgba(0, 0, 0, .16), 0 2px 5px rgba(0, 0, 0, 0.3);
+      transform: translateY(-1.5px);
+    }
+
+    /* 投稿カードがふわっと表示される */
+    .fadeUp {
+      animation-name:fadeUpAnime;
+      animation-duration:0.5s;
+      animation-fill-mode:forwards;
+      opacity: 0;
+      }
+      @keyframes fadeUpAnime{
+        from {
+          opacity: 0;
+        transform: translateY(20px);
+        }
+      
+        to {
+          opacity: 1;
+        transform: translateY(0);
+        }
+      }
+
+    .delay-time{
+      animation-delay: 0.2s;
+      }
+    
+      /* ユーザアイコン */
+      .post_card .flex {
+        display: flex; /*横並び*/
+        align-items: center;
+        justify-content: flex-start; 
+      }
+
+      .post_card .flex .u-info .u-name{
+        padding: 0;
+        margin: 0;
+        font-size: 18px;
+        font-weight: 500;
+      }
+
+      .post_card .flex .u-info .u-id{
+        padding: 0;
+        margin: 0;
+        font-size: 14px;
+        font-weight: 500;
+      }
+
+      .post_card .flex .user_icon {
+        width: 30px;
+        height: 30px;
+        margin-right: 12px; 
+        overflow: hidden;
+        border-radius: 50%;
+        border: 3px solid #eeeeee;
+      }
+
+      .post_card .flex .user_icon img {
+        display: block; /* 追加 */
+        max-width: 100%;
+        max-height: 100%;
+        width: auto;
+        height: auto;
+        object-fit: contain;
+      }
+
+      /* プログレスバー */
+      progress {
+        width: 230px; 
+        height: 10px; 
+        background-color: #f0f0f0; /* プログレスバーの背景色を指定 */
+        border: none; /* プログレスバーの枠線を削除 */
+        border-radius: 10px; 
+        overflow: hidden; 
+        margin: 0px 5px;
+      }
+    
+      progress::-webkit-progress-value {
+        background-color: #939393; /* プログレスバーの値部分の背景色を指定 */
+      }
+    
+      progress::-webkit-progress-bar {
+        background-color: #f0f0f0; /* プログレスバーの背景部分の背景色を指定 */
+      }
+
+      .progress-label {
+        font-size: 13px;
+        margin: 0px 5px -7px 5px;
+      }
+
+      /* がんばりタグ・時間 */
+      .g-Content {
+        display: flex;
+        justify-content: space-between;
+        margin: 10px 10px 8px 5px;
+        font-size: 18px;
+        font-weight: bold;
+        border-bottom: 1px #333 solid;
+        padding-bottom: 3px;
+        width: 230px;
+      }
+
+      .g-Content .g-tag {
+        text-align: left;
+        margin-left: 12px;
+      }
+
+      .g-Content .g-tag .icon{
+        margin-right: 6px;
+      }
+
+      .g-Content .g-times {
+        text-align: right;
+        margin-right: 12px;
+      }
+
+      /* 投稿メッセージ */
+      .msg {
+        /* margin: 10px 0px 20px; */
+        margin: 20px 0px 5px 0px;
+        border: 1px #b9b9b9 solid;
+        width: 220px;
+        border-radius: 10px;
+        padding: 8px;
+        resize: none;
+        font-family: 'Noto Sans JP', sans-serif;
+      }
+
+      textarea:focus {
+        outline: none;
+        /* その他のスタイルを追加できます */
+      }
+
+      /* 投稿時間 */
+      .post_time {
+        font-size: 12px;
+        color: #707070;
+        text-align: right;
+        margin-right: 10px;
+      }
+
+      /* リアクションアイコン（コメント・ナイス） */
+      .reaction {
+        display: flex; /*横並び*/
+        align-items: center;
+        justify-content: flex-start; 
+        margin: 15px 5px 0px 5px;
+      }
+
+      .post_card .reaction .fa-comment{
+        margin-right: 12px; 
+      }
+
+      .post_card .reaction .reaction-num {
+        font-size: 10px;
+        margin-left: 3px;
+      }
+
+
+/* 
+  .el_flexItem:nth-of-type(3n) {
+    margin-right: 0;
+  } */
+
+  footer {
+    font-size: 13px;
+    width: 100%;
+    position: fixed;
+    bottom: 50px;
+  }
+
+
+
+  /* メディアクエリ */
+
+  @media screen and (max-width: 950px) {
+    /* メニューのテキストを非表示 */
+    .menu .text {
+      display: none;
+    }
+
+    /* ヘッダーのロゴを非表示 */
+    .menu .logo {
+      display: none;
+    }
+
+    .menu {
+        width: 30px; /* メニューの幅 */
+        padding: 25px 25px 25px 10px;
+    }
+
+    .content {
+        flex: 1; /* メインコンテンツが残りのスペースを占めるようにする */
+        padding: 40px 10px 40px 40px; /* メインコンテンツの内側の余白 */
+        margin-left: 60px; /* メニューの幅分だけメインコンテンツを右にずらす */
+    }
+  }
+
+  @media screen and (max-width: 400px) {
+    .content {
+      flex: 1; /* メインコンテンツが残りのスペースを占めるようにする */
+      padding: 15px 25px; /* メインコンテンツの内側の余白 */
+      margin-left: 0px; /* メニューの幅分だけメインコンテンツを右にずらす */
+    }
+
+    /* メニューのテキストを非表示 */
+    .menu .text {
+      display: none;
+    }
+
+    /* ヘッダーのロゴを非表示 */
+    .menu .logo {
+      display: none;
+    }
+
+    /* ログアウトアイコンを非表示 */
+    .menu .logout {
+      display: none;
+    }
+
+    .title {
+      display: unset;
+      font-size: 20px;
+      font-weight: bold;
+    }
+
+    .home {
+      font-size: 20px;
+    }
+
+    .menu {
+      /* PC用のプロパティをリセットする */
+      top: unset; 
+      left: unset;
+      align-items: unset;
+      justify-content: unset;
+      box-shadow: unset;
+      padding: unset;
+
+      background-color: #fafafa;
+      bottom: 0;
+      height: 60px;
+      width: 100%;
+      border-top: 0.7px #d4d4d4 solid;
+      }
+
+      .menu ul {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        text-align: center;
+        list-style: none;
+        margin: 10px 2px;
+        padding: 0px;
+      }
+      
+      .menu li {
+        margin: 5px 0px 0px 0px;
+        align-items: center;
+        padding: unset;
+        flex: 1;
+      }
+      
+      .menu a {
+        display: unset;
+        color: #333; /* 文字の色 */
+        text-decoration: none;
+        transition: background-color 0.3s ease;
+      }
+
+      .menu .material-symbols-outlined {
+        /* margin-right: 5px; */
+        font-size: 27px;
+        font-variation-settings:
+        'FILL' 0,
+        'wght' 500,
+        'GRAD' 200,
+        'opsz' 48
+      }
+  }

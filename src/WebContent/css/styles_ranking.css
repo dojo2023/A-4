@@ -1,0 +1,133 @@
+/* ランキング表 */
+
+.content ul {
+    padding: 0px 50px 0px 0px;
+    margin-top: 50px;
+}
+
+/* タグボタン */
+.ranking-tag {
+    display: flex;
+    margin: 10px auto;
+    width: 500px;
+    justify-content: space-between;
+    list-style: none;
+    transition:all 0.3s;
+}
+
+.ranking-tag .flexbox {
+    display: flex;
+    justify-content: space-around;
+    align-items: center; 
+}
+
+.tag-button {
+    display: inline-block;
+    border-radius: 40px;
+    font-size: 12pt;
+    text-align: center;
+    cursor: pointer;
+    padding: 2px 12px;
+    background: #ffffff;
+    color: #616161;
+    transition: 0.3s;
+    border: 0.6px solid #ececec;
+    margin: 0px 10px;
+}
+.tag-button:hover {
+    border: 0.6px solid #cccccc;
+    font-weight: bold;
+}
+
+/* ランキング表 */
+
+.content ul {
+    padding: 0px 50px 0px 0px;
+    margin-top: 20px;
+}
+
+.ranking_result .user_info {
+    display: flex;
+    margin: 25px auto;
+    width: 500px;
+    justify-content: space-between;
+    margin-bottom: 30px;
+    list-style: none;
+    transition:all 0.3s;
+}
+
+.ranking_result .flexbox {
+    display: flex;
+    padding-left: 20px;
+    justify-content: flex-start;
+    align-items: center; /* 縦方向の中央揃え */
+    width: 500px;
+    border-bottom: 1px #a3a3a3 solid;
+}
+
+.ranking_result .flexbox:hover {
+    background-color: #fff;
+    border-bottom: 1.6px #707070 solid;
+}
+
+.ranking_result .flexbox .rank {
+    width: 55px;
+    font-size: 18px;
+    font-weight: 500;
+    text-align: center;
+}
+
+.ranking_result .flexbox .rank img {
+    width: 55px;
+    height: auto;
+}
+
+.ranking_result .flexbox .icon {
+    width: 30px;
+    height: 30px;
+    margin: 0px 8px 0px 28px; 
+    overflow: hidden;
+    border-radius: 50%;
+    border: 3px solid #eeeeee;
+    background-color: #767d83;
+  }
+
+  .ranking_result .flexbox .icon img {
+    display: block; /* 追加 */
+    max-width: 100%;
+    max-height: 100%;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+  }
+
+
+.ranking_result .flexbox .user {
+    font-size: 20px;
+    width: 120px;
+    margin-right: 15px;
+}
+
+.ranking_result .flexbox .user .id{
+    font-size: 12px;
+    margin-bottom: -3px;
+}
+
+.ranking_result .flexbox .user .name{
+    font-size: 18px;
+    font-weight: 500;
+}
+
+.ranking_result .flexbox .g-time {
+    margin-left: 25px;
+}
+
+.ranking_result .flexbox .g-time .g-time-label{
+    font-size: 11px;
+    margin-bottom: -3px;
+}
+
+.ranking_result .flexbox .g-time .g-time-record{
+    font-size: 18px;
+    font-weight: 400;
+}
