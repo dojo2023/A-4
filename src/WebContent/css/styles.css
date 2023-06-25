@@ -26,7 +26,7 @@ body {
     left: 0; /* 左端に配置 */
     bottom: 0; /* 下端まで広がる */
     width: 160px; /* メニューの幅 */
-    background-color: #f2f2f2; 
+    background-color: #f2f2f2;
     padding: 25px; /* メニューの内側の余白 */
     position: fixed; /* 固定位置 */
     box-shadow: 2px 0 5px rgba(0, 0, 0, 0.2);
@@ -48,12 +48,12 @@ body {
     padding-inline-start: 0px;
     padding-top: 5px;
   }
-  
+
   /* 縦並びメニュー要素（個別） */
   .menu li {
     margin: 40px 0px;
   }
-  
+
   .menu a {
     display: block;
     color: #333; /* 文字の色 */
@@ -70,7 +70,7 @@ body {
   .menu .logout {
     position: absolute;
     bottom: 25px;
-    color: #333; 
+    color: #333;
   }
 
 
@@ -118,7 +118,7 @@ body {
     flex-direction:column;
     min-height: 100vh;
   }
-  
+
     /* 投稿カードを並べるのFlexコンテナ */
   .flexContainer {
     display: flex;
@@ -155,7 +155,7 @@ body {
           opacity: 0;
         transform: translateY(20px);
         }
-      
+
         to {
           opacity: 1;
         transform: translateY(0);
@@ -165,12 +165,12 @@ body {
     .delay-time{
       animation-delay: 0.2s;
       }
-    
+
       /* ユーザアイコン */
       .post_card .flex {
         display: flex; /*横並び*/
         align-items: center;
-        justify-content: flex-start; 
+        justify-content: flex-start;
       }
 
       .post_card .flex .u-info .u-name{
@@ -190,7 +190,7 @@ body {
       .post_card .flex .user_icon {
         width: 30px;
         height: 30px;
-        margin-right: 12px; 
+        margin-right: 12px;
         overflow: hidden;
         border-radius: 50%;
         border: 3px solid #eeeeee;
@@ -207,19 +207,19 @@ body {
 
       /* プログレスバー */
       progress {
-        width: 230px; 
-        height: 10px; 
+        width: 230px;
+        height: 10px;
         background-color: #f0f0f0; /* プログレスバーの背景色を指定 */
         border: none; /* プログレスバーの枠線を削除 */
-        border-radius: 10px; 
-        overflow: hidden; 
+        border-radius: 10px;
+        overflow: hidden;
         margin: 0px 5px;
       }
-    
+
       progress::-webkit-progress-value {
         background-color: #939393; /* プログレスバーの値部分の背景色を指定 */
       }
-    
+
       progress::-webkit-progress-bar {
         background-color: #f0f0f0; /* プログレスバーの背景部分の背景色を指定 */
       }
@@ -261,9 +261,11 @@ body {
         margin: 20px 0px 5px 0px;
         border: 1px #b9b9b9 solid;
         width: 220px;
+        height: 90px;
         border-radius: 10px;
         padding: 8px;
         resize: none;
+        font-size: 15px;
         font-family: 'Noto Sans JP', sans-serif;
       }
 
@@ -284,12 +286,17 @@ body {
       .reaction {
         display: flex; /*横並び*/
         align-items: center;
-        justify-content: flex-start; 
+        justify-content: flex-start;
         margin: 15px 5px 0px 5px;
       }
 
       .post_card .reaction .fa-comment{
-        margin-right: 12px; 
+        margin-right: 12px;
+        cursor: pointer;
+      }
+
+      .post_card .reaction .fa-heart{
+        cursor: pointer;
       }
 
       .post_card .reaction .reaction-num {
@@ -298,7 +305,7 @@ body {
       }
 
 
-/* 
+/*
   .el_flexItem:nth-of-type(3n) {
     margin-right: 0;
   } */
@@ -371,7 +378,7 @@ body {
 
     .menu {
       /* PC用のプロパティをリセットする */
-      top: unset; 
+      top: unset;
       left: unset;
       align-items: unset;
       justify-content: unset;
@@ -394,14 +401,14 @@ body {
         margin: 10px 2px;
         padding: 0px;
       }
-      
+
       .menu li {
         margin: 5px 0px 0px 0px;
         align-items: center;
         padding: unset;
         flex: 1;
       }
-      
+
       .menu a {
         display: unset;
         color: #333; /* 文字の色 */
@@ -418,4 +425,32 @@ body {
         'GRAD' 200,
         'opsz' 48
       }
+  }
+
+/* フォームのCSSをリセット */
+  input,button,select,textarea {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background: transparent;
+    border: none;
+    border-radius: 0;
+    font: inherit;
+    outline: none;
+  }
+
+  textarea {
+    resize: vertical;
+  }
+
+  input[type='checkbox'], input[type='radio'] {
+    display: none;
+  }
+
+  input[type='submit'], input[type='button'], label, button, select {
+    cursor: pointer;
+  }
+
+  select::-ms-expand {
+    display: none;
   }
