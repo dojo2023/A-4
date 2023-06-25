@@ -6,7 +6,7 @@ body {
   flex-direction: column;
   min-height: 100%;
   font-family: 'Noto Sans JP', sans-serif;
-  background-color: #fafafa;
+  background-color: #fff;
   color: #333; /* 文字の色 */
   padding: unset;
   margin: unset;
@@ -26,7 +26,7 @@ body {
     left: 0; /* 左端に配置 */
     bottom: 0; /* 下端まで広がる */
     width: 160px; /* メニューの幅 */
-    background-color: #f2f2f2;
+    background-color: #F7F9FC;
     padding: 25px; /* メニューの内側の余白 */
     position: fixed; /* 固定位置 */
     box-shadow: 2px 0 5px rgba(0, 0, 0, 0.2);
@@ -207,7 +207,7 @@ body {
       box-shadow: unset;
       padding: unset;
 
-      background-color: #fafafa;
+      background-color: #fff;
       bottom: 0;
       height: 60px;
       width: 100%;
