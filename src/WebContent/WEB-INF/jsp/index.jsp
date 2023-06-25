@@ -55,9 +55,9 @@
                     </div>
                     <progress class="goal_progress" value="${Math.floor((e.progress/e.goalTime)*100)}" max="100"></progress>
                     <textarea name="" id="" class="msg" cols="30" rows="5" readonly>${e.msg}</textarea>
-                    <div class="post_time">${e.postTime}</div>
+                    <div class="post_time" id="timestamp_${e.id}">${e.postTime}</div>
                     <div class="reaction">
-                        <i class="fa-regular fa-comment fa-lg .comment-icon trigger-comments-${e.id}"  onclick="asyncComments('${e.id}')"><span class="reaction-num">99</span></i>
+                        <i class="fa-regular fa-comment fa-lg .comment-icon trigger-comments-${e.id}"  onclick="asyncComments('${e.id}')"><span class="reaction-num">${e.commentsCount}</span></i>
                         <i class="fa-regular fa-heart fa-lg"><span class="reaction-num" id="rc_${e.id}">${e.reactionCount}</span></i>
                     </div>
                 </div>
@@ -73,8 +73,8 @@
                     <div>コメントする</div>
                     <form method="POST" action="/NYASTER/Comment">
                     <input type="hidden" name="post_id" value="${e.id}" readonly>
-                    <input type="text" name="cmt_msg" min="0" max="50" required>
-                    <div> <input type="submit" name="select" title="コメントする" value="add"> </div>
+                    <input type="text" name="cmt_msg" min="0" max="50" placeholder="コメントを追加..."  required>
+                    <div> <input type="submit" name="select" value="add"> </div>
                     </form>
                 </div>
 
@@ -111,6 +111,20 @@
         </footer>
 
         <jsp:include page="includedModal.jsp"/>
+        <script>
+            function timeFormatter(ts){
+                var timestamp = ts
+                var date = new Date(timestamp);
+                var year = date.getFullYear();
+                var month = date.getMonth() + 1; // 月は0から始まるため+1
+                var day = date.getDate();
+                var hours = date.getHours();
+                var minutes = date.getMinutes();
+
+                // フォーマットに基づいて日時を表示
+                var formattedDateTime = year + "年" + month + "月" + day + "日 " + hours + "時" + minutes + "分";
+            }
+        </script>
     </main>
 
 	<!-- JS -->

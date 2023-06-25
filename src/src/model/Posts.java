@@ -10,6 +10,7 @@ public class Posts implements Serializable {
 
 	private String id; //投稿のID（UUID）
 	private String userUUID; //投稿したユーザのUUID (DB保存用)
+	private String userId;
 	private String userName; //投稿したユーザの名前 (画面表示用)
 	private String msg; //投稿のメッセージ
 	private String ganbariTag; //投稿に表示するタグ
@@ -25,6 +26,7 @@ public class Posts implements Serializable {
 	private Timestamp postTime; //投稿した日時
 	private int reactionCount;
 	private int reactionCheck;
+	private int commentsCount;
 
 
 	// 投稿情報の新規登録. ユーザ名と目標名は取得してから格納する.
@@ -45,8 +47,9 @@ public class Posts implements Serializable {
 	}
 
 	// 投稿取得用
-	public Posts(String id, String userName, String msg, String gTag, String goalName, int ganbariTime, int ganbariTimeHours, int ganbariTimeMins, int goalTime, int goalTimeHours, int goalTimeMins, int progress, Timestamp ts, int reactionCount, int reactionCheck) {
+	public Posts(String id, String userId, String userName, String msg, String gTag, String goalName, int ganbariTime, int ganbariTimeHours, int ganbariTimeMins, int goalTime, int goalTimeHours, int goalTimeMins, int progress, Timestamp ts, int reactionCount, int reactionCheck, int commentsCount) {
 		this.id = id;
+		this.userId = userId;
 		this.userName = userName;
 		this.msg = msg;
 		this.ganbariTag = gTag;
@@ -61,7 +64,7 @@ public class Posts implements Serializable {
 		this.postTime = ts;
 		this.reactionCount = reactionCount;
 		this.reactionCheck = reactionCheck;
-
+		this.commentsCount = commentsCount;
 	}
 
 	public Posts() {}
@@ -84,6 +87,8 @@ public class Posts implements Serializable {
 	public Timestamp getPostTime() {return postTime;}
 	public int getReactionCount() {return reactionCount;}
 	public int getReactionCheck() {return reactionCheck;}
+	public int getCommentsCount() {return commentsCount;}
+	public String getUserId() {return userId;}
 
 // 	setter
 	public void setUserName(String userName) {this.userName = userName;}
@@ -100,4 +105,6 @@ public class Posts implements Serializable {
 	public void setGanbariTimeMins(int ganbariTimeMins) {this.ganbariTimeMins = ganbariTimeMins;}
 	public void setReactionCount(int reactionCount) {this.reactionCount = reactionCount;}
 	public void setReactionCheck(int reactionCheck) {this.reactionCount = reactionCheck;}
+	public void setCommentsCount(int commentsCount) {this.commentsCount = commentsCount;}
+	public void setUserId(String userId) {this.userId = userId;}
 }

@@ -61,7 +61,8 @@ public class PostsDAO {
 			conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/data/NYASTAR", "sa", "");
 
 			//
-			String sql = "SELECT POST_ID, USER_NAME, POST_MESSAGE, GANBARI_TIME, GENRE_TAG, GOAL_NAME, GOAL_TIME, POST_TIME, ACHIEVEMENT_TIME, "
+			String sql = "SELECT POST_ID, USER_ID, USER_NAME, POST_MESSAGE, GANBARI_TIME, GENRE_TAG, GOAL_NAME, GOAL_TIME, POST_TIME, ACHIEVEMENT_TIME, "
+					+ "(SELECT COUNT(*) FROM COMMENTS WHERE POSTS.POST_ID=COMMENTS.POST_ID) AS COMMENT_COUNTS, "
 					+ "(SELECT COUNT(*) FROM REACTIONS WHERE POSTS.POST_ID=REACTIONS.POST_ID) AS REACTION_COUNTS, "
 					+ "(SELECT COUNT(*) FROM REACTIONS WHERE POSTS.POST_ID=REACTIONS.POST_ID AND REACTIONS.USER_UUID=?) AS REACTION_CHECK "
 					+ "FROM POSTS "
@@ -86,6 +87,7 @@ public class PostsDAO {
 
 				Posts post = new Posts(
 					rs.getString("POST_ID"),
+					rs.getString("USER_ID"),
 					rs.getString("USER_NAME"),
 					rs.getString("POST_MESSAGE"),
 					rs.getString("GENRE_TAG"),
@@ -99,7 +101,8 @@ public class PostsDAO {
 					rs.getInt("ACHIEVEMENT_TIME"),
 					rs.getTimestamp("POST_TIME"),
 					rs.getInt("REACTION_COUNTS"),
-					rs.getInt("REACTION_CHECK")
+					rs.getInt("REACTION_CHECK"),
+					rs.getInt("COMMENT_COUNTS")
 					);
 					postList.add(post);
 			}
@@ -140,7 +143,8 @@ public class PostsDAO {
 			conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/data/nyastar", "sa", "");
 
 			//
-			String sql = "SELECT POST_ID, USER_NAME, POST_MESSAGE, GANBARI_TIME, GENRE_TAG, GOAL_NAME, GOAL_TIME, POST_TIME, ACHIEVEMENT_TIME, "
+			String sql = "SELECT POST_ID, USER_ID, USER_NAME, POST_MESSAGE, GANBARI_TIME, GENRE_TAG, GOAL_NAME, GOAL_TIME, POST_TIME, ACHIEVEMENT_TIME, "
+					+ "(SELECT COUNT(*) FROM REACTIONS WHERE POSTS.POST_ID=REACTIONS.POST_ID) AS REACTION_COUNTS, "
 					+ "(SELECT COUNT(*) FROM REACTIONS WHERE POSTS.POST_ID=REACTIONS.POST_ID) AS REACTION_COUNTS, "
 					+ "(SELECT COUNT(*) FROM REACTIONS WHERE POSTS.POST_ID=REACTIONS.POST_ID AND REACTIONS.USER_UUID=?) AS REACTION_CHECK "
 					+ "FROM POSTS "
@@ -166,6 +170,7 @@ public class PostsDAO {
 
 				Posts post = new Posts(
 					rs.getString("POST_ID"),
+					rs.getString("USER_ID"),
 					rs.getString("USER_NAME"),
 					rs.getString("POST_MESSAGE"),
 					rs.getString("GENRE_TAG"),
@@ -179,7 +184,8 @@ public class PostsDAO {
 					rs.getInt("ACHIEVEMENT_TIME"),
 					rs.getTimestamp("POST_TIME"),
 					rs.getInt("REACTION_COUNTS"),
-					rs.getInt("REACTION_CHECK")
+					rs.getInt("REACTION_CHECK"),
+					rs.getInt("COMMENT_COUNTS")
 					);
 					postList.add(post);
 			}
