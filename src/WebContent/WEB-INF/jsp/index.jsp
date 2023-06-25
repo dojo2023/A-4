@@ -9,6 +9,7 @@
 	<!-- 共通のCSS読み込み -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 	<jsp:include page="includedCSS.jsp" />
+    <link rel="stylesheet" href="css/styles_home.css">
 
 	<title>トップページ｜NYASTAR</title>
 
@@ -56,8 +57,8 @@
                     <textarea name="" id="" class="msg" cols="30" rows="5" readonly>${e.msg}</textarea>
                     <div class="post_time">${e.postTime}</div>
                     <div class="reaction">
-                        <i class="fa-regular fa-comment fa-lg .comment-icon trigger-comments-${e.id}"  onclick="asyncComments('${e.id}')"><span class="reaction-num">1</span></i>
-                        <i class="fa-regular fa-heart fa-lg"><span class="reaction-num">12</span></i>
+                        <i class="fa-regular fa-comment fa-lg .comment-icon trigger-comments-${e.id}"  onclick="asyncComments('${e.id}')"><span class="reaction-num">99</span></i>
+                        <i class="fa-regular fa-heart fa-lg"><span class="reaction-num" id="rc_${e.id}">${e.reactionCount}</span></i>
                     </div>
                 </div>
 
