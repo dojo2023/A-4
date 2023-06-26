@@ -1,38 +1,92 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
-	<meta charset="UTF-8">
-	<title>検索｜NYASTAR </title>
-	<!-- 共通のCSS読み込み -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width" />
+  <!-- CSS -->
 	<jsp:include page="includedCSS.jsp" />
+	<link rel="stylesheet" href="css/styles_search.css">
+  <!-- JS -->
+    <script src="https://kit.fontawesome.com/b0a477e877.js" crossorigin="anonymous"></script>
+  <title>ユーザ検索｜NYASTAR</title>
 </head>
 <body>
-
-	<h1>ユーザー検索</h1>
+  	<div class="menu">
 		<!-- メインメニュー -->
-		<jsp:include page="includedMenu.jsp" />
+			<jsp:include page="includedMenu.jsp" />
 
-	<form method="POST" action = "/NYASTER/Search">
-	<label>検索：
-	 <!--ユーザ名,ユーザIDのどちらかで検索　searchword -->
-	 <input type="text" name="search_query" placeholder="ユーザ名,ユーザIDで検索" >
-	 <input type="submit" value="検索"></label>
-	</form>
+		<style>
+			.menu .search .material-symbols-outlined {
+			font-variation-settings:
+			'FILL' 1,
+			'wght' 600,
+			'GRAD' 200,
+			'opsz' 48
+			}
 
-	<h2>検索結果</h2>
+			.menu .search {
+			font-weight: 700;
+			}
+		</style>
+	</div>>
 
-	<ul>
+	<main class="content">
+		<div class="title">NYASTAR</div>
+		<!-- <div class="page_title">検索</div> -->
+
+		<form method="post" class="search-form" action = "/NYASTER/Search">
+			<label>
+				<input type="text" name="search_query" placeholder="ID,名前でユーザーを検索">
+			</label>
+			<button type="submit" aria-label="検索"></button>
+		</form>
+
+		<ul class="search_result">
 		<c:forEach var= "e" items= "${seList}" varStatus="status">
-			<li><div>${status.index + 1}. ${e.user_name} (@${e.user_id})</div></li>
-			<form method="GET" action="/NYASTER/UserPage">
-				<input type="hidden" name="u" value="${e.user_id}">
-				<input type="submit" value="ユーザページへ">
-			</form>
+			<li class="user_info">
+				<div class="flexbox">
+					<!-- img class="icon" src="C:/pleiades/workspace/data/icon_img/human.png" alt="ユーザアイコン"> -->
+					<img class="icon" src="img/human.png" alt="ユーザアイコン">
+					<div class="user" id="get_${e.user_id}">
+						<div class="id">@${e.user_id}</div>
+						<div class="name">${e.user_name}</div>
+					</div>
+					<div class="g-time">
+						<div class="g-time-label">がんばり時間:</div>
+						<div class="g-time-record">00時間00分</div>
+					</div>
+					<div class="linked_user">
+						<form id="get_to_userpage" method="GET" action="/NYASTER/UserPage">
+							<input type="hidden" name="u" value="${e.user_id}">
+							<input class="material-symbols-outlined" type="submit" value="link">
+						</form>
+					</div>
+				</div>
+			</li>
+			<script>
+			const id = get_ + '${e.user_id}'
+			document.getElementById(id).addEventListener("click", function() {
+				document.getElementById("get_to_userpage").submit();
+			});
+			</script>
 		</c:forEach>
-	</ul>
+		</ul>
+
+		<footer>
+		<p>&copy; 2023 NYASTAR. All rights reserved.</p>
+		</footer>
+	</main>
 
 </body>
+<!-- JavaScript -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/izimodal/1.5.1/js/iziModal.min.js"></script>
+  <script type="text/javascript" src="./js/jquery-migrate-3.4.1.js"></script>
+  <script src="js/iziToast.min.js" type="text/javascript"></script>
+  <script src="js/iziToast.js" type="text/javascript"></script>
+  <script src="js/Modal.js" type="text/javascript"></script>
+  <!-- <script src="js/Toast.js" type="text/javascript"></script> -->
+  <script src="js/script.js"></script>
 </html>

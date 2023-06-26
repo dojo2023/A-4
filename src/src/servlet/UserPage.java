@@ -10,14 +10,17 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.servlet.http.Part;
 
 import DAO.AccountsDao;
 import DAO.GoalsDao;
 import DAO.PostsDAO;
 import DAO.ReactionsDao;
 import model.Goals;
+import model.IconFileName;
 import model.Posts;
 import model.Reactions;
+
 
 @WebServlet("/UserPage")
 public class UserPage extends HttpServlet {
@@ -51,10 +54,10 @@ public class UserPage extends HttpServlet {
 
 		// IDからユーザ情報を問い合わせる
 		String username = loginUser.getUser_name();
-
+		String userid = loginUser.getUser_id();
 		//　取得したユーザ情報からユーザ名を取り出し、リクエストスコープに格納する
 		request.setAttribute("username", username);
-
+		request.setAttribute("userid", userid);
 		// 特定ユーザーの投稿データを全件取得し、リストをリクエストスコープに格納する。
 		PostsDAO pDao = new PostsDAO();
 		List<Posts> postList = pDao.postShowUser(userUuid);
@@ -85,11 +88,11 @@ public class UserPage extends HttpServlet {
         response.setContentType("application/json");
 		response.setHeader("Cache-Control", "nocache");
 		response.setCharacterEncoding("utf-8");
-		
+
 		// ログインされているユーザのIDを取得
 		String userUuid = (String)session.getAttribute("id");
 		System.out.println("操作："+(request.getParameter("select")));
-		
+
 		if (request.getParameter("select").equals("ナイス")) {
 
 			// リクエストパラメータを取得する
@@ -128,5 +131,6 @@ public class UserPage extends HttpServlet {
 			System.out.println("ログアウトしました");
 			response.sendRedirect("/NYASTER/Login");
 		}
+
 	}
 }

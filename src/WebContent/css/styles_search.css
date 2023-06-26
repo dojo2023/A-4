@@ -56,7 +56,7 @@
 .search_result .user_info {
     display: flex;
     margin: 25px auto;
-    width: 500px;
+    width: 470px;
     justify-content: space-between;
     margin-bottom: 30px;
     list-style: none;
@@ -80,7 +80,7 @@
 .search_result .flexbox .icon {
     width: 30px;
     height: 30px;
-    margin-right: 12px; 
+    margin-right: 12px;
     overflow: hidden;
     border-radius: 50%;
     border: 3px solid #eeeeee;
@@ -113,6 +113,10 @@
     font-weight: 500;
 }
 
+.search_result .flexbox .g-time{
+    margin-right: 30px
+}
+
 .search_result .flexbox .g-time .g-time-label{
     font-size: 11px;
     margin-bottom: -3px;
@@ -121,4 +125,13 @@
 .search_result .flexbox .g-time .g-time-record{
     font-size: 18px;
     font-weight: 400;
+}
+
+.search_result .material-symbols-outlined {
+    padding-left: 80px;
+    font-variation-settings:
+    'FILL' 0,
+    'wght' 500,
+    'GRAD' 0,
+    'opsz' 48
 }

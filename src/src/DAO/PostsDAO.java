@@ -302,7 +302,6 @@ public class PostsDAO {
 		Connection conn = null;
 		Posts userTotalTime = new Posts();
 
-
 		try {
 			Class.forName("org.h2.Driver");
 			conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/data/nyastar", "sa", "");
