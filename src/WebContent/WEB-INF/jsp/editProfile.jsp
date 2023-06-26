@@ -9,6 +9,33 @@
           integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
           crossorigin="anonymous" referrerpolicy="no-referrer" />
 
+    <style>
+        #figure {
+            /* サイズを調整 */
+            width: 200px;
+            height: 200px;
+
+            overflow: hidden;
+            border-radius: 50%;
+            position: relative;
+            border: 3px solid #eeeeee;
+        }
+
+        #figure img {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            max-width: 100%;
+            max-height: 100%;
+            width: auto;
+            height: auto;
+            margin: auto;
+            object-fit: contain;
+        }
+    </style>
+
+
 <title>プロフィールの編集・削除｜NYASTAR</title>
 </head>
 <body>
@@ -18,6 +45,21 @@
 	<h1>プロフィール登録・編集</h1>
 
 	<a href="UserPage">戻る</a>
+
+    <p>画像ファイルを選択するとプレビューが表示されます。</p>
+    <form method="POST" enctype="multipart/form-data" action="/NYASTER/ImgUpload">
+      <div>
+        <label for="input">画像ファイル</label>
+        <!-- 画像ファイルをアップロード -->
+        <input type="file" name="file" id="input" accept="image/*">
+        <figure id="figure" style="display: none">
+          <!-- アップロード画像を表示 -->
+          <img src="" alt="" id="figureImage">
+        </figure>
+        <button type="submit">送信</button>
+      </div>
+    </form>
+    <script src="js/imgPreview.js"></script>
 
 
 	<form method="POST" action = "/NYASTER/EditProfile">
