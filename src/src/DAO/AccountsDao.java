@@ -372,8 +372,6 @@ public class AccountsDao {
         			+ " from ACCOUNTS"
         			+ " WHERE USER_ID LIKE ? OR USER_NAME LIKE ?";
 
-        	System.out.println(sql);
-
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 			pStmt.setString(1,sq);
 			pStmt.setString(2,sq);
