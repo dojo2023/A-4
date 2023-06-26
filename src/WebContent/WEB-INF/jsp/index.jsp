@@ -13,7 +13,6 @@
 
 	<title>トップページ｜NYASTAR</title>
 	 <script src="https://kit.fontawesome.com/b0a477e877.js" crossorigin="anonymous"></script>
-​
 
 </head>
 <body>
@@ -80,7 +79,7 @@
             	</div>
 
                 <!-- コメントモーダル -->
-
+                
                 <div class="iziModal_comments_${e.id} comments_modal" data-izimodal-title="コメント" data-izimodal-subtitle="説明文">
                     <h3>コメント一覧</h3>
                     <div id="comments-area-${e.id}">
