@@ -176,6 +176,12 @@ textarea:focus {
 .post_card .reaction .fa-heart{
     cursor: pointer;
 }
+.post_card .reaction .fa-solid{
+    color: #f240c2;
+}
+.post_card .reaction .fa-regular{
+    color: #263b5f;
+}
 
 .post_card .reaction .reaction-num {
     font-size: 10px;
