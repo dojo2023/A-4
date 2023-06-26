@@ -47,10 +47,29 @@
 
 
 /* 検索結果 */
+.search_result_label {
+    text-align: center;
+    font-size: 20px;
+    font-weight: 600;
+    margin-top: 30px
+}
+
+.search_result_label_none {
+    text-align: center;
+    font-size: 15px;
+    font-weight: 600;
+    margin-top: 30px
+}
+
 
 .content ul {
     padding: 0px 50px 0px 0px;
-    margin-top: 50px;
+    margin: unset;
+    margin-top: 10px;
+}
+
+.content ul li{
+    list-style: none;
 }
 
 .search_result .user_info {
@@ -59,7 +78,6 @@
     width: 470px;
     justify-content: space-between;
     margin-bottom: 30px;
-    list-style: none;
     transition:all 0.3s;
 }
 
