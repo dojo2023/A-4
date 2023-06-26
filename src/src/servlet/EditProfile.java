@@ -1,5 +1,9 @@
 package servlet;
 import java.io.IOException;
+import java.io.InputStream;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.StandardCopyOption;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -8,8 +12,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.servlet.http.Part;
 
 import DAO.AccountsDao;
+import model.IconFileName;
 import model.PwHashed;
 import model.User;
 
@@ -103,6 +109,33 @@ public class EditProfile extends HttpServlet {
 				System.out.println("削除できませんでした");
 			}
 		}
+
+		IconFileName ifn = new IconFileName();
+        Part filePart = request.getPart("file");
+        String fileName = ifn.getFileName(filePart);
+
+        if (fileName != null && !fileName.isEmpty()) {
+            String extension = "png"; // 保存する拡張子を指定
+
+            // ファイル名を生成
+            String saveFileName = ifn.generateFileName(userUuid, extension);
+
+            // ファイルを保存するディレクトリのパスを指定
+            String uploadDirectory = "C:/pleiades/workspace/data/icon_img/";
+
+            // ファイルを保存するパスを組み立て
+            Path filePath = Path.of(uploadDirectory, saveFileName);
+
+            try (InputStream fileContent = filePart.getInputStream()) {
+                // ファイルをPNG形式で保存
+                Files.copy(fileContent, filePath, StandardCopyOption.REPLACE_EXISTING);
+                System.out.println("ファイルが正常に保存されました。");
+            } catch (Exception e) {
+                e.printStackTrace();
+                System.out.println("ファイルの保存に失敗しました。");
+            }
+        }
+        response.sendRedirect("/NYASTER/EditProfile"); //元のページにリダイレクト
 	}
 }
 
