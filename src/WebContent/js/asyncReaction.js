@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', function() {
   var checkboxes = document.querySelectorAll('.checkbox');
-  const icon = document.getElementByName('icon')
+  const icon = document.getElementByName('.icon')
   checkboxes.forEach(function(checkbox) {
     if (checkbox.checked) {
       // チェックされた状態の処理
