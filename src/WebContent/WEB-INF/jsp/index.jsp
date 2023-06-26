@@ -42,8 +42,7 @@
                         </div>
                         <div class="u-info">
                             <span class="u-name">${e.userName}</span>
-                            <%-- <span class="u-id">(@${e.userId})</span> --%>
-                            <span class="u-id">(@$userId)</span>
+                            <span class="u-id">(@${e.userId})</span>
                         </div>
                     </div>
                     <div class="g-Content">
@@ -59,6 +58,9 @@
                     <div class="reaction">
                         <i class="fa-regular fa-comment fa-lg .comment-icon trigger-comments-${e.id}"  onclick="asyncComments('${e.id}')"><span class="reaction-num">${e.commentsCount}</span></i>
                         <i class="fa-regular fa-heart fa-lg"><span class="reaction-num" id="rc_${e.id}">${e.reactionCount}</span></i>
+                		<!-- <form>
+                			<input type="checkbox" name="select" id="nice_${e.id}" value="ナイス" onchange= "reactionpost('${e.id}','${useruuid}');"<c:if test="${e.reactionCheck == 1}" >checked</c:if>></input>
+            			</form> -->
                     </div>
                 </div>
 
