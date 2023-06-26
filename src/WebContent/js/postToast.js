@@ -24,27 +24,27 @@
 
 //失敗(赤)のトースト
   $(function() {
-    $(".login-button").on('click', function(event) {
+    $(".ボタンのクラス名").on('click', function(event) {
       event.preventDefault();
       iziToast.error({
-        title: '☆',
-        message: '投稿が完了しました',
+        title: '失敗',
+        message: '投稿が失敗しました',
       });
     });
   })
 //注意勧告(オレンジ)のトースト
   $(function() {
-    $(".login-button").on('click', function(event) {
+    $(".ボタンのクラス名").on('click', function(event) {
       event.preventDefault();
       iziToast.warning({
-        title: '☆',
+        title: '注意',
         message: '投稿が完了しました',
       });
     });
   })
 //インフォメーション(青)のトースト
   $(function() {
-    $(".login-button").on('click', function(event) {
+    $(".ボタンのクラス名").on('click', function(event) {
       event.preventDefault();
       iziToast.info({
         title: '☆',
@@ -54,7 +54,7 @@
   })
 //色なしトースト
   $(function() {
-    $(".login-button").on('click', function(event) {
+    $(".ボタンのクラス名").on('click', function(event) {
       event.preventDefault();
       iziToast.show({
         title: '☆',
