@@ -43,6 +43,18 @@
 			<button type="submit" aria-label="検索"></button>
 		</form>
 
+		<c:choose>
+			<c:when test="${search_result == 0}">
+				<div class="search_result_label_none">キーワードに一致するユーザーが見つかりませんでした。</div>
+			</c:when>
+			<c:when test="${search_result > 0}">
+				<div class="search_result_label">検索結果</div>
+			</c:when>
+			<c:otherwise>
+			</c:otherwise>
+		</c:choose>
+
+
 		<ul class="search_result">
 		<c:forEach var= "e" items= "${seList}" varStatus="status">
 			<li class="user_info">
