@@ -1,14 +1,17 @@
 document.addEventListener('DOMContentLoaded', function() {
   var checkboxes = document.querySelectorAll('.checkbox');
+  const icon = document.getElementByName('icon')
   checkboxes.forEach(function(checkbox) {
     if (checkbox.checked) {
       // チェックされた状態の処理
-      label.classList.remove('fa-regular');
-	  label.classList.add('fa-solid');
+      console.log('チェック有り')
+      icon.classList.remove('fa-regular');
+	  icon.classList.add('fa-solid');
     } else {
       // チェックが外れた状態の処理
-      label.classList.remove('fa-solid');
-	  label.classList.add('fa-regular');
+      console.log('チェックなし')
+      icon.classList.remove('fa-solid');
+	  icon.classList.add('fa-regular');
     }
   });
 });
