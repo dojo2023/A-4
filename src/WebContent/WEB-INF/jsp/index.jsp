@@ -28,8 +28,8 @@
           'GRAD' 200,
           'opsz' 48
       }
-      
-      
+
+
     </style>
 
     <main class="content">
@@ -60,16 +60,23 @@
                     <textarea name="" id="" class="msg" cols="30" rows="5" readonly>${e.msg}</textarea>
                     <div class="post_time" id="timestamp_${e.id}">${e.postTime}</div>
                     <div class="reaction">
-                        <i class="fa-regular fa-comment fa-lg .comment-icon trigger-comments-${e.id}"  onclick="asyncComments('${e.id}')"><span class="reaction-num">${e.commentsCount}</span></i>
-​						<form>
-					    <input type="checkbox" class="checkbox" name="select" id="nice_${e.id}" value="ナイス" onchange= "reactionpost('${e.id}','${useruuid}');"<c:if test="${e.reactionCheck == 1}" >checked</c:if>></input>
-					    
-					    <label for="nice_${e.id}">
-					        <i  name="icon" id="like_${e.id}"<c:if test="${e.reactionCheck == 1}" >class="fa-solid fa-heart fa-lg"</c:if><c:if test="${e.reactionCheck == 0}" >class="fa-regular fa-heart fa-lg"</c:if>><span class="reaction-num" id="rc_${e.id}">${e.reactionCount}</span></i>
-					    </label>
+                        <!-- コメント -->
+                        <i class="fa-regular fa-comment fa-lg .comment-icon trigger-comments-${e.id}"  onclick="asyncComments('${e.id}')">
+                        	<!-- コメント数表示 -->
+                        	<span class="reaction-num">${e.commentsCount}</span>
+                        </i>
+					    <!-- ナイス -->
+                        <form>
+                            <input type="checkbox" class="checkbox" name="select" id="nice_${e.id}" value="ナイス" onchange= "reactionpost('${e.id}','${useruuid}');"<c:if test="${e.reactionCheck == 1}" >checked</c:if>></input>
+                            <label for="nice_${e.id}">
+                                <!-- チェックボックスの状態に応じて表示切り替え -->
+                                <i  name="icon" id="like_${e.id}"<c:if test="${e.reactionCheck == 1}" >class="fa-solid fa-heart fa-lg"</c:if><c:if test="${e.reactionCheck == 0}" >class="fa-regular fa-heart fa-lg"</c:if>>
+                                    <!-- ナイス数表示 -->
+                                    <span class="reaction-num" id="rc_${e.id}">${e.reactionCount}</span>
+                                </i>
+                            </label>
 					    </form>
-                       <!--   <i class="fa-regular fa-heart fa-lg"><span class="reaction-num" id="rc_${e.id}">${e.reactionCount}</span></i>-->
-            		</div>
+                    </div>
             	</div>
 
                 <!-- コメントモーダル -->
@@ -120,7 +127,7 @@
             <p>&copy; 2023 NYASTAR. All rights reserved.</p>
         </footer>
 
-        <jsp:include page="includedModal.jsp"/>
+        <jsp:include page="includedModalPost.jsp"/>
         <script>
             function timeFormatter(ts){
                 var timestamp = ts
