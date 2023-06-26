@@ -26,6 +26,8 @@
           'GRAD' 200,
           'opsz' 48
       }
+      
+      
     </style>
 
     <main class="content">
@@ -57,10 +59,11 @@
                     <div class="post_time" id="timestamp_${e.id}">${e.postTime}</div>
                     <div class="reaction">
                         <i class="fa-regular fa-comment fa-lg .comment-icon trigger-comments-${e.id}"  onclick="asyncComments('${e.id}')"><span class="reaction-num">${e.commentsCount}</span></i>
-                        <i class="fa-regular fa-heart fa-lg"><span class="reaction-num" id="rc_${e.id}">${e.reactionCount}</span></i>
-                		<!-- <form>
-                			<input type="checkbox" name="select" id="nice_${e.id}" value="ナイス" onchange= "reactionpost('${e.id}','${useruuid}');"<c:if test="${e.reactionCheck == 1}" >checked</c:if>></input>
-            			</form> -->
+                       <!--   <i class="fa-regular fa-heart fa-lg"><span class="reaction-num" id="rc_${e.id}">${e.reactionCount}</span></i>-->
+                		 </div>
+                		 <form>
+                			<input type="checkbox" class="checkboxicon" name="select" id="nice_${e.id}" value="ナイス" onchange= "reactionpost('${e.id}','${useruuid}');"<c:if test="${e.reactionCheck == 1}" >checked</c:if>></input>
+            			</form> 
                     </div>
                 </div>
 

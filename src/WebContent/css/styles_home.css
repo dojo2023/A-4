@@ -160,7 +160,7 @@ textarea:focus {
     margin-right: 10px;
 }
 
-/* リアクションアイコン（コメント・ナイス） */
+/* リアクションアイコン（コメント） */
 .reaction {
     display: flex; /*横並び*/
     align-items: center;
@@ -180,4 +180,17 @@ textarea:focus {
 .post_card .reaction .reaction-num {
     font-size: 10px;
     margin-left: 3px;
+}
+/* リアクションアイコン（いいね） */
+.checkboxicon {
+  display: none;
+}
+.checkboxicon:before {
+  font-weight: 900;
+  font-family: "Font Awesome 5 Free";
+  content: '\f004';
+  color: #ccc;
+}
+.checkboxicon:checked {
+  color: #2db29c;
 }
