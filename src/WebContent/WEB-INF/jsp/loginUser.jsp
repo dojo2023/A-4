@@ -37,7 +37,7 @@
 
 		<h1>マイページ</h1>
 
-		<img src="/NYASTER/icon_img/${userid}.png" alt=""></img>
+		<img src="icon/${userid}.png" alt=""></img>
 
 		<a href="UserPage" class="link-title">${username}</a>
 

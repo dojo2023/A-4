@@ -58,7 +58,7 @@ public class ImgUpload extends HttpServlet {
             String saveFileName = ifn.generateFileName(userUuid, extension);
 
             // ファイルを保存するディレクトリのパスを指定
-            String uploadDirectory = "/NYASTER/icon_img/";
+            String uploadDirectory = "/src/WebContent/icon_img/";
 
             // ファイルを保存するパスを組み立て
             Path filePath = Path.of(uploadDirectory, saveFileName);
