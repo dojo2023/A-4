@@ -355,7 +355,7 @@ public class AccountsDao {
 
 
 	// 引数paramで検索項目を指定し、検索結果のリストを返す
-	public List <User> search(String sq) {
+	public List<User> search(String sq) {
 		Connection conn = null;
 		//インスタンス化されたUserしかリストに入らない
 		List<User> seList = new ArrayList<User>();
@@ -372,11 +372,9 @@ public class AccountsDao {
         			+ " from ACCOUNTS"
         			+ " WHERE USER_ID LIKE ? OR USER_NAME LIKE ?";
 
-        	System.out.println(sql);
-
 			PreparedStatement pStmt = conn.prepareStatement(sql);
-			pStmt.setString(1,sq);
-			pStmt.setString(2,sq);
+			pStmt.setString(1, "%" + sq + "%");
+			pStmt.setString(2, "%" + sq + "%");
 
 			// SQL文を実行し、結果表を取得する
 			ResultSet rs = pStmt.executeQuery();

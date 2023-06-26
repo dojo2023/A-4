@@ -17,33 +17,10 @@
       background-color: cadetblue;
     }
 
-            #figure {
-            /* サイズを調整 */
-            width: 200px;
-            height: 200px;
-
-            overflow: hidden;
-            border-radius: 50%;
-            position: relative;
-            border: 3px solid #eeeeee;
-        }
-
-        #figure img {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            max-width: 100%;
-            max-height: 100%;
-            width: auto;
-            height: auto;
-            margin: auto;
-            object-fit: contain;
-        }
 
 </style>
 	<!-- 共通のCSS読み込み -->
-	<jsp:include page="includedCSS.jsp" />
+
 </head>
 
 <body>
@@ -54,17 +31,13 @@
 		</form>
 
 	<!-- メインメニュー -->
-	<jsp:include page="includedMenu.jsp" />
+
 
 	<main>
 
 		<h1>マイページ</h1>
 
-		<figure id="figure" style="display: none">
-          <!-- アップロード画像を表示 -->
-          <img src="" alt="" id="figureImage">
-        </figure>
-
+		<img src="/NYASTER/icon_img/${userid}.png" alt=""></img>
 
 		<a href="UserPage" class="link-title">${username}</a>
 
