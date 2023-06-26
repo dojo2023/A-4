@@ -1,20 +1,4 @@
-document.addEventListener('DOMContentLoaded', function() {
-  var checkboxes = document.querySelectorAll('.checkbox');
-  const icon = document.getElementByName('.icon')
-  checkboxes.forEach(function(checkbox) {
-    if (checkbox.checked) {
-      // チェックされた状態の処理
-      console.log('チェック有り')
-      icon.classList.remove('fa-regular');
-	  icon.classList.add('fa-solid');
-    } else {
-      // チェックが外れた状態の処理
-      console.log('チェックなし')
-      icon.classList.remove('fa-solid');
-	  icon.classList.add('fa-regular');
-    }
-  });
-});
+
 function reactionpost(Post_id) {
     let rcid = "rc_"+Post_id;
     let niceid = "nice_"+Post_id;

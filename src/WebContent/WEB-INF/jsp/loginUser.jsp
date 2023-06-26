@@ -17,6 +17,31 @@
       background-color: cadetblue;
     }
 
+	#iconSize {
+            /* サイズを調整 */
+            width: 200px;
+            height: 200px;
+
+            overflow: hidden;
+            border-radius: 50%;
+            position: relative;
+            border: 3px solid #eeeeee;
+        }
+
+
+
+	#iconImage {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            max-width: 100%;
+            max-height: 100%;
+            width: auto;
+            height: auto;
+            margin: auto;
+            object-fit: contain;
+        }
 
 </style>
 	<!-- 共通のCSS読み込み -->
@@ -37,7 +62,9 @@
 
 		<h1>マイページ</h1>
 
-		<img src="icon_img/${userid}.png" alt=""></img>
+		<figure id="iconSize">
+			<img src="icon_img/${userid}.png" alt="" id="iconImage"></img>
+		</figure>
 
 		<a href="UserPage" class="link-title">${username}</a>
 

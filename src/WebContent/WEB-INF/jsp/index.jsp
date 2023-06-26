@@ -65,7 +65,7 @@
 					    <input type="checkbox" class="checkbox" name="select" id="nice_${e.id}" value="ナイス" onchange= "reactionpost('${e.id}','${useruuid}');"<c:if test="${e.reactionCheck == 1}" >checked</c:if>></input>
 					    
 					    <label for="nice_${e.id}">
-					        <i class="fa-regular fa-heart fa-lg" name="icon" id="like_${e.id}"><span class="reaction-num" id="rc_${e.id}">${e.reactionCount}</span></i>
+					        <i  name="icon" id="like_${e.id}"<c:if test="${e.reactionCheck == 1}" >class="fa-solid fa-heart fa-lg"style="color: #f240c2;"</c:if><c:if test="${e.reactionCheck == 0}" >class="fa-regular fa-heart fa-lg"style="color: #f240c2;"</c:if>><span class="reaction-num" id="rc_${e.id}">${e.reactionCount}</span></i>
 					    </label>
 					    </form>
                        <!--   <i class="fa-regular fa-heart fa-lg"><span class="reaction-num" id="rc_${e.id}">${e.reactionCount}</span></i>-->
