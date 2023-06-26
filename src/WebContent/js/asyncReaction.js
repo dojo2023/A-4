@@ -1,13 +1,19 @@
 function reactionpost(Post_id) {
     let rcid ="rc_"+Post_id;
     let niceid = "nice_"+Post_id;
+    let label ="like_"+Post_id;
 
     if (document.getElementById(niceid).checked) {
         let rc = document.getElementById(rcid).textContent;
         document.getElementById(rcid).textContent=parseInt(rc)+1;
+        label.classList.remove('fa-regular');
+		label.classList.add('fa-solid');
+        
     } else {
         let rc = document.getElementById(rcid).textContent;
         document.getElementById(rcid).textContent=parseInt(rc)-1;
+        label.classList.remove('fa-solid');
+		label.classList.add('fa-regular');
         }
 
     let reactionData = {postId:Post_id,select:"ナイス"};

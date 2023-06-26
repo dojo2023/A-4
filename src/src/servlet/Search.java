@@ -47,6 +47,10 @@ public class Search extends HttpServlet {
 		// 検索結果をリクエストスコープに格納する
 		request.setAttribute("seList", seList);
 
+		// 検索結果のテキストを変えるための変数
+		int sr = seList.size();
+		request.setAttribute("search_result", sr);
+
 		// 結果ページにフォワードする
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/search.jsp");
 		dispatcher.forward(request, response);
