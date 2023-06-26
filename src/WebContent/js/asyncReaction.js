@@ -1,7 +1,22 @@
+document.addEventListener('DOMContentLoaded', function() {
+  var checkboxes = document.querySelectorAll('.checkbox');
+  checkboxes.forEach(function(checkbox) {
+    if (checkbox.checked) {
+      // チェックされた状態の処理
+      label.classList.remove('fa-regular');
+	  label.classList.add('fa-solid');
+    } else {
+      // チェックが外れた状態の処理
+      label.classList.remove('fa-solid');
+	  label.classList.add('fa-regular');
+    }
+  });
+});
 function reactionpost(Post_id) {
-    let rcid ="rc_"+Post_id;
+    let rcid = "rc_"+Post_id;
     let niceid = "nice_"+Post_id;
-    let label ="like_"+Post_id;
+    let likeid = "like_"+Post_id;
+    let label = document.getElementById(likeid);
 
     if (document.getElementById(niceid).checked) {
         let rc = document.getElementById(rcid).textContent;
