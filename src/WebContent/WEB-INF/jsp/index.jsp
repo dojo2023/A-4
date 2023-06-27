@@ -6,6 +6,7 @@
     <!-- キャッシュの保存を無効化 -->
     <meta http-equiv="Cache-Control" content="no-cache">
     <meta name="viewport" content="width=device-width" />
+    <meta charset="UTF-8">
 	<!-- 共通のCSS読み込み -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 	<jsp:include page="includedCSS.jsp" />
@@ -21,19 +22,29 @@
 
     <style>
         .menu .home .material-symbols-outlined {
-          font-variation-settings:
-          'FILL' 1,
-          'wght' 600,
-          'GRAD' 200,
-          'opsz' 48
-      }
+            font-variation-settings:
+            'FILL' 1,
+            'wght' 600,
+            'GRAD' 200,
+            'opsz' 48
+        }
 
+        .menu .home li {
+            background-color: #FEEFC3;
+            font-weight: 700;
+        }
 
+        @media screen and (max-width: 769px) {
+        	.menu .home li {
+        		background-color: unset;
+	            font-weight: 700;
+	    }
+    }
     </style>
 
     <main class="content">
         <div class="title">NYASTAR</div> <!-- スマホ画面用 -->
-        <div class="page_title">ホーム</div>
+        <div class="page_title"><p>ホーム</p><p class="border"></p></div>
 
         <h2>タイムライン</h2>
         <div class="flexContainer">
@@ -79,7 +90,7 @@
             	</div>
 
                 <!-- コメントモーダル -->
-                
+
                 <div class="iziModal_comments_${e.id} comments_modal" data-izimodal-title="コメント" data-izimodal-subtitle="説明文">
                     <h3>コメント一覧</h3>
                     <div id="comments-area-${e.id}">
@@ -122,6 +133,8 @@
             </c:forEach>
         </div>
 
+
+
         <footer>
             <p>&copy; 2023 NYASTAR. All rights reserved.</p>
         </footer>
@@ -142,6 +155,7 @@
             }
         </script>
     </main>
+    <div class="post-button trigger-addCard"> <span>＋</span> </div>
 
 	<!-- JS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
