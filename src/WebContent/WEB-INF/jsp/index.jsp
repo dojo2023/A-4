@@ -80,7 +80,7 @@
                     </div>
                     <progress class="goal_progress" value="${Math.floor((e.progress/e.goalTime)*100)}" max="100"></progress>
                     <textarea name="" id="" class="msg" cols="30" rows="5" readonly>${e.msg}</textarea>
-                    <div class="post_time" id="timestamp_${e.id}">${e.postTime}</div>
+                    <div class="post_time" id="timestamp_${e.id}">${e.postTimeT}</div>
                     <div class="reaction">
                         <!-- コメント -->
                         <i class="fa-regular fa-comment fa-lg .comment-icon trigger-comments-${e.id}"  onclick="asyncComments('${e.id}')">
