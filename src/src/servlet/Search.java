@@ -32,7 +32,10 @@ public class Search extends HttpServlet {
 		// 検索ページにフォワードする
 				RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/search.jsp");
 				dispatcher.forward(request, response);
-			}
+
+
+
+	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//リクエストパラメータを取得する

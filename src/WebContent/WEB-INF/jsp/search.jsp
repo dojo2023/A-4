@@ -67,7 +67,7 @@
 			<li class="user_info">
 				<div class="flexbox">
 					<!-- img class="icon" src="C:/pleiades/workspace/data/icon_img/human.png" alt="ユーザアイコン"> -->
-					<img class="icon" src="img/human.png" alt="ユーザアイコン">
+					<img class="icon" src="icon_img/${e.user_id}.png" alt="ユーザアイコン">
 					<div class="user" id="get_${e.user_id}">
 						<div class="id">@${e.user_id}</div>
 						<div class="name">${e.user_name}</div>
