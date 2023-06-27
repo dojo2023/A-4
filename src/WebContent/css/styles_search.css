@@ -153,3 +153,17 @@
     'GRAD' 0,
     'opsz' 48
 }
+
+
+/* メディアクエリ */
+
+  /* タブレット用 */
+  @media screen and (max-width: 769px) {
+
+  }
+
+  /* スマホ用 */
+  @media screen and (max-width: 400px) {
+
+}
+
