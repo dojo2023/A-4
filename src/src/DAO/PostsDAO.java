@@ -353,6 +353,62 @@ public class PostsDAO {
 
 		return userTotalTime;
 	}
+	
+	public Posts graph(String uuid) {
+		Connection conn = null;
+		Posts userTotalTime = new Posts();
+
+		try {
+			Class.forName("org.h2.Driver");
+			conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/data/nyastar", "sa", "");
+
+
+			String sql = "SELECT USER_NAME, SUM(GANBARI_TIME) AS TOTAL_GANBARI_TIME "
+					+ "FROM POSTS "
+					+ "JOIN ACCOUNTS ON POSTS.USER_UUID = ACCOUNTS.USER_UUID "
+					+ "JOIN GOALS ON POSTS.GOAL_ID = GOALS.GOAL_ID "
+					+ "WHERE POSTS.USER_UUID=? "
+					+ "GROUP BY POSTS.USER_UUID"; //ユーザIDを指定する
+
+			PreparedStatement pStmt = conn.prepareStatement(sql);
+			pStmt.setString(1,uuid);
+			ResultSet rs = pStmt.executeQuery();
+
+			while (rs.next()) {
+				double doubleGanbariHours = Math.floor(rs.getInt("TOTAL_GANBARI_TIME") / 60.0);
+				int ganbariHours = (int)doubleGanbariHours; // long型からint型に変換
+				int ganbariMins = rs.getInt("TOTAL_GANBARI_TIME") % 60; // 残りの分数を計算
+
+				userTotalTime.setUserName(rs.getString("USER_NAME"));
+				userTotalTime.setGanbariTimeHours(ganbariHours);
+				userTotalTime.setGanbariTimeMins(ganbariMins);
+			}
+		}
+
+		catch (SQLException e) {
+			e.printStackTrace();
+			userTotalTime = null;
+		}
+
+		catch (ClassNotFoundException e) {
+			e.printStackTrace();
+			userTotalTime = null;
+		}
+
+		finally {
+			if (conn != null) {
+				try {
+					conn.close();
+				}
+				catch (SQLException e) {
+					e.printStackTrace();
+					userTotalTime = null;
+				}
+			}
+		}
+
+		return userTotalTime;
+	}
 
 }
 

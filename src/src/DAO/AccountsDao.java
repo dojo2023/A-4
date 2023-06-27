@@ -372,7 +372,8 @@ public class AccountsDao {
         			+ " from POSTS "
         			+ "JOIN ACCOUNTS ON POSTS.USER_UUID = ACCOUNTS.USER_UUID "
         			+ "JOIN GOALS ON POSTS.GOAL_ID = GOALS.GOAL_ID "
-        			+ " WHERE USER_ID LIKE ? OR USER_NAME LIKE ?";
+        			+ "WHERE USER_ID LIKE ? OR USER_NAME LIKE ? "
+        			+ "GROUP BY POSTS.USER_UUID";
 
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 			pStmt.setString(1, "%" + sq + "%");
