@@ -53,7 +53,7 @@
                 <div class="rank">
                   <img src="img/f5-1.png" alt="#1">
                 </div>
-                <img class="icon" src="icon_img/default_user_profile_icon.png" alt="ユーザアイコン">
+                <img class="icon" src="icon_img/${e.userId}.png" alt="ユーザアイコン">
                 <div class="user">
                     <div class="id">@e.userId</div>
                     <div class="name">${e.userName}</div>
@@ -71,7 +71,7 @@
                 <div class="rank">
                   <img src="img/f5-2.png" alt="#2">
                 </div>
-                <img class="icon" src="icon_img/default_user_profile_icon.png" alt="ユーザアイコン">
+                <img class="icon" src="icon_img/${e.userId}.png" alt="ユーザアイコン">
                 <div class="user">
                     <div class="id">@$e.userId</div>
                     <div class="name">${e.userName}</div>
@@ -89,7 +89,7 @@
                 <div class="rank">
                   <img src="img/f5-3.png" alt="#2">
                 </div>
-                <img class="icon" src="icon_img/default_user_profile_icon.png" alt="ユーザアイコン">
+                <img class="icon" src="icon_img/${e.userId}.png" alt="ユーザアイコン">
                 <div class="user">
                     <div class="id">@$e.userId</div>
                     <div class="name">${e.userName}</div>
@@ -107,7 +107,7 @@
               <div class="rank">
                 #${status.index+1}
               </div>
-              <img class="icon" src="C:/pleiades/workspace/data/icon_img/human.png" alt="ユーザアイコン">
+              <img class="icon" src="icon_img/${e.userId}.png" alt="ユーザアイコン">
               <div class="user">
                   <div class="id">@$e.userId</div>
                   <div class="name">${e.userName}</div>

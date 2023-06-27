@@ -52,7 +52,7 @@
                 <div class="post_card fadeUp" style="animation-delay: ${loop.index*0.2}s;">
                     <div class="flex">
                         <div class="user_icon">
-                            <img src="img/human.png" alt="ユーザアイコン">
+                            <img src="icon_img/${e.userId}.png" alt="ユーザアイコン">
                         </div>
                         <div class="u-info">
                             <span class="u-name">${e.userName}</span>
