@@ -20,7 +20,7 @@ public class RankingDao {
 			Class.forName("org.h2.Driver");
 			conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/data/nyastar", "sa", "");
 
-			String sql = "SELECT  USER_NAME, SUM(GANBARI_TIME) AS TOTAL_GANBARI_TIME "
+			String sql = "SELECT USER_NAME, USER_ID, SUM(GANBARI_TIME) AS TOTAL_GANBARI_TIME "
 					+ "FROM POSTS "
 					+ "JOIN ACCOUNTS ON POSTS.USER_UUID = ACCOUNTS.USER_UUID "
 					+ "JOIN GOALS ON POSTS.GOAL_ID = GOALS.GOAL_ID "
@@ -40,7 +40,7 @@ public class RankingDao {
 			}
 
 			while (rs.next()) {
-				
+
 				double doubleGanbariHours = Math.floor(rs.getInt("TOTAL_GANBARI_TIME") / 60.0);
 				int ganbariHours = (int)doubleGanbariHours; // long型からint型に変換
 				int ganbariMins = rs.getInt("TOTAL_GANBARI_TIME") % 60; // 残りの分数を計算
@@ -48,6 +48,7 @@ public class RankingDao {
 
 				Rankings ranking = new Rankings(
 				rs.getString("USER_NAME"),
+				rs.getString("USER_ID"),
 				rs.getInt("TOTAL_GANBARI_TIME"),
 				ganbariHours,
 				ganbariMins

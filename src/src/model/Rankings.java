@@ -6,13 +6,15 @@ import java.io.Serializable;
 public class Rankings implements Serializable {
 
 	private String userName; //投稿したユーザの名前 (画面表示用)
+	private String userId;
 	private int ganbariTime; //がんばり時間（分）
 	private int ganbariTimeHours; //がんばり時間（時間）
 	private int ganbariTimeMins; //がんばり時間（残りの分）
 
 	// 投稿取得用
-	public Rankings( String userName, int gTime, int ganbariTimeHours, int ganbariTimeMins) {
+	public Rankings(String userName, String userId, int gTime, int ganbariTimeHours, int ganbariTimeMins) {
 		this.userName = userName;
+		this.userId = userId;
 		this.ganbariTime = gTime;
 		this.ganbariTimeHours = ganbariTimeHours;
 		this.ganbariTimeMins = ganbariTimeMins;
@@ -20,6 +22,7 @@ public class Rankings implements Serializable {
 
 //	getter
 	public String getUserName() {return userName;}
+	public String getUserId() {return userId;}
 	public int getGanbariTime() {return ganbariTime;}
 	public int getGanbariTimeHours() {return ganbariTimeHours;}
 	public int getGanbariTimeMins() {return ganbariTimeMins;}
@@ -28,6 +31,6 @@ public class Rankings implements Serializable {
 	public void setGanbariTime(int ganbariTime) {this.ganbariTime = ganbariTime;}
 	public void setGanbariTimeHours(int ganbariTimeHours) {this.ganbariTimeHours = ganbariTimeHours;}
 	public void setGanbariTimeMins(int ganbariTimeMins) {this.ganbariTimeMins = ganbariTimeMins;}
-
+	public void setUserId(String userId) {this.userId = userId;}
 
 }

@@ -9,19 +9,18 @@
 .post_card {
     width: 250px;
     padding: 15px;
-    height: 310px;
+    height: 300px;
     margin-right: 30px;
     margin-bottom: 40px;
     background-color: #fff;
-    box-shadow: 0 0 8px rgba(0, 0, 0, .16);
+    box-shadow: 0 0 7px rgba(0, 0, 0, .16);
     transition:all 0.3s;
-}
+  }
 
 .post_card:hover {
-    box-shadow:0 0 15px rgba(0, 0, 0, .16), 0 2px 5px rgba(0, 0, 0, 0.3);
+    box-shadow:0 0 12px rgba(0, 0, 0, .16), 0 2px 5px rgba(0, 0, 0, 0.3);
     transform: translateY(-1.5px);
 }
-
 /* 投稿カードがふわっと表示される */
 .fadeUp {
     animation-name:fadeUpAnime;
@@ -189,3 +188,54 @@ textarea:focus {
     margin-left: 3px;
 }
 /* リアクションアイコン（いいね） */
+
+
+/* 新規追加ボタン */
+.post-button {
+	position: fixed;
+	bottom: 40px;
+	right: 40px;
+	width: 50px;
+	height: 50px;
+	font-weight: bold;
+	background-color: #fff;
+	border-radius: 50%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	color: #FBBC04;
+	font-size: 30px;
+	cursor: pointer;
+	z-index: 10	;
+	filter: drop-shadow(0px 2px 4px #ccc);
+	border: 3px solid #fcfcfc;
+	box-shadow: 1px 2px 3px #ccc;
+	transition: .3s;
+  }
+
+.post-button:hover {
+	transform: translateY(2px);
+	box-shadow: 0 0 0 #ccc;
+}
+
+
+/* メディアクエリ */
+
+/* タブレット用 */
+@media screen and (max-width: 769px) {
+
+}
+
+
+/* スマホ用 */
+@media screen and (max-width: 420px) {
+    .post-button {
+        bottom: 80px;
+        right: 25px;
+        box-shadow: unset;
+    }
+    .post-button:hover {
+        transform: unset;
+        box-shadow: unset;
+    }
+}
