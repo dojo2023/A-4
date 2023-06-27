@@ -67,7 +67,7 @@
 					</div>
 					<div class="g-time">
 						<div class="g-time-label">がんばり時間:</div>
-						<div class="g-time-record">00時間00分</div>
+						<div class="g-time-record">${e.ganbariTimeHours}時間${e.ganbariTimeMins}分</div>
 					</div>
 					<div class="linked_user">
 						<form id="get_to_userpage" method="GET" action="/NYASTER/UserPage">
