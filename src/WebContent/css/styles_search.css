@@ -159,10 +159,11 @@
 
   /* タブレット用 */
   @media screen and (max-width: 769px) {
-	  @media screen and (max-width: 400px) {
+  }
+  @media screen and (max-width: 420px) {
 	.search-form{
-        	text-alingn:center;
-        	width:100%;
+        	text-align:center;
+        	width: 300px;
         	display:inline-block;
         	display: flex;
 		    justify-content: space-between;
@@ -213,9 +214,9 @@
   }
 	.search_result_label_none {
 		    text-align: center;
-		    font-size: 15px;
+		    font-size: 10px;
 		    font-weight: 600;
-		    margin-top: 30px
+		    margin-top: 250px
   }
 	.content ul {
 	    padding: 0px 50px 0px 0px;
@@ -309,13 +310,15 @@
 	    'opsz' 48
 	}
   }
-  }
 
   /* スマホ用 */
-  @media screen and (max-width: 400px) {
+  @media screen and (max-width: 420px) {
 	.search-form{
-        	text-alingn:center;
-        	width:100%;
+        	text-align:center;
+        	width:300px;
+        	height:40px;
+        	position:relative;
+			top: 50px;
         	display:inline-block;
         	display: flex;
 		    justify-content: space-between;
@@ -356,7 +359,26 @@
 	    background-repeat: no-repeat;
 	    content: '';
 	}
-
+	.title{
+	position:relative;
+	top: 20px;
+	}
+	.home{
+	position:relative;
+	left: 80px;
+	}
+	.search{
+	position:relative;
+	left:50px;
+	}
+	.ranking{
+	position:relative;
+	left:30px;
+	}
+	.material-symbols-outlined{
+	position:relative;
+	right: 40px;
+	}
   /* スマホ用(検索結果) */
 	.search_result_label {
 		    text-align: center;
@@ -366,10 +388,13 @@
   }
 	.search_result_label_none {
 		    text-align: center;
-		    font-size: 15px;
+		    font-size: 11px;
 		    font-weight: 600;
-		    margin-top: 30px
+		    margin-top: 250px
   }
+  	.content{
+
+  	}
 	.content ul {
 	    padding: 0px 50px 0px 0px;
 	    margin: unset;
@@ -461,6 +486,7 @@
 	    'GRAD' 0,
 	    'opsz' 48
 	}
+
   }
 
 
