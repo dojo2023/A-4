@@ -73,7 +73,7 @@
                 </div>
                 <img class="icon" src="icon_img/${e.userId}.png" alt="ユーザアイコン">
                 <div class="user">
-                    <div class="id">@$e.userId</div>
+                    <div class="id">@${e.userId}</div>
                     <div class="name">${e.userName}</div>
                 </div>
                 <div class="g-time">
@@ -91,7 +91,7 @@
                 </div>
                 <img class="icon" src="icon_img/${e.userId}.png" alt="ユーザアイコン">
                 <div class="user">
-                    <div class="id">@$e.userId</div>
+                    <div class="id">@${e.userId}</div>
                     <div class="name">${e.userName}</div>
                 </div>
                 <div class="g-time">
@@ -109,7 +109,7 @@
               </div>
               <img class="icon" src="icon_img/${e.userId}.png" alt="ユーザアイコン">
               <div class="user">
-                  <div class="id">@$e.userId</div>
+                  <div class="id">@${e.userId}</div>
                   <div class="name">${e.userName}</div>
               </div>
               <div class="g-time">
