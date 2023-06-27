@@ -140,7 +140,7 @@ body {
   .content {
     display: flex;
     flex: 1; /* メインコンテンツが残りのスペースを占めるようにする */
-    padding: 40px 10px 40px 60px; /* メインコンテンツの内側の余白 */
+    padding: 40px 50px 40px 50px; /* メインコンテンツの内側の余白 */
     margin-left: 200px; /* メニューの幅分だけメインコンテンツを右にずらす */
     flex-direction:column;
     min-height: 100vh;
