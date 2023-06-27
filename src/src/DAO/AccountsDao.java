@@ -368,8 +368,10 @@ public class AccountsDao {
 			conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/data/nyastar", "sa", "");
 
 			// SQL文を準備する　connとsqlがごっちゃになったものがpSmt
-        	String sql = "select *"
-        			+ " from ACCOUNTS"
+        	String sql = "select USER_NAME, USER_ID, SUM(GANBARI_TIME) AS TOTAL_GANBARI_TIME"
+        			+ " from POSTS "
+        			+ "JOIN ACCOUNTS ON POSTS.USER_UUID = ACCOUNTS.USER_UUID "
+        			+ "JOIN GOALS ON POSTS.GOAL_ID = GOALS.GOAL_ID "
         			+ " WHERE USER_ID LIKE ? OR USER_NAME LIKE ?";
 
 			PreparedStatement pStmt = conn.prepareStatement(sql);
@@ -381,9 +383,17 @@ public class AccountsDao {
 
 			// 結果表をコレクションにコピーする ArryList（JavaBeans）に入れなおしている
 			while (rs.next()) {
+				double doubleGanbariHours = Math.floor(rs.getInt("TOTAL_GANBARI_TIME") / 60.0);
+				int ganbariTimeHours = (int)doubleGanbariHours; // long型からint型に変換
+				int ganbariTimeMins = rs.getInt("TOTAL_GANBARI_TIME") % 60; // 残りの分数を計算
+				
 				User search = new User();
 			    search.setUser_id(rs.getString("USER_ID"));
-			    search.setUser_name(rs.getString("USER_NAME"))  ;
+			    search.setUser_name(rs.getString("USER_NAME"));
+			    search.setTotalGanbariTime(rs.getInt("TOTAL_GANBARI_TIME"));
+			    search.setGanbariTimeHours(ganbariTimeHours);
+			    search.setGanbariTimeMins(ganbariTimeMins);
+			    
 			    seList.add(search);
 			}
 		}
