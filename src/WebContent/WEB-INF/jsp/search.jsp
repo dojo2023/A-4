@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -67,7 +68,26 @@
 			<li class="user_info">
 				<div class="flexbox">
 					<!-- img class="icon" src="C:/pleiades/workspace/data/icon_img/human.png" alt="ユーザアイコン"> -->
-					<img class="icon" src="icon_img/${e.user_id}.png" alt="ユーザアイコン">
+
+					<c:set var="directoryPath" value="icon_img" />
+    				<c:set var="fileName" value="${userId}.png" />
+​
+					<c:if test="${fn:contains(directoryFiles, fileName)}">
+						<!-- ファイルが存在したとき処理 -->
+						<img class="icon" src="icon_img/${e.user_id}.png" alt="ユーザアイコン">
+					</c:if>
+
+					<c:if test="${!fn:contains(directoryFiles, fileName)}">
+						<!-- ファイルが存在しなかったときの処理 -->
+						<img class="icon" src="icon_img/human.png" alt="ユーザアイコン">
+					</c:if>
+
+
+
+
+
+
+
 					<div class="user" id="get_${e.user_id}">
 						<div class="id">@${e.user_id}</div>
 						<div class="name">${e.user_name}</div>
