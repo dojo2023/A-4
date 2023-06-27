@@ -83,11 +83,6 @@
 					</c:if>
 
 
-
-
-
-
-
 					<div class="user" id="get_${e.user_id}">
 						<div class="id">@${e.user_id}</div>
 						<div class="name">${e.user_name}</div>
