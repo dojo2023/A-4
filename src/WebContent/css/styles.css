@@ -187,7 +187,7 @@ body {
   }
 
   /* スマホ用 */
-  @media screen and (max-width: 400px) {
+  @media screen and (max-width: 420px) {
     .content {
       flex: 1; /* メインコンテンツが残りのスペースを占めるようにする */
       padding: 15px 25px; /* メインコンテンツの内側の余白 */

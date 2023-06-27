@@ -155,7 +155,7 @@
             }
         </script>
     </main>
-    <div class="post-button trigger-addCard"> <span>＋</span> </div>
+    <div class="post-button trigger-post"> <span>＋</span> </div>
 
 	<!-- JS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
