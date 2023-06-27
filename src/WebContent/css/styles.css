@@ -25,17 +25,18 @@ body {
     top: 0; /* 上端に配置 */
     left: 0; /* 左端に配置 */
     bottom: 0; /* 下端まで広がる */
-    width: 160px; /* メニューの幅 */
+    width: 180px; /* メニューの幅 */
     background-color: #F7F9FC;
-    padding: 25px; /* メニューの内側の余白 */
     position: fixed; /* 固定位置 */
     box-shadow: 2px 0 5px rgba(0, 0, 0, 0.2);
+    padding: 25px 25px 0 0;
     z-index: 99;
   }
 
   .menu .logo {
     font-size: 25px;
     font-weight: bold;
+    padding-left: 25px;
   }
 
   /* .menu .logo {
@@ -52,7 +53,14 @@ body {
 
   /* 縦並びメニュー要素（個別） */
   .menu li {
-    margin: 40px 0px;
+    margin: 20px 0px;
+    padding: 10px 20px 10px 20px;
+    border-radius: 0 50px 50px 0
+  }
+
+  .menu li:hover {
+    background-color: #ececec;
+    font-weight: 700;
   }
 
   .menu a {
@@ -63,15 +71,16 @@ body {
     transition: background-color 0.3s ease;
   }
 
-  .menu a:hover {
+  /* .menu a:hover {
     background-color: #e1e1e1;
     font-weight: 700;
-  }
+  } */
 
   .menu .logout {
     position: absolute;
-    bottom: 25px;
+    bottom: 20px;
     color: #333;
+    padding-left: 25px;
   }
 
 
@@ -111,6 +120,23 @@ body {
     font-weight: bold;
   }
 
+  .page_title p{
+    display: block;
+    margin-block-start: 0px;
+    margin-block-end: 0px;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    margin: 0px;
+    padding: 0px 4px;
+  }
+
+  .page_title .border {
+    border-bottom: #FED600 6px solid;
+    width: 75px;
+    text-align: center;
+    margin-top: 2px;
+  }
+
   .content {
     display: flex;
     flex: 1; /* メインコンテンツが残りのスペースを占めるようにする */
@@ -137,7 +163,7 @@ body {
   /* メディアクエリ */
 
   /* タブレット用 */
-  @media screen and (max-width: 950px) {
+  @media screen and (max-width: 769px) {
     /* メニューのテキストを非表示 */
     .menu .text {
       display: none;
