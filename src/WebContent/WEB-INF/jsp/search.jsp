@@ -5,6 +5,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width" />
+  <meta http-equiv="Cache-Control" content="no-cache">
   <!-- CSS -->
 	<jsp:include page="includedCSS.jsp" />
 	<link rel="stylesheet" href="css/styles_search.css">
@@ -13,24 +14,30 @@
   <title>ユーザ検索｜NYASTAR</title>
 </head>
 <body>
-  	<div class="menu">
-		<!-- メインメニュー -->
-			<jsp:include page="includedMenu.jsp" />
+	<!-- メインメニュー -->
+	<jsp:include page="includedMenu.jsp" />
 
-		<style>
-			.menu .search .material-symbols-outlined {
-			font-variation-settings:
-			'FILL' 1,
-			'wght' 600,
-			'GRAD' 200,
-			'opsz' 48
-			}
+    <style>
+        .menu .search .material-symbols-outlined {
+            font-variation-settings:
+            'FILL' 1,
+            'wght' 600,
+            'GRAD' 200,
+            'opsz' 48
+        }
 
-			.menu .search {
-			font-weight: 700;
-			}
-		</style>
-	</div>>
+        .menu .search li {
+            background-color: #FEEFC3;
+            font-weight: 700;
+        }
+
+        @media screen and (max-width: 769px) {
+        	.menu .search li {
+        		background-color: unset;
+	            font-weight: 700;
+	    }
+    }
+    </style>
 
 	<main class="content">
 		<div class="title">NYASTAR</div>
