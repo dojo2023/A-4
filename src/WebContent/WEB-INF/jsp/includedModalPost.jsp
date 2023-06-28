@@ -8,7 +8,7 @@
      .iziModal_post {
          display: none;
      }
-     .goals-s{
+     .posts-s{
        color: #6091d3;
 
      }
@@ -58,7 +58,7 @@
  </style>
 
 <div class="iziModal_post" data-izimodal-title="投稿" data-izimodal-subtitle="説明文">
-   <h2 class="goals-s">がんばり投稿</h2>
+   <h2 class="posts-s">がんばり投稿</h2>
    <form method="POST" action="/NYASTER/TopPage">
        <div>目標選択</div>
        <select id="goal-select" name="goal">
@@ -67,7 +67,7 @@
            </c:forEach>
        </select>
 
-       <div>がんばり時間</div>
+       <div class="posts-s">がんばり時間</div>
        <div class="IC">
        <div class="input-cont"> <input type="number" class="time-input" name="hours" min="0" value="0" required> <label>時間</label>
        </div>
