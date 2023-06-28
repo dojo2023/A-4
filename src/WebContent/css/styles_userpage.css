@@ -258,15 +258,10 @@
 	    position:relative;
 		top: 130px;
 	    }
-	    }
+
 		.flexbox_chart{
 		position:relative;
 		top: 150px;
-	    }
-	    .flexbox_goallist{
-	    position:relative;
-		top: 110px;
-		right: 300px;
 	    }
 	    .add_goal{
 	    position:relative;
@@ -279,8 +274,9 @@
 	    }
 	    h5{
 	    position:relative;
-		top: -30px;
+		  top: -30px;
 	    }
+    }
 
    /* タブレット用 */
   @media screen and (max-width: 830px) {
@@ -304,22 +300,22 @@
         padding: 40px 10px 40px 40px; /* メインコンテンツの内側の余白 */
         margin-left: 60px; /* メニューの幅分だけメインコンテンツを右にずらす */
     }
-    .home{
-	position:relative;
-	left: 80px;
-	}
-	.search{
-	position:relative;
-	left:50px;
-	}
-	.ranking{
-	position:relative;
-	left:30px;
-	}
-	.material-symbols-outlined{
-	position:relative;
-	right: 40px;
-	}
+      .home{
+    position:relative;
+    left: 80px;
+    }
+    .search{
+    position:relative;
+    left:50px;
+    }
+    .ranking{
+    position:relative;
+    left:30px;
+    }
+    .material-symbols-outlined{
+    position:relative;
+    right: 40px;
+    }
     }
 
 

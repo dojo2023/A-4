@@ -41,7 +41,7 @@
 
   <main class="content">
     <div class="title">NYASTAR</div>
-    <div class="page_title"><p>ランキング</p><p class="border"></p></div>
+    <div class="page_title"><p>ランニング</p><p class="border" style="width: 130px;"></p></div>
 
 
     <div class="ranking-tag">

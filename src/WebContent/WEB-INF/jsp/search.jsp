@@ -42,7 +42,7 @@
 
 	<main class="content">
 		<div class="title">NYASTAR</div>
-		<div class="page_title"><p>検索</p><p class="border"></p></div>
+		<div class="page_title"><p>検索</p><p class="border" style="width: 55px;"></p></div>
 		<!-- <div class="page_title">検索</div> -->
 
 		<form method="post" class="search-form" action = "/NYASTER/Search">

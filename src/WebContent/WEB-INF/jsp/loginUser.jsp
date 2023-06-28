@@ -78,7 +78,7 @@
 			</ul>
 			<c:if test="${mypage}">
 				<div class="add_goal">
-					<div class="material-symbols-outlined trigger-goaladd">add_box</div>
+					<div class="material-symbols-outlined trigger-goaladd" style="cursor: pointer;">add_box</div>
 				</div>
 			</c:if>
 		</div>
