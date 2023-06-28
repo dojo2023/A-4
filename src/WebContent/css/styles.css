@@ -203,7 +203,7 @@ body {
   }
 
   /* スマホ用 */
-  @media screen and (max-width: 420px) {
+@media screen and (max-width: 420px) {
     .content {
       flex: 1; /* メインコンテンツが残りのスペースを占めるようにする */
       padding: 15px 25px; /* メインコンテンツの内側の余白 */
@@ -289,74 +289,74 @@ body {
         'GRAD' 200,
         'opsz' 48
       }
-    .home{
-	position:relative;
-	left: 80px;
-	}
-	.search{
-	position:relative;
-	left:50px;
-	}
-	.ranking{
-	position:relative;
-	left:30px;
-	}
-	.material-symbols-outlined{
-	position:relative;
-	right: 40px;
-	}
-	.title{
-	position:relative;
-	top: 20px;
-	}
-	.material-symbols-outlined{
-	position:relative;
-	right: 40px;
-	}
-	h2{
-	position:relative;
-	top: 30px;
-	}
-	.page_title .border  {
-    border-bottom: #FED600 6px solid;
-    width: 75px;
-    text-align: center;
-    margin-top: 2px;
-    position:relative;
-	top: 5px;
-	}
-	.page_title{
-	position:relative;
-	top: 30px;
-	}
-  	}
+	    .home{
+		position:relative;
+		left: 80px;
+		}
+		.search{
+		position:relative;
+		left:50px;
+		}
+		.ranking{
+		position:relative;
+		left:30px;
+		}
+		.material-symbols-outlined{
+		position:relative;
+		right: 40px;
+		}
+		.title{
+		position:relative;
+		top: 20px;
+		}
+		.material-symbols-outlined{
+		position:relative;
+		right: 40px;
+		}
+		h2{
+		position:relative;
+		top: 30px;
+		}
+		.page_title .border  {
+	    border-bottom: #FED600 6px solid;
+	    width: 75px;
+	    text-align: center;
+	    margin-top: 2px;
+	    position:relative;
+		top: 5px;
+		}
+		.page_title{
+		position:relative;
+		top: 30px;
+		}
+	  	}
 
 
 
-/* フォームのCSSをリセット */
-  input,button,select,textarea {
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    appearance: none;
-    background: transparent;
-    border: none;
-    border-radius: 0;
-    font: inherit;
-    outline: none;
-  }
+	/* フォームのCSSをリセット */
+	  input,button,select,textarea {
+	    -webkit-appearance: none;
+	    -moz-appearance: none;
+	    appearance: none;
+	    background: transparent;
+	    border: none;
+	    border-radius: 0;
+	    font: inherit;
+	    outline: none;
+	  }
 
-  textarea {
-    resize: vertical;
-  }
+	  textarea {
+	    resize: vertical;
+	  }
 
-  input[type='checkbox'], input[type='radio'] {
-    display: none;
-  }
+	  input[type='checkbox'], input[type='radio'] {
+	    display: none;
+	  }
 
-  input[type='submit'], input[type='button'], label, button, select {
-    cursor: pointer;
-  }
+	  input[type='submit'], input[type='button'], label, button, select {
+	    cursor: pointer;
+	  }
 
-  select::-ms-expand {
-    display: none;
-  }
+	  select::-ms-expand {
+	    display: none;
+	  }

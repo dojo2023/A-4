@@ -41,7 +41,8 @@
 
   <main class="content">
     <div class="title">NYASTAR</div>
-    <div class="page_title">ランキング</div>
+    <div class="page_title"><p>ランキング</p><p class="border"></p></div>
+
 
     <div class="ranking-tag">
       <form class="flexbox" method="POST" action="/NYASTER/Ranking">
