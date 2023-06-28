@@ -265,21 +265,21 @@
 	    }
 	    .flexbox_goallist{
 	    position:relative;
-		top: 100px;
-		right: 250px;
+		top: 110px;
+		right: 300px;
 	    }
 	    .add_goal{
 	    position:relative;
-		top: -40px;
-		left: 250px;
+		top: -50px;
+		left: 300px;
 	    }
 	    h2{
 	    position:relative;
-		top: -60px;
+		top: -40px;
 	    }
 	    h5{
 	    position:relative;
-		top: -50px;
+		top: -30px;
 	    }
 
    /* タブレット用 */
