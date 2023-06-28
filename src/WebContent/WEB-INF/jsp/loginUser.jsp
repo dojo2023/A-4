@@ -100,8 +100,6 @@
         <jsp:include page="includedModalGoalAdd.jsp"/>
 	</main>
 
-
-
 	<!-- JS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/izimodal/1.5.1/js/iziModal.min.js"></script>

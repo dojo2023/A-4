@@ -71,6 +71,8 @@ public class UserPage extends HttpServlet {
 		request.setAttribute("uttHours", tt.getGanbariTimeHours());
 		request.setAttribute("uttMins", tt.getGanbariTimeMins());
 
+		request.setAttribute("mypage", true);
+
 		// 結果をページにフォワードする
 		RequestDispatcher dispatcher= request.getRequestDispatcher("/WEB-INF/jsp/loginUser.jsp");
 		dispatcher.forward(request, response);
