@@ -72,22 +72,7 @@
                         </div>
                     </div>
                     <div class="g-Content">
-                    	<span class="g-tag">
-                    	<c:choose>
-						<c:when test="${e.ganbariTag eq '運動'}">
-							<i class="fa-solid fa-person-running" style="color: #203250;"></i>
-						</c:when>
-						<c:when test="${e.ganbariTag eq '勉強'}">
-							<i class="fa-solid fa-pen" style="color: #203250;"></i>
-						</c:when>
-						<c:when test="${e.ganbariTag eq '読書'}">
-							<i class="fa-solid fa-book icon" style="color: #203250;"></i>
-						</c:when>
-						<c:when test="${e.ganbariTag eq 'その他'}">
-							<i class="fa-solid fa-cat" style="color: #203250;"></i>
-						</c:when>
-						</c:choose>
-                        ${e.ganbariTag}</span>
+                        <span class="g-tag"><i class="fa-solid fa-book icon" style="color: #203250;"></i>${e.ganbariTag}</span>
                         <span class="g-times">${e.ganbariTimeHours}時間${e.ganbariTimeMins}分</span>
                     </div>
                     <div class="progress-label">
