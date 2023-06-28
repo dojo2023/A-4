@@ -1,110 +1,119 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-  <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>ユーザーページ</title>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-<style>
-    #wrapper {
-      height: 200px;
-      width: 300px;
-      overflow-y: scroll;
-    }
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width" />
+	<meta http-equiv="Cache-Control" content="no-cache">
+	<!-- CSS -->
+	<jsp:include page="includedCSS.jsp" />
+	<link rel="stylesheet" href="css/styles_userpage.css">
+	<!-- JS -->
+	<script src="https://kit.fontawesome.com/b0a477e877.js" crossorigin="anonymous"></script>
+	<title>ユーザーページ｜NYASTAR</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 
-    #contents {
-      background-color: cadetblue;
-    }
-
-	#iconSize {
-            /* サイズを調整 */
-            width: 200px;
-            height: 200px;
-
-            overflow: hidden;
-            border-radius: 50%;
-            position: relative;
-            border: 3px solid #eeeeee;
+	<style>
+        .menu .userpage .material-symbols-outlined {
+            font-variation-settings:
+            'FILL' 1,
+            'wght' 600,
+            'GRAD' 200,
+            'opsz' 48
         }
 
-
-
-	#iconImage {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            max-width: 100%;
-            max-height: 100%;
-            width: auto;
-            height: auto;
-            margin: auto;
-            object-fit: contain;
+        .menu .userpage li {
+            background-color: #FEEFC3;
+            font-weight: 700;
         }
 
-</style>
-	<!-- 共通のCSS読み込み -->
-
+        @media screen and (max-width: 769px) {
+        	.menu .userpage li {
+        		background-color: unset;
+	            font-weight: 700;
+	    }
+    }
+	</style>
 </head>
 
 <body>
-
-	 <!-- ログアウト -->
-        <form method="POST" action="/NYASTER/UserPage">
-		<input type="submit"  name="select" value="ログアウト" >
-		</form>
-
 	<!-- メインメニュー -->
+	<jsp:include page="includedMenu.jsp" />
 
+	<main class="content">
+		<div class="title">NYASTAR</div>
+		<div class="page_title"><p>ユーザーページ</p><p class="border" style="width: 180px;"></p></div>
+		<div class="flexbox">
+			<div class="user_icon">
+				<!-- <img src="icon_img/${userid}.png" alt="" id="iconImage"></img> -->
+				<img src="img/human.png" alt="ユーザーアイコン">
+			</div>
+			<div class="user-info">
+				<div class="user">
+					<span class="name">${pageUserName}</span><span class="id">(@${pageUserId})</span>
+				</div>
+				<div class="ganbari">
+					<div class="time">
+						<span class="g-label">総がんばり時間:</span><span class="g-totaltime">${uttHours}時間${uttMins}分</span>
+					</div>
+					<div class="goal">
+						<span class="g-label">目標達成回数:</span><span class="g-totaltime">0</span>
+					</div>
+				</div>
+			</div>
+			<!-- ページのユーザとログインユーザが一致していたら表示 -->
+			<c:if test="${mypage}">
+				<div class="material-symbols-outlined edit_account link-title edit_profile_button">tune</div>
+			</c:if>
+		</div>
 
-	<main>
+		<div class="flexbox_goallist">
+			<div class="goal_title">目標</div>
+			<c:forEach var="e" items="${goalList}">
+				<li>${e.goalName} (${e.goalTimeHours}時間${e.goalTimeMins}分)</li>
+			</c:forEach>
+			<c:if test="${mypage}">
+				<div class="add_goal">
+					<div class="material-symbols-outlined trigger-goaladd">add_box</div>
+				</div>
+			</c:if>
+		</div>
 
-		<h1>マイページ</h1>
+		<div class="flexbox_chart">
+			<h2>がんばり統計</h2>
+			<h5>1週間の活動時間</h5>
+			<div id="bar-chart"></div>
+		</div>
 
-		<figure id="iconSize">
-			<img src="icon_img/${userid}.png" alt="" id="iconImage"></img>
-		</figure>
+		<!-- <a href="UserPage" class="link-title">${username}</a>
+		<a href="EditProfile" class="link-title edit_profile_button">プロフィール登録・編集</a> -->
 
-		<a href="UserPage" class="link-title">${username}</a>
+		<!-- <h2>活動合計時間</h2>
+		<p>${uttHours}時間${uttMins}分</p> -->
 
-		<a href="EditProfile" class="link-title">プロフィール登録・編集</a>
+		<footer>
+            <p>&copy; 2023 NYASTAR. All rights reserved.</p>
+        </footer>
 
-		<h2>「がんばり目標」</h2>
-		<c:forEach var="e" items="${goalList}">
-			<li>${e.goalName} (${e.goalTimeHours}時間${e.goalTimeMins}分)</li>
-		</c:forEach>
-
-		<button name="button">目標追加</button>
-
-
-		<h2>活動合計時間</h2>
-		<p>${uttHours}時間${uttMins}分</p>
-
-		<h2>投稿一覧</h2>
-		<c:forEach var="e" items="${postList}">
-			<hr>
-			<!-- <div>投稿UUID： ${e.id}</div> -->
-			<div>投稿者名： ${e.userName}</div>
-			<div>タグ： ${e.ganbariTag}</div>
-			<div>がんばり内容： ${e.msg}</div>
-			<div>がんばり時間： ${e.ganbariTimeHours}時間${e.ganbariTimeMins}分</div>
-			<div>がんばり目標： ${e.goalName} (${e.goalTimeHours}時間${e.goalTimeMins}分)</div>
-			<div>目標進捗率: ${Math.floor((e.progress/e.goalTime)*100)}%</div>
-			<div>投稿時間： ${e.postTime}</div>
-			<div><span>ナイス数</span> <span id="rc_${e.id}">${e.reactionCount}</span></div>
-			<form>
-				<input type="checkbox" name="select" id="nice_${e.id}" value="ナイス" onchange= "reactionpost('${e.id}');"<c:if test="${e.reactionCheck == 1}" >checked</c:if>></input>
-			</form>
-		</c:forEach>
-		<hr>
+        <jsp:include page="includedModalGoalAdd.jsp"/>
 	</main>
 
-    <footer>
-    <!-- フッターのコンテンツをここに追加します -->
-    <p>&copy; 2023 NYASTAR. All rights reserved.</p>
-    </footer>
 
+
+	<!-- JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/izimodal/1.5.1/js/iziModal.min.js"></script>
+    <script type="text/javascript" src="./js/jquery-migrate-3.4.1.js"></script>
+    <script src="js/iziToast.min.js" type="text/javascript"></script>
+    <script src="js/iziToast.js" type="text/javascript"></script>
+    <script src="js/Toast.js" type="text/javascript"></script>
+    <script src="js/script.js"></script>
+	<script src="js/asyncReaction.js"></script>
+    <script src="js/asyncComments.js"></script>
 	<script src="js/asyncUserPageReaction.js"></script>
+	<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+	<script type="text/javascript" src="js/graph.js"></script>
 </body>
 </html>
