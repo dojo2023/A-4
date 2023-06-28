@@ -8,14 +8,57 @@
      .iziModal_post {
          display: none;
      }
-     .input-cont {
-     
+     .goals-s{
+       color: #6091d3;
+      
      }
-     
+     .posts-button{
+       color: #fff;
+       background-color: #6091d3;
+       border-radius: 100vh;
+     }
+    .input-cont {
+    width: 150px;
+    padding: 0.5em 1em;
+    margin: 2em 1px;
+    font-weight: bold;
+    color: #6091d3;/*文字色*/
+    background: #FFF;
+    border: solid 3px #6091d3;/*線*/
+    border-radius: 10px;/*角の丸み*/
+	}
+	.input-cont p {
+	    margin: 0; 
+	    padding: 0;
+	}
+	.input-msg {
+    width: 400px;
+    height: 100px;
+    padding: 0.5em 1em;
+    margin: 2em 0;
+    font-weight: bold;
+    color: #6091d3;/*文字色*/
+    background: #FFF;
+    border: solid 3px #6091d3;/*線*/
+    border-radius: 10px;/*角の丸み*/
+	}
+	.input-msg p {
+	    margin: 0; 
+	    padding: 0;
+	}
+	.time-input {
+	    width: 100px;
+	}
+	.IC {
+		display: flex;
+	    align-items: center;
+        justify-content: flex-start;
+	}
+	
  </style>
 
 <div class="iziModal_post" data-izimodal-title="投稿" data-izimodal-subtitle="説明文">
-   <h2>がんばり投稿</h2>
+   <h2 class="goals-s">がんばり投稿</h2>
    <form method="POST" action="/NYASTER/TopPage">
        <div>目標選択</div>
        <select id="goal-select" name="goal">
@@ -25,13 +68,14 @@
        </select>
 
        <div>がんばり時間</div>
-       <div class="input-cont"> <input type="number" name="hours" min="0" value="0" required> <label>時間</label>
+       <div class="IC">
+       <div class="input-cont"> <input type="number" class="time-input" name="hours" min="0" value="0" required> <label>時間</label>
        </div>
-       <div class="input-cont"> <input type="number" name="mins" min="0" max="60" value="0" required> <label>分</label>
+       <div class="input-cont"> <input type="number" class="time-input" name="mins" min="0" max="60" value="0" required> <label>分</label>
+       </div></div>
+       <div class="input-msg">  <label>メッセージ</label> <input type="text" id="msg" name="msg" maxlength="50" >
        </div>
-       <div class="input-cont">  <label>メッセージ</label> <input type="text" id="msg" name="msg" maxlength="50">
-       </div>
-       <div> <input type="submit" name="select" class="login-button" title="登録する" value="投稿"> </div>
+       <div> <input type="submit" name="select" class="posts-button" title="登録する" value="投稿"> </div>
    </form>
 </div>
 
