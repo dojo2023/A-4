@@ -10,7 +10,7 @@
      }
      .goals-s{
        color: #6091d3;
-      
+
      }
      .posts-button{
        color: #fff;
@@ -28,7 +28,7 @@
     border-radius: 10px;/*角の丸み*/
 	}
 	.input-cont p {
-	    margin: 0; 
+	    margin: 0;
 	    padding: 0;
 	}
 	.input-msg {
@@ -43,7 +43,7 @@
     border-radius: 10px;/*角の丸み*/
 	}
 	.input-msg p {
-	    margin: 0; 
+	    margin: 0;
 	    padding: 0;
 	}
 	.time-input {
@@ -54,7 +54,7 @@
 	    align-items: center;
         justify-content: flex-start;
 	}
-	
+
  </style>
 
 <div class="iziModal_post" data-izimodal-title="投稿" data-izimodal-subtitle="説明文">
@@ -102,5 +102,3 @@
 	});
 
 </script>
-
-

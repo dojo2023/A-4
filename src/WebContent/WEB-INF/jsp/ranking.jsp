@@ -18,17 +18,25 @@
 	<jsp:include page="includedMenu.jsp" />
 
   <style>
-    .menu .ranking .material-symbols-outlined {
-      font-variation-settings:
-      'FILL' 1,
-      'wght' 600,
-      'GRAD' 200,
-      'opsz' 48
-    }
+       .menu .ranking .material-symbols-outlined {
+           font-variation-settings:
+           'FILL' 1,
+           'wght' 600,
+           'GRAD' 200,
+           'opsz' 48
+       }
 
-    .menu .ranking {
-      font-weight: 700;
+       .menu .ranking li {
+           background-color: #FEEFC3;
+           font-weight: 700;
+       }
+
+       @media screen and (max-width: 769px) {
+       	.menu .ranking li {
+       		background-color: unset;
+            font-weight: 700;
     }
+   }
   </style>
 
   <main class="content">

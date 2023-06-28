@@ -9,7 +9,7 @@
     <div class="search"><li><a href="Search"><span class="material-symbols-outlined">search</span><span class="text">検索</span></a></li></div>
     <div class="ranking"><li><a href="Ranking"><span class="material-symbols-outlined">leaderboard</span><span class="text">ランキング</span></a></li></div>
   <!--   <div><li><a href="#" class="link-title trigger-post"><span class="material-symbols-outlined">stylus_note</span><span class="text">作成</span></a></li></div> -->
-    <div><li><a href="UserPage"><span class="material-symbols-outlined">person</span><span class="text">マイページ</span></a></li>
+    <div class="userpage"><li><a href="UserPage"><span class="material-symbols-outlined">person</span><span class="text">マイページ</span></a></li>
   </ul>
   <div class="logout">
     <!-- ログアウト -->
