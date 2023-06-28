@@ -92,9 +92,9 @@
 						<div class="g-time-record">${e.ganbariTimeHours}時間${e.ganbariTimeMins}分</div>
 					</div>
 					<div class="linked_user">
-						<form id="get_to_userpage" method="GET" action="/NYASTER/UserPage">
-							<input type="hidden" name="u" value="${e.user_id}">
-							<input class="material-symbols-outlined" type="submit" value="link">
+						<form id="get_to_userpage" method="POST" action="/NYASTER/UserPage">
+							<input type="hidden" name="page_user_id" value="${e.user_id}">
+							<input class="material-symbols-outlined" name="select" type="submit" value="link">
 						</form>
 					</div>
 				</div>
