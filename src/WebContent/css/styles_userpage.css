@@ -142,3 +142,184 @@
     height: 300px;
     position: relative;
 }
+
+	/*スマホ対応*/
+@media screen and (max-width: 420px) {
+    .content {
+      flex: 1; /* メインコンテンツが残りのスペースを占めるようにする */
+      padding: 15px 25px; /* メインコンテンツの内側の余白 */
+      margin-left: 0px; /* メニューの幅分だけメインコンテンツを右にずらす */
+    }
+
+    /* 一時ヘッダー非表示 */
+    footer{
+      display: none;
+    }
+
+    /* メニューのテキストを非表示 */
+    .menu .text {
+      display: none;
+    }
+
+    /* ヘッダーのロゴを非表示 */
+    .menu .logo {
+      display: none;
+    }
+
+    /* ログアウトアイコンを非表示 */
+    .menu .logout {
+      display: none;
+    }
+
+    .title {
+      display: unset;
+      font-size: 20px;
+      font-weight: bold;
+    }
+
+    .home {
+      font-size: 20px;
+    }
+
+    .menu {
+      /* PC用のプロパティをリセットする */
+      top: unset;
+      left: unset;
+      align-items: unset;
+      justify-content: unset;
+      box-shadow: unset;
+      padding: unset;
+
+      background-color: #fff;
+      bottom: 0;
+      height: 60px;
+      width: 100%;
+      border-top: 0.7px #d4d4d4 solid;
+      }
+
+      .menu ul {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        text-align: center;
+        list-style: none;
+        margin: 10px 2px;
+        padding: 0px;
+      }
+
+      .menu li {
+        margin: 5px 0px 0px 0px;
+        align-items: center;
+        padding: unset;
+        flex: 1;
+      }
+
+      .menu a {
+        display: unset;
+        color: #333; /* 文字の色 */
+        text-decoration: none;
+        transition: background-color 0.3s ease;
+      }
+
+      .menu .material-symbols-outlined {
+        /* margin-right: 5px; */
+        font-size: 27px;
+        font-variation-settings:
+        'FILL' 0,
+        'wght' 500,
+        'GRAD' 200,
+        'opsz' 48
+      }
+		.title{
+		position:relative;
+		top: 50px;
+		}
+		.material-symbols-outlined{
+		position:relative;
+		right: 40px;
+		}
+		h2{
+		position:relative;
+		top: 30px;
+		}
+		.page_title .border  {
+	    border-bottom: #FED600 6px solid;
+	    width: 120px;
+	    text-align: center;
+	    margin-top: 2px;
+	    position:relative;
+		top: 5px;
+		}
+		.page_title{
+		position:relative;
+		top: 90px;
+	    }
+	    .flexbox{
+	    position:relative;
+		top: 130px;
+	    }
+	    }
+		.flexbox_chart{
+		position:relative;
+		top: 150px;
+	    }
+	    .flexbox_goallist{
+	    position:relative;
+		top: 100px;
+		right: 250px;
+	    }
+	    .add_goal{
+	    position:relative;
+		top: -40px;
+		left: 250px;
+	    }
+	    h2{
+	    position:relative;
+		top: -60px;
+	    }
+	    h5{
+	    position:relative;
+		top: -50px;
+	    }
+
+   /* タブレット用 */
+  @media screen and (max-width: 830px) {
+    /* メニューのテキストを非表示 */
+    .menu .text {
+      display: none;
+    }
+
+    /* ヘッダーのロゴを非表示 */
+    .menu .logo {
+      display: none;
+    }
+
+    .menu {
+        width: 30px; /* メニューの幅 */
+        padding: 25px 25px 25px 10px;
+    }
+
+    .content {
+        flex: 1; /* メインコンテンツが残りのスペースを占めるようにする */
+        padding: 40px 10px 40px 40px; /* メインコンテンツの内側の余白 */
+        margin-left: 60px; /* メニューの幅分だけメインコンテンツを右にずらす */
+    }
+    .home{
+	position:relative;
+	left: 80px;
+	}
+	.search{
+	position:relative;
+	left:50px;
+	}
+	.ranking{
+	position:relative;
+	left:30px;
+	}
+	.material-symbols-outlined{
+	position:relative;
+	right: 40px;
+	}
+    }
+
+

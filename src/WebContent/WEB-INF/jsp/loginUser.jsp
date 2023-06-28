@@ -71,9 +71,11 @@
 
 		<div class="flexbox_goallist">
 			<div class="goal_title">目標</div>
+			<ul>
 			<c:forEach var="e" items="${goalList}">
 				<li>${e.goalName} (${e.goalTimeHours}時間${e.goalTimeMins}分)</li>
 			</c:forEach>
+			</ul>
 			<c:if test="${mypage}">
 				<div class="add_goal">
 					<div class="material-symbols-outlined trigger-goaladd">add_box</div>
