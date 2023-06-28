@@ -5,9 +5,17 @@
 <!-- 投稿モーダル -->
 
  <style>
+<<<<<<< HEAD
 	.iziModal_post {
 		display: none;
     }
+=======
+     .iziModal_post {
+         display: none;
+     }
+     .posts-s{
+       color: #6091d3;
+>>>>>>> 6027a27f8c9b916904d7dfc019115b687ce092bc
 
     /* ヘッダー非表示 */
     .iziModal-header {
@@ -23,6 +31,7 @@
 
  </style>
 
+<<<<<<< HEAD
 <div class="iziModal_post" data-izimodal-title="投稿" data-izimodal-subtitle="今日のがんばりを共有しよう！">
 	<h2 class="goals-s">がんばり投稿</h2>
 	<div class="modal_content">
@@ -54,6 +63,28 @@
 		</div>
 	</form>
 	</div>
+=======
+<div class="iziModal_post" data-izimodal-title="投稿" data-izimodal-subtitle="説明文">
+   <h2 class="posts-s">がんばり投稿</h2>
+   <form method="POST" action="/NYASTER/TopPage">
+       <div>目標選択</div>
+       <select id="goal-select" name="goal">
+           <c:forEach var="e" items="${goalList}">
+               <option value="${e.goalId}">${e.goalName}</option>
+           </c:forEach>
+       </select>
+
+       <div class="posts-s">がんばり時間</div>
+       <div class="IC">
+       <div class="input-cont"> <input type="number" class="time-input" name="hours" min="0" value="0" required> <label>時間</label>
+       </div>
+       <div class="input-cont"> <input type="number" class="time-input" name="mins" min="0" max="60" value="0" required> <label>分</label>
+       </div></div>
+       <div class="input-msg">  <label>メッセージ</label> <input type="text" id="msg" name="msg" maxlength="50" >
+       </div>
+       <div> <input type="submit" name="select" class="posts-button" title="登録する" value="投稿"> </div>
+   </form>
+>>>>>>> 6027a27f8c9b916904d7dfc019115b687ce092bc
 </div>
 
 <script>
