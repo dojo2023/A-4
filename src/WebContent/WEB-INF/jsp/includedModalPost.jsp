@@ -9,9 +9,9 @@
          display: none;
      }
      .input-cont {
-     
+
      }
-     
+
  </style>
 
 <div class="iziModal_post" data-izimodal-title="投稿" data-izimodal-subtitle="説明文">
