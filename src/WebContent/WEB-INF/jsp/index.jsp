@@ -41,6 +41,12 @@
 	            font-weight: 700;
 	    }
     }
+    .comment-button{
+       margin-top: 5px;
+       color: #fff;
+       background-color: #6091d3;
+       border-radius: 100vh;
+     }
     </style>
 
     <main class="content">
@@ -126,9 +132,11 @@
                     <br>
                     <div>コメントする</div>
                     <form method="POST" action="/NYASTER/Comment">
+                    <div class="input-comment">
                     <input type="hidden" name="post_id" value="${e.id}" readonly>
                     <input type="text" name="cmt_msg" min="0" max="50" placeholder="コメントを追加..."  required>
-                    <div> <input type="submit" name="select" value="add"> </div>
+                    </div>
+                    <div> <input type="submit" class="comment-button" name="select" value="add"> </div>
                     </form>
                 </div>
 
