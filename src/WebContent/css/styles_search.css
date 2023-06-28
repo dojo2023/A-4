@@ -44,7 +44,18 @@
     background-repeat: no-repeat;
     content: '';
 }
-
+  .page_title .border  {
+    border-bottom: #FED600 6px solid;
+    width: 75px;
+    text-align: center;
+    margin-top: 2px;
+    position:relative;
+	top: 5px;
+}
+.page_title{
+	position:relative;
+	top: 30px;
+}
 
 /* 検索結果 */
 .search_result_label {
