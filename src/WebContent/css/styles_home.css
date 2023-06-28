@@ -206,7 +206,7 @@ textarea:focus {
 	color: #FBBC04;
 	font-size: 30px;
 	cursor: pointer;
-	z-index: 10	;
+	z-index: 10;
 	filter: drop-shadow(0px 2px 4px #ccc);
 	border: 3px solid #fcfcfc;
 	box-shadow: 1px 2px 3px #ccc;
@@ -217,6 +217,74 @@ textarea:focus {
 	transform: translateY(2px);
 	box-shadow: 0 0 0 #ccc;
 }
+
+
+/* 投稿モーダル */
+    .iziModal_post {
+        display: none;
+    }
+    /*      .goals-s{
+    color: #6091d3;
+
+    } */
+
+    .posts-button{
+        color: #fafafa;
+        background-color: #FED600;
+        border-radius: 50px;
+        padding: 3px 5px;
+    }
+
+    .input-cont {
+        width: 90px;
+        height: 30px;
+        padding: 1px 3px;
+        margin: 2em 1px;
+        font-weight: bold;
+        color: #333; /*文字色*/
+        border: solid 1px #eee;
+        border-radius: 10px;/*角の丸み*/
+        text-align: right;
+    }
+
+    .input-cont p {
+        margin: 0;
+        padding: 0;
+    }
+
+    .input-msg {
+        width: 200px;
+        height: 40px;
+        padding: 0.5em 1em;
+        margin: 40px 0px;
+        font-weight: bold;
+        border: solid 2px #eee;
+        border-radius: 10px;
+    }
+
+    .input-msg p {
+        margin: 0;
+        padding: 0;
+    }
+
+    .time-input {
+        width: 50px;
+    }
+    .ic {
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+    }
+
+    .iziModal_post .modal_content {
+        display: flex;
+        /* margin: 30px auto; */
+        padding: 10px 20px 15px 20px;
+        justify-content: flex-start;
+        flex-direction: column;
+         /* 縦方向の中央揃え */
+        /* align-items: center; */
+    }
 
 
 /* メディアクエリ */
