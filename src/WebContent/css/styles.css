@@ -152,9 +152,9 @@ body {
   } */
 
   footer {
+    margin-top: 30px;
     font-size: 13px;
     width: 100%;
-    position: fixed;
     bottom: 50px;
   }
 
