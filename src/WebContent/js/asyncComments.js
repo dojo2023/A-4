@@ -25,7 +25,7 @@ function asyncComments(id){
     console.log("jsonテスト表示");
     for(let i=0; i<data.length; i++){
         // ユーザ名
-        var newElement = document.createElement("div");
+        var newElement = document.createElement("span");
         newElement.textContent = data[i].user_name;
         newElement.classList.add("comment-contents"); //再表示時に一括削除する為の共通クラスを設定
         newElement.classList.add("comment-userName");
