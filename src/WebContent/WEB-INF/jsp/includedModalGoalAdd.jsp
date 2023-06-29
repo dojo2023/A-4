@@ -46,7 +46,7 @@
 
 <div class="iziModal_goaladd" data-izimodal-title="目標を追加する" data-izimodal-subtitle="がんばりの達成目標を設定しよう！">
    <h2 class="goals-s">がんばり投稿</h2>
-       	 <form method="POST" action="/NYASTER/UserPage">
+       	 <form method="POST" action="/NYASTER/GoalServlet">
             <div class="goals-s">目標名</div>
             <div class="input-cont">
                 <input type="text" id="msg" name="goal_name" maxlength="50">
@@ -57,7 +57,7 @@
               <option value="勉強">勉強</option>
               <option value="読書">読書</option>
               <option value="その他">その他</option>
-            </select> 
+            </select>
 	  		</div>
 
             <div class="goals-s">目標時間</div>

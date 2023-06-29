@@ -51,7 +51,6 @@ public class GoalServlet extends HttpServlet {
 		// リクエストパラメータを取得する
 		request.setCharacterEncoding("UTF-8");
 
-
 		// GoalsDaoクラスをgAddDaoという名前でインスタンス化する(名前は自由に決めてOKだけど後でわかりやすいように！)
 		if (request.getParameter("select").equals("追加")) {
 			// JSPのフォーム内で「name="goal_name"」で指定されている箇所の文字列を取得して, String型のgoalName変数に代入する
@@ -71,28 +70,22 @@ public class GoalServlet extends HttpServlet {
 			Goals g = new Goals(goalName, goalTag, goalMins, userUuid);
 			if (gAddDao.goalAdd(g)) {	// 追加成功
 				System.out.println("追加しました");
-				response.sendRedirect("/NYASTER/GoalServlet");
+				response.sendRedirect("/NYASTER/UserPage");
 			}
 			else { // 追加失敗
 				System.out.println("追加できませんでした");
 			}
-		}
-		// === 【追加処理】終わり ===
-
-		else if (request.getParameter("select").equals("削除")) {
+		} else if (request.getParameter("select").equals("削除")) {
 		// 削除を行う
 			GoalsDao gAddDao = new GoalsDao();
 			if (gAddDao.delete(request.getParameter("goal_id"))) {	// 削除成功
 				System.out.println("削除しました");
-				response.sendRedirect("/NYASTER/GoalServlet");
+				response.sendRedirect("/NYASTER/UserPage");
 		}
 		else {						// 削除失敗
 			System.out.println("削除できませんでした");
 		}
 		// === 【削除処理】終わり ===
-
-
-
 	}
 }
 }
