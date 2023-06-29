@@ -41,7 +41,7 @@
 
   <main class="content">
     <div class="title">NYASTAR</div>
-    <div class="page_title"><p>ランニング</p><p class="border" style="width: 130px;"></p></div>
+    <div class="page_title"><p>ランキング</p><p class="border" style="width: 130px;"></p></div>
 
 
     <div class="ranking-tag">
@@ -63,24 +63,7 @@
                 <div class="rank">
                   <img src="img/f5-1.png" alt="#1">
                 </div>
-                <c:set var="directoryPath" value="icon_img" />
-    				<c:set var="fileName" value="${e.userId}.png" />
-					<c:if test="${fn:contains(directoryFiles, fileName)}">
-						<!-- ファイルが存在したとき処理 -->
-			            <script>
-			              console.log("true");
-			            </script>
-						<img class="icon" src="icon_img/${e.userId}.png" alt="ユーザアイコン">
-					</c:if>
-
-					<c:if test="${!fn:contains(directoryFiles, fileName)}">
-						<!-- ファイルが存在しなかったときの処理 -->
-			            <script>
-			              console.log("false");
-			            </script>
-						<img class="icon" src="icon_img/human.png" alt="ユーザアイコン">
-					</c:if>
-
+                <img class="icon" id="icon" src="icon_img/${e.userId}.png" alt="ユーザアイコン">
                 <div class="user">
                     <div class="id">@${e.userId}</div>
                     <div class="name">${e.userName}</div>
@@ -98,7 +81,7 @@
                 <div class="rank">
                   <img src="img/f5-2.png" alt="#2">
                 </div>
-                <img class="icon" src="icon_img/${e.userId}.png" alt="ユーザアイコン">
+                <img class="icon" id="icon" src="icon_img/${e.userId}.png" alt="ユーザアイコン">
                 <div class="user">
                     <div class="id">@${e.userId}</div>
                     <div class="name">${e.userName}</div>
@@ -116,7 +99,7 @@
                 <div class="rank">
                   <img src="img/f5-3.png" alt="#2">
                 </div>
-                <img class="icon" src="icon_img/${e.userId}.png" alt="ユーザアイコン">
+                <img class="icon" id="icon" src="icon_img/${e.userId}.png" alt="ユーザアイコン">
                 <div class="user">
                     <div class="id">@${e.userId}</div>
                     <div class="name">${e.userName}</div>
@@ -134,7 +117,7 @@
               <div class="rank">
                 #${status.index+1}
               </div>
-              <img class="icon" src="icon_img/${e.userId}.png" alt="ユーザアイコン">
+              <img class="icon" id="icon" src="icon_img/${e.userId}.png" alt="ユーザアイコン">
               <div class="user">
                   <div class="id">@${e.userId}</div>
                   <div class="name">${e.userName}</div>
@@ -156,7 +139,10 @@
 </main>
 
 <script>
-
+  let image = document.getElementById("icon");
+  image.onerror = function() {
+    image.src = "img/human.png";
+  };
 </script>
 </body>
 <!-- JavaScript -->

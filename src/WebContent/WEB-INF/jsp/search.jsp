@@ -68,22 +68,7 @@
 		<c:forEach var= "e" items= "${seList}" varStatus="status">
 			<li class="user_info">
 				<div class="flexbox">
-					<!-- img class="icon" src="C:/pleiades/workspace/data/icon_img/human.png" alt="ユーザアイコン"> -->
-
-					<c:set var="directoryPath" value="icon_img" />
-    				<c:set var="fileName" value="${userId}.png" />
-​
-					<c:if test="${fn:contains(directoryFiles, fileName)}">
-						<!-- ファイルが存在したとき処理 -->
-						<img class="icon" src="icon_img/${e.user_id}.png" alt="ユーザアイコン">
-					</c:if>
-
-					<c:if test="${!fn:contains(directoryFiles, fileName)}">
-						<!-- ファイルが存在しなかったときの処理 -->
-						<img class="icon" src="icon_img/human.png" alt="ユーザアイコン">
-					</c:if>
-
-
+					<img class="icon" id="icon" src="icon_img/${e.user_id}.png" alt="ユーザアイコン">
 					<div class="user" id="get_${e.user_id}">
 						<div class="id">@${e.user_id}</div>
 						<div class="name">${e.user_name}</div>
@@ -115,6 +100,12 @@
 	</main>
 
 </body>
+<script>
+	let image = document.getElementById("icon");
+	image.onerror = function() {
+	  image.src = "img/human.png";
+	};
+</script>
 <!-- JavaScript -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/izimodal/1.5.1/js/iziModal.min.js"></script>

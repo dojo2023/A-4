@@ -78,7 +78,7 @@
 							</c:if>
                         </div> -->
                         <div class="user_icon">
-								<img class="icon" src="icon_img/human.png" alt="ユーザアイコン">
+								<img class="icon" id="icon" src="icon_img/${e.userId}.png" alt="ユーザアイコン">
                         </div>
                         <div class="u-info">
                             <span class="u-name">${e.userName}</span>
@@ -201,6 +201,12 @@
     <div class="post-button trigger-post"> <span>＋</span> </div>
 
 	<!-- JS -->
+	<script>
+	  let image = document.getElementById("icon");
+	  image.onerror = function() {
+	    image.src = "img/human.png";
+	  };
+	</script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/izimodal/1.5.1/js/iziModal.min.js"></script>
     <script type="text/javascript" src="./js/jquery-migrate-3.4.1.js"></script>
