@@ -64,15 +64,20 @@
                   <img src="img/f5-1.png" alt="#1">
                 </div>
                 <c:set var="directoryPath" value="icon_img" />
-    				<c:set var="fileName" value="${userId}.png" />
-​
+    				<c:set var="fileName" value="${e.userId}.png" />
 					<c:if test="${fn:contains(directoryFiles, fileName)}">
 						<!-- ファイルが存在したとき処理 -->
-						<img class="icon" src="icon_img/${e.user_id}.png" alt="ユーザアイコン">
+			            <script>
+			              console.log("true");
+			            </script>
+						<img class="icon" src="icon_img/${e.userId}.png" alt="ユーザアイコン">
 					</c:if>
 
 					<c:if test="${!fn:contains(directoryFiles, fileName)}">
 						<!-- ファイルが存在しなかったときの処理 -->
+			            <script>
+			              console.log("false");
+			            </script>
 						<img class="icon" src="icon_img/human.png" alt="ユーザアイコン">
 					</c:if>
 

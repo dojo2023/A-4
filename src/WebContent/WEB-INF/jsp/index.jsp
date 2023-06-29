@@ -58,19 +58,27 @@
             <c:forEach var="e" items="${postList}" varStatus="loop">
                 <div class="post_card fadeUp" style="animation-delay: ${loop.index*0.2}s;">
                     <div class="flex">
+                        <c:set var="directoryPath" value="/icon_img" />
+    					<c:set var="fileName" value="${e.userId}.png" />
+                        <script>
+                            console.log("${fileName}");
+                        </script>
+                        <!-- <div class="user_icon">
+							<c:if test="${fn:contains(directoryFiles, fileName)}">
+								<img class="icon" src="icon_img/${e.user_id}.png" alt="ユーザアイコン">
+                                <script>
+                                    console.log("true");
+                                </script>
+							</c:if>
+							<c:if test="${!fn:contains(directoryFiles, fileName)}">
+								<img class="icon_default" src="img/human.png" alt="ユーザアイコン">
+                                <script>
+                                    console.log("false");
+                                </script>
+							</c:if>
+                        </div> -->
                         <div class="user_icon">
-                           <c:set var="directoryPath" value="icon_img" />
-    				<c:set var="fileName" value="${userId}.png" />
-​
-					<c:if test="${fn:contains(directoryFiles, fileName)}">
-						<!-- ファイルが存在したとき処理 -->
-						<img class="icon" src="icon_img/${e.user_id}.png" alt="ユーザアイコン">
-					</c:if>
-
-					<c:if test="${!fn:contains(directoryFiles, fileName)}">
-						<!-- ファイルが存在しなかったときの処理 -->
-						<img class="icon" src="icon_img/human.png" alt="ユーザアイコン">
-					</c:if>
+								<img class="icon" src="icon_img/human.png" alt="ユーザアイコン">
                         </div>
                         <div class="u-info">
                             <span class="u-name">${e.userName}</span>
