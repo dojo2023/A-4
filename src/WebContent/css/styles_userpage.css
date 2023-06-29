@@ -142,6 +142,14 @@
     height: 300px;
     position: relative;
 }
+.flexbox_goallist{
+	position:relative;
+	left: -300px;
+}
+.add_goal{
+	position:relative;
+	left: 300px;
+}
 
 	/*スマホ対応*/
 @media screen and (max-width: 420px) {
@@ -268,6 +276,10 @@
 		top: -50px;
 		left: 300px;
 	    }
+	    .goal_title{
+		position:relative;
+		top: -110px;
+}
 	    h2{
 	    position:relative;
 		top: -40px;
@@ -290,32 +302,42 @@
       display: none;
     }
 
-    .menu {
-        width: 30px; /* メニューの幅 */
-        padding: 25px 25px 25px 10px;
-    }
+  /*   .menu {
 
+ メニューの幅
+        padding: 50px 25px 25px 10px;
+    }
+ */
     .content {
         flex: 1; /* メインコンテンツが残りのスペースを占めるようにする */
         padding: 40px 10px 40px 40px; /* メインコンテンツの内側の余白 */
         margin-left: 60px; /* メニューの幅分だけメインコンテンツを右にずらす */
     }
-      .home{
-    position:relative;
-    left: 80px;
-    }
-    .search{
-    position:relative;
-    left:50px;
-    }
-    .ranking{
-    position:relative;
-    left:30px;
-    }
-    .material-symbols-outlined{
-    position:relative;
-    right: 40px;
-    }
+    .title{
+	position:relative;
+	top: 20px;
+	}
+	.home{
+	position:relative;
+	left: 80px;
+	}
+	.search{
+	position:relative;
+	left:50px;
+	}
+	.ranking{
+	position:relative;
+	left:30px;
+	}
+	.material-symbols-outlined{
+	position:relative;
+	right: 40px;
+	}
+.goal_title{
+	position:relative;
+	top: -110px;
+}
+
     }
 
 
