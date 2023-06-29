@@ -41,12 +41,7 @@
 	            font-weight: 700;
 	    }
     }
-    .comment-button{
-       margin-top: 5px;
-       color: #fff;
-       background-color: #6091d3;
-       border-radius: 100vh;
-     }
+
     </style>
 
     <main class="content">
@@ -116,31 +111,34 @@
 
                 <!-- コメントモーダル -->
 
-                <div class="iziModal_comments_${e.id} comments_modal" data-izimodal-title="コメント" data-izimodal-subtitle="説明文">
-                    <h3>コメント一覧</h3>
-                    <div id="comments-area-${e.id}">
-                    <!-- ここにコメントを読み込ませる -->
+                <div class="iziModal_comments_${e.id} comments_modal" data-izimodal-title="コメント" data-izimodal-subtitle="${e.userName}さんに応援のメッセージを送れます！">
+                    <!-- <h3>コメント一覧</h3> -->
+                    <div id="comments-area-${e.id}" class="comments-area">
+                    	<!-- ここにコメントを読み込ませる -->
                     </div>
-                    <br>
-                    <div>コメントする</div>
                     <form method="POST" action="/NYASTER/Comment">
-                    <div class="input-comment">
-                    <input type="hidden" name="post_id" value="${e.id}" readonly>
-                    <input type="text" name="cmt_msg" min="0" max="50" placeholder="コメントを追加..."  required>
-                    </div>
-                    <div> <input type="submit" class="comment-button" name="select" value="add"> </div>
+                    	<div class="user_icon">
+                    		<img class="icon" id="icon" src="icon_img/${userid}.png" alt="ユーザアイコン">
+                        </div>
+                        <div class="input-comment">
+                            <input type="hidden" name="post_id" value="${e.id}" readonly>
+                            <input type="text" class="comments_text" name="cmt_msg" min="0" max="50" placeholder="コメントを追加..."  required>
+                        </div>
+                        <div class="submit-comment">
+                            <input type="submit" class="comment-button material-symbols-outlined" name="select" value="send">
+                        </div>
                     </form>
                 </div>
 
                 <script>
                     $(function() {
                     $(".iziModal_comments_${e.id}").iziModal({
-                        width: "500px",
+                        width: "450px",
                         transitionIn: "fadeInUp",
                         ariahidden: "true",
                         padding: "20px",
-                        headerColor: "#768793",
-                        top: "230px",
+                        headerColor: "#FED600",
+                        top: "5%",
                         // モーダルが閉じられたら取得したコメント要素も破棄する.
                         onClosed: function() {
                             let CommentElements = document.getElementsByClassName("comment-contents");

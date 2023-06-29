@@ -47,7 +47,7 @@
 
 		<form method="post" class="search-form" action = "/NYASTER/Search">
 			<label>
-				<input type="text" name="search_query" placeholder="ID,名前でユーザーを検索">
+				<input type="text" name="search_query" placeholder="ID,名前でユーザーを検索...">
 			</label>
 			<button type="submit" aria-label="検索"></button>
 		</form>
@@ -93,11 +93,10 @@
 			</script>
 		</c:forEach>
 		</ul>
-
-		<footer>
-		<p>&copy; 2023 NYASTAR. All rights reserved.</p>
-		</footer>
 	</main>
+	<footer>
+		<p>&copy; 2023 NYASTAR. All rights reserved.</p>
+	</footer>
 
 </body>
 <script>

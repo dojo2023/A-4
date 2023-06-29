@@ -29,9 +29,9 @@
 	<form method="POST" action="/NYASTER/TopPage">
 
 		<div class="goal">
-			<div class="goal_label">目標選択</div>
+			<div class="goal_label">目標を選ぶ</div>
 				<select class="select_goal" id="goal-select" name="goal">
-					<option hidden disabled selected>選択してください</option>
+					<option hidden disabled selected>目標を選択してください...</option>
 				<c:forEach var="e" items="${goalList}">
 					<option value="${e.goalId}">${e.goalName}</option>
 				</c:forEach>
@@ -72,7 +72,8 @@
 	    transitionIn: "fadeInUp",
 	    padding: "15px",
 	    headerColor: "#FED600",
-	    top: "30px"});});
+	    top: "5%"
+	  });});
 
 	$(document).on('click', '.trigger-post', function (event) {
 	    event.preventDefault();

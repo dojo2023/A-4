@@ -164,7 +164,7 @@ textarea:focus {
     display: flex; /*横並び*/
     align-items: center;
     justify-content: flex-start;
-    margin: 10px 5px 0px 5px;
+    margin: 0px 5px;
 }
 
 .post_card .reaction .fa-comment{
@@ -223,10 +223,6 @@ textarea:focus {
     .iziModal_post {
         display: none;
     }
-    /*      .goals-s{
-    color: #6091d3;
-
-    } */
 
     .posts-button{
         color: #fafafa;
@@ -247,8 +243,9 @@ textarea:focus {
 	}
 
     .select_goal {
-    	border: solid 1px #eee;
-    	padding: 4px 6px;
+    	border: 1px solid #eee;
+    	padding: 5px 15px;
+    	border-radius: 10px;
     }
 
     .input-cont {
@@ -310,6 +307,71 @@ textarea:focus {
         /* align-items: center; */
     }
 
+/* コメントモーダル */
+    .comments_text {
+        border-bottom: #c4c4c4 1px solid;
+        width: 300px
+    }
+
+    .comments_modal form {
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+    }
+
+    .comments_modal .submit-comment {
+        margin-right: 10px;
+    }
+
+    .comments_modal .comment-label {
+        width: 300px;
+        padding-top: 30px;
+    }
+
+    .comments_modal .comments-area {
+    	min-height: 200px;
+    }
+
+    .comments_modal .user_icon img{
+        width: 30px;
+        height: 30px;
+        margin: 10px;
+        border-radius: 50%;
+        border: #c4c4c4 1px solid;
+    }
+
+    .comments_modal .comment-timestamp {
+        color: #838383;
+        font-size: 12px;
+        padding-right: 30px;
+    }
+
+    .comments_modal .comment-userName {
+        font-weight: 600;
+        font-size: 15px;
+      }
+
+    .comments_modal .comment-msg {
+	  position: relative;
+	  display: inline-block;
+	  margin: 5px 0px 3px 20px;
+	  padding: 7px 10px;
+	  min-width: 120px;
+	  max-width: 100%;
+	  color: #555;
+	  font-size: 14px;
+	  background: #f9fadf;
+	}
+
+	.comments_modal .comment-msg:before {
+	  content: "";
+	  position: absolute;
+	  top: 50%;
+	  left: -30px;
+	  margin-top: -15px;
+	  border: 15px solid transparent;
+	  border-right: 15px solid #f9fadf;
+	}
 
 /* メディアクエリ */
 
@@ -329,5 +391,9 @@ textarea:focus {
     .post-button:hover {
         transform: unset;
         box-shadow: unset;
+    }
+
+    .iziModal .iziModal-header-subtitle, .iziModal .iziModal-header-title {
+    	display: none !important;
     }
 }

@@ -64,7 +64,7 @@ public class Comment extends HttpServlet {
 				response.setHeader("Cache-Control", "nocache");
 				response.setCharacterEncoding("utf-8");
 				break;
-			case "add":
+			case "send":
 				//フォームからコメント内容を取得する。
 				String commentMsg = request.getParameter("cmt_msg");
 				String postId = request.getParameter("post_id");

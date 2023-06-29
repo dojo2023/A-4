@@ -41,10 +41,10 @@ public class TopPage extends HttpServlet {
 		// IDからユーザ情報を問い合わせる
 		AccountsDao aDao = new AccountsDao();
 		model.User loginUser = aDao.showUser(userUuid); //ログインユーザの情報を取得
-		String username = loginUser.getUser_name();
 
-		//　取得したユーザ情報からユーザ名を取り出し、リクエストスコープに格納する
-		request.setAttribute("username", username);
+		//　取得したユーザ情報からユーザ名・IDを取り出し、リクエストスコープに格納する
+		request.setAttribute("username", loginUser.getUser_name());
+		request.setAttribute("userid", loginUser.getUser_id());
 
 		// 投稿データを全件取得し、リストをリクエストスコープに格納する。
 		PostsDAO pDao = new PostsDAO();

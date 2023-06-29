@@ -12,6 +12,12 @@ body {
   margin: unset;
 }
 
+footer {
+  font-size: 15px;
+  color: #808080;
+  padding-left: 230px;
+}
+
 .material-symbols-outlined {
     margin-right: 5px;
     font-variation-settings:
@@ -150,15 +156,6 @@ body {
   .el_flexItem:nth-of-type(3n) {
     margin-right: 0;
   } */
-
-  footer {
-    margin-top: 30px;
-    font-size: 13px;
-    width: 100%;
-    bottom: 50px;
-  }
-
-
 
   /* メディアクエリ */
 
