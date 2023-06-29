@@ -52,8 +52,6 @@
     <main class="content">
         <div class="title">NYASTAR</div> <!-- スマホ画面用 -->
         <div class="page_title"><p>ホーム</p><p class="border"></p></div>
-
-        <h2>タイムライン</h2>
         <div class="flexContainer">
             <c:forEach var="e" items="${postList}" varStatus="loop">
                 <div class="post_card fadeUp" style="animation-delay: ${loop.index*0.2}s;">
