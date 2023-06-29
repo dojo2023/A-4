@@ -49,7 +49,7 @@
 		<div class="flexbox">
 			<div class="user_icon">
 				<!-- <img src="icon_img/${userid}.png" alt="" id="iconImage"></img> -->
-				<img id="icon" src="img/${pageUserId}.png" alt="ユーザーアイコン">
+				<img id="icon" src="icon_img/${pageUserId}.png" alt="ユーザーアイコン">
 			</div>
 			<div class="user-info">
 				<div class="user">

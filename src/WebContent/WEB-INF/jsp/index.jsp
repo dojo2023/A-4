@@ -63,20 +63,6 @@
                         <script>
                             console.log("${fileName}");
                         </script>
-                        <!-- <div class="user_icon">
-							<c:if test="${fn:contains(directoryFiles, fileName)}">
-								<img class="icon" src="icon_img/${e.user_id}.png" alt="ユーザアイコン">
-                                <script>
-                                    console.log("true");
-                                </script>
-							</c:if>
-							<c:if test="${!fn:contains(directoryFiles, fileName)}">
-								<img class="icon_default" src="img/human.png" alt="ユーザアイコン">
-                                <script>
-                                    console.log("false");
-                                </script>
-							</c:if>
-                        </div> -->
                         <div class="user_icon">
 								<img class="icon" id="icon" src="icon_img/${e.userId}.png" alt="ユーザアイコン">
                         </div>
